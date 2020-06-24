@@ -47,10 +47,13 @@ public class CommandManager {
 
     public void execute(String line){
         String commandtext = line.split(" ")[0];
-        CloudCommand command = getCommand(commandtext);
-        if (command == null){
+
+        if ( getCommand(commandtext) == null){
             this.colouredConsoleProvider.error("Command Not Found!");
+            return;
         }
+        CloudCommand command = getCommand(commandtext);
+
         List<String> args = new ArrayList<>();
         for (String argument : line.substring( commandtext.length() ).split(" ")){
             if (argument.equalsIgnoreCase("") || argument.equalsIgnoreCase(" ")){

@@ -9,6 +9,8 @@ import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 import de.crycodes.de.spacebyter.liptoncloud.setup.impl.GroupSetup;
 import org.checkerframework.checker.units.qual.C;
 
+import java.util.LinkedList;
+
 public class CreateCommand extends CloudCommand {
 
     public CreateCommand(String name, String description, String[] aliases) {
@@ -28,9 +30,19 @@ public class CreateCommand extends CloudCommand {
 
                     GroupSetup setup = new GroupSetup();
                     setup.start(LiptonMaster.getInstance().getCommandManager().getScanner());
-                    new ServerGroupConfig(new ServerGroupMeta(setup.getServerName(), setup.getMaxMem(), setup.getMinMem(), setup.isDynamic(),true , setup.getMaxServer(), setup.getMinServer()));
+
+                   LiptonMaster.getInstance().getServerGroupConfig().create(new ServerGroupMeta(setup.getServerName(),
+                           setup.getMaxMem(),
+                           setup.getMinMem(),
+                           setup.isDynamic(),
+                           true ,
+                           setup.getMaxServer(),
+                           setup.getMinServer(),
+                           new LinkedList<Integer>()));
+
                     LiptonMaster.getInstance().getCommandManager().restart();
-                    colouredConsoleProvider.info("Servergroup was successfully created!");
+
+                    colouredConsoleProvider.info("Servergroup '" + setup.getServerName() + "' was successfully created!");
                     break;
                 }
                 sendUsage(colouredConsoleProvider);
