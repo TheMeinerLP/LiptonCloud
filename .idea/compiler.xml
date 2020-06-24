@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="API" />
-        <module name="Master" />
-        <module name="Library" />
-        <module name="Wrapper" />
         <module name="Examples" />
+        <module name="Library" />
+        <module name="Master" />
+        <module name="API" />
+        <module name="Wrapper" />
       </profile>
     </annotationProcessing>
   </component>
