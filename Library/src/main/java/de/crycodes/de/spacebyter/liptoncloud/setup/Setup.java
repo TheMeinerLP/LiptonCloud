@@ -24,7 +24,7 @@ public abstract class Setup {
         scanner = new Scanner(System.in);
 
         this.currentPart = this.getEntry(1);
-        System.out.print(this.currentPart.getValue().question() + " ("+this.currentPart.getKey().getType().getSimpleName()+")");
+        System.out.println(this.currentPart.getValue().question() + " ("+this.currentPart.getKey().getType().getSimpleName()+")");
 
         while (current < (setupParts.size() + 1)) {
             String line = scanner.nextLine();
@@ -50,12 +50,12 @@ public abstract class Setup {
             try {
                 Object value = parse(this.currentPart.getKey(), lastAnswer);
                 if (value == null) {
-                    System.out.print("Cannot write entry! Cannot parse entry!");
+                    System.out.println("Cannot parse entry. Please Retry");
                     return;
                 }
                 this.currentPart.getKey().set(this, value);
             } catch (Exception ex) {
-                System.out.print("Cannot write entry! Please enter a valid value!");
+                System.out.println("Please enter a valid Entry");
                 return;
             }
 
@@ -65,7 +65,7 @@ public abstract class Setup {
 
         this.currentPart = this.getEntry(current);
         if (this.currentPart != null)
-            System.out.print(this.currentPart.getValue().question() + " ("+this.currentPart.getKey().getType().getSimpleName()+")");
+            System.out.println(this.currentPart.getValue().question() + " ("+this.currentPart.getKey().getType().getSimpleName()+")");
 
     }
 
@@ -85,7 +85,7 @@ public abstract class Setup {
             else if (field.getType() == String.class)
                 return s;
         } catch (Exception ignored) {
-            parse(field, s);
+
         }
 
         return null;
