@@ -1,0 +1,11 @@
+{
+  "group": {
+    "groupName": "sw",
+    "maxMemory": 341,
+    "minMemory": 2134,
+    "dynamicService": false,
+    "maintenance": false,
+    "maxServer": 14,
+    "minServer": 1
+  }
+}

@@ -1,11 +1,15 @@
 package de.crycodes.de.spacebyter;
 
+import de.crycodes.de.spacebyter.commands.CreateCommand;
 import de.crycodes.de.spacebyter.commands.HelpCommand;
+import de.crycodes.de.spacebyter.commands.ServiceCommand;
 import de.crycodes.de.spacebyter.config.FileManager;
 import de.crycodes.de.spacebyter.config.MasterConfig;
+import de.crycodes.de.spacebyter.config.ServerGroupConfig;
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
 import de.crycodes.de.spacebyter.liptoncloud.command.CommandManager;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 
 /**
  * Coded By CryCodes
@@ -35,10 +39,15 @@ public class LiptonMaster {
         fileManager = new FileManager("./liptonMaster", "groups", "local", "modules", "proxys", "webserver", "api", "resources").create();
         masterConfig = new MasterConfig();
 
+        //ServerGroupConfig serverGroupConfig = new ServerGroupConfig(new ServerGroupMeta("Lobby", 512, 128, true, false, 1, 1));
+        //System.out.printf(serverGroupConfig.getServerMetas().toString());
+
 
         commandManager = new CommandManager(colouredConsoleProvider);
-        commandManager.registerComman(new HelpCommand("help", "Shows all CloudCommands", new String[]{"?"}, this));
-        commandManager.start();
+        commandManager.registerCommand(new HelpCommand("help", "Shows all CloudCommands", new String[]{"?"}, this));
+        commandManager.registerCommand(new CreateCommand("create", "Creates things", new String[]{"c"}));
+        commandManager.run();
+
     }
 
     public static LiptonMaster getInstance() {
@@ -51,5 +60,9 @@ public class LiptonMaster {
 
     public CommandManager getCommandManager() {
         return commandManager;
+    }
+
+    public void setCommandManager(CommandManager commandManager) {
+        this.commandManager = commandManager;
     }
 }

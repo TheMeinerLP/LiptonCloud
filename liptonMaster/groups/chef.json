@@ -1,0 +1,11 @@
+{
+  "group": {
+    "groupName": "chef",
+    "maxMemory": 342,
+    "minMemory": 21,
+    "dynamicService": false,
+    "maintenance": false,
+    "maxServer": 213,
+    "minServer": 2
+  }
+}
