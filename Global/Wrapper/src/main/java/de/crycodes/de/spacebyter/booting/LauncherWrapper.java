@@ -1,5 +1,7 @@
 package de.crycodes.de.spacebyter.booting;
 
+import de.crycodes.de.spacebyter.LiptonWrapper;
+
 /**
  * Coded By CryCodes
  * Class: LauncherMaster
@@ -9,4 +11,6 @@ package de.crycodes.de.spacebyter.booting;
  */
 
 public class LauncherWrapper {
+
+    public static void main(String[] args) {new LiptonWrapper();}
 }

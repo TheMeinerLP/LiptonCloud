@@ -37,7 +37,7 @@ public class LiptonMaster {
 
 
         commandManager = new CommandManager(colouredConsoleProvider);
-        commandManager.registerComman(new HelpCommand("help", "Shows all CloudCommands", new String[]{"?", "tftodo"}, this));
+        commandManager.registerComman(new HelpCommand("help", "Shows all CloudCommands", new String[]{"?"}, this));
         commandManager.start();
     }
 
@@ -45,23 +45,11 @@ public class LiptonMaster {
         return instance;
     }
 
-    public static void setInstance(LiptonMaster instance) {
-        LiptonMaster.instance = instance;
-    }
-
     public ColouredConsoleProvider getColouredConsoleProvider() {
         return colouredConsoleProvider;
     }
 
-    public void setColouredConsoleProvider(ColouredConsoleProvider colouredConsoleProvider) {
-        this.colouredConsoleProvider = colouredConsoleProvider;
-    }
-
     public CommandManager getCommandManager() {
         return commandManager;
-    }
-
-    public void setCommandManager(CommandManager commandManager) {
-        this.commandManager = commandManager;
     }
 }
