@@ -1,0 +1,11 @@
+{
+  "group": {
+    "groupName": "Bedwars",
+    "maxMemory": 213,
+    "minMemory": 12,
+    "dynamicService": false,
+    "maintenance": false,
+    "maxServer": 2341,
+    "minServer": 1
+  }
+}

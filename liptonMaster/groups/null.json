@@ -1,0 +1,11 @@
+{
+  "group": {
+    "groupName": null,
+    "maxMemory": 0,
+    "minMemory": 0,
+    "dynamicService": false,
+    "maintenance": false,
+    "maxServer": 0,
+    "minServer": 0
+  }
+}
