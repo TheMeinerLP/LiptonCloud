@@ -56,8 +56,8 @@ public class LiptonMaster {
         liptonLibrary = new LiptonLibrary(scheduler, eventManager, colouredConsoleProvider, parallelLoader, masterConfig.isColorConsole());
 
         commandManager = new CommandManager(colouredConsoleProvider);
-        commandManager.registerComman(new HelpCommand("help", "Shows all CloudCommands", new String[]{"?", "tftodo"}, this));
-        commandManager.start();
+        commandManager.registerCommand(new HelpCommand("help", "Shows all CloudCommands", new String[]{"?", "tftodo"}, this));
+        commandManager.run();
     }
 
     public static LiptonMaster getInstance() {

@@ -12,7 +12,7 @@ public class WrapperConfig {
     private int startPort;
     private boolean autoUpdate;
     private boolean GC_GPU_Overheat;
-
+    private boolean colorUse;
 
     //DOCUMENT AND FILE
     private Document document;
@@ -30,6 +30,7 @@ public class WrapperConfig {
         document.append("startPort", 9685);
         document.append("autoUpdate", false);
         document.append("GC_CPU_Overheat", true);
+        document.append("colorUse", true);
 
         document.saveAsConfig(configFile);
 
@@ -40,5 +41,30 @@ public class WrapperConfig {
         this.startPort = document.getInt("startPort");
         this.autoUpdate = document.getBoolean("autoUpdate");
         this.GC_GPU_Overheat = document.getBoolean("GC_CPU_Overheat");
+        this.colorUse = document.getBoolean("colorUse");
+    }
+
+    public String getHost() {
+        return host;
+    }
+
+    public String getWrapperID() {
+        return wrapperID;
+    }
+
+    public int getStartPort() {
+        return startPort;
+    }
+
+    public boolean isAutoUpdate() {
+        return autoUpdate;
+    }
+
+    public boolean isGC_GPU_Overheat() {
+        return GC_GPU_Overheat;
+    }
+
+    public boolean isColorUse() {
+        return colorUse;
     }
 }

@@ -4,8 +4,13 @@ import de.crycodes.de.spacebyter.commands.HelpCommand;
 import de.crycodes.de.spacebyter.config.FileManager;
 import de.crycodes.de.spacebyter.config.WrapperConfig;
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
+import de.crycodes.de.spacebyter.liptoncloud.addon.AddonParallelLoader;
 import de.crycodes.de.spacebyter.liptoncloud.command.CommandManager;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.event.EventManager;
+import de.crycodes.de.spacebyter.liptoncloud.scheduler.Scheduler;
+
+import java.io.File;
 
 /**
  * Coded By CryCodes
@@ -25,20 +30,30 @@ public class LiptonWrapper {
     private WrapperConfig wrapperConfig;
     private LiptonLibrary liptonLibrary;
 
+    private Scheduler scheduler;
+    private EventManager eventManager;
+    private AddonParallelLoader parallelLoader;
+
     public LiptonWrapper() {
         instance = this;
 
-        liptonLibrary = new LiptonLibrary();
+        colouredConsoleProvider = new ColouredConsoleProvider(new File("./liptonWrapper/logs"));
 
-        colouredConsoleProvider = new ColouredConsoleProvider();
-
-        fileManager = new FileManager("./liptonWrapper","api", "resources", "server","server/dynamic","server/static", "templates").create();
+        fileManager = new FileManager("./liptonWrapper","api","modules", "resources", "server", "logs", "server/dynamic","server/static", "templates").create();
         wrapperConfig = new WrapperConfig();
 
+        scheduler = new Scheduler();
+        eventManager = new EventManager();
+
+        parallelLoader = new AddonParallelLoader("./liptonWrapper/modules");
+        parallelLoader.loadAddons();
+        parallelLoader.enableAddons();
+
+        liptonLibrary = new LiptonLibrary(scheduler, eventManager, colouredConsoleProvider, parallelLoader, wrapperConfig.isColorUse());
 
         commandManager = new CommandManager(colouredConsoleProvider);
-        commandManager.registerComman(new HelpCommand("help", "Shows all CloudCommands", new String[]{"?"}, this));
-        commandManager.start();
+        commandManager.registerCommand(new HelpCommand("help", "Shows all CloudCommands", new String[]{"?"}, this));
+        commandManager.run();
     }
 
     public static LiptonWrapper getInstance() {
