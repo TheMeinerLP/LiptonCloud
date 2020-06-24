@@ -1,0 +1,6 @@
+# Project exclude paths
+/API/target/
+/Examples/target/
+/Global/Master/target/
+/Global/Wrapper/target/
+/Library/target/
