@@ -1,15 +1,16 @@
 package de.crycodes.de.spacebyter;
 
-import de.crycodes.de.spacebyter.commands.CreateCommand;
 import de.crycodes.de.spacebyter.commands.HelpCommand;
-import de.crycodes.de.spacebyter.commands.ServiceCommand;
 import de.crycodes.de.spacebyter.config.FileManager;
 import de.crycodes.de.spacebyter.config.MasterConfig;
-import de.crycodes.de.spacebyter.config.ServerGroupConfig;
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
+import de.crycodes.de.spacebyter.liptoncloud.addon.AddonParallelLoader;
 import de.crycodes.de.spacebyter.liptoncloud.command.CommandManager;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
-import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
+import de.crycodes.de.spacebyter.liptoncloud.event.EventManager;
+import de.crycodes.de.spacebyter.liptoncloud.scheduler.Scheduler;
+
+import java.io.File;
 
 /**
  * Coded By CryCodes
@@ -29,33 +30,50 @@ public class LiptonMaster {
     private MasterConfig masterConfig;
     private LiptonLibrary liptonLibrary;
 
+    private Scheduler scheduler;
+    private EventManager eventManager;
+    private AddonParallelLoader parallelLoader;
+
     public LiptonMaster() {
         instance = this;
 
-        liptonLibrary = new LiptonLibrary();
 
-        colouredConsoleProvider = new ColouredConsoleProvider();
 
-        fileManager = new FileManager("./liptonMaster", "groups", "local", "modules", "proxys", "webserver", "api", "resources").create();
+        fileManager = new FileManager("./liptonMaster", "groups", "local", "logs", "modules", "proxys", "webserver", "api", "resources").create();
+
+        colouredConsoleProvider = new ColouredConsoleProvider(new File("./liptonMaster/logs"));
+
+
         masterConfig = new MasterConfig();
 
-        //ServerGroupConfig serverGroupConfig = new ServerGroupConfig(new ServerGroupMeta("Lobby", 512, 128, true, false, 1, 1));
-        //System.out.printf(serverGroupConfig.getServerMetas().toString());
+        scheduler = new Scheduler();
+        eventManager = new EventManager();
 
+        parallelLoader = new AddonParallelLoader("./liptonMaster/modules");
+        parallelLoader.loadAddons();
+        parallelLoader.enableAddons();
+
+        liptonLibrary = new LiptonLibrary(scheduler, eventManager, colouredConsoleProvider, parallelLoader, masterConfig.isColorConsole());
 
         commandManager = new CommandManager(colouredConsoleProvider);
-        commandManager.registerCommand(new HelpCommand("help", "Shows all CloudCommands", new String[]{"?"}, this));
-        commandManager.registerCommand(new CreateCommand("create", "Creates things", new String[]{"c"}));
-        commandManager.run();
-
+        commandManager.registerComman(new HelpCommand("help", "Shows all CloudCommands", new String[]{"?", "tftodo"}, this));
+        commandManager.start();
     }
 
     public static LiptonMaster getInstance() {
         return instance;
     }
 
+    public static void setInstance(LiptonMaster instance) {
+        LiptonMaster.instance = instance;
+    }
+
     public ColouredConsoleProvider getColouredConsoleProvider() {
         return colouredConsoleProvider;
+    }
+
+    public void setColouredConsoleProvider(ColouredConsoleProvider colouredConsoleProvider) {
+        this.colouredConsoleProvider = colouredConsoleProvider;
     }
 
     public CommandManager getCommandManager() {
@@ -64,5 +82,29 @@ public class LiptonMaster {
 
     public void setCommandManager(CommandManager commandManager) {
         this.commandManager = commandManager;
+    }
+
+    public FileManager getFileManager() {
+        return fileManager;
+    }
+
+    public MasterConfig getMasterConfig() {
+        return masterConfig;
+    }
+
+    public LiptonLibrary getLiptonLibrary() {
+        return liptonLibrary;
+    }
+
+    public Scheduler getScheduler() {
+        return scheduler;
+    }
+
+    public EventManager getEventManager() {
+        return eventManager;
+    }
+
+    public AddonParallelLoader getParallelLoader() {
+        return parallelLoader;
     }
 }
