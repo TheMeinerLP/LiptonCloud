@@ -1,0 +1,14 @@
+{
+  "layouts": [],
+  "signs": [
+    {
+      "id": 0,
+      "signLayout": {
+        "line_1": "Line1",
+        "line_2": "Line2",
+        "line_3": "Line3",
+        "line_4": "Line4"
+      }
+    }
+  ]
+}

@@ -13,6 +13,7 @@
         <module>API</module>
         <module>Library</module>
         <module>Examples</module>
+        <module>Addons</module>
     </modules>
 
 

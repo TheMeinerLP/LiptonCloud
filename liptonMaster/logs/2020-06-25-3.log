@@ -1,0 +1,67 @@
+[14:49:21] INFO: Registered new Wrapper: Wrapper-1
+[14:49:21] INFO: [34m __    _     ___   _     ___   __   _     __  _____  ____  _     [0m
+[14:49:21] INFO: [34m/ /`  | |   / / \ | | | | | \ ( (` \ \_/ ( (`  | |  | |_  | |\/| [0m
+[14:49:21] INFO: [34m\_\_, |_|__ \_\_/ \_\_/ |_|_/ _)_)  |_|  _)_)  |_|  |_|__ |_|  | [0m
+[14:49:21] INFO: [31m▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬[0m
+[14:49:21] INFO: [34mCoded by CryCodes & SpaceByter[0m
+[14:49:21] INFO: 
+[14:49:24] ERROR: [PORTMANAGER] Port added (30000)!
+[14:49:24] INFO: StartetServer: bedwars-7 | on port: 30000 | on wrapper: Wrapper-1 | group: bedwars !
+[14:49:24] INFO: [AUTOSTART] StartetServer 'bedwars' stats: (1/5)
+[14:49:24] ERROR: [PORTMANAGER] Port added (30000)!
+[14:49:24] INFO: StartetServer: Lobby-2 | on port: 30000 | on wrapper: Wrapper-1 | group: Lobby !
+[14:49:24] INFO: [AUTOSTART] StartetServer 'Lobby' stats: (1/2)
+[14:49:24] ERROR: [PORTMANAGER] Port added (30000)!
+[14:49:24] INFO: StartetServer: Skywars-1 | on port: 30000 | on wrapper: Wrapper-1 | group: Skywars !
+[14:49:24] INFO: [AUTOSTART] StartetServer 'Skywars' stats: (1/2)
+[14:49:26] ERROR: [PORTMANAGER] Port added (30000)!
+[14:49:26] INFO: StartetServer: bedwars-3 | on port: 30000 | on wrapper: Wrapper-1 | group: bedwars !
+[14:49:26] INFO: [AUTOSTART] StartetServer 'bedwars' stats: (2/5)
+[14:49:26] ERROR: [PORTMANAGER] Port added (30000)!
+[14:49:26] INFO: StartetServer: Lobby-4 | on port: 30000 | on wrapper: Wrapper-1 | group: Lobby !
+[14:49:26] INFO: [AUTOSTART] StartetServer 'Lobby' stats: (2/2)
+[14:49:26] ERROR: [PORTMANAGER] Port added (30000)!
+[14:49:26] INFO: StartetServer: Skywars-7 | on port: 30000 | on wrapper: Wrapper-1 | group: Skywars !
+[14:49:26] INFO: [AUTOSTART] StartetServer 'Skywars' stats: (2/2)
+[14:49:29] ERROR: [PORTMANAGER] Port added (30000)!
+[14:49:29] INFO: StartetServer: bedwars-0 | on port: 30000 | on wrapper: Wrapper-1 | group: bedwars !
+[14:49:29] INFO: [AUTOSTART] StartetServer 'bedwars' stats: (3/5)
+[14:49:29] DEBUG: [AUTOSTART] Server-Group is complete: Lobby stats: (2/2)
+[14:49:29] DEBUG: [AUTOSTART] Server-Group is complete: Skywars stats: (2/2)
+[14:49:31] ERROR: [PORTMANAGER] Port added (30000)!
+[14:49:31] INFO: StartetServer: bedwars-7 | on port: 30000 | on wrapper: Wrapper-1 | group: bedwars !
+[14:49:31] INFO: [AUTOSTART] StartetServer 'bedwars' stats: (3/5)
+[14:49:31] DEBUG: [AUTOSTART] Server-Group is complete: Lobby stats: (2/2)
+[14:49:31] DEBUG: [AUTOSTART] Server-Group is complete: Skywars stats: (2/2)
+[14:49:34] ERROR: [PORTMANAGER] Port added (30000)!
+[14:49:34] INFO: StartetServer: bedwars-1 | on port: 30000 | on wrapper: Wrapper-1 | group: bedwars !
+[14:49:34] INFO: [AUTOSTART] StartetServer 'bedwars' stats: (4/5)
+[14:49:34] DEBUG: [AUTOSTART] Server-Group is complete: Lobby stats: (2/2)
+[14:49:34] DEBUG: [AUTOSTART] Server-Group is complete: Skywars stats: (2/2)
+[14:49:36] ERROR: [PORTMANAGER] Port added (30000)!
+[14:49:36] INFO: StartetServer: bedwars-0 | on port: 30000 | on wrapper: Wrapper-1 | group: bedwars !
+[14:49:36] INFO: [AUTOSTART] StartetServer 'bedwars' stats: (4/5)
+[14:49:36] DEBUG: [AUTOSTART] Server-Group is complete: Lobby stats: (2/2)
+[14:49:36] DEBUG: [AUTOSTART] Server-Group is complete: Skywars stats: (2/2)
+[14:49:39] ERROR: [PORTMANAGER] Port added (30000)!
+[14:49:39] INFO: StartetServer: bedwars-7 | on port: 30000 | on wrapper: Wrapper-1 | group: bedwars !
+[14:49:39] INFO: [AUTOSTART] StartetServer 'bedwars' stats: (4/5)
+[14:49:39] DEBUG: [AUTOSTART] Server-Group is complete: Lobby stats: (2/2)
+[14:49:39] DEBUG: [AUTOSTART] Server-Group is complete: Skywars stats: (2/2)
+[14:49:41] ERROR: [PORTMANAGER] Port added (30000)!
+[14:49:41] INFO: StartetServer: bedwars-8 | on port: 30000 | on wrapper: Wrapper-1 | group: bedwars !
+[14:49:41] INFO: [AUTOSTART] StartetServer 'bedwars' stats: (5/5)
+[14:49:41] DEBUG: [AUTOSTART] Server-Group is complete: Lobby stats: (2/2)
+[14:49:41] DEBUG: [AUTOSTART] Server-Group is complete: Skywars stats: (2/2)
+[14:49:44] DEBUG: [AUTOSTART] Server-Group is complete: bedwars stats: (5/5)
+[14:49:44] DEBUG: [AUTOSTART] Server-Group is complete: Lobby stats: (2/2)
+[14:49:44] DEBUG: [AUTOSTART] Server-Group is complete: Skywars stats: (2/2)
+[14:49:46] DEBUG: [AUTOSTART] Server-Group is complete: bedwars stats: (5/5)
+[14:49:46] DEBUG: [AUTOSTART] Server-Group is complete: Lobby stats: (2/2)
+[14:49:46] DEBUG: [AUTOSTART] Server-Group is complete: Skywars stats: (2/2)
+[14:49:49] DEBUG: [AUTOSTART] Server-Group is complete: bedwars stats: (5/5)
+[14:49:49] DEBUG: [AUTOSTART] Server-Group is complete: Lobby stats: (2/2)
+[14:49:49] DEBUG: [AUTOSTART] Server-Group is complete: Skywars stats: (2/2)
+[14:49:51] DEBUG: [AUTOSTART] Server-Group is complete: bedwars stats: (5/5)
+[14:49:51] DEBUG: [AUTOSTART] Server-Group is complete: Lobby stats: (2/2)
+[14:49:51] DEBUG: [AUTOSTART] Server-Group is complete: Skywars stats: (2/2)

@@ -3,5 +3,6 @@
   "wrapperID": "-",
   "startPort": 9685,
   "autoUpdate": false,
-  "GC_CPU_Overheat": true
+  "GC_CPU_Overheat": true,
+  "colorUse": true
 }

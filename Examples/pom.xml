@@ -10,6 +10,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>Examples</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>Command</module>
+        <module>Event</module>
+        <module>Listener</module>
+        <module>Addon</module>
+    </modules>
 
 
 </project>

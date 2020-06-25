@@ -12,8 +12,8 @@
     <artifactId>Global</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>Master</module>
-        <module>Wrapper</module>
+        <module>LiptonMaster</module>
+        <module>LiptonWrapper</module>
     </modules>
 
 </project>

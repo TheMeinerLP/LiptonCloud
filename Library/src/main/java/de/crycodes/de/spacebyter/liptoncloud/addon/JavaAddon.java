@@ -6,17 +6,10 @@ import de.crycodes.de.spacebyter.liptoncloud.addon.loader.AddonMainClassLoader;
 
 import java.util.Objects;
 
-public abstract class JavaAddon<E> {
+public abstract class JavaAddon {
 
     protected JavaAddon() {
     }
-
-    /**
-     * The default instance of the implementer
-     *
-     * @return The class instance of the implementer set by himself
-     */
-    public abstract E getInternalReformCloudSystem();
 
     /**
      * The config of the addon containing the name, version and main class
@@ -31,19 +24,19 @@ public abstract class JavaAddon<E> {
     /**
      * This method will be called when loading the addon
      */
-    public void onAddonClazzPrepare() {
+    public void onPrepare() {
     }
 
     /**
      * This method will be called while enabling the addon
      */
-    public void onAddonLoading() {
+    public void onLoading() {
     }
 
     /**
      * This method will be called when disabling the module
      */
-    public void onAddonReadyToClose() {
+    public void onReadyToClose() {
     }
 
     /**
@@ -80,20 +73,15 @@ public abstract class JavaAddon<E> {
         if (!(o instanceof JavaAddon)) {
             return false;
         }
-        final JavaAddon<?> other = (JavaAddon<?>) o;
-        if (!other.canEqual(this)) {
-            return false;
-        }
+
+
+
         final Object this$addonClassConfig = this.getAddonClassConfig();
-        final Object other$addonClassConfig = other.getAddonClassConfig();
-        if (!Objects.equals(this$addonClassConfig, other$addonClassConfig)) {
-            return false;
-        }
+
+
         final Object this$addonMainClassLoader = this.getAddonMainClassLoader();
-        final Object other$addonMainClassLoader = other.getAddonMainClassLoader();
-        if (!Objects.equals(this$addonMainClassLoader, other$addonMainClassLoader)) {
-            return false;
-        }
+
+
         return true;
     }
 

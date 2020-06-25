@@ -1,0 +1,37 @@
+[14:56:40] INFO: Registered new Wrapper: Wrapper-1
+[14:56:40] INFO: [34m __    _     ___   _     ___   __   _     __  _____  ____  _     [0m
+[14:56:40] INFO: [34m/ /`  | |   / / \ | | | | | \ ( (` \ \_/ ( (`  | |  | |_  | |\/| [0m
+[14:56:40] INFO: [34m\_\_, |_|__ \_\_/ \_\_/ |_|_/ _)_)  |_|  _)_)  |_|  |_|__ |_|  | [0m
+[14:56:40] INFO: [31m▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬[0m
+[14:56:40] INFO: [34mCoded by CryCodes & SpaceByter[0m
+[14:56:40] INFO: 
+[14:56:43] ERROR: [PORTMANAGER] Port added (30000)!
+[14:56:43] INFO: StartetServer: bedwars-9 | on port: 30000 | on wrapper: Wrapper-1 | group: bedwars !
+[14:56:43] INFO: [AUTOSTART] StartetServer 'bedwars' stats: (1/5)
+[14:56:43] ERROR: [PORTMANAGER] Port added (30001)!
+[14:56:43] INFO: StartetServer: Lobby-0 | on port: 30001 | on wrapper: Wrapper-1 | group: Lobby !
+[14:56:43] INFO: [AUTOSTART] StartetServer 'Lobby' stats: (1/2)
+[14:56:43] ERROR: [PORTMANAGER] Port added (30002)!
+[14:56:43] INFO: StartetServer: Skywars-9 | on port: 30002 | on wrapper: Wrapper-1 | group: Skywars !
+[14:56:43] INFO: [AUTOSTART] StartetServer 'Skywars' stats: (1/2)
+[14:56:45] ERROR: [PORTMANAGER] Port added (30003)!
+[14:56:45] INFO: StartetServer: bedwars-2 | on port: 30003 | on wrapper: Wrapper-1 | group: bedwars !
+[14:56:45] INFO: [AUTOSTART] StartetServer 'bedwars' stats: (2/5)
+[14:56:45] ERROR: [PORTMANAGER] Port added (30004)!
+[14:56:45] INFO: StartetServer: Lobby-8 | on port: 30004 | on wrapper: Wrapper-1 | group: Lobby !
+[14:56:45] INFO: [AUTOSTART] StartetServer 'Lobby' stats: (2/2)
+[14:56:45] ERROR: [PORTMANAGER] Port added (30005)!
+[14:56:45] INFO: StartetServer: Skywars-5 | on port: 30005 | on wrapper: Wrapper-1 | group: Skywars !
+[14:56:45] INFO: [AUTOSTART] StartetServer 'Skywars' stats: (2/2)
+[14:56:48] ERROR: [PORTMANAGER] Port added (30006)!
+[14:56:48] INFO: StartetServer: bedwars-8 | on port: 30006 | on wrapper: Wrapper-1 | group: bedwars !
+[14:56:48] INFO: [AUTOSTART] StartetServer 'bedwars' stats: (3/5)
+[14:56:50] ERROR: [PORTMANAGER] Port added (30007)!
+[14:56:50] INFO: StartetServer: bedwars-3 | on port: 30007 | on wrapper: Wrapper-1 | group: bedwars !
+[14:56:50] INFO: [AUTOSTART] StartetServer 'bedwars' stats: (4/5)
+[14:56:53] ERROR: [PORTMANAGER] Port added (30008)!
+[14:56:53] INFO: StartetServer: bedwars-2 | on port: 30008 | on wrapper: Wrapper-1 | group: bedwars !
+[14:56:53] INFO: [AUTOSTART] StartetServer 'bedwars' stats: (4/5)
+[14:56:55] ERROR: [PORTMANAGER] Port added (30009)!
+[14:56:55] INFO: StartetServer: bedwars-6 | on port: 30009 | on wrapper: Wrapper-1 | group: bedwars !
+[14:56:55] INFO: [AUTOSTART] StartetServer 'bedwars' stats: (5/5)

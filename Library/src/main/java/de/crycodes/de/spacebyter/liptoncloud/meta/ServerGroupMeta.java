@@ -13,9 +13,8 @@ public class ServerGroupMeta implements Serializable {
     private final boolean maintenance;
     private final int maxServer;
     private final int minServer;
-    private final List<Integer> usedIDS;
 
-    public ServerGroupMeta(String groupName, int maxMemory, int minMemory, boolean dynamicService, boolean maintenance, int maxServer, int minServer, List<Integer> usedIDS) {
+    public ServerGroupMeta(String groupName, int maxMemory, int minMemory, boolean dynamicService, boolean maintenance, int maxServer, int minServer) {
         this.groupName = groupName;
         this.maxMemory = maxMemory;
         this.minMemory = minMemory;
@@ -23,7 +22,6 @@ public class ServerGroupMeta implements Serializable {
         this.maintenance = maintenance;
         this.maxServer = maxServer;
         this.minServer = minServer;
-        this.usedIDS = usedIDS;
     }
 
 
@@ -37,7 +35,6 @@ public class ServerGroupMeta implements Serializable {
                 ", maintenance=" + maintenance +
                 ", maxServer=" + maxServer +
                 ", minServer=" + minServer +
-                ", usedIDS=" + usedIDS +
                 '}';
     }
 
@@ -52,13 +49,12 @@ public class ServerGroupMeta implements Serializable {
                 maintenance == that.maintenance &&
                 maxServer == that.maxServer &&
                 minServer == that.minServer &&
-                Objects.equals(groupName, that.groupName) &&
-                Objects.equals(usedIDS, that.usedIDS);
+                Objects.equals(groupName, that.groupName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(groupName, maxMemory, minMemory, dynamicService, maintenance, maxServer, minServer, usedIDS);
+        return Objects.hash(groupName, maxMemory, minMemory, dynamicService, maintenance, maxServer, minServer);
     }
 
     public String getGroupName() {
@@ -89,7 +85,4 @@ public class ServerGroupMeta implements Serializable {
         return minServer;
     }
 
-    public List<Integer> getUsedIDS() {
-        return usedIDS;
-    }
 }

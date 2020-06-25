@@ -6,10 +6,10 @@ import java.util.Objects;
 public class WrapperConfig implements Serializable {
 
     private final String wrapperId;
-    private final Integer host;
+    private final String host;
     private final Boolean autoUpdate;
 
-    public WrapperConfig(String wrapperId, Integer host, Boolean autoUpdate) {
+    public WrapperConfig(String wrapperId, String host, Boolean autoUpdate) {
         this.wrapperId = wrapperId;
         this.host = host;
         this.autoUpdate = autoUpdate;
@@ -43,7 +43,7 @@ public class WrapperConfig implements Serializable {
         return wrapperId;
     }
 
-    public Integer getHost() {
+    public String getHost() {
         return host;
     }
 

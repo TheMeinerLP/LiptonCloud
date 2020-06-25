@@ -13,7 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class EventManager {
+
     private final List<Listener> listeners = new ArrayList<>();
+    private final List<Event> events = new ArrayList<>();
 
     public void registerListener(final Listener listener) {
         listeners.add(listener);
@@ -31,6 +33,10 @@ public final class EventManager {
         listeners.stream()
                 .filter(e -> e.getEventTargetType().equals(eventTargetType))
                 .forEach(e -> handleEvent(event, eventTargetType.name(), e));
+    }
+
+    public void registerEvent(Event event){
+        this.events.add(event);
     }
 
     private void handleEvent(final Event event, final String name, final Listener listener) {

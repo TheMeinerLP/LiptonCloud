@@ -1,8 +1,10 @@
 package de.crycodes.de.spacebyter.liptoncloud.addon;
 
 
+import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
 import de.crycodes.de.spacebyter.liptoncloud.addon.configuration.AddonClassConfig;
 import de.crycodes.de.spacebyter.liptoncloud.addon.loader.AddonMainClassLoader;
+import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -46,7 +48,7 @@ public final class AddonParallelLoader extends AddonLoader implements Serializab
     @Override
     public void enableAddons() {
         this.javaAddons.forEach(consumer -> {
-            consumer.onAddonLoading();
+            consumer.onLoading();
             //TODO:ENABLED MESSAGE
         });
     }
@@ -59,7 +61,7 @@ public final class AddonParallelLoader extends AddonLoader implements Serializab
 
         do {
             JavaAddon consumer = javaAddons.poll();
-            consumer.onAddonReadyToClose();
+            consumer.onReadyToClose();
             //TODO:LOADED MESSAGE
         } while (!javaAddons.isEmpty());
     }
@@ -75,7 +77,7 @@ public final class AddonParallelLoader extends AddonLoader implements Serializab
             return false;
         }
 
-        javaAddon.onAddonReadyToClose();
+        javaAddon.onReadyToClose();
         //TODO:DISABLED MESSAGE
 
         this.javaAddons.remove(javaAddon);
@@ -131,9 +133,7 @@ public final class AddonParallelLoader extends AddonLoader implements Serializab
 
                 javaAddons.add(javaAddon);
 
-                //TODO:ENABLED MESSAGE
-
-                //TODO:ENABLED MESSAGE
+                ColouredConsoleProvider.getGlobal().info("Loaded Addon: " + javaAddon.getAddonName());
             } catch (final Throwable throwable) {
                 throwable.printStackTrace();
             }
@@ -152,7 +152,7 @@ public final class AddonParallelLoader extends AddonLoader implements Serializab
     private Set<AddonClassConfig> checkForAddons() {
         Set<AddonClassConfig> addonClassConfigs = new HashSet<>();
 
-        File[] files = new File(path+"/addons").listFiles(pathname ->
+        File[] files = new File(path).listFiles(pathname ->
             pathname.isFile()
                 && pathname.exists()
                 && pathname.getName().endsWith(".jar"));
@@ -161,6 +161,9 @@ public final class AddonParallelLoader extends AddonLoader implements Serializab
         }
 
         for (File file : files) {
+            //REMOVE
+            LiptonLibrary.getInstance().getColouredConsoleProvider().info("Loaded Addon: " + file.getName().replace(".jar", ""));
+            //REMOVE
             try (JarFile jarFile = new JarFile(file)) {
                 JarEntry jarEntry = jarFile.getJarEntry("addon.properties");
                 if (jarEntry == null) {
