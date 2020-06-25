@@ -1,10 +1,12 @@
 package de.crycodes.de.spacebyter.liptoncloud.meta;
 
+import de.crycodes.de.spacebyter.liptoncloud.interfaces.Meta;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-public class ServerMeta implements Serializable {
+public class ServerMeta implements Serializable, Meta {
 
     private final String serverName;
     private final Integer id;

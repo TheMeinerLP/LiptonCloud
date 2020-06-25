@@ -1,0 +1,4 @@
+main: de.crycodes.de.spacebyter.liptonbridge.bungeecord.LiptonSpigotBridge
+name: Spigot-Cloud-API
+version: 1.0
+author: CryCodes & SpaceByter

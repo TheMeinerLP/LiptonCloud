@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="FacetManager">
+    <facet type="cloudbridge" name="cloudbridge">
+      <configuration>
+        <autoDetectTypes>
+          <platformType>SPIGOT - BUNGEECORD</platformType>
+        </autoDetectTypes>
+      </configuration>
+    </facet>
+    <facet type="minecraft" name="Minecraft">
+      <configuration>
+        <autoDetectTypes>
+          <platformType>BUNGEECORD</platformType>
+        </autoDetectTypes>
+      </configuration>
+    </facet>
+  </component>
+</module>

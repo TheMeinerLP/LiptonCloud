@@ -1,11 +1,12 @@
 package de.crycodes.de.spacebyter.liptoncloud.meta;
 
+import de.crycodes.de.spacebyter.liptoncloud.interfaces.Meta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.config.WrapperConfig;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-public class WrapperMeta implements Serializable {
+public class WrapperMeta implements Serializable, Meta {
 
     private final boolean available;
     private final WrapperConfig wrapperConfig;

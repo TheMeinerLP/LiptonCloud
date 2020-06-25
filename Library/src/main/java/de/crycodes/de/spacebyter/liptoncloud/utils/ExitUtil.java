@@ -13,6 +13,6 @@ public final class ExitUtil implements Serializable {
         NOT_JAVA_8 = 2,
         CONTROLLERKEY_MISSING = 3,
         TERMINATED = 4,
-        CONTROLLER_NOT_REACHABLE = 5,
+        MASTER_NOT_REACHABLE = 5,
         VERSION_UPDATE = 6;
 }

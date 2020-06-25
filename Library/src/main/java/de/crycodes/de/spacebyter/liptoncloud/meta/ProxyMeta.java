@@ -1,5 +1,7 @@
 package de.crycodes.de.spacebyter.liptoncloud.meta;
 
+import de.crycodes.de.spacebyter.liptoncloud.interfaces.Meta;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +15,7 @@ import java.util.Objects;
  * Project: LiptonCloud
  */
 
-public class ProxyMeta implements Serializable {
+public class ProxyMeta implements Serializable, Meta {
 
     private final String name;
     private final Integer id;

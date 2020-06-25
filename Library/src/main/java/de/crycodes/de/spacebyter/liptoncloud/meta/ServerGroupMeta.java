@@ -1,10 +1,12 @@
 package de.crycodes.de.spacebyter.liptoncloud.meta;
 
+import de.crycodes.de.spacebyter.liptoncloud.interfaces.Meta;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-public class ServerGroupMeta implements Serializable {
+public class ServerGroupMeta implements Serializable, Meta {
 
     private final String groupName;
     private final int maxMemory;

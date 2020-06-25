@@ -12,22 +12,22 @@ public class MessageLogger implements MessageLoggerInterface {
 
     @Override
     public void info(String message) {
-        System.out.println("[INFO]> " + message);
+        //System.out.println("[INFO]> " + message);
     }
 
     @Override
     public void warning(String message) {
-        System.out.println("[WARNING]> " + message);
+        //System.out.println("[WARNING]> " + message);
     }
 
     @Override
     public void error(String message) {
-        System.out.println("[ERROR]> " + message);
+        //System.out.println("[ERROR]> " + message);
     }
 
     @Override
     public void debug(String message) {
-        System.out.println("[DEBUG]> " + message);
+        //System.out.println("[DEBUG]> " + message);
     }
 
     public static MessageLogger getGlobalLogger(){
