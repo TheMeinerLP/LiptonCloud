@@ -1,4 +1,4 @@
-package de.crycodes.de.spacebyter.liptoncloud.packets;
+package de.crycodes.de.spacebyter.liptoncloud.packets.global;
 
 import de.crycodes.de.spacebyter.network.packet.Packet;
 

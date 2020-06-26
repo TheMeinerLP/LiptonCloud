@@ -15,6 +15,7 @@ import de.crycodes.de.spacebyter.manager.IDManager;
 import de.crycodes.de.spacebyter.manager.PortManager;
 import de.crycodes.de.spacebyter.manager.ServerManager;
 import de.crycodes.de.spacebyter.manager.WrapperManager;
+import de.crycodes.de.spacebyter.network.packet.PacketHandler;
 
 import java.io.File;
 import java.util.LinkedList;
@@ -46,6 +47,7 @@ public class LiptonMaster {
     private WrapperManager wrapperManager;
     private ProxyGroupConfig proxyGroupConfig;
     private WrapperGroupConfig wrapperConfig;
+    private PacketHandler packetHandler;
 
     public LiptonMaster() {
         instance = this;
@@ -87,6 +89,11 @@ public class LiptonMaster {
         parallelLoader = new AddonParallelLoader("./liptonMaster/modules");
 
         liptonLibrary = new LiptonLibrary(scheduler, eventManager, colouredConsoleProvider, parallelLoader, masterConfig.isColorConsole());
+
+        packetHandler = new PacketHandler();
+        liptonLibrary.registerPacket(packetHandler);
+
+        liptonLibrary.printAscii();
 
         parallelLoader.loadAddons();
         parallelLoader.enableAddons();

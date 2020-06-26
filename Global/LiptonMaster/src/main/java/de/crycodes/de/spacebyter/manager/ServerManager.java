@@ -105,4 +105,8 @@ public class ServerManager {
         });
         return amount.get();
     }
+
+    public ConcurrentHashMap<String, ServerMeta> getGlobalserverrlist() {
+        return globalserverrlist;
+    }
 }

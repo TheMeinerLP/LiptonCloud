@@ -39,4 +39,7 @@ public class PacketHandler implements AbstractPacketHandler {
         client.sendPacket(networkChannel,packet);
     }
 
+    public Map<Byte, Class<? extends Packet>> getRegisterdpackets() {
+        return registerdpackets;
+    }
 }

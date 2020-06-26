@@ -3,11 +3,28 @@ package de.crycodes.de.spacebyter.liptoncloud;
 import de.crycodes.de.spacebyter.liptoncloud.addon.AddonParallelLoader;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 import de.crycodes.de.spacebyter.liptoncloud.event.EventManager;
+import de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterPacket;
+import de.crycodes.de.spacebyter.liptoncloud.packets.global.ShutDownPacket;
+import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.SendProxyConfigPacket;
+import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StopProxyPacket;
+import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.ProxyStoppingPacket;
+import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.SendServerListPacket;
+import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.*;
+import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerStoppingPacket;
+import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CopyServerPacket;
+import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CreateTemplatePacket;
+import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.StartServerPacket;
+import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.DebugPacket;
+import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.ErrorPacket;
+import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.InfoPacket;
+import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.WarningPacket;
 import de.crycodes.de.spacebyter.liptoncloud.scheduler.Scheduler;
 import de.crycodes.de.spacebyter.liptoncloud.utils.AsciiPrinter;
 import de.crycodes.de.spacebyter.network.channel.Identifier;
 import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
 import de.crycodes.de.spacebyter.network.channel.Provider;
+import de.crycodes.de.spacebyter.network.packet.PacketHandler;
+import sun.security.ssl.Debug;
 
 /**
  * Coded By CryCodes
@@ -34,7 +51,35 @@ public class LiptonLibrary {
         this.addonParallelLoader = addonParallelLoader;
         this.useColor = useColor;
         instance = this;
-        new AsciiPrinter().Print(colouredConsoleProvider, useColor);
+    }
+
+    public void printAscii(){
+        new AsciiPrinter().Print(this.colouredConsoleProvider, this.useColor);
+    }
+
+    public void registerPacket(PacketHandler packetHandler){
+        packetHandler.registerPacket((byte) 0, RegisterPacket.class);
+        packetHandler.registerPacket((byte) 1, ShutDownPacket.class);
+        packetHandler.registerPacket((byte) 2, SendProxyConfigPacket.class);
+        packetHandler.registerPacket((byte) 3, StopProxyPacket.class);
+        packetHandler.registerPacket((byte) 4, ProxyStoppingPacket.class);
+        packetHandler.registerPacket((byte) 5, SendServerListPacket.class);
+        packetHandler.registerPacket((byte) 6, AuthServerPacket.class);
+        packetHandler.registerPacket((byte) 7, ExecuteCommandPacket.class);
+        packetHandler.registerPacket((byte) 8, SendServerConfigPacket.class);
+        packetHandler.registerPacket((byte) 9, StopServerGroupPacket.class);
+        packetHandler.registerPacket((byte) 10, StopServerPacket.class);
+        packetHandler.registerPacket((byte) 11, ServerStoppingPacket.class);
+        packetHandler.registerPacket((byte) 12, CopyServerPacket.class);
+        packetHandler.registerPacket((byte) 13, CreateTemplatePacket.class);
+        packetHandler.registerPacket((byte) 14, StartServerPacket.class);
+        packetHandler.registerPacket((byte) 15, DebugPacket.class);
+        packetHandler.registerPacket((byte) 16, ErrorPacket.class);
+        packetHandler.registerPacket((byte) 17, InfoPacket.class);
+        packetHandler.registerPacket((byte) 18, WarningPacket.class);
+        packetHandler.getRegisterdpackets().forEach((aByte, aClass) -> {
+            this.colouredConsoleProvider.info("Registered Packet By Clazz: " + aClass.getCanonicalName());
+        });
     }
 
     private NetworkChannel Master_Wrapper_Channel = new NetworkChannel(new Identifier("Master_Wrapper"), new Provider("LIPTON"));

@@ -1,0 +1,17 @@
+{
+  "config": {
+    "email": "someone@example.com",
+    "apiToken": "omccklp3hsgqltnq83zvatyjga5dzmndums96",
+    "domain": "example.com",
+    "cloudFlareZone": {
+      "useOwn": false,
+      "zoneID": "lozwnnhn4thm3xvjca3jx4q6fkho9ezp94fkw"
+    },
+    "cloudFlareGroups": [
+      {
+        "targetProxyGroup": "Proxy",
+        "subDomain": "proxy-01"
+      }
+    ]
+  }
+}
