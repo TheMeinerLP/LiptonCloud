@@ -1,0 +1,50 @@
+[14:07:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterPacket
+[14:07:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.ShutDownPacket
+[14:07:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.SendProxyConfigPacket
+[14:07:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StopProxyPacket
+[14:07:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.ProxyStoppingPacket
+[14:07:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.SendServerListPacket
+[14:07:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.AuthServerPacket
+[14:07:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.ExecuteCommandPacket
+[14:07:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.SendServerConfigPacket
+[14:07:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerGroupPacket
+[14:07:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerPacket
+[14:07:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerStoppingPacket
+[14:07:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CopyServerPacket
+[14:07:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CreateTemplatePacket
+[14:07:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.StartServerPacket
+[14:07:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.DebugPacket
+[14:07:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.ErrorPacket
+[14:07:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.InfoPacket
+[14:07:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.WarningPacket
+[14:07:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.UpdateMaintenancePacket
+[14:07:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerGroupUpdatePacket
+[14:07:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerUpdatePacket
+[14:07:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterResponsePacket
+[14:07:18] INFO: [34m __    _     ___   _     ___   __   _     __  _____  ____  _     [0m
+[14:07:18] INFO: [34m/ /`  | |   / / \ | | | | | \ ( (` \ \_/ ( (`  | |  | |_  | |\/| [0m
+[14:07:18] INFO: [34m\_\_, |_|__ \_\_/ \_\_/ |_|_/ _)_)  |_|  _)_)  |_|  |_|__ |_|  | [0m
+[14:07:18] INFO: [31m▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬[0m
+[14:07:18] INFO: [34mCoded by CryCodes & SpaceByter[0m
+[14:07:18] INFO: 
+[14:07:18] INFO: Loaded Addon: CloudFlare-1.0-SNAPSHOT
+[14:07:18] INFO: Loaded Addon: SignSystem-1.0-SNAPSHOT
+[14:07:18] ERROR: An error occurred in cloudflare addon: Could not find zone id for given domain, please recheck
+[14:07:18] ERROR: An error occurred in cloudflare addon: Could not find zone id for given domain, please recheck
+[14:07:18] INFO: [SIGNSYSTEM] Starting NetworkServer on (127.0.0.1:8899)!
+[14:07:18] INFO: Using SignSystem for LiptonCloud!
+[14:07:18] INFO: Starting Master-Wrapper Server on Port: (9685) !
+[14:07:29] ERROR: No ServerGroups found!
+[14:07:29] ERROR: Wrapper Tried to Connect but found no WrapperGroup -> (create <wrapper>)!
+[14:07:56] INFO: Wrapper 'Wrapper-1' was successfully created!
+[14:08:01] INFO: Registered new Wrapper: Wrapper-1
+[14:08:03] INFO: [AUTOSTART] StartetServer 'Lobby' stats: (1/1) Port: 30000 | ID: 1 !
+[14:08:16] INFO: Help Command:
+[14:08:16] INFO: signreload | Reload the SignSystem's Config | []
+[14:08:17] INFO: createsignlayout | Create an SignLayout | [createsign, createlayout]
+[14:08:17] INFO: help | Shows all CloudCommands | [?, tftodo]
+[14:08:17] INFO: create | Create Wrapper|Proxy|ServerGroups  | [build, make]
+[14:08:17] INFO: reload | Reload Cloud | [restart, reloadconfig]
+[14:08:17] INFO: stop | Stop the Cloud | [exit]
+[14:08:17] INFO: service | Service Command of the Cloud | [cloud]
+[14:08:37] INFO: Created Sing-Layout (2)

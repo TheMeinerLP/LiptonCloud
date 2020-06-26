@@ -31,15 +31,15 @@ public class ProxyFileConfig {
         if (!configFile.exists()){
             document = new Document();
 
-            document.append("tablist_top", "");
-            document.append("tablist_bottom", "");
-            document.append("default_motd", "");
-            document.append("maintenance_motd", "");
-            document.append("maintenanceKickMessage", "");
-            document.append("maintenanceVersionString", "");
+            document.append("tablist_top", "\n§b§lLiptonCloud §8✸ §bIntelligent §7Cloudsystem\n§7Players: {PLAYERS}");
+            document.append("tablist_bottom", "\n§7Server: {SERVER}");
+            document.append("default_motd", "   b§lLiptonCloud §8✸ §bIntelligent §7Cloudsystem\n         §bAvailable §7✸ §7We are available.");
+            document.append("maintenance_motd", "   b§lLiptonCloud §8✸ §bIntelligent §7Cloudsystem\n         §bMaintenance §7✸ §7We are in maintenance mode.");
+            document.append("maintenanceKickMessage", "§bLipton Cloud\n§7We are in maintenance mode");
+            document.append("maintenanceVersionString", "§7[§bWartungsmodus§7]");
 
-            document.append("useProxyConfig", "");
-            document.append("maxPlayer", "");
+            document.append("useProxyConfig", true);
+            document.append("maxPlayer", 50);
 
             document.saveAsConfig(configFile);
         } else {
