@@ -57,8 +57,7 @@ public class SignSystem extends MasterAddon {
     }
 
     private SavedSignLayoutObject getLayoutByID(int id){
-        signLayoutConfig.reload();
-        for (SavedSignLayoutObject layoutObject : signLayoutConfig.getGlobalSigns()){
+        for (SavedSignLayoutObject layoutObject : signLayoutConfig.getServerGroups()){
             if (layoutObject.getId() == id) return layoutObject;
         }
         return null;

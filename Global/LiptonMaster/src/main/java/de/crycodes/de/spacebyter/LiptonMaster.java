@@ -11,10 +11,7 @@ import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.WrapperMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.config.WrapperConfig;
 import de.crycodes.de.spacebyter.liptoncloud.scheduler.Scheduler;
-import de.crycodes.de.spacebyter.manager.IDManager;
-import de.crycodes.de.spacebyter.manager.PortManager;
-import de.crycodes.de.spacebyter.manager.ServerManager;
-import de.crycodes.de.spacebyter.manager.WrapperManager;
+import de.crycodes.de.spacebyter.manager.*;
 import de.crycodes.de.spacebyter.network.packet.PacketHandler;
 
 import java.io.File;
@@ -48,6 +45,8 @@ public class LiptonMaster {
     private ProxyGroupConfig proxyGroupConfig;
     private WrapperGroupConfig wrapperConfig;
     private PacketHandler packetHandler;
+    private ServerGlobalManager serverGlobalManager;
+    private ProxyManager proxyManager;
 
     public LiptonMaster() {
         instance = this;
@@ -62,6 +61,9 @@ public class LiptonMaster {
 
         portManager = new PortManager(this);
         idManager = new IDManager();
+
+        serverGlobalManager = new ServerGlobalManager();
+        proxyManager = new ProxyManager();
 
         if (serverGroupConfig.getServerMetaByName("Lobby") == null)
             serverGroupConfig.create(new ServerGroupMeta("Lobby",
@@ -190,5 +192,17 @@ public class LiptonMaster {
 
     public WrapperGroupConfig getWrapperConfig() {
         return wrapperConfig;
+    }
+
+    public ServerGlobalManager getServerGlobalManager() {
+        return serverGlobalManager;
+    }
+
+    public PacketHandler getPacketHandler() {
+        return packetHandler;
+    }
+
+    public ProxyManager getProxyManager() {
+        return proxyManager;
     }
 }

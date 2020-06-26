@@ -52,10 +52,7 @@ public class CloudFlareUtil implements Serializable {
             String currentZoneID = getZoneID();
             if (currentZoneID == null) {
                 liptonMaster.getColouredConsoleProvider().error(
-                        
-                        "An error occurred in cloudflare addon",
-                        new IllegalStateException(
-                                "Could not find zone id for given domain, please recheck")
+                        "An error occurred in cloudflare addon: Could not find zone id for given domain, please recheck"
                 );
                 return;
             }
@@ -101,10 +98,7 @@ public class CloudFlareUtil implements Serializable {
                     return jsonArray.get(0).getAsJsonObject().get("id").getAsString();
                 } else {
                     liptonMaster.getColouredConsoleProvider().error(
-                            
-                            "An error occurred in cloudflare addon",
-                            new IllegalStateException(
-                                    "Could not find zone id for given domain, please recheck")
+                            "An error occurred in cloudflare addon: Could not find zone id for given domain, please recheck"
                     );
                     return null;
                 }
