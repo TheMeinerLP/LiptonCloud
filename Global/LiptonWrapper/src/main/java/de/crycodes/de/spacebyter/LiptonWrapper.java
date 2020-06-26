@@ -12,10 +12,12 @@ import de.crycodes.de.spacebyter.liptoncloud.command.CommandManager;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 import de.crycodes.de.spacebyter.liptoncloud.event.EventManager;
 import de.crycodes.de.spacebyter.liptoncloud.scheduler.Scheduler;
+import de.crycodes.de.spacebyter.liptoncloud.time.Counter;
 import de.crycodes.de.spacebyter.liptoncloud.utils.ExitUtil;
 import de.crycodes.de.spacebyter.network.WrapperMasterClient;
 import de.crycodes.de.spacebyter.network.packet.PacketHandler;
 import de.crycodes.de.spacebyter.versionsmanager.VersionsManager;
+import org.checkerframework.checker.units.qual.C;
 
 import java.io.File;
 
@@ -31,6 +33,8 @@ public class LiptonWrapper {
 
     private static LiptonWrapper instance;
 
+    private boolean isrunning = false;
+
     private ColouredConsoleProvider colouredConsoleProvider;
     private CommandManager commandManager;
     private FileManager fileManager;
@@ -42,9 +46,14 @@ public class LiptonWrapper {
     private EventManager eventManager;
     private AddonParallelLoader parallelLoader;
     private VersionsManager versionsManager;
+    private Counter counter;
 
     public LiptonWrapper() {
         instance = this;
+        isrunning = true;
+
+        counter = new Counter();
+        counter.start();
 
         fileManager = new FileManager("./liptonWrapper","api","modules", "resources", "server", "logs", "server/dynamic","server/static", "templates").create();
         wrapperConfig = new WrapperConfig();
@@ -78,8 +87,22 @@ public class LiptonWrapper {
         commandManager.registerCommand(new HelpCommand("help", "Shows all CloudCommands", new String[]{"?"}, this));
         commandManager.registerCommand(new InstallCommand("install", "Installs a Spigot Version", new String[]{"version", "changeVersion"}, this));
         commandManager.registerCommand(new StopCommand("stop", "Stops The CloudSystem", new String[]{"quit", "exit"}));
+
+        addShutDownHook();
+
+        counter.stop();
+        counter.printResult("WrapperStartup", this.colouredConsoleProvider);
+
         commandManager.run();
+
+
     }
+
+    public void addShutDownHook(){
+        Runtime.getRuntime().addShutdownHook(new ShutDownHookWrapper(this));
+    }
+
+
 
 
     public static LiptonWrapper getInstance() {
@@ -128,5 +151,17 @@ public class LiptonWrapper {
 
     public VersionsManager getVersionsManager() {
         return versionsManager;
+    }
+
+    public Counter getCounter() {
+        return counter;
+    }
+
+    public boolean isIsrunning() {
+        return isrunning;
+    }
+
+    public void setIsrunning(boolean isrunning) {
+        this.isrunning = isrunning;
     }
 }

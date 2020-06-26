@@ -18,7 +18,7 @@ public class InstallCommand extends CloudCommand {
     protected boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args) {
 
         if(args.length == 1) {
-            if(args[0].equalsIgnoreCase("help")) {
+            if(args[0].equalsIgnoreCase("list")) {
                 sendVersions(colouredConsoleProvider);
                 return true;
             }
@@ -52,7 +52,7 @@ public class InstallCommand extends CloudCommand {
         }
     }
     private void sendUsage(ColouredConsoleProvider colouredConsoleProvider){
-        colouredConsoleProvider.info("install help");
+        colouredConsoleProvider.info("install list");
         colouredConsoleProvider.info("install <id>");
     }
 

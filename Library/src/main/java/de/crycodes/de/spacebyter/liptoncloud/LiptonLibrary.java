@@ -10,9 +10,8 @@ import de.crycodes.de.spacebyter.liptoncloud.packets.global.UpdateMaintenancePac
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.SendProxyConfigPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StopProxyPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.ProxyStoppingPacket;
-import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.SendServerListPacket;
+import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.ServerGroupUpdatePacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.*;
-import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerGroupUpdatePacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerStoppingPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerUpdatePacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CopyServerPacket;
@@ -28,7 +27,6 @@ import de.crycodes.de.spacebyter.network.channel.Identifier;
 import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
 import de.crycodes.de.spacebyter.network.channel.Provider;
 import de.crycodes.de.spacebyter.network.packet.PacketHandler;
-import sun.security.ssl.Debug;
 
 /**
  * Coded By CryCodes
@@ -67,7 +65,6 @@ public class LiptonLibrary {
         packetHandler.registerPacket((byte) 2, SendProxyConfigPacket.class);
         packetHandler.registerPacket((byte) 3, StopProxyPacket.class);
         packetHandler.registerPacket((byte) 4, ProxyStoppingPacket.class);
-        packetHandler.registerPacket((byte) 5, SendServerListPacket.class);
         packetHandler.registerPacket((byte) 6, ExecuteCommandPacket.class);
         packetHandler.registerPacket((byte) 7, SendServerConfigPacket.class);
         packetHandler.registerPacket((byte) 8, StopServerGroupPacket.class);

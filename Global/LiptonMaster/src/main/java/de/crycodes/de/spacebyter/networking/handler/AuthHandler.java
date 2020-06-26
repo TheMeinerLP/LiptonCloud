@@ -35,10 +35,14 @@ public class AuthHandler extends PacketHandlerAdapter {
                     });
                     break;
                 case PROXY:
-                    LiptonMaster.getInstance().getProxyManager().registerProxy((ProxyMeta) registerPacket.getMeta());
+                    LiptonMaster.getInstance().getProxyManager().registerProxy((ProxyMeta) registerPacket.getMeta(), result -> {
+                        LiptonMaster.getInstance().getMasterProxyServer().sendPacket(new RegisterResponsePacket(result));
+                    });
                     break;
                 case SERVER:
-                    LiptonMaster.getInstance().getServerGlobalManager().registerServer((ServerMeta) registerPacket.getMeta());
+                    LiptonMaster.getInstance().getServerGlobalManager().registerServer((ServerMeta) registerPacket.getMeta(),result -> {
+                        LiptonMaster.getInstance().getMasterSpigotServer().sendPacket(new RegisterResponsePacket(result));
+                    });
                     break;
 
                 default:

@@ -1,6 +1,8 @@
 package de.crycodes.de.spacebyter.manager;
 
+import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
+import de.crycodes.de.spacebyter.liptoncloud.utils.CallBack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +19,13 @@ public class ServerGlobalManager {
 
     private final List<ServerMeta> globalServerList = new ArrayList<>();
 
-    public void registerServer(ServerMeta serverMeta){
-        if (globalServerList.contains(serverMeta))return;
+    public void registerServer(ServerMeta serverMeta, CallBack<Boolean> isAuthenticated){
+        if (globalServerList.contains(serverMeta)) {
+            isAuthenticated.accept(false);
+            return;
+        }
         globalServerList.add(serverMeta);
+        isAuthenticated.accept(true);
     }
     public void unregisterServer(ServerMeta serverMeta){
         if (!globalServerList.contains(serverMeta))return;

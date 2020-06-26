@@ -1,15 +1,15 @@
 package de.crycodes.de.spacebyter.liptonbridge.bungeecord.networking;
 
-import de.crycodes.de.spacebyter.liptonbridge.bungeecord.networking.handler.AuthResponseHandler;
-import de.crycodes.de.spacebyter.liptonbridge.bungeecord.networking.handler.SendProxyConfigHandler;
-import de.crycodes.de.spacebyter.liptonbridge.bungeecord.networking.handler.StopProxyHandler;
+import de.crycodes.de.spacebyter.liptonbridge.bungeecord.networking.handler.*;
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
 import de.crycodes.de.spacebyter.liptoncloud.enums.RegisterType;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ProxyMeta;
 import de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterResponsePacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.SendProxyConfigPacket;
+import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StartServerPacketProxy;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StopProxyPacket;
+import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StopServerPacketProxy;
 import de.crycodes.de.spacebyter.network.ThunderClient;
 import de.crycodes.de.spacebyter.network.adapter.AdapterHandler;
 import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
@@ -45,6 +45,9 @@ public class BungeeMasterClient {
         adapterHandler.registerAdapter(RegisterResponsePacket.class, new AuthResponseHandler(networkChannel));
         adapterHandler.registerAdapter(StopProxyPacket.class, new StopProxyHandler(networkChannel));
         adapterHandler.registerAdapter(SendProxyConfigPacket.class, new SendProxyConfigHandler(networkChannel));
+
+        adapterHandler.registerAdapter(StartServerPacketProxy.class, new StartServerHandler(networkChannel));
+        adapterHandler.registerAdapter(StopServerPacketProxy.class, new StopServerHandler(networkChannel));
 
     }
 

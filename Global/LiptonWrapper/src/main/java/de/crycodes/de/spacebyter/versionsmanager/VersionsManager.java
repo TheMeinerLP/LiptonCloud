@@ -3,6 +3,7 @@ package de.crycodes.de.spacebyter.versionsmanager;
 import de.crycodes.de.spacebyter.LiptonWrapper;
 import de.crycodes.de.spacebyter.config.WrapperConfig;
 import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.InfoPacket;
+import de.crycodes.de.spacebyter.liptoncloud.utils.MillisUtils;
 import de.crycodes.de.spacebyter.liptoncloud.versions.SpigotVersions;
 
 import java.io.BufferedInputStream;
@@ -39,10 +40,19 @@ public class VersionsManager {
         File jarfile = new File("liptonWrapper/resources/" + versions.getJarName());
         LiptonWrapper.getInstance().getColouredConsoleProvider().info("Downloading Version: " + versions + " please don't stop the Wrapper");
 
+        //TIME
+        LiptonWrapper.getInstance().getCounter().start();
+        //TIME
+
         getJar(versions.getUrl(), jarfile);
 
+        //TIME
+        LiptonWrapper.getInstance().getCounter().stop();
+        LiptonWrapper.getInstance().getCounter().printResult("VersionInstall", LiptonWrapper.getInstance().getColouredConsoleProvider());
+        //TIME
+
         LiptonWrapper.getInstance().getColouredConsoleProvider().info("This Cloud is Using Versions: " + versions.name());
-        LiptonWrapper.getInstance().getWrapperMasterClient().sendPacket(new InfoPacket("The Wrapper installed the Version: " + versions.name(), LiptonWrapper.getInstance().getWrapperConfig().getWrapperID()));
+        LiptonWrapper.getInstance().getWrapperMasterClient().sendPacket(new InfoPacket("The Wrapper: " + LiptonWrapper.getInstance().getWrapperConfig().getWrapperID() + " installed the Version: " + versions.name(), LiptonWrapper.getInstance().getWrapperConfig().getWrapperID()));
     }
 
     public void getJar(String Url, File location) {

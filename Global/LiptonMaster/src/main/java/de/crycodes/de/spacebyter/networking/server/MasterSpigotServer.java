@@ -1,19 +1,17 @@
-package de.crycodes.de.spacebyter.networking;
+package de.crycodes.de.spacebyter.networking.server;
 
 import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterPacket;
-import de.crycodes.de.spacebyter.liptoncloud.packets.global.UpdateMaintenancePacket;
-import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.ErrorPacket;
-import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.UnRegisterPacket;
+import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerStoppingPacket;
+import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerUpdatePacket;
 import de.crycodes.de.spacebyter.network.ThunderServer;
 import de.crycodes.de.spacebyter.network.adapter.AdapterHandler;
 import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
 import de.crycodes.de.spacebyter.network.packet.Packet;
 import de.crycodes.de.spacebyter.network.packet.PacketHandler;
 import de.crycodes.de.spacebyter.networking.handler.AuthHandler;
-import de.crycodes.de.spacebyter.networking.handler.MaintenanceUpdateHandler;
-import de.crycodes.de.spacebyter.networking.handler.MessageHandler;
-import de.crycodes.de.spacebyter.networking.handler.UnregisterHandler;
+import de.crycodes.de.spacebyter.networking.server.handler.ServerStoppingHandler;
+import de.crycodes.de.spacebyter.networking.server.handler.ServerUpdateHandler;
 
 /**
  * Coded By CryCodes
@@ -23,7 +21,7 @@ import de.crycodes.de.spacebyter.networking.handler.UnregisterHandler;
  * Project: LiptonCloud
  */
 
-public class MasterWrapperServer {
+public class MasterSpigotServer {
 
     private final Integer port;
 
@@ -32,24 +30,24 @@ public class MasterWrapperServer {
     private AdapterHandler adapterHandler;
     private PacketHandler packetHandler;
 
-    public MasterWrapperServer(Integer port) {
+    public MasterSpigotServer(Integer port) {
         this.port = port;
         networkChannel = LiptonMaster.getInstance().getLiptonLibrary().getMaster_Wrapper_Channel();
         packetHandler = LiptonMaster.getInstance().getPacketHandler();
         adapterHandler = new AdapterHandler();
 
+        adapterHandler.registerAdapter(ServerStoppingPacket.class, new ServerStoppingHandler(networkChannel));
+        adapterHandler.registerAdapter(ServerUpdatePacket.class, new ServerUpdateHandler(networkChannel));
         adapterHandler.registerAdapter(RegisterPacket.class, new AuthHandler(networkChannel));
-        adapterHandler.registerAdapter(UnRegisterPacket.class, new UnregisterHandler(networkChannel));
-        adapterHandler.registerAdapter(UpdateMaintenancePacket.class, new MaintenanceUpdateHandler(networkChannel));
-        adapterHandler.registerAdapter(ErrorPacket.class, new MessageHandler(networkChannel));
+
     }
-    public MasterWrapperServer start(){
+    public MasterSpigotServer start(){
         server = new ThunderServer(adapterHandler, networkChannel, port);
 
-        LiptonMaster.getInstance().getColouredConsoleProvider().info("Starting Master-Wrapper Server on Port: (§c" + port + "§r) !");
+        LiptonMaster.getInstance().getColouredConsoleProvider().info("Starting Master-Spigot Server on Port: (§c" + port + "§r) !");
         return this;
     }
-    public MasterWrapperServer sendPacket(Packet packet){
+    public MasterSpigotServer sendPacket(Packet packet){
         this.packetHandler.sendPacket(networkChannel, server, packet);
         return this;
     }

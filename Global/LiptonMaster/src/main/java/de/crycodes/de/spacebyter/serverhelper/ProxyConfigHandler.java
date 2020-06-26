@@ -1,4 +1,4 @@
-package de.crycodes.de.spacebyter.handler;
+package de.crycodes.de.spacebyter.serverhelper;
 
 /**
  * Coded By CryCodes

@@ -2,22 +2,22 @@ package de.crycodes.de.spacebyter;
 
 import de.crycodes.de.spacebyter.commands.*;
 import de.crycodes.de.spacebyter.config.*;
-import de.crycodes.de.spacebyter.handler.ProxyFileConfig;
+import de.crycodes.de.spacebyter.liptoncloud.time.Counter;
+import de.crycodes.de.spacebyter.networking.proxy.MasterProxyServer;
+import de.crycodes.de.spacebyter.networking.server.MasterSpigotServer;
+import de.crycodes.de.spacebyter.serverhelper.ProxyFileConfig;
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
 import de.crycodes.de.spacebyter.liptoncloud.addon.AddonParallelLoader;
 import de.crycodes.de.spacebyter.liptoncloud.command.CommandManager;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 import de.crycodes.de.spacebyter.liptoncloud.event.EventManager;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
-import de.crycodes.de.spacebyter.liptoncloud.meta.WrapperMeta;
-import de.crycodes.de.spacebyter.liptoncloud.meta.config.WrapperConfig;
 import de.crycodes.de.spacebyter.liptoncloud.scheduler.Scheduler;
 import de.crycodes.de.spacebyter.manager.*;
 import de.crycodes.de.spacebyter.network.packet.PacketHandler;
 import de.crycodes.de.spacebyter.networking.MasterWrapperServer;
 
 import java.io.File;
-import java.util.LinkedList;
 
 /**
  * Coded By CryCodes
@@ -32,28 +32,39 @@ public class LiptonMaster {
     private static LiptonMaster instance;
 
     private ColouredConsoleProvider colouredConsoleProvider;
-    private CommandManager commandManager;
-    private FileManager fileManager;
-    private MasterConfig masterConfig;
+
     private LiptonLibrary liptonLibrary;
-    private PortManager portManager;
-    private IDManager idManager;
     private Scheduler scheduler;
-    private EventManager eventManager;
     private AddonParallelLoader parallelLoader;
-    private ServerManager serverManager;
     private ServerGroupConfig serverGroupConfig;
-    private WrapperManager wrapperManager;
+
+    private PacketHandler packetHandler;
+
     private ProxyGroupConfig proxyGroupConfig;
     private WrapperGroupConfig wrapperConfig;
-    private PacketHandler packetHandler;
-    private ServerGlobalManager serverGlobalManager;
-    private ProxyManager proxyManager;
-    private MasterWrapperServer masterWrapperServer;
+    private MasterConfig masterConfig;
     private ProxyFileConfig proxyFileConfig;
+
+    private CommandManager commandManager;
+    private FileManager fileManager;
+    private WrapperManager wrapperManager;
+    private ServerGlobalManager serverGlobalManager;
+    private PortManager portManager;
+    private IDManager idManager;
+    private EventManager eventManager;
+    private ServerManager serverManager;
+    private ProxyManager proxyManager;
+    private Counter counter;
+
+    private MasterWrapperServer masterWrapperServer;
+    private MasterProxyServer masterProxyServer;
+    private MasterSpigotServer masterSpigotServer;
 
     public LiptonMaster() {
         instance = this;
+
+        counter = new Counter();
+        counter.start();
 
         fileManager = new FileManager("./liptonMaster", "groups","groups/server/","groups/proxy/","groups/wrapper/", "local", "logs", "modules", "proxys", "webserver", "api", "resources").create();
 
@@ -108,6 +119,8 @@ public class LiptonMaster {
             colouredConsoleProvider.info("Using SignSystem for LiptonCloud!");
 
         masterWrapperServer = new MasterWrapperServer(this.masterConfig.getPort()).start();
+        masterProxyServer = new MasterProxyServer(1784).start();
+        masterSpigotServer = new MasterSpigotServer(7898).start();
 
 
         serverManager = new ServerManager(this, scheduler);
@@ -120,6 +133,9 @@ public class LiptonMaster {
         commandManager.registerCommand(new ReloadCommand("reload", "Reload Cloud", new String[]{"restart", "reloadconfig"}, this));
         commandManager.registerCommand(new StopCommand("stop", "Stop the Cloud", new String[]{"exit"}));
         commandManager.registerCommand(new ServiceCommand("service", "Service Command of the Cloud", new String[]{"cloud"}));
+
+        counter.stop();
+        counter.printResult("MasterStartup" ,this.getColouredConsoleProvider());
 
         commandManager.run();
     }
@@ -218,5 +234,13 @@ public class LiptonMaster {
 
     public ProxyFileConfig getProxyFileConfig() {
         return proxyFileConfig;
+    }
+
+    public MasterProxyServer getMasterProxyServer() {
+        return masterProxyServer;
+    }
+
+    public MasterSpigotServer getMasterSpigotServer() {
+        return masterSpigotServer;
     }
 }

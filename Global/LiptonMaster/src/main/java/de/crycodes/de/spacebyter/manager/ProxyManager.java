@@ -2,6 +2,7 @@ package de.crycodes.de.spacebyter.manager;
 
 import de.crycodes.de.spacebyter.liptoncloud.meta.ProxyMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
+import de.crycodes.de.spacebyter.liptoncloud.utils.CallBack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,13 +19,19 @@ public class ProxyManager {
 
     private final List<ProxyMeta> globalProxyList = new ArrayList<>();
 
-    public void registerProxy(ProxyMeta serverMeta){
-        if (globalProxyList.contains(serverMeta))return;
+    public void registerProxy(ProxyMeta serverMeta, CallBack<Boolean> isAuthenticated){
+        if (globalProxyList.contains(serverMeta)) {
+            isAuthenticated.accept(false);
+            return;
+        }
         globalProxyList.add(serverMeta);
+        isAuthenticated.accept(true);
     }
     public void unregisterProxy(ProxyMeta serverMeta){
         if (!globalProxyList.contains(serverMeta))return;
         globalProxyList.remove(serverMeta);
     }
 
+    public void unregisterProxy(ProxyMeta meta, Object o) {
+    }
 }

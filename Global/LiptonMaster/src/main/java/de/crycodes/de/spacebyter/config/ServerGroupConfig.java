@@ -33,6 +33,15 @@ public class ServerGroupConfig {
 
         document.saveAsConfig(configFile);
     }
+    public void replace(ServerGroupMeta serverMeta){
+        this.serverMeta = serverMeta;
+        this.configFile = new File("./liptonMaster/groups/server/" + serverMeta.getGroupName() + ".json");
+
+        document = new Document();
+        document.append("group", this.serverMeta);
+
+        document.saveAsConfig(configFile);
+    }
 
     public ServerGroupMeta getServerMetaByName(String name){
         if (getServerMetas().isEmpty()){

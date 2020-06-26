@@ -5,6 +5,10 @@ import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.WrapperMeta;
+import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StartServerPacketProxy;
+import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StopServerPacketProxy;
+import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerPacket;
+import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.StartServerPacket;
 import de.crycodes.de.spacebyter.liptoncloud.scheduler.Scheduler;
 import de.crycodes.de.spacebyter.liptoncloud.utils.annotiations.ShouldNotBeNull;
 import de.crycodes.de.spacebyter.liptoncloud.utils.annotiations.ShouldRunAsync;
@@ -80,15 +84,38 @@ public class ServerManager {
         int id = liptonMaster.getIdManager().getFreeID(serverGroupMeta);
         final ServerMeta serverMeta = new ServerMeta(serverGroupMeta.getGroupName() + liptonMaster.getMasterConfig().getServerNameSplitter() + id ,id, serverGroupMeta, wrapperID, "127.0.0.1", port);
         this.globalserverrlist.put(serverMeta.getServerName(), serverMeta);
+
+        LiptonMaster.getInstance().getMasterProxyServer().sendPacket(new StartServerPacketProxy(serverMeta));
+
+        LiptonMaster.getInstance().getMasterWrapperServer().sendPacket(new StartServerPacket(wrapperID, serverMeta));
+
         if (!autoStart) this.liptonMaster.getColouredConsoleProvider().info("StartetServer: " + serverMeta.getServerName() + " | on port: " + serverMeta.getPort() + " | on wrapper: " + serverMeta.getWrapperID() + " | group: " + serverGroupMeta.getGroupName() + " !");
         if (autoStart)                         liptonMaster.getColouredConsoleProvider().info("§c[AUTOSTART]§r StartetServer '" + serverGroupMeta.getGroupName() + "' stats: (" + getStartetServerGroupAsAmountByGroup(serverGroupMeta) + "/" + serverGroupMeta.getMinServer() + ") Port: §a" + port + "§r | ID: §a" + id + "§r !");
     }
     public void stopServer( @ShouldNotBeNull ServerMeta serverMeta){
         liptonMaster.getPortManager().removePort(serverMeta.getPort());
         liptonMaster.getIdManager().removeID(serverMeta.getServerGroupMeta(),serverMeta.getPort());
+
+
+
         liptonMaster.getColouredConsoleProvider().info("Stopping Server: " + serverMeta.getServerName() + " | " + serverMeta.getPort() + " | " + serverMeta.getWrapperID());
         if (this.globalserverrlist.containsKey(serverMeta.getServerName()))
             this.globalserverrlist.remove(serverMeta.getServerName());
+
+        LiptonMaster.getInstance().getMasterProxyServer().sendPacket(new StopServerPacketProxy(serverMeta));
+
+        LiptonMaster.getInstance().getMasterSpigotServer().sendPacket(new StopServerPacket(serverMeta.getServerName()));
+    }
+    public void removeServer(@ShouldNotBeNull ServerMeta serverMeta){
+        liptonMaster.getPortManager().removePort(serverMeta.getPort());
+        liptonMaster.getIdManager().removeID(serverMeta.getServerGroupMeta(),serverMeta.getPort());
+        liptonMaster.getColouredConsoleProvider().info("Stopping Server: " + serverMeta.getServerName() + " | " + serverMeta.getPort() + " | " + serverMeta.getWrapperID());
+        if (this.globalserverrlist.containsKey(serverMeta.getServerName()))
+            this.globalserverrlist.remove(serverMeta.getServerName());
+    }
+
+    public void replaceServer(@ShouldNotBeNull ServerMeta serverMeta){
+        this.getGlobalserverrlist().replace(serverMeta.getServerName(), serverMeta);
     }
 
     public int getTask() {
