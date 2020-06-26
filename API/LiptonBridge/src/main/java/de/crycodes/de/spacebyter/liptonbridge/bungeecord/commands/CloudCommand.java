@@ -10,12 +10,10 @@ import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerGro
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerUpdatePacket;
 import de.crycodes.de.spacebyter.liptoncloud.utils.ExitUtil;
 import de.crycodes.de.spacebyter.liptoncloud.utils.annotiations.ShouldNotBeNull;
-import de.crycodes.de.spacebyter.liptoncloud.utils.annotiations.ShouldRunAsync;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
