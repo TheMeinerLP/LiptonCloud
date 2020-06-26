@@ -96,5 +96,13 @@ public class MasterConfig {
     public String[] getDisabledModule() {
         return disabledModule;
     }
+
+    public Document getDocument() {
+        return document;
+    }
+
+    public File getConfigFile() {
+        return configFile;
+    }
 }
 

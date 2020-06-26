@@ -29,8 +29,12 @@ public class ProxyConfig {
     private final String tablist_bottom;
     private final String default_motd;
     private final String maintenance_motd;
+    private final String maintenanceVersionString;
+    private final int maxPlayer;
+    private final boolean useProxyConfig;
+    private final String maintenanceKickMessage;
 
-    public ProxyConfig(List<ServerMeta> globalServers, List<WrapperMeta> globalWrappers, List<ProxyMeta> globalProxys, Boolean isMaintenance, Boolean isAutosStart, List<String> maintenancePlayer, List<ServerGroupMeta> globalServerGroups, List<String> cloudAdminPlayers, String tablist_top, String tablist_bottom, String default_motd, String maintenance_motd) {
+    public ProxyConfig(List<ServerMeta> globalServers, List<WrapperMeta> globalWrappers, List<ProxyMeta> globalProxys, Boolean isMaintenance, Boolean isAutosStart, List<String> maintenancePlayer, List<ServerGroupMeta> globalServerGroups, List<String> cloudAdminPlayers, String tablist_top, String tablist_bottom, String default_motd, String maintenance_motd, String maintenanceVersionString, int maxPlayer, boolean useProxyConfig, String maintenanceKickMessage) {
         this.globalServers = globalServers;
         this.globalWrappers = globalWrappers;
         this.globalProxys = globalProxys;
@@ -43,6 +47,10 @@ public class ProxyConfig {
         this.tablist_bottom = tablist_bottom;
         this.default_motd = default_motd;
         this.maintenance_motd = maintenance_motd;
+        this.maintenanceVersionString = maintenanceVersionString;
+        this.maxPlayer = maxPlayer;
+        this.useProxyConfig = useProxyConfig;
+        this.maintenanceKickMessage = maintenanceKickMessage;
     }
 
     public List<ServerMeta> getGlobalServers() {
@@ -91,5 +99,21 @@ public class ProxyConfig {
 
     public String getMaintenance_motd() {
         return maintenance_motd;
+    }
+
+    public String getMaintenanceVersionString() {
+        return maintenanceVersionString;
+    }
+
+    public int getMaxPlayer() {
+        return maxPlayer;
+    }
+
+    public boolean isUseProxyConfig() {
+        return useProxyConfig;
+    }
+
+    public String getMaintenanceKickMessage() {
+        return maintenanceKickMessage;
     }
 }

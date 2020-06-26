@@ -1,8 +1,9 @@
 package de.crycodes.de.spacebyter.liptonbridge.bungeecord;
 
 import de.crycodes.de.spacebyter.liptonbridge.CloudAPI;
-import net.md_5.bungee.api.ProxyServer;
+import de.crycodes.de.spacebyter.liptonbridge.bungeecord.listener.PlayerConnectEvent;
 import net.md_5.bungee.api.plugin.Plugin;
+
 
 /**
  * Coded By CryCodes
@@ -23,7 +24,7 @@ public class LiptonBungeeBridge extends Plugin {
 
         cloudAPI = new CloudAPI(false);
 
-        super.onEnable();
+        new PlayerConnectEvent(this);
     }
 
     @Override

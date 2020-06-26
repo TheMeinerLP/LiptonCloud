@@ -3,6 +3,7 @@ package de.crycodes.de.spacebyter.liptonbridge.bungeecord.commands;
 import de.crycodes.de.spacebyter.liptonbridge.bungeecord.LiptonBungeeBridge;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
+import de.crycodes.de.spacebyter.liptoncloud.packets.global.UpdateMaintenancePacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerGroupPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerGroupUpdatePacket;
@@ -13,6 +14,10 @@ import de.crycodes.de.spacebyter.liptoncloud.utils.annotiations.ShouldRunAsync;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CloudCommand extends Command {
 
@@ -91,6 +96,23 @@ public class CloudCommand extends Command {
                     });
                     break;
                 }
+
+                if(args[0].equalsIgnoreCase("globalMaintenance")) {
+                    if(args[1].equalsIgnoreCase("toggle")) {
+
+                        if(plugin.getCloudAPI().getProxyConfig().getMaintenance()) {
+                            final UpdateMaintenancePacket updateMaintenancePacket = new UpdateMaintenancePacket(new ArrayList<String>(), new ArrayList<String>(), false);
+                            plugin.getCloudAPI().sendPacket(updateMaintenancePacket);
+                            player.sendMessage(plugin.getPREFIX() + "§7The Network is now in §aMaintenance §7Mode.");
+                            break;
+                        }
+                        final UpdateMaintenancePacket updateMaintenancePacket = new UpdateMaintenancePacket(new ArrayList<String>(), new ArrayList<String>(), true);
+                        plugin.getCloudAPI().sendPacket(updateMaintenancePacket);
+                        player.sendMessage(plugin.getPREFIX() + "§7The Network no longer in §cMaintenance §7Mode.");
+                        break;
+                    }
+                }
+
                 this.sendUsage(player);
                 break;
             case 2:
@@ -131,9 +153,46 @@ public class CloudCommand extends Command {
                             }
                             current.setMaintenance(true);
                             makeServeGroupChanges(current);
-                            player.sendMessage(plugin.getPREFIX() + "§7The Group is now in §cMaintenance §7Mode.");
+                            player.sendMessage(plugin.getPREFIX() + "§7The Group no longer in §cMaintenance §7Mode.");
                             break;
                         }
+                    }
+                }
+
+                if(args[0].equalsIgnoreCase("globalMaintenance")) {
+
+                    String name = args[2];
+
+                    if(args[1].equalsIgnoreCase("add")) {
+
+                        if(!(plugin.getCloudAPI().getProxyConfig().getMaintenancePlayer().contains(name))) {
+
+                            List<String> addPlayers = new ArrayList<>();
+                            addPlayers.add(name);
+
+                            final UpdateMaintenancePacket updateMaintenancePacket = new UpdateMaintenancePacket(addPlayers, new ArrayList<String>(), plugin.getCloudAPI().getProxyConfig().getMaintenance());
+                            plugin.getCloudAPI().sendPacket(updateMaintenancePacket);
+                            player.sendMessage(plugin.getPREFIX() + "§7The Player §b" + name + " §7is now on the whitelist.");
+                            break;
+                        }
+                        player.sendMessage(plugin.getPREFIX() + "§7The Player §b" + name + " §7is already on the whitelist.");
+                        break;
+                    }
+
+                    if(args[1].equalsIgnoreCase("remove")) {
+
+                        if(plugin.getCloudAPI().getProxyConfig().getMaintenancePlayer().contains(name)) {
+
+                            List<String> removePlayer = new ArrayList<>();
+                            removePlayer.add(name);
+
+                            final UpdateMaintenancePacket updateMaintenancePacket = new UpdateMaintenancePacket(new ArrayList<String>(), removePlayer, plugin.getCloudAPI().getProxyConfig().getMaintenance());
+                            plugin.getCloudAPI().sendPacket(updateMaintenancePacket);
+                            player.sendMessage(plugin.getPREFIX() + "§7The Player §b" + name + " §7is no longer on the whitelist.");
+                            break;
+                        }
+                        player.sendMessage(plugin.getPREFIX() + "§7The Player §b" + name + " §7isn't on the whitelist.");
+                        break;
                     }
                 }
 
@@ -147,7 +206,8 @@ public class CloudCommand extends Command {
         player.sendMessage(plugin.getPREFIX() + "§bCloud Commands§7:");
         player.sendMessage(" ");
         player.sendMessage(plugin.getPREFIX() + "§7/cloud maintenance <Group>"); //Yes
-        player.sendMessage(plugin.getPREFIX() + "§7/cloud globalMaintenance <toggle | add | remove> <Player>");
+        player.sendMessage(plugin.getPREFIX() + "§7/cloud globalMaintenance <add | remove> <Player>"); //Yes
+        player.sendMessage(plugin.getPREFIX() + "§7/cloud globalMaintenance <toggle>"); //Yes
         player.sendMessage(plugin.getPREFIX() + "§7/cloud rl"); //Yes
         player.sendMessage(plugin.getPREFIX() + "§7/cloud listOnline");
         player.sendMessage(plugin.getPREFIX() + "§7/cloud listProxys"); //Yes
@@ -156,7 +216,6 @@ public class CloudCommand extends Command {
         player.sendMessage(plugin.getPREFIX() + "§7/cloud listGroups"); //Yes
         player.sendMessage(plugin.getPREFIX() + "§7/cloud stopGroup <Group>"); //Yes
         player.sendMessage(plugin.getPREFIX() + "§7/cloud stopServer <Server>"); //Yes
-        player.sendMessage(plugin.getPREFIX() + "§7/cloud log <Server>");
         player.sendMessage(plugin.getPREFIX() + "§7/cloud list"); //Yes
         player.sendMessage(plugin.getPREFIX() + "§7/cloud version"); //Yes
     }
