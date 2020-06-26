@@ -86,11 +86,6 @@ public class LiptonMaster {
 
         wrapperManager = new WrapperManager(this);
 
-        // TODO: REMOVE (TESTING ONLY)
-        WrapperMeta wrapperMeta = new WrapperMeta(true, new WrapperConfig("Wrapper-1", "127.0.0.1:8897", true));
-        this.wrapperManager.registerWrapper(wrapperMeta);
-        // TODO: REMOVE
-
         commandManager = new CommandManager(colouredConsoleProvider);
 
         parallelLoader = new AddonParallelLoader("./liptonMaster/modules");
@@ -211,5 +206,9 @@ public class LiptonMaster {
 
     public ProxyManager getProxyManager() {
         return proxyManager;
+    }
+
+    public MasterWrapperServer getMasterWrapperServer() {
+        return masterWrapperServer;
     }
 }

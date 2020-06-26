@@ -8,6 +8,7 @@ public class WrapperConfig {
 
     //OBJECTS IN CONFIG
     private String host;
+    private Integer port;
     private String wrapperID;
     private int startPort;
     private boolean autoUpdate;
@@ -27,6 +28,7 @@ public class WrapperConfig {
         document = new Document("Cloud Config");
         document.append("host", "127.0.0.1");
         document.append("wrapperID", "-");
+        document.append("port", "9685");
         document.append("startPort", 9685);
         document.append("autoUpdate", false);
         document.append("GC_CPU_Overheat", true);
@@ -39,6 +41,7 @@ public class WrapperConfig {
         this.host = document.getString("host");
         this.wrapperID = document.getString("wrapperID");
         this.startPort = document.getInt("startPort");
+        this.port = document.getInt("port");
         this.autoUpdate = document.getBoolean("autoUpdate");
         this.GC_GPU_Overheat = document.getBoolean("GC_CPU_Overheat");
         this.colorUse = document.getBoolean("colorUse");
@@ -66,5 +69,9 @@ public class WrapperConfig {
 
     public boolean isColorUse() {
         return colorUse;
+    }
+
+    public Integer getPort() {
+        return port;
     }
 }
