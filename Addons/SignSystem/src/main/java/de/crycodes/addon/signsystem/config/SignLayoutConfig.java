@@ -1,8 +1,12 @@
 package de.crycodes.addon.signsystem.config;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import de.crycodes.addon.signsystem.SignSystem;
 import de.crycodes.addon.signsystem.objects.SavedSignLayoutObject;
 import de.crycodes.addon.signsystem.objects.SignConfig;
+import de.crycodes.addon.signsystem.objects.SignObject;
 import de.crycodes.de.spacebyter.liptoncloud.config.Document;
 
 import java.io.File;
@@ -19,37 +23,48 @@ import java.util.List;
 
 public class SignLayoutConfig {
 
-    private final SignSystem signSystem;
+    private SignSystem signSystem;
 
-    private List<SavedSignLayoutObject> globalSigns;
-    private Document document;
-    private File configFile;
+    private File configfile;
+    private Document config;
+    private final String listkey = "groups";
 
     public SignLayoutConfig(SignSystem signSystem) {
         this.signSystem = signSystem;
-        globalSigns = new ArrayList<>();
-        configFile = new File(signSystem.getModuleLocation() + "./SignSystem/layouts.json");
-        if (!configFile.exists()) {
-            document = new Document();
-            document.append("layouts", new ArrayList<SignConfig>());
-            document.saveAsConfig(configFile);
+        configfile = new File(signSystem.getModuleLocation() + "/signsystem/layouts.json");
+        if (!this.configfile.exists()){
+            (config = new Document("GROUP-CONFIG"))
+                    .append(listkey, new JsonArray())
+                    .saveAsConfig(configfile);
         }
-        document = Document.loadDocument(configFile);
+        config = new Document().loadToExistingDocument(this.configfile);
     }
 
-    public void reload(){
-        this.globalSigns = document.getObject("layouts", ArrayList.class);
+    public void addSign(SavedSignLayoutObject serverGroupMeta){
+        List<SavedSignLayoutObject> groupMetas = getServerGroups();
+        if (getSignByName(serverGroupMeta.getId()) != null) return;
+        groupMetas.add(serverGroupMeta);
+        this.config.append(listkey, groupMetas);
+        this.config.saveAsConfig(configfile);
+    }
+    public List<SavedSignLayoutObject> getServerGroups(){
+        List<SavedSignLayoutObject> groupMetas = new ArrayList<>();
+        if (this.config.contains(listkey)){
+            JsonArray array = this.config.getArray(listkey);
+            Gson gson = new Gson();
+            for (JsonElement jsonElement : array){
+                groupMetas.add(gson.fromJson(jsonElement, SavedSignLayoutObject.class));
+            }
+        }
+        return groupMetas;
     }
 
-    public void addSign(SavedSignLayoutObject signConfig){
-        reload();
-        List<SavedSignLayoutObject> signConfigs = this.globalSigns;
-        signConfigs.add(signConfig);
-        document.append("signs", signConfigs );
-        document.saveAsConfig(configFile);
-    }
-
-    public List<SavedSignLayoutObject> getGlobalSigns() {
-        return globalSigns;
+    public SavedSignLayoutObject getSignByName(Integer id){
+        for (SavedSignLayoutObject serverGroupMeta : getServerGroups()){
+            if (serverGroupMeta.getId() == (id)){
+                return serverGroupMeta;
+            }
+        }
+        return null;
     }
 }

@@ -1,9 +1,7 @@
 package de.crycodes.addon.cloudfaler.config;
 
-import com.google.common.reflect.TypeToken;
 import de.crycodes.addon.cloudfaler.CloudFlare;
-import de.crycodes.de.spacebyter.LiptonMaster;
-import de.crycodes.de.spacebyter.liptoncloud.config.Document;
+import de.crycodes.de.spacebyter.liptoncloud.config.Configuration;
 import de.crycodes.de.spacebyter.liptoncloud.utils.files.FileUtils;
 
 import java.io.Serializable;
@@ -24,26 +22,26 @@ public class ConfigLoader implements Serializable {
     public ConfigLoader() {
         if (!Files.exists(Paths.get(CloudFlare.getInstance().getModuleLocation() + "/cloudflare/config.json"))) {
             FileUtils.createDirectory(Paths.get(CloudFlare.getInstance().getModuleLocation() + "/cloudflare"));
-            new Document()
-                    .append("config", new CloudFlareConfig(
+            new Configuration()
+                    .addValue("config", new CloudFlareConfig(
                             "someone@example.com",
-                            "omccklp3hsgqltnq83zvatyjga5dzmndums96",
+                            "API-TOKEN",
                             "example.com",
                             new CloudFlareConfig.CloudFlareZone(
                                     false,
-                                    "lozwnnhn4thm3xvjca3jx4q6fkho9ezp94fkw"
+                                    "ZONE-ID"
                             ), Collections.singletonList(
                             new CloudFlareConfig.CloudFlareGroup(
                                     "Proxy",
                                     "proxy-01"
                             )
                     )
-                    )).saveAsConfig(CloudFlare.getInstance().getModuleLocation() + "/cloudflare/config.json");
+                    )).write(Paths.get(CloudFlare.getInstance().getModuleLocation() + "/cloudflare/config.json"));
         }
     }
 
     public CloudFlareConfig load() {
-        return Document.load((CloudFlare.getInstance().getModuleLocation() + "/cloudflare/config.json"))
-                .getObject("config", CloudFlareConfig.class);
+        return Configuration.parse(Paths.get(CloudFlare.getInstance().getModuleLocation() + "/cloudflare/config.json"))
+                .getValue("config", CloudFlareConfig.class);
     }
 }

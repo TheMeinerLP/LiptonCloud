@@ -1,6 +1,7 @@
 package de.crycodes.addon.signsystem.objects;
 
 import de.crycodes.addon.signsystem.enums.SignState;
+import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -18,11 +19,15 @@ public class SignObject implements Serializable {
     private final SignLayout signLayout;
     private final SignLocation signLocation;
     private final SignState signState;
+    private final Integer id;
+    private final ServerGroupMeta serverGroup;
 
-    public SignObject(SignLayout signLayout, SignLocation signLocation, SignState signState) {
+    public SignObject(SignLayout signLayout, SignLocation signLocation, SignState signState, Integer id, ServerGroupMeta serverGroup) {
         this.signLayout = signLayout;
         this.signLocation = signLocation;
         this.signState = signState;
+        this.id = id;
+        this.serverGroup = serverGroup;
     }
 
     @Override
@@ -47,6 +52,14 @@ public class SignObject implements Serializable {
                 ", signLocation=" + signLocation +
                 ", signState=" + signState +
                 '}';
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public ServerGroupMeta getServerGroup() {
+        return serverGroup;
     }
 
     public SignLayout getSignLayout() {

@@ -1,6 +1,5 @@
 {
-  "layouts": [],
-  "signs": [
+  "groups": [
     {
       "id": 0,
       "signLayout": {
@@ -8,6 +7,15 @@
         "line_2": "Line2",
         "line_3": "Line3",
         "line_4": "Line4"
+      }
+    },
+    {
+      "id": 1,
+      "signLayout": {
+        "line_1": "Test",
+        "line_2": "Test2",
+        "line_3": "Test3",
+        "line_4": "Test4"
       }
     }
   ]
