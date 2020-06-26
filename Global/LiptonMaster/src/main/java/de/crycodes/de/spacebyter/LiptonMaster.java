@@ -1,9 +1,7 @@
 package de.crycodes.de.spacebyter;
 
 import de.crycodes.de.spacebyter.commands.*;
-import de.crycodes.de.spacebyter.config.FileManager;
-import de.crycodes.de.spacebyter.config.MasterConfig;
-import de.crycodes.de.spacebyter.config.ServerGroupConfig;
+import de.crycodes.de.spacebyter.config.*;
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
 import de.crycodes.de.spacebyter.liptoncloud.addon.AddonParallelLoader;
 import de.crycodes.de.spacebyter.liptoncloud.command.CommandManager;
@@ -46,12 +44,17 @@ public class LiptonMaster {
     private ServerManager serverManager;
     private ServerGroupConfig serverGroupConfig;
     private WrapperManager wrapperManager;
+    private ProxyGroupConfig proxyGroupConfig;
+    private WrapperGroupConfig wrapperConfig;
 
     public LiptonMaster() {
         instance = this;
 
-        fileManager = new FileManager("./liptonMaster", "groups", "local", "logs", "modules", "proxys", "webserver", "api", "resources").create();
+        fileManager = new FileManager("./liptonMaster", "groups","groups/server/","groups/proxy/","groups/wrapper/", "local", "logs", "modules", "proxys", "webserver", "api", "resources").create();
+
         serverGroupConfig = new ServerGroupConfig();
+        proxyGroupConfig = new ProxyGroupConfig();
+        wrapperConfig = new WrapperGroupConfig();
 
         colouredConsoleProvider = new ColouredConsoleProvider(new File("./liptonMaster/logs"));
 
@@ -172,5 +175,13 @@ public class LiptonMaster {
 
     public IDManager getIdManager() {
         return idManager;
+    }
+
+    public ProxyGroupConfig getProxyGroupConfig() {
+        return proxyGroupConfig;
+    }
+
+    public WrapperGroupConfig getWrapperConfig() {
+        return wrapperConfig;
     }
 }

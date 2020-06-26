@@ -1,28 +1,36 @@
 package de.crycodes.de.spacebyter.config;
 
-import com.sun.org.apache.xpath.internal.objects.XString;
 import de.crycodes.de.spacebyter.liptoncloud.config.Document;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
-import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
-import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
+import de.crycodes.de.spacebyter.liptoncloud.meta.WrapperMeta;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServerGroupConfig {
+/**
+ * Coded By CryCodes
+ * Class: WrapperGroupConfig
+ * Date : 26.06.2020
+ * Time : 08:23
+ * Project: LiptonCloud
+ */
 
-    private ServerGroupMeta serverMeta;
+public class WrapperGroupConfig {
+
+
+    private WrapperMeta serverMeta;
 
     private Document document;
     private File configFile;
 
 
-    public ServerGroupConfig() { }
+    public WrapperGroupConfig() { }
 
-    public void create(ServerGroupMeta serverGroupMeta){
+    public void create(WrapperMeta serverGroupMeta){
         this.serverMeta = serverGroupMeta;
-        this.configFile = new File("./liptonMaster/groups/server/" + serverMeta.getGroupName() + ".json");
+        this.configFile = new File("./liptonMaster/groups/wrapper/" + serverMeta.getWrapperConfig().getWrapperId() + ".json");
         if (configFile.exists()){
             document = Document.loadDocument(configFile);
             reload();
@@ -34,13 +42,13 @@ public class ServerGroupConfig {
         document.saveAsConfig(configFile);
     }
 
-    public ServerGroupMeta getServerMetaByName(String name){
-        if (getServerMetas().isEmpty()){
+    public WrapperMeta getWrapperByID(String name){
+        if (getWrapperMetas().isEmpty()){
             ColouredConsoleProvider.getGlobal().error("No ServerGroups found!");
             return null;
         }
-        for (ServerGroupMeta serverGroupMeta : getServerMetas()){
-            if (serverGroupMeta.getGroupName().equalsIgnoreCase(name)){
+        for (WrapperMeta serverGroupMeta : getWrapperMetas()){
+            if (serverGroupMeta.getWrapperConfig().getWrapperId().equalsIgnoreCase(name)){
                 return serverGroupMeta;
             }
         }
@@ -48,18 +56,18 @@ public class ServerGroupConfig {
         return null;
     }
 
-    public List<ServerGroupMeta> getServerMetas(){
-        File location = new File("./liptonMaster/groups/server/");
-        List<ServerGroupMeta> serverMetas = new ArrayList<>();
+    public List<WrapperMeta> getWrapperMetas(){
+        File location = new File("./liptonMaster/groups/wrapper/");
+        List<WrapperMeta> serverMetas = new ArrayList<>();
         for (File config : location.listFiles()){
             Document document = Document.loadDocument(config);
-            serverMetas.add(document.getObject("group", ServerGroupMeta.class));
+            serverMetas.add(document.getObject("group", WrapperMeta.class));
         }
         return serverMetas;
     }
 
     public void reload(){
-        this.serverMeta = document.getObject("group", ServerGroupMeta.class);
+        this.serverMeta = document.getObject("group", WrapperMeta.class);
     }
 
 }

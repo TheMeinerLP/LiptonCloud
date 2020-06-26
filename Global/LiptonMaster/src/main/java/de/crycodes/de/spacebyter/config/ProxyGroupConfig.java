@@ -1,28 +1,35 @@
 package de.crycodes.de.spacebyter.config;
 
-import com.sun.org.apache.xpath.internal.objects.XString;
 import de.crycodes.de.spacebyter.liptoncloud.config.Document;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.meta.ProxyMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
-import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServerGroupConfig {
+/**
+ * Coded By CryCodes
+ * Class: ProxyGroupConfig
+ * Date : 26.06.2020
+ * Time : 08:09
+ * Project: LiptonCloud
+ */
 
-    private ServerGroupMeta serverMeta;
+public class ProxyGroupConfig {
+
+    private ProxyMeta serverMeta;
 
     private Document document;
     private File configFile;
 
 
-    public ServerGroupConfig() { }
+    public ProxyGroupConfig() { }
 
-    public void create(ServerGroupMeta serverGroupMeta){
+    public void create(ProxyMeta serverGroupMeta){
         this.serverMeta = serverGroupMeta;
-        this.configFile = new File("./liptonMaster/groups/server/" + serverMeta.getGroupName() + ".json");
+        this.configFile = new File("./liptonMaster/groups/proxy/" + serverMeta.getName() + ".json");
         if (configFile.exists()){
             document = Document.loadDocument(configFile);
             reload();
@@ -34,32 +41,31 @@ public class ServerGroupConfig {
         document.saveAsConfig(configFile);
     }
 
-    public ServerGroupMeta getServerMetaByName(String name){
+    public ProxyMeta getProxyMetaByName(String name){
         if (getServerMetas().isEmpty()){
             ColouredConsoleProvider.getGlobal().error("No ServerGroups found!");
             return null;
         }
-        for (ServerGroupMeta serverGroupMeta : getServerMetas()){
-            if (serverGroupMeta.getGroupName().equalsIgnoreCase(name)){
+        for (ProxyMeta serverGroupMeta : getServerMetas()){
+            if (serverGroupMeta.getName().equalsIgnoreCase(name)){
                 return serverGroupMeta;
             }
         }
-        ColouredConsoleProvider.getGlobal().error("ServerGroup not found!");
+        ColouredConsoleProvider.getGlobal().error("ProxyGroup not found!");
         return null;
     }
 
-    public List<ServerGroupMeta> getServerMetas(){
-        File location = new File("./liptonMaster/groups/server/");
-        List<ServerGroupMeta> serverMetas = new ArrayList<>();
+    public List<ProxyMeta> getServerMetas(){
+        File location = new File("./liptonMaster/groups/proxy/");
+        List<ProxyMeta> serverMetas = new ArrayList<>();
         for (File config : location.listFiles()){
             Document document = Document.loadDocument(config);
-            serverMetas.add(document.getObject("group", ServerGroupMeta.class));
+            serverMetas.add(document.getObject("group", ProxyMeta.class));
         }
         return serverMetas;
     }
 
     public void reload(){
-        this.serverMeta = document.getObject("group", ServerGroupMeta.class);
+        this.serverMeta = document.getObject("group", ProxyMeta.class);
     }
-
 }

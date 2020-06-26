@@ -6,7 +6,6 @@
     "dynamicService": true,
     "maintenance": false,
     "maxServer": 10,
-    "minServer": 2,
-    "usedIDS": []
+    "minServer": 2
   }
 }
