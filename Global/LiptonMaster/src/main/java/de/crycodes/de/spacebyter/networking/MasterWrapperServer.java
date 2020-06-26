@@ -1,11 +1,13 @@
 package de.crycodes.de.spacebyter.networking;
 
 import de.crycodes.de.spacebyter.LiptonMaster;
+import de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterPacket;
 import de.crycodes.de.spacebyter.network.ThunderServer;
 import de.crycodes.de.spacebyter.network.adapter.AdapterHandler;
 import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
 import de.crycodes.de.spacebyter.network.packet.Packet;
 import de.crycodes.de.spacebyter.network.packet.PacketHandler;
+import de.crycodes.de.spacebyter.networking.handler.AuthHandler;
 
 /**
  * Coded By CryCodes
@@ -29,6 +31,8 @@ public class MasterWrapperServer {
         networkChannel = LiptonMaster.getInstance().getLiptonLibrary().getMaster_Wrapper_Channel();
         packetHandler = LiptonMaster.getInstance().getPacketHandler();
         adapterHandler = new AdapterHandler();
+
+        adapterHandler.registerAdapter(RegisterPacket.class, new AuthHandler(networkChannel));
     }
     public MasterWrapperServer start(){
         server = new ThunderServer(adapterHandler, networkChannel, port);

@@ -2,6 +2,7 @@ package de.crycodes.de.spacebyter.manager;
 
 import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.liptoncloud.meta.WrapperMeta;
+import de.crycodes.de.spacebyter.liptoncloud.utils.CallBack;
 import de.crycodes.de.spacebyter.liptoncloud.utils.annotiations.ShouldNotBeNull;
 
 import java.util.ArrayList;
@@ -18,10 +19,16 @@ public class WrapperManager {
         this.liptonMaster = liptonMaster;
     }
 
-    public void registerWrapper(@ShouldNotBeNull  WrapperMeta wrapperMeta) {
-        if(!(wrapperList.contains(wrapperMeta)))
-            wrapperList.add(wrapperMeta);
-        liptonMaster.getColouredConsoleProvider().info("Registered new Wrapper: " + wrapperMeta.getWrapperConfig().getWrapperId());
+    public void registerWrapper(@ShouldNotBeNull  WrapperMeta wrapperMeta, CallBack<Boolean> isAuthenticated) {
+        if (LiptonMaster.getInstance().getWrapperConfig().getWrapperByID(wrapperMeta.getWrapperConfig().getWrapperId()) != null) {
+            if (!(wrapperList.contains(wrapperMeta)))
+                wrapperList.add(wrapperMeta);
+            liptonMaster.getColouredConsoleProvider().info("Registered new Wrapper: " + wrapperMeta.getWrapperConfig().getWrapperId());
+            isAuthenticated.accept(true);
+        } else {
+            LiptonMaster.getInstance().getColouredConsoleProvider().error("Wrapper Tried to Connect but found no WrapperGroup -> (create <wrapper>)!");
+            isAuthenticated.accept(false);
+        }
     }
 
     public boolean isWrapperAvailable( @ShouldNotBeNull String wrapperID) {
@@ -37,7 +44,8 @@ public class WrapperManager {
         if (!this.wrapperList.isEmpty())
             return this.wrapperList.get(0);
         else {
-            LiptonMaster.getInstance().getColouredConsoleProvider().error("No Wrapper Available -> (create <wrapper>)!");
+            if (liptonMaster.getMasterConfig().isDebugMode())
+                LiptonMaster.getInstance().getColouredConsoleProvider().error("No Wrapper Available -> (create <wrapper>)!");
         }
         return null;
     }

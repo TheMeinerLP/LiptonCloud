@@ -4,6 +4,7 @@ import de.crycodes.de.spacebyter.liptoncloud.addon.AddonParallelLoader;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 import de.crycodes.de.spacebyter.liptoncloud.event.EventManager;
 import de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterPacket;
+import de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterResponsePacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.global.ShutDownPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.global.UpdateMaintenancePacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.SendProxyConfigPacket;
@@ -83,6 +84,7 @@ public class LiptonLibrary {
         packetHandler.registerPacket((byte) 19, UpdateMaintenancePacket.class);
         packetHandler.registerPacket((byte) 20, ServerGroupUpdatePacket.class);
         packetHandler.registerPacket((byte) 21, ServerUpdatePacket.class);
+        packetHandler.registerPacket((byte) 22, RegisterResponsePacket.class);
         packetHandler.getRegisterdpackets().forEach((aByte, aClass) -> {
             this.colouredConsoleProvider.info("Registered Packet By Clazz: " + aClass.getCanonicalName());
         });
