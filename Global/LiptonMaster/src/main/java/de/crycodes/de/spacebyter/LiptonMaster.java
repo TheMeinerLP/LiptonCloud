@@ -2,6 +2,7 @@ package de.crycodes.de.spacebyter;
 
 import de.crycodes.de.spacebyter.commands.*;
 import de.crycodes.de.spacebyter.config.*;
+import de.crycodes.de.spacebyter.handler.ProxyFileConfig;
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
 import de.crycodes.de.spacebyter.liptoncloud.addon.AddonParallelLoader;
 import de.crycodes.de.spacebyter.liptoncloud.command.CommandManager;
@@ -49,6 +50,7 @@ public class LiptonMaster {
     private ServerGlobalManager serverGlobalManager;
     private ProxyManager proxyManager;
     private MasterWrapperServer masterWrapperServer;
+    private ProxyFileConfig proxyFileConfig;
 
     public LiptonMaster() {
         instance = this;
@@ -56,6 +58,8 @@ public class LiptonMaster {
         fileManager = new FileManager("./liptonMaster", "groups","groups/server/","groups/proxy/","groups/wrapper/", "local", "logs", "modules", "proxys", "webserver", "api", "resources").create();
 
         masterConfig = new MasterConfig();
+
+        proxyFileConfig = new ProxyFileConfig();
 
         serverGroupConfig = new ServerGroupConfig();
         proxyGroupConfig = new ProxyGroupConfig();
@@ -210,5 +214,9 @@ public class LiptonMaster {
 
     public MasterWrapperServer getMasterWrapperServer() {
         return masterWrapperServer;
+    }
+
+    public ProxyFileConfig getProxyFileConfig() {
+        return proxyFileConfig;
     }
 }
