@@ -13,6 +13,7 @@ import de.crycodes.de.spacebyter.liptoncloud.meta.config.WrapperConfig;
 import de.crycodes.de.spacebyter.liptoncloud.scheduler.Scheduler;
 import de.crycodes.de.spacebyter.manager.*;
 import de.crycodes.de.spacebyter.network.packet.PacketHandler;
+import de.crycodes.de.spacebyter.networking.MasterWrapperServer;
 
 import java.io.File;
 import java.util.LinkedList;
@@ -47,6 +48,7 @@ public class LiptonMaster {
     private PacketHandler packetHandler;
     private ServerGlobalManager serverGlobalManager;
     private ProxyManager proxyManager;
+    private MasterWrapperServer masterWrapperServer;
 
     public LiptonMaster() {
         instance = this;
@@ -102,6 +104,8 @@ public class LiptonMaster {
 
         if (parallelLoader.isAddonEnabled("SignSystem"))
             colouredConsoleProvider.info("Using SignSystem for LiptonCloud!");
+
+        masterWrapperServer = new MasterWrapperServer(this.masterConfig.getPort()).start();
 
 
         serverManager = new ServerManager(this, scheduler);
