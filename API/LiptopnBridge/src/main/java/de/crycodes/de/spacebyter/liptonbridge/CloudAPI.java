@@ -3,7 +3,10 @@ package de.crycodes.de.spacebyter.liptonbridge;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ProxyMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
+import de.crycodes.de.spacebyter.liptoncloud.objects.ProxyConfig;
+import de.crycodes.de.spacebyter.liptoncloud.objects.ServerConfig;
 import de.crycodes.de.spacebyter.liptoncloud.utils.annotiations.ShouldRunAsync;
+import de.crycodes.de.spacebyter.network.packet.Packet;
 
 import java.util.List;
 
@@ -62,6 +65,15 @@ public class CloudAPI {
     }
     //</editor-fold>
 
+    //<editor-fold desc="Configs">
+    public ProxyConfig getProxyConfig(){
+        return null;
+    }
+    public ServerConfig getServerConfig(){
+        return null;
+    }
+    //</editor-fold>
+
     //<editor-fold desc="getServerInfo">
     //ONLY SPIGOT
     public ServerMeta getServerInfo(){
@@ -104,6 +116,18 @@ public class CloudAPI {
     //<editor-fold desc="isSpigot">
     public boolean isSpigot() {
         return isSpigot;
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="reloadCloud">
+    public void reloadCloud() {
+
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="sendPacket">
+    public void sendPacket(Packet packet){
+
     }
     //</editor-fold>
 }

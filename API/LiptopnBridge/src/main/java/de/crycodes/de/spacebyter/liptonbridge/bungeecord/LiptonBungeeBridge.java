@@ -16,6 +16,8 @@ public class LiptonBungeeBridge extends Plugin {
 
     private CloudAPI cloudAPI;
 
+    private final String PREFIX = "§bCloud §7✸ ";
+
     @Override
     public void onEnable() {
 
@@ -31,5 +33,9 @@ public class LiptonBungeeBridge extends Plugin {
 
     public CloudAPI getCloudAPI() {
         return cloudAPI;
+    }
+
+    public String getPREFIX() {
+        return PREFIX;
     }
 }

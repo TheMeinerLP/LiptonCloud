@@ -8,12 +8,12 @@ import java.util.Objects;
 
 public class ServerMeta implements Serializable, Meta {
 
-    private final String serverName;
-    private final Integer id;
-    private final ServerGroupMeta serverGroupMeta;
-    private final String wrapperID;
-    private final String host;
-    private final Integer port;
+    private  String serverName;
+    private  Integer id;
+    private  ServerGroupMeta serverGroupMeta;
+    private  String wrapperID;
+    private  String host;
+    private  Integer port;
 
     public ServerMeta(String serverName, Integer id, ServerGroupMeta serverGroupMeta, String wrapperID, String host, Integer port) {
         this.serverName = serverName;
@@ -76,5 +76,29 @@ public class ServerMeta implements Serializable, Meta {
 
     public Integer getPort() {
         return port;
+    }
+
+    public void setServerName(String serverName) {
+        this.serverName = serverName;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setServerGroupMeta(ServerGroupMeta serverGroupMeta) {
+        this.serverGroupMeta = serverGroupMeta;
+    }
+
+    public void setWrapperID(String wrapperID) {
+        this.wrapperID = wrapperID;
+    }
+
+    public void setHost(String host) {
+        this.host = host;
+    }
+
+    public void setPort(Integer port) {
+        this.port = port;
     }
 }

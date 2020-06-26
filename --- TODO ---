@@ -1,4 +1,3 @@
-- Packets
 - Handler
 - Wrapper ServerHandler
 - Wrapper ServerStartupHandler
@@ -9,8 +8,9 @@
 - Networking Proxy - Master
 - Networking Wrapper - Master
 
-- CloudFlareModule
 - SignSystem PacketHandler
 - SignSystem SpigotAPI
 - BungeeBaseModule
+
+-Cloud Command
 

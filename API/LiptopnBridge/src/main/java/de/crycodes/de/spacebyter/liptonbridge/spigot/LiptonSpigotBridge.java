@@ -20,7 +20,7 @@ public class LiptonSpigotBridge extends JavaPlugin {
     public void onEnable() {
 
         cloudAPI = new CloudAPI(true);
-
+        
         super.onEnable();
     }
 

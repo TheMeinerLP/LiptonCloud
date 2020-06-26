@@ -11,8 +11,8 @@ public class ServerGroupMeta implements Serializable, Meta {
     private final String groupName;
     private final int maxMemory;
     private final int minMemory;
-    private final boolean dynamicService;
-    private final boolean maintenance;
+    private boolean dynamicService;
+    private boolean maintenance;
     private final int maxServer;
     private final int minServer;
 
@@ -87,4 +87,11 @@ public class ServerGroupMeta implements Serializable, Meta {
         return minServer;
     }
 
+    public void setDynamicService(boolean dynamicService) {
+        this.dynamicService = dynamicService;
+    }
+
+    public void setMaintenance(boolean maintenance) {
+        this.maintenance = maintenance;
+    }
 }

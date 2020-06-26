@@ -9,14 +9,19 @@
         <module name="SignSystem" />
         <module name="LiptonMaster" />
         <module name="LiptonWrapper" />
-        <module name="BungeeBase" />
-        <module name="Library" />
-        <module name="Listener" />
-        <module name="Event" />
-        <module name="Command" />
         <module name="CloudFlare" />
+        <module name="Library" />
+        <module name="CommandSystem" />
+        <module name="Command" />
+        <module name="Event" />
+        <module name="BungeeBase" />
+        <module name="Listener" />
         <module name="LiptopnBridge" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Master" target="8" />
+      <module name="Wrapper" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
