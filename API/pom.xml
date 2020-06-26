@@ -12,7 +12,7 @@
     <artifactId>API</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>LiptopnBridge</module>
+        <module>LiptonBridge</module>
     </modules>
 
 
