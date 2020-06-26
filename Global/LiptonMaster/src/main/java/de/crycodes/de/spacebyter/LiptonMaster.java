@@ -55,11 +55,14 @@ public class LiptonMaster {
 
         fileManager = new FileManager("./liptonMaster", "groups","groups/server/","groups/proxy/","groups/wrapper/", "local", "logs", "modules", "proxys", "webserver", "api", "resources").create();
 
+        masterConfig = new MasterConfig();
+
         serverGroupConfig = new ServerGroupConfig();
         proxyGroupConfig = new ProxyGroupConfig();
         wrapperConfig = new WrapperGroupConfig();
 
         colouredConsoleProvider = new ColouredConsoleProvider(new File("./liptonMaster/logs"));
+        colouredConsoleProvider.setUsecolor(this.masterConfig.isColorConsole());
 
         portManager = new PortManager(this);
         idManager = new IDManager();
@@ -76,7 +79,7 @@ public class LiptonMaster {
                     10,
                     2));
 
-        masterConfig = new MasterConfig();
+
 
         scheduler = new Scheduler();
         eventManager = new EventManager();

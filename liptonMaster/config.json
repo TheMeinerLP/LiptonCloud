@@ -8,5 +8,9 @@
   "serverNameSplitter": "-",
   "disabledModules": [
     ""
+  ],
+  "maintenance": true,
+  "whitelistedUser": [
+    ""
   ]
 }

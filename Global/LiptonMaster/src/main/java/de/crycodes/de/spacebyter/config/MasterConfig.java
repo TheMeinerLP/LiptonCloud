@@ -24,6 +24,9 @@ public class MasterConfig {
     private String serverNameSplitter;
     private String[] disabledModule;
 
+    private boolean maintenance;
+    private String[] whiteListed;
+
     //DOCUMENT AND FILE
     private Document document;
     private File configFile = new File("./liptonMaster/config.json");
@@ -43,7 +46,8 @@ public class MasterConfig {
         document.append("GC_CPU_Overheat", true);
         document.append("serverNameSplitter", "-");
         document.append("disabledModules", new String[]{""});
-
+        document.append("maintenance", true);
+        document.append("whitelistedUser", new String[]{""});
 
         document.saveAsConfig(configFile);
 
@@ -57,6 +61,8 @@ public class MasterConfig {
         this.GC_GPU_Overheat = document.getBoolean("GC_CPU_Overheat");
         this.serverNameSplitter = document.getString("serverNameSplitter");
         this.disabledModule = document.getObject("disabledModules", String[].class);
+        this.maintenance = document.getBoolean("maintenance");
+        this.whiteListed = document.getObject("whitelistedUser", String[].class);
     }
 
     public String getHost() {

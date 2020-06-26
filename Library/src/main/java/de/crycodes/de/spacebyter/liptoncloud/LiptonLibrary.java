@@ -5,12 +5,15 @@ import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 import de.crycodes.de.spacebyter.liptoncloud.event.EventManager;
 import de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.global.ShutDownPacket;
+import de.crycodes.de.spacebyter.liptoncloud.packets.global.UpdateMaintenancePacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.SendProxyConfigPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StopProxyPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.ProxyStoppingPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.SendServerListPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.*;
+import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerGroupUpdatePacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerStoppingPacket;
+import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerUpdatePacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CopyServerPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CreateTemplatePacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.StartServerPacket;
@@ -77,6 +80,9 @@ public class LiptonLibrary {
         packetHandler.registerPacket((byte) 16, ErrorPacket.class);
         packetHandler.registerPacket((byte) 17, InfoPacket.class);
         packetHandler.registerPacket((byte) 18, WarningPacket.class);
+        packetHandler.registerPacket((byte) 19, UpdateMaintenancePacket.class);
+        packetHandler.registerPacket((byte) 20, ServerGroupUpdatePacket.class);
+        packetHandler.registerPacket((byte) 21, ServerUpdatePacket.class);
         packetHandler.getRegisterdpackets().forEach((aByte, aClass) -> {
             this.colouredConsoleProvider.info("Registered Packet By Clazz: " + aClass.getCanonicalName());
         });

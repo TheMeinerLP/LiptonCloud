@@ -8,6 +8,8 @@ import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServer
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerGroupUpdatePacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerUpdatePacket;
 import de.crycodes.de.spacebyter.liptoncloud.utils.ExitUtil;
+import de.crycodes.de.spacebyter.liptoncloud.utils.annotiations.ShouldNotBeNull;
+import de.crycodes.de.spacebyter.liptoncloud.utils.annotiations.ShouldRunAsync;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
@@ -141,8 +143,8 @@ public class CloudCommand extends Command {
 
     }
 
-    private void sendUsage(ProxiedPlayer player) {
-        player.sendMessage(plugin.getPREFIX() + "§bCloud Command§7:");
+    private void sendUsage(@ShouldNotBeNull ProxiedPlayer player) {
+        player.sendMessage(plugin.getPREFIX() + "§bCloud Commands§7:");
         player.sendMessage(" ");
         player.sendMessage(plugin.getPREFIX() + "§7/cloud maintenance <Group>"); //Yes
         player.sendMessage(plugin.getPREFIX() + "§7/cloud globalMaintenance <toggle | add | remove> <Player>");
