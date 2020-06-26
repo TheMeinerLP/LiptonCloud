@@ -14,6 +14,7 @@ public class WrapperConfig {
     private boolean autoUpdate;
     private boolean GC_GPU_Overheat;
     private boolean colorUse;
+    private String spigotVersion;
 
     //DOCUMENT AND FILE
     private Document document;
@@ -33,7 +34,7 @@ public class WrapperConfig {
         document.append("autoUpdate", false);
         document.append("GC_CPU_Overheat", true);
         document.append("colorUse", true);
-
+        document.append("spigotVersion", "-");
         document.saveAsConfig(configFile);
 
     }
@@ -45,6 +46,7 @@ public class WrapperConfig {
         this.autoUpdate = document.getBoolean("autoUpdate");
         this.GC_GPU_Overheat = document.getBoolean("GC_CPU_Overheat");
         this.colorUse = document.getBoolean("colorUse");
+        this.spigotVersion = document.getString("spigotVersion");
     }
 
     public String getHost() {
@@ -73,5 +75,17 @@ public class WrapperConfig {
 
     public Integer getPort() {
         return port;
+    }
+
+    public String getSpigotVersion() {
+        return spigotVersion;
+    }
+
+    public Document getDocument() {
+        return document;
+    }
+
+    public File getConfigFile() {
+        return configFile;
     }
 }

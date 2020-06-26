@@ -2,6 +2,8 @@ package de.crycodes.de.spacebyter;
 
 import com.google.gson.internal.$Gson$Preconditions;
 import de.crycodes.de.spacebyter.commands.HelpCommand;
+import de.crycodes.de.spacebyter.commands.InstallCommand;
+import de.crycodes.de.spacebyter.commands.StopCommand;
 import de.crycodes.de.spacebyter.config.FileManager;
 import de.crycodes.de.spacebyter.config.WrapperConfig;
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
@@ -13,6 +15,7 @@ import de.crycodes.de.spacebyter.liptoncloud.scheduler.Scheduler;
 import de.crycodes.de.spacebyter.liptoncloud.utils.ExitUtil;
 import de.crycodes.de.spacebyter.network.WrapperMasterClient;
 import de.crycodes.de.spacebyter.network.packet.PacketHandler;
+import de.crycodes.de.spacebyter.versionsmanager.VersionsManager;
 
 import java.io.File;
 
@@ -38,6 +41,7 @@ public class LiptonWrapper {
     private Scheduler scheduler;
     private EventManager eventManager;
     private AddonParallelLoader parallelLoader;
+    private VersionsManager versionsManager;
 
     public LiptonWrapper() {
         instance = this;
@@ -67,13 +71,16 @@ public class LiptonWrapper {
         liptonLibrary.printAscii();
 
         wrapperMasterClient = new WrapperMasterClient(this.wrapperConfig.getHost(), this.wrapperConfig.getPort()).start();
-
+        versionsManager = new VersionsManager(wrapperConfig);
 
 
         commandManager = new CommandManager(colouredConsoleProvider);
         commandManager.registerCommand(new HelpCommand("help", "Shows all CloudCommands", new String[]{"?"}, this));
+        commandManager.registerCommand(new InstallCommand("install", "Installs a Spigot Version", new String[]{"version", "changeVersion"}, this));
+        commandManager.registerCommand(new StopCommand("stop", "Stops The CloudSystem", new String[]{"quit", "exit"}));
         commandManager.run();
     }
+
 
     public static LiptonWrapper getInstance() {
         return instance;
@@ -117,5 +124,9 @@ public class LiptonWrapper {
 
     public AddonParallelLoader getParallelLoader() {
         return parallelLoader;
+    }
+
+    public VersionsManager getVersionsManager() {
+        return versionsManager;
     }
 }

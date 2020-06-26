@@ -1,0 +1,68 @@
+[15:59:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterPacket
+[15:59:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.ShutDownPacket
+[15:59:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.SendProxyConfigPacket
+[15:59:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StopProxyPacket
+[15:59:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.ProxyStoppingPacket
+[15:59:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.SendServerListPacket
+[15:59:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.AuthServerPacket
+[15:59:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.ExecuteCommandPacket
+[15:59:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.SendServerConfigPacket
+[15:59:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerGroupPacket
+[15:59:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerPacket
+[15:59:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerStoppingPacket
+[15:59:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CopyServerPacket
+[15:59:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CreateTemplatePacket
+[15:59:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.StartServerPacket
+[15:59:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.DebugPacket
+[15:59:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.ErrorPacket
+[15:59:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.InfoPacket
+[15:59:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.WarningPacket
+[15:59:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.UpdateMaintenancePacket
+[15:59:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerGroupUpdatePacket
+[15:59:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerUpdatePacket
+[15:59:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterResponsePacket
+[15:59:28] INFO: [34m __    _     ___   _     ___   __   _     __  _____  ____  _     [0m
+[15:59:28] INFO: [34m/ /`  | |   / / \ | | | | | \ ( (` \ \_/ ( (`  | |  | |_  | |\/| [0m
+[15:59:28] INFO: [34m\_\_, |_|__ \_\_/ \_\_/ |_|_/ _)_)  |_|  _)_)  |_|  |_|__ |_|  | [0m
+[15:59:28] INFO: [31m▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬[0m
+[15:59:28] INFO: [34mCoded by CryCodes & SpaceByter[0m
+[15:59:28] INFO: 
+[15:59:29] INFO: Startet WrapperMaster Client on: (127.0.0.1:9685)
+[15:59:29] ERROR: No Version Defined in Config use the install Command to install a Version
+[15:59:29] INFO: Connected Successful to Master!
+[15:59:35] INFO: install help
+[15:59:35] INFO: install <id>
+[15:59:40] INFO: Versions you can Intsall: 
+[15:59:40] INFO: spigot-1.8.8-R0.1-SNAPSHOT-latest | (&a1&r)
+[15:59:40] INFO: spigot-1.9-R0.1-SNAPSHOT-latest | (&a2&r)
+[15:59:40] INFO: spigot-1.9.2-R0.1-SNAPSHOT-latest | (&a3&r)
+[15:59:40] INFO: spigot-1.9.4-R0.1-SNAPSHOT-latest | (&a4&r)
+[15:59:40] INFO: spigot-1.10-R0.1-SNAPSHOT-latest | (&a5&r)
+[15:59:40] INFO: pigot-1.10.2-R0.1-SNAPSHOT-latest | (&a6&r)
+[15:59:40] INFO: spigot-1.11 | (&a7&r)
+[15:59:40] INFO: spigot-1.11.1 | (&a8&r)
+[15:59:40] INFO: spigot-1.11.2 | (&a9&r)
+[15:59:40] INFO: spigot-1.12 | (&a10&r)
+[15:59:40] INFO: spigot-1.12.1 | (&a11&r)
+[15:59:40] INFO: spigot-1.12.2 | (&a12&r)
+[15:59:40] INFO: spigot-1.13 | (&a13&r)
+[15:59:40] INFO: spigot-1.13.1 | (&a14&r)
+[15:59:40] INFO: pigot-1.13.2 | (&a15&r)
+[15:59:40] INFO: spigot-1.14 | (&a16&r)
+[15:59:40] INFO: spigot-1.14.1 | (&a17&r)
+[15:59:40] INFO: spigot-1.14.2 | (&a18&r)
+[15:59:40] INFO: spigot-1.14.3 | (&a19&r)
+[15:59:40] INFO: spigot-1.14.4 | (&a20&r)
+[15:59:40] INFO: spigot-1.15 | (&a21&r)
+[15:59:40] INFO: spigot-1.15.1 | (&a22&r)
+[15:59:40] INFO: spigot-1.15.2 | (&a23&r)
+[15:59:40] INFO: spigot-1.16.1 | (&a24&r)
+[16:01:28] ERROR: Trying to install Server Version: SPIGOT_1_8_8
+[16:01:28] INFO: Downloading Version: SPIGOT_1_8_8 please don't stop the Wrapper
+[16:01:35] INFO: This Cloud is Using Versions: SPIGOT_1_8_8
+[16:01:35] ERROR: Trying to install Server Version: SPIGOT_1_8_8
+[16:01:35] INFO: Downloading Version: SPIGOT_1_8_8 please don't stop the Wrapper
+[16:01:38] INFO: This Cloud is Using Versions: SPIGOT_1_8_8
+[16:02:16] ERROR: Trying to install Server Version: SPIGOT_1_9
+[16:02:16] INFO: Downloading Version: SPIGOT_1_9 please don't stop the Wrapper
+[16:02:21] INFO: This Cloud is Using Versions: SPIGOT_1_9
