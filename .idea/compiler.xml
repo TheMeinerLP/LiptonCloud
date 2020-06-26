@@ -9,14 +9,14 @@
         <module name="SignSystem" />
         <module name="LiptonMaster" />
         <module name="LiptonWrapper" />
-        <module name="CloudFlare" />
+        <module name="Listener" />
+        <module name="BungeeBase" />
         <module name="Library" />
-        <module name="CommandSystem" />
         <module name="Command" />
         <module name="LiptonBridge" />
         <module name="Event" />
-        <module name="BungeeBase" />
-        <module name="Listener" />
+        <module name="CommandSystem" />
+        <module name="CloudFlare" />
         <module name="LiptopnBridge" />
       </profile>
     </annotationProcessing>
