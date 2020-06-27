@@ -7,9 +7,10 @@ import de.crycodes.de.spacebyter.liptonbridge.bungeecord.networking.BungeeMaster
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
 import de.crycodes.de.spacebyter.liptoncloud.objects.ProxyConfig;
 import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.plugin.Plugin;
 
-import java.io.File;
+import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,7 +66,7 @@ public class LiptonBungeeBridge extends Plugin {
                         ,"§7[§bWartungsmodus§7]",
                         50,
                         true,
-                        "§bLipton Cloud\n§7We are in maintenance mode");
+                        "§bLipton Cloud\n§7We are in maintenance mode", "server_start_message", "server_stop_message", "server_online_message", false);
             } else {
                 return proxyConfig.get(0);
             }

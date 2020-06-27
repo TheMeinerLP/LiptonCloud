@@ -257,7 +257,11 @@ public class BackhandedClient {
                         SSLSocketFactory.getDefault().createSocket(address.getAddress(), address.getPort());
             } else {
                 tempSocket = new Socket();
-                tempSocket.connect(address, timeout);
+                try {
+
+                    tempSocket.connect(address, timeout);
+                } catch (Exception ignored){ }
+
             }
 
             ObjectOutputStream tempOOS =

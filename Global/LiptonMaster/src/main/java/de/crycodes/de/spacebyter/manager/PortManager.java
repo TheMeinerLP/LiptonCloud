@@ -39,5 +39,11 @@ public class PortManager {
         return 0;
     }
 
+    public LiptonMaster getLiptonMaster() {
+        return liptonMaster;
+    }
 
+    public List<Integer> getPortlist() {
+        return portlist;
+    }
 }

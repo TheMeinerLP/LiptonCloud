@@ -53,6 +53,7 @@ public class WrapperManager {
     public void unregisterWrapper( @ShouldNotBeNull WrapperMeta wrapperMeta){
         if(wrapperList.contains(wrapperMeta))
             wrapperList.remove(wrapperMeta);
+        liptonMaster.getColouredConsoleProvider().info("UnRegistered Wrapper: " + wrapperMeta.getWrapperConfig().getWrapperId());
     }
 
     public List<WrapperMeta> getWrapperList() {

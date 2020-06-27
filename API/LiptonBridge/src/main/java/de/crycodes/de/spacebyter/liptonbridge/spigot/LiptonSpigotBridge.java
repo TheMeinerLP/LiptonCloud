@@ -4,6 +4,8 @@ import de.crycodes.de.spacebyter.liptonbridge.CloudAPI;
 import de.crycodes.de.spacebyter.liptonbridge.bungeecord.commands.CloudCommand;
 import de.crycodes.de.spacebyter.liptonbridge.spigot.networking.SpigotMasterClient;
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
+import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
+import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import de.crycodes.de.spacebyter.liptoncloud.objects.ServerConfig;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerStoppingPacket;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -44,7 +46,14 @@ public class LiptonSpigotBridge extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        spigotMasterClient.getThunderClient().sendPacket(spigotMasterClient.getNetworkChannel(), new ServerStoppingPacket(cloudAPI.getServerMeta()));
+
+        ServerMeta serverMeta;
+        if (LiptonSpigotBridge.getInstance().getCloudAPI().getProxyMeta() == null)
+            serverMeta = new ServerMeta("NONE", 1, new ServerGroupMeta("NONE", 512, 128, false,false, 0,0), "NONE", "127.0.0.1", 0);
+        else
+            serverMeta = LiptonSpigotBridge.getInstance().getCloudAPI().getServerMeta();
+
+        spigotMasterClient.getThunderClient().sendPacket(spigotMasterClient.getNetworkChannel(), new ServerStoppingPacket(serverMeta));
     }
 
     public CloudAPI getCloudAPI() {

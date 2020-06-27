@@ -1,7 +1,9 @@
 package de.crycodes.de.spacebyter.liptonbridge.bungeecord.networking.handler;
 
+import de.crycodes.de.spacebyter.liptonbridge.bungeecord.LiptonBungeeBridge;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StopServerPacketProxy;
+import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerPacket;
 import de.crycodes.de.spacebyter.network.adapter.PacketHandlerAdapter;
 import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
 import de.crycodes.de.spacebyter.network.packet.Packet;
@@ -19,12 +21,14 @@ public class StopServerHandler extends PacketHandlerAdapter {
 
     @Override
     public void handel(Packet packet) {
-        if (packet instanceof StopServerPacketProxy){
-            final StopServerPacketProxy stopServerPacketProxy = (StopServerPacketProxy) packet;
-            final ServerMeta serverMeta = stopServerPacketProxy.getServerMeta();
-            if (!ProxyServer.getInstance().getServers().containsKey(serverMeta.getServerName())) return;
-            ProxyServer.getInstance().getServers().remove(serverMeta.getServerName());
+        if (packet instanceof StopServerPacket){
+            final StopServerPacket stopServerPacketProxy = (StopServerPacket) packet;
+
+
             //TODO: BROADCAST: SERVER WAS REMOVED!
+
+            String stopMessage = LiptonBungeeBridge.getInstance().getCloudAPI().getProxyConfig().getServer_stop_message();
+
         }
     }
 }

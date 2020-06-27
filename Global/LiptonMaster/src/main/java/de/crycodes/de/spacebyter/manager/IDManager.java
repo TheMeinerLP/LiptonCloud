@@ -42,4 +42,9 @@ public class IDManager {
         }
     }
 
+    public ConcurrentHashMap<ServerGroupMeta, List<Integer>> getServerIdList() {
+        return serverIdList;
+    }
+
+
 }

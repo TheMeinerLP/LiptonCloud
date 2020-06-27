@@ -1,0 +1,47 @@
+[19:50:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterPacket
+[19:50:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.ShutDownPacket
+[19:50:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.SendProxyConfigPacket
+[19:50:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StopProxyPacket
+[19:50:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.ProxyStoppingPacket
+[19:50:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.ExecuteCommandPacket
+[19:50:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.SendServerConfigPacket
+[19:50:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerGroupPacket
+[19:50:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerPacket
+[19:50:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerStoppingPacket
+[19:50:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CopyServerPacket
+[19:50:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CreateTemplatePacket
+[19:50:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.StartServerPacket
+[19:50:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.DebugPacket
+[19:50:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.ErrorPacket
+[19:50:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.InfoPacket
+[19:50:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.WarningPacket
+[19:50:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.UpdateMaintenancePacket
+[19:50:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.ServerGroupUpdatePacket
+[19:50:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerUpdatePacket
+[19:50:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterResponsePacket
+[19:50:04] INFO: [34m __    _     ___   _     ___   __   _     __  _____  ____  _     [0m
+[19:50:04] INFO: [34m/ /`  | |   / / \ | | | | | \ ( (` \ \_/ ( (`  | |  | |_  | |\/| [0m
+[19:50:04] INFO: [34m\_\_, |_|__ \_\_/ \_\_/ |_|_/ _)_)  |_|  _)_)  |_|  |_|__ |_|  | [0m
+[19:50:04] INFO: [31m▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬[0m
+[19:50:04] INFO: [34mCoded by CryCodes & SpaceByter[0m
+[19:50:04] INFO: 
+[19:50:04] INFO: Loaded Addon: CloudFlare-1.0-SNAPSHOT
+[19:50:04] INFO: Loaded Addon: SignSystem-1.0-SNAPSHOT
+[19:50:05] ERROR: An error occurred in cloudflare addon: Could not find zone id for given domain, please recheck
+[19:50:05] ERROR: An error occurred in cloudflare addon: Could not find zone id for given domain, please recheck
+[19:50:05] INFO: [SIGNSYSTEM] Starting NetworkServer on (127.0.0.1:8899)!
+[19:50:05] INFO: Using SignSystem for LiptonCloud!
+[19:50:05] INFO: Starting Master-Wrapper Server on Port: (9685) !
+[19:50:05] INFO: Starting Proxy-Wrapper Server on Port: (1784) !
+[19:50:05] INFO: Starting Master-Spigot Server on Port: (7898) !
+[19:50:05] INFO: Action 'MASTERSTARTUP' took: (1.12) Seconds!
+[19:50:10] INFO: Trying to Register Server: NONE
+[19:50:10] INFO: Registered new Server: NONE
+[19:50:19] INFO: Send StopPacket to Server: None
+[19:50:19] INFO: Stopping Server: NONE | 0 | NONE
+[19:50:58] INFO: Trying to Register Proxy: NONE
+[19:50:58] INFO: Registered new Proxy: NONE
+[19:51:09] INFO: Trying to Register Server: NONE
+[19:51:09] INFO: Registered new (Dummy) Server: NONE
+[19:51:20] INFO: Send StopPacket to Server: None
+[19:51:20] INFO: Stopping Server: NONE | 0 | NONE

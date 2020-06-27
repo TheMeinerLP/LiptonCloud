@@ -32,6 +32,7 @@ public class ProxyManager {
     public void unregisterProxy(ProxyMeta serverMeta){
         if (!globalProxyList.contains(serverMeta))return;
         globalProxyList.remove(serverMeta);
+        LiptonMaster.getInstance().getColouredConsoleProvider().info("Registered Proxy: " + serverMeta.getName());
     }
 
     public void unregisterProxy(ProxyMeta meta, Object o) {

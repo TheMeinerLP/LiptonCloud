@@ -38,7 +38,7 @@ public class ConfigHandler {
                 liptonMaster.getProxyFileConfig().load();
                 liptonMaster.getMasterConfig().reload();
 
-                ProxyConfig proxyConfig = new ProxyConfig(liptonMaster.getServerGlobalManager().getGlobalServerList(),
+                ProxyConfig proxyConfig = new ProxyConfig(liptonMaster.getServerManager().getGlobalserverrlist(),
                         liptonMaster.getWrapperManager().getWrapperList(),
                         liptonMaster.getProxyManager().getGlobalProxyList(),
                         liptonMaster.getMasterConfig().isMaintenance(),
@@ -52,8 +52,11 @@ public class ConfigHandler {
                         liptonMaster.getProxyFileConfig().getMaintenanceVersionString(),
                         liptonMaster.getProxyFileConfig().getMaxPlayer(),
                         liptonMaster.getProxyFileConfig().getUseProxyConfig(),
-                        liptonMaster.getProxyFileConfig().getMaintenanceKickMessage()
-                );
+                        liptonMaster.getProxyFileConfig().getMaintenanceKickMessage(),
+                        liptonMaster.getProxyFileConfig().getServer_start_message(),
+                        liptonMaster.getProxyFileConfig().getServer_stop_message(),
+                        liptonMaster.getProxyFileConfig().getServer_online_message(),
+                        liptonMaster.getProxyFileConfig().getUseNotify());
 
                 ServerConfig serverConfig = new ServerConfig(liptonMaster.getServerGlobalManager().getGlobalServerList(),
                         liptonMaster.getWrapperManager().getWrapperList(),

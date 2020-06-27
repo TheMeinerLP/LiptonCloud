@@ -25,6 +25,7 @@ public class ServerGlobalManager {
             if (serverMeta.getServerName().equalsIgnoreCase("NONE")){
                 isAuthenticated.accept(true);
                 LiptonMaster.getInstance().getColouredConsoleProvider().info("Registered new (Dummy) Server: " + serverMeta.getServerName());
+                LiptonMaster.getInstance().getServerManager().getGlobalserverrlist().add(serverMeta);
                 return;
 
             }
@@ -32,12 +33,14 @@ public class ServerGlobalManager {
             return;
         }
         globalServerList.add(serverMeta);
+        LiptonMaster.getInstance().getServerManager().getGlobalserverrlist().add(serverMeta);
         LiptonMaster.getInstance().getColouredConsoleProvider().info("Registered new Server: " + serverMeta.getServerName());
         isAuthenticated.accept(true);
     }
     public void unregisterServer(ServerMeta serverMeta){
         if (!globalServerList.contains(serverMeta))return;
         globalServerList.remove(serverMeta);
+        LiptonMaster.getInstance().getColouredConsoleProvider().info("UnRegistered Server: " + serverMeta.getServerName());
     }
 
     public List<ServerMeta> getGlobalServerList() {
