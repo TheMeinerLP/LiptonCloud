@@ -1,5 +1,7 @@
 package de.crycodes.de.spacebyter.network.logger;
 
+import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+
 /**
  * Coded By CryCodes
  * Class: MessageLogger
@@ -12,22 +14,22 @@ public class MessageLogger implements MessageLoggerInterface {
 
     @Override
     public void info(String message) {
-        //System.out.println("[INFO]> " + message);
+       // ColouredConsoleProvider.getGlobal().info(message);
     }
 
     @Override
     public void warning(String message) {
-        //System.out.println("[WARNING]> " + message);
+       // ColouredConsoleProvider.getGlobal().warning(message);
     }
 
     @Override
     public void error(String message) {
-        //System.out.println("[ERROR]> " + message);
+        System.out.println("[ERROR - TNFW]> " + message);
     }
 
     @Override
     public void debug(String message) {
-        //System.out.println("[DEBUG]> " + message);
+       // ColouredConsoleProvider.getGlobal().debug(message);
     }
 
     public static MessageLogger getGlobalLogger(){

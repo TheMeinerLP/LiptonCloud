@@ -17,10 +17,6 @@ import org.bukkit.Bukkit;
 
 public class ExecuteCommandHandler extends PacketHandlerAdapter {
 
-    public ExecuteCommandHandler(NetworkChannel networkChannel) {
-        super(networkChannel);
-    }
-
     @Override
     public void handel(Packet packet) {
         if (packet instanceof ExecuteCommandPacket){
@@ -37,6 +33,5 @@ public class ExecuteCommandHandler extends PacketHandlerAdapter {
             }
 
         }
-        super.handel(packet);
     }
 }

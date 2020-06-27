@@ -17,10 +17,6 @@ import de.crycodes.de.spacebyter.network.packet.Packet;
 
 public class CopyServerHandler extends PacketHandlerAdapter {
 
-    public CopyServerHandler(NetworkChannel networkChannel) {
-        super(networkChannel);
-    }
-
     @Override
     public void handel(Packet packet) {
         if (packet instanceof CopyServerPacket){
@@ -31,6 +27,5 @@ public class CopyServerHandler extends PacketHandlerAdapter {
                 return;
             }
         }
-        super.handel(packet);
     }
 }

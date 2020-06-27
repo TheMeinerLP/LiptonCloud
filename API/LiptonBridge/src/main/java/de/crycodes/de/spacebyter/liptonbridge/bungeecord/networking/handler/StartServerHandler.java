@@ -20,9 +20,6 @@ import java.net.InetSocketAddress;
 
 public class StartServerHandler extends PacketHandlerAdapter {
 
-    public StartServerHandler(NetworkChannel networkChannel) {
-        super(networkChannel);
-    }
 
     @Override
     public void handel(Packet packet) {
@@ -41,6 +38,5 @@ public class StartServerHandler extends PacketHandlerAdapter {
                 ProxyServer.getInstance().getConfig().getListeners().iterator().next().getServerPriority().add(serverMeta.getServerName());
             //TODO: BROADCAST: SERVER WAS ADDED!
         }
-        super.handel(packet);
     }
 }

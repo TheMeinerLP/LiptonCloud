@@ -26,7 +26,7 @@ public class SignServer {
     private ThunderServer thunderServer;
     private PacketHandler packetHandler;
     private AdapterHandler adapterHandler;
-    private NetworkChannel networkChannel = LiptonMaster.getInstance().getLiptonLibrary().getSignSystem_Channel();
+    private NetworkChannel networkChannel = LiptonMaster.getInstance().getLiptonLibrary().getCloudChannel();
 
     public SignServer(LiptonMaster liptonMaster, String host, Integer port) {
         this.liptonMaster = liptonMaster;
@@ -44,8 +44,8 @@ public class SignServer {
         packetHandler.registerPacket((byte) 4, UnRegisterSignPacket.class);
         packetHandler.registerPacket((byte) 5, UpdateServerListPacket.class);
 
-        adapterHandler.registerAdapter(RegisterSignPacket.class, new RegisterSignPacketHandler(this.networkChannel));
-        adapterHandler.registerAdapter(UnRegisterSignPacket.class, new UnRegisterSignPacketHandler(this.networkChannel));
+        adapterHandler.registerAdapter( new RegisterSignPacketHandler());
+        adapterHandler.registerAdapter( new UnRegisterSignPacketHandler());
 
         thunderServer = new ThunderServer(adapterHandler, networkChannel, port);
         liptonMaster.getColouredConsoleProvider().info("[SIGNSYSTEM] Starting NetworkServer on (" + host + ":" + port + ")!");

@@ -17,10 +17,6 @@ import de.crycodes.de.spacebyter.network.packet.Packet;
 
 public class StopProxyHandler extends PacketHandlerAdapter {
 
-    public StopProxyHandler(NetworkChannel networkChannel) {
-        super(networkChannel);
-    }
-
     @Override
     public void handel(Packet packet) {
         if (packet instanceof StopProxyPacket){
@@ -30,6 +26,5 @@ public class StopProxyHandler extends PacketHandlerAdapter {
                 System.exit(ExitUtil.TERMINATED);
             }
         }
-        super.handel(packet);
     }
 }

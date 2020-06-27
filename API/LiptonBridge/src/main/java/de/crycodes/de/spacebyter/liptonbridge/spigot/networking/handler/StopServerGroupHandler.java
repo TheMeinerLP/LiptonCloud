@@ -16,9 +16,6 @@ import de.crycodes.de.spacebyter.network.packet.Packet;
 
 public class StopServerGroupHandler extends PacketHandlerAdapter {
 
-    public StopServerGroupHandler(NetworkChannel networkChannel) {
-        super(networkChannel);
-    }
 
     @Override
     public void handel(Packet packet) {
@@ -36,6 +33,5 @@ public class StopServerGroupHandler extends PacketHandlerAdapter {
             }
 
         }
-        super.handel(packet);
     }
 }

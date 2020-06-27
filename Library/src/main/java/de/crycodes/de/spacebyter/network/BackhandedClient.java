@@ -72,6 +72,18 @@ public class BackhandedClient {
             System.setProperty("javax.net.ssl.keyStorePassword", "SimpleServerClient");
         }
     }
+    public BackhandedClient(String hostname, int port, int timeout, boolean useSSL) {
+
+        this.errorCount = 0;
+        this.address = new InetSocketAddress(hostname, port);
+        this.timeout = timeout;
+
+        this.secureMode = useSSL;
+        if (secureMode) {
+            System.setProperty("javax.net.ssl.trustStore", "ssc.store");
+            System.setProperty("javax.net.ssl.keyStorePassword", "SimpleServerClient");
+        }
+    }
 
     public boolean isListening() {
         return isConnected() && listeningThread != null && listeningThread.isAlive() && errorCount == 0;
@@ -109,7 +121,8 @@ public class BackhandedClient {
     }
 
     protected void repairConnection() {
-        if (loginSocket != null) {
+       System.exit(0);
+        /* if (loginSocket != null) {
             try {
                 loginSocket.close();
             } catch (IOException e) {
@@ -117,7 +130,7 @@ public class BackhandedClient {
             loginSocket = null;
         }
         login();
-        startListening();
+        startListening();*/
     }
 
     protected void login() {

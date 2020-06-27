@@ -15,9 +15,6 @@ import de.crycodes.de.spacebyter.network.packet.Packet;
  */
 
 public class StartServerHandler extends PacketHandlerAdapter {
-    public StartServerHandler(NetworkChannel networkChannel) {
-        super(networkChannel);
-    }
 
     @Override
     public void handel(Packet packet) {
@@ -30,6 +27,5 @@ public class StartServerHandler extends PacketHandlerAdapter {
                 return;
             }
         }
-        super.handel(packet);
     }
 }

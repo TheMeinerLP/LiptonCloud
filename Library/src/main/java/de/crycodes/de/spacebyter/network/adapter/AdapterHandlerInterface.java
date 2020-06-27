@@ -5,7 +5,7 @@ import de.crycodes.de.spacebyter.network.packet.Packet;
 
 public interface AdapterHandlerInterface {
 
-    void registerAdapter(Class<? extends Packet> packet, PacketHandlerAdapter adapterHandler);
+    void registerAdapter(PacketHandlerAdapter adapterHandler);
     void unregisterAdapter(PacketHandlerAdapter adapterHandler);
 
     void handelAdapterHandler(NetworkChannel networkChannel, Packet packet);

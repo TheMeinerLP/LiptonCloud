@@ -5,6 +5,7 @@ import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.WrapperMeta;
+import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.SendProxyConfigPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StartServerPacketProxy;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StopServerPacketProxy;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerPacket;
@@ -85,12 +86,14 @@ public class ServerManager {
         final ServerMeta serverMeta = new ServerMeta(serverGroupMeta.getGroupName() + liptonMaster.getMasterConfig().getServerNameSplitter() + id ,id, serverGroupMeta, wrapperID, "127.0.0.1", port);
         this.globalserverrlist.put(serverMeta.getServerName(), serverMeta);
 
-        LiptonMaster.getInstance().getMasterProxyServer().sendPacket(new StartServerPacketProxy(serverMeta));
+        liptonMaster.getMasterProxyServer().getServer().sendPacket(
+                liptonMaster.getMasterProxyServer().getNetworkChannel(),
+                new StartServerPacket(wrapperID,serverMeta));
 
         LiptonMaster.getInstance().getMasterWrapperServer().sendPacket(new StartServerPacket(wrapperID, serverMeta));
 
         if (!autoStart) this.liptonMaster.getColouredConsoleProvider().info("StartetServer: " + serverMeta.getServerName() + " | on port: " + serverMeta.getPort() + " | on wrapper: " + serverMeta.getWrapperID() + " | group: " + serverGroupMeta.getGroupName() + " !");
-        if (autoStart)                         liptonMaster.getColouredConsoleProvider().info("§c[AUTOSTART]§r StartetServer '" + serverGroupMeta.getGroupName() + "' stats: (" + getStartetServerGroupAsAmountByGroup(serverGroupMeta) + "/" + serverGroupMeta.getMinServer() + ") Port: §a" + port + "§r | ID: §a" + id + "§r !");
+        if (autoStart)  liptonMaster.getColouredConsoleProvider().info("§c[AUTOSTART]§r StartetServer '" + serverGroupMeta.getGroupName() + "' stats: (" + getStartetServerGroupAsAmountByGroup(serverGroupMeta) + "/" + serverGroupMeta.getMinServer() + ") Port: §a" + port + "§r | ID: §a" + id + "§r !");
     }
     public void stopServer( @ShouldNotBeNull ServerMeta serverMeta){
         liptonMaster.getPortManager().removePort(serverMeta.getPort());
@@ -102,7 +105,9 @@ public class ServerManager {
         if (this.globalserverrlist.containsKey(serverMeta.getServerName()))
             this.globalserverrlist.remove(serverMeta.getServerName());
 
-        LiptonMaster.getInstance().getMasterProxyServer().sendPacket(new StopServerPacketProxy(serverMeta));
+        liptonMaster.getMasterProxyServer().getServer().sendPacket(
+                liptonMaster.getMasterProxyServer().getNetworkChannel(),
+                new StopServerPacket(serverMeta.getServerName()));
 
         LiptonMaster.getInstance().getMasterSpigotServer().sendPacket(new StopServerPacket(serverMeta.getServerName()));
     }

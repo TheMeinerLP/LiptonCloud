@@ -17,10 +17,6 @@ import de.crycodes.de.spacebyter.network.packet.Packet;
 
 public class ProxyStoppingHandler extends PacketHandlerAdapter {
 
-    public ProxyStoppingHandler(NetworkChannel networkChannel) {
-        super(networkChannel);
-    }
-
     @Override
     public void handel(Packet packet) {
         if (packet instanceof ProxyStoppingPacket){
@@ -28,6 +24,5 @@ public class ProxyStoppingHandler extends PacketHandlerAdapter {
             ProxyMeta proxyMeta = stoppingPacket.getProxyMeta();
             LiptonMaster.getInstance().getProxyManager().unregisterProxy(proxyMeta);
         }
-        super.handel(packet);
     }
 }

@@ -16,10 +16,6 @@ import de.crycodes.de.spacebyter.network.packet.Packet;
 
 public class ReloadHandler extends PacketHandlerAdapter {
 
-    public ReloadHandler(NetworkChannel networkChannel) {
-        super(networkChannel);
-    }
-
     @Override
     public void handel(Packet packet) {
         if (packet instanceof ReloadPacket){
@@ -32,6 +28,5 @@ public class ReloadHandler extends PacketHandlerAdapter {
             liptonMaster.getServerManager().start();
             liptonMaster.getColouredConsoleProvider().info("Cloud was Reloaded!");
         }
-        super.handel(packet);
     }
 }

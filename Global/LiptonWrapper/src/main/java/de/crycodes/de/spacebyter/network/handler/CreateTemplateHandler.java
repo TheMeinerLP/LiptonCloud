@@ -16,10 +16,6 @@ import de.crycodes.de.spacebyter.network.packet.Packet;
 
 public class CreateTemplateHandler extends PacketHandlerAdapter {
 
-    public CreateTemplateHandler(NetworkChannel networkChannel) {
-        super(networkChannel);
-    }
-
     @Override
     public void handel(Packet packet) {
         if (packet instanceof CreateTemplatePacket){
@@ -30,6 +26,5 @@ public class CreateTemplateHandler extends PacketHandlerAdapter {
                 return;
             }
         }
-        super.handel(packet);
     }
 }

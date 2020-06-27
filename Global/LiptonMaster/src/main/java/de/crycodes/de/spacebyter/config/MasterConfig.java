@@ -33,7 +33,6 @@ public class MasterConfig {
 
     public MasterConfig() {
         if (configFile.exists()){
-            document = Document.loadDocument(configFile);
             reload();
             return;
         }
@@ -53,6 +52,7 @@ public class MasterConfig {
 
     }
     public void reload(){
+        document = Document.loadDocument(configFile);
         this.host = document.getString("host");
         this.port = document.getInt("port");
         this.debugMode = document.getBoolean("debugMode");
@@ -104,5 +104,14 @@ public class MasterConfig {
     public File getConfigFile() {
         return configFile;
     }
+
+    public String[] getWhiteListed() {
+        return whiteListed;
+    }
+
+    public boolean isMaintenance() {
+        return maintenance;
+    }
+
 }
 

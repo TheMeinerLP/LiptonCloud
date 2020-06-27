@@ -46,10 +46,6 @@ public abstract class BackhandedServer {
         this(port, true, true, false);
     }
 
-    public BackhandedServer(int port, boolean muted) {
-        this(port, true, true, false, muted);
-    }
-
     @Deprecated
     public BackhandedServer(int port, boolean autoRegisterEveryClient, boolean keepConnectionAlive, boolean useSSL) {
         this.clients = new ArrayList<RemoteClient>();
@@ -72,6 +68,26 @@ public abstract class BackhandedServer {
         if (keepConnectionAlive) {
             startPingThread();
         }
+    }
+
+    @Deprecated
+    public BackhandedServer(int port, boolean useSSL) {
+        this.clients = new ArrayList<RemoteClient>();
+        this.port = port;
+        this.muted = false;
+
+        this.secureMode = useSSL;
+        if (secureMode) {
+            System.setProperty("javax.net.ssl.keyStore", "ssc.store");
+            System.setProperty("javax.net.ssl.keyStorePassword", "SimpleServerClient");
+        }
+        if (autoRegisterEveryClient) {
+            registerLoginMethod();
+        }
+        preStart();
+
+        start();
+
     }
 
 
@@ -115,6 +131,7 @@ public abstract class BackhandedServer {
                     try {
                         Thread.sleep(pingInterval);
                     } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
                     broadcastMessage(new Channel("_INTERNAL_PING_", "OK"));
                 }
@@ -312,7 +329,7 @@ public abstract class BackhandedServer {
             }
 
         } catch (IOException e) {
-
+            e.printStackTrace();
         }
         startListening();
     }
@@ -365,11 +382,9 @@ public abstract class BackhandedServer {
     }
 
     public void onLog(String message) {
-        MessageLogger.getGlobalLogger().info(message);
     }
 
     public void onLogError(String message) {
-        MessageLogger.getGlobalLogger().error(message);
     }
 
     protected class RemoteClient {

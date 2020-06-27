@@ -5,6 +5,7 @@ import de.crycodes.de.spacebyter.config.*;
 import de.crycodes.de.spacebyter.liptoncloud.time.Counter;
 import de.crycodes.de.spacebyter.networking.proxy.MasterProxyServer;
 import de.crycodes.de.spacebyter.networking.server.MasterSpigotServer;
+import de.crycodes.de.spacebyter.serverhelper.ProxyConfigHandler;
 import de.crycodes.de.spacebyter.serverhelper.ProxyFileConfig;
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
 import de.crycodes.de.spacebyter.liptoncloud.addon.AddonParallelLoader;
@@ -59,6 +60,7 @@ public class LiptonMaster {
     private MasterWrapperServer masterWrapperServer;
     private MasterProxyServer masterProxyServer;
     private MasterSpigotServer masterSpigotServer;
+    private ProxyConfigHandler proxyConfigHandler;
 
     public LiptonMaster() {
         instance = this;
@@ -94,8 +96,6 @@ public class LiptonMaster {
                     10,
                     2));
 
-
-
         scheduler = new Scheduler();
         eventManager = new EventManager();
 
@@ -111,6 +111,8 @@ public class LiptonMaster {
         liptonLibrary.registerPacket(packetHandler);
 
         liptonLibrary.printAscii();
+
+        proxyConfigHandler = new ProxyConfigHandler(this,scheduler).startUpdateThread();
 
         parallelLoader.loadAddons();
         parallelLoader.enableAddons();

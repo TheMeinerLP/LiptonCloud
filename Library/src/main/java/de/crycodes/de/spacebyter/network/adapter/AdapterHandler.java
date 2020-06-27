@@ -18,11 +18,11 @@ import java.util.Map;
 
 public class AdapterHandler implements AdapterHandlerInterface {
 
-    private Map< Class<? extends Packet>, PacketHandlerAdapter> registeredadapters = new HashMap<>();
+    private ArrayList<PacketHandlerAdapter> registeredadapters = new ArrayList<>();
 
     @Override
-    public void registerAdapter( Class<? extends Packet> packet,PacketHandlerAdapter adapterHandler) {
-        this.registeredadapters.put(packet, adapterHandler);
+    public void registerAdapter(PacketHandlerAdapter adapterHandler) {
+        this.registeredadapters.add(adapterHandler);
     }
 
     @Override
@@ -32,13 +32,9 @@ public class AdapterHandler implements AdapterHandlerInterface {
 
     @Override
     public void handelAdapterHandler(NetworkChannel networkChannel, Packet packet) {
-        List<PacketHandlerAdapter> handlers = new ArrayList<>();
-        registeredadapters.forEach((packet1, packetHandlerAdapter) -> {
-            handlers.add(packetHandlerAdapter);
-        });
-        for (PacketHandlerAdapter adapter : handlers){
-            if (adapter.getNetworkChannel().equals(networkChannel))
-                adapter.handel(packet);
+
+        for (PacketHandlerAdapter adapter : registeredadapters){
+            adapter.handel(packet);
         }
     }
 }

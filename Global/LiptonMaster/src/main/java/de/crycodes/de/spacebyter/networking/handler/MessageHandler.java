@@ -19,10 +19,6 @@ import de.crycodes.de.spacebyter.network.packet.Packet;
 
 public class MessageHandler extends PacketHandlerAdapter {
 
-    public MessageHandler(NetworkChannel networkChannel) {
-        super(networkChannel);
-    }
-
     @Override
     public void handel(Packet packet) {
         if (packet instanceof ErrorPacket){
@@ -44,6 +40,5 @@ public class MessageHandler extends PacketHandlerAdapter {
             final DebugPacket debugPacket = (DebugPacket) packet;
             LiptonMaster.getInstance().getColouredConsoleProvider().debug(debugPacket.getMessage());
         }
-        super.handel(packet);
     }
 }

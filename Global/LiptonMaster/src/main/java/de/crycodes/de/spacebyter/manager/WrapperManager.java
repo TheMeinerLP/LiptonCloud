@@ -55,4 +55,7 @@ public class WrapperManager {
             wrapperList.remove(wrapperMeta);
     }
 
+    public List<WrapperMeta> getWrapperList() {
+        return wrapperList;
+    }
 }

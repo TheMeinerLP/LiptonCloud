@@ -16,10 +16,6 @@ import de.crycodes.de.spacebyter.network.packet.Packet;
 
 public class SendServerConfigHandler extends PacketHandlerAdapter {
 
-    public SendServerConfigHandler(NetworkChannel networkChannel) {
-        super(networkChannel);
-    }
-
     @Override
     public void handel(Packet packet) {
         if (packet instanceof SendServerConfigPacket){

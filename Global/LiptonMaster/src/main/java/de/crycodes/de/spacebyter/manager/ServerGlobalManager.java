@@ -1,6 +1,7 @@
 package de.crycodes.de.spacebyter.manager;
 
 import de.crycodes.de.spacebyter.LiptonMaster;
+import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import de.crycodes.de.spacebyter.liptoncloud.utils.CallBack;
 
@@ -25,6 +26,7 @@ public class ServerGlobalManager {
             return;
         }
         globalServerList.add(serverMeta);
+        LiptonMaster.getInstance().getColouredConsoleProvider().info("Registered new Server: " + serverMeta.getServerName());
         isAuthenticated.accept(true);
     }
     public void unregisterServer(ServerMeta serverMeta){
@@ -32,4 +34,7 @@ public class ServerGlobalManager {
         globalServerList.remove(serverMeta);
     }
 
+    public List<ServerMeta> getGlobalServerList() {
+        return globalServerList;
+    }
 }

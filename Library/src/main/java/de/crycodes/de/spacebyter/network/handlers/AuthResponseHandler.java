@@ -16,10 +16,6 @@ import de.crycodes.de.spacebyter.network.packets.AuthResponsePacket;
 
 public class AuthResponseHandler extends PacketHandlerAdapter {
 
-    public AuthResponseHandler(NetworkChannel networkChannel) {
-        super(networkChannel);
-    }
-
     @Override
     public void handel(Packet packet) {
         if (packet instanceof AuthResponsePacket){
@@ -33,6 +29,5 @@ public class AuthResponseHandler extends PacketHandlerAdapter {
 
 
         }
-        super.handel(packet);
     }
 }

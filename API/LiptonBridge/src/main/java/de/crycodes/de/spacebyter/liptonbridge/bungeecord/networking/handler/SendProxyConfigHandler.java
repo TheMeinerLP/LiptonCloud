@@ -16,16 +16,13 @@ import de.crycodes.de.spacebyter.network.packet.Packet;
 
 public class SendProxyConfigHandler extends PacketHandlerAdapter {
 
-    public SendProxyConfigHandler(NetworkChannel networkChannel) {
-        super(networkChannel);
-    }
-
     @Override
     public void handel(Packet packet) {
+        System.out.println("NEW PACKET:" + packet.toString());
         if (packet instanceof SendProxyConfigPacket){
             final SendProxyConfigPacket sendProxyConfigPacket = (SendProxyConfigPacket) packet;
-            LiptonBungeeBridge.getInstance().setProxyConfig(sendProxyConfigPacket.getProxyConfig());
+            LiptonBungeeBridge.getInstance().updateConfig(sendProxyConfigPacket.getProxyConfig());
+            System.out.println("UPDATED PROXY CONFIG");
         }
-        super.handel(packet);
     }
 }

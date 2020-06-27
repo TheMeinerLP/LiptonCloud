@@ -28,6 +28,7 @@ public class ReloadCommand extends CloudCommand {
         liptonMaster.getScheduler().cancelTask(liptonMaster.getServerManager().getTask());
         liptonMaster.getServerManager().reload();
         liptonMaster.getServerManager().start();
+        liptonMaster.getProxyFileConfig().load();
         liptonMaster.getColouredConsoleProvider().info("Cloud was Reloaded!");
         return false;
     }

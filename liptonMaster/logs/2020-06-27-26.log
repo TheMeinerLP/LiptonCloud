@@ -1,0 +1,61 @@
+[13:04:55] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterPacket
+[13:04:55] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.ShutDownPacket
+[13:04:55] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.SendProxyConfigPacket
+[13:04:55] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StopProxyPacket
+[13:04:55] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.ProxyStoppingPacket
+[13:04:55] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.ExecuteCommandPacket
+[13:04:55] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.SendServerConfigPacket
+[13:04:55] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerGroupPacket
+[13:04:55] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerPacket
+[13:04:55] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerStoppingPacket
+[13:04:55] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CopyServerPacket
+[13:04:55] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CreateTemplatePacket
+[13:04:55] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.StartServerPacket
+[13:04:55] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.DebugPacket
+[13:04:55] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.ErrorPacket
+[13:04:55] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.InfoPacket
+[13:04:55] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.WarningPacket
+[13:04:55] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.UpdateMaintenancePacket
+[13:04:55] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.ServerGroupUpdatePacket
+[13:04:55] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerUpdatePacket
+[13:04:55] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterResponsePacket
+[13:04:55] INFO: [34m __    _     ___   _     ___   __   _     __  _____  ____  _     [0m
+[13:04:55] INFO: [34m/ /`  | |   / / \ | | | | | \ ( (` \ \_/ ( (`  | |  | |_  | |\/| [0m
+[13:04:55] INFO: [34m\_\_, |_|__ \_\_/ \_\_/ |_|_/ _)_)  |_|  _)_)  |_|  |_|__ |_|  | [0m
+[13:04:55] INFO: [31m▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬[0m
+[13:04:55] INFO: [34mCoded by CryCodes & SpaceByter[0m
+[13:04:55] INFO: 
+[13:04:55] INFO: Loaded Addon: CloudFlare-1.0-SNAPSHOT
+[13:04:55] INFO: Loaded Addon: SignSystem-1.0-SNAPSHOT
+[13:04:56] ERROR: An error occurred in cloudflare addon: Could not find zone id for given domain, please recheck
+[13:04:56] ERROR: An error occurred in cloudflare addon: Could not find zone id for given domain, please recheck
+[13:04:56] INFO: [SIGNSYSTEM] Starting NetworkServer on (127.0.0.1:8899)!
+[13:04:56] INFO: Using SignSystem for LiptonCloud!
+[13:04:56] INFO: Starting Master-Wrapper Server on Port: (9685) !
+[13:04:56] INFO: Starting Proxy-Wrapper Server on Port: (1784) !
+[13:04:56] INFO: Starting Master-Spigot Server on Port: (7898) !
+[13:04:56] INFO: Action 'MASTERSTARTUP' took: (1.11) Seconds!
+[13:04:58] DEBUG: Send ProxyConfig!
+[13:04:58] DEBUG: Send ProxyConfig!
+[13:04:59] ERROR: No Wrapper Available -> (create <wrapper>)!
+[13:05:00] DEBUG: Send ProxyConfig!
+[13:05:00] DEBUG: Send ProxyConfig!
+[13:05:01] ERROR: No Wrapper Available -> (create <wrapper>)!
+[13:05:03] DEBUG: Send ProxyConfig!
+[13:05:03] DEBUG: Send ProxyConfig!
+[13:05:04] ERROR: No Wrapper Available -> (create <wrapper>)!
+[13:05:05] DEBUG: Send ProxyConfig!
+[13:05:05] DEBUG: Send ProxyConfig!
+[13:05:06] ERROR: No Wrapper Available -> (create <wrapper>)!
+[13:05:08] DEBUG: Send ProxyConfig!
+[13:05:08] DEBUG: Send ProxyConfig!
+[13:05:09] ERROR: No Wrapper Available -> (create <wrapper>)!
+[13:05:10] DEBUG: Send ProxyConfig!
+[13:05:10] DEBUG: Send ProxyConfig!
+[13:05:11] ERROR: No Wrapper Available -> (create <wrapper>)!
+[13:05:13] DEBUG: Send ProxyConfig!
+[13:05:13] DEBUG: Send ProxyConfig!
+[13:05:14] ERROR: No Wrapper Available -> (create <wrapper>)!
+[13:05:15] DEBUG: Send ProxyConfig!
+[13:05:15] DEBUG: Send ProxyConfig!
+[13:05:16] ERROR: No Wrapper Available -> (create <wrapper>)!

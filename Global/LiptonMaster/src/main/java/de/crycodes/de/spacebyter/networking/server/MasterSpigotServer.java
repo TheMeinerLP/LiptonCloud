@@ -1,15 +1,14 @@
 package de.crycodes.de.spacebyter.networking.server;
 
 import de.crycodes.de.spacebyter.LiptonMaster;
-import de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterPacket;
-import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerStoppingPacket;
-import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerUpdatePacket;
 import de.crycodes.de.spacebyter.network.ThunderServer;
 import de.crycodes.de.spacebyter.network.adapter.AdapterHandler;
 import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
 import de.crycodes.de.spacebyter.network.packet.Packet;
 import de.crycodes.de.spacebyter.network.packet.PacketHandler;
-import de.crycodes.de.spacebyter.networking.handler.AuthHandler;
+import de.crycodes.de.spacebyter.networking.GlobalPacketHandler;
+import de.crycodes.de.spacebyter.networking.handler.RegisterHandler;
+import de.crycodes.de.spacebyter.networking.handler.MessageHandler;
 import de.crycodes.de.spacebyter.networking.server.handler.ServerStoppingHandler;
 import de.crycodes.de.spacebyter.networking.server.handler.ServerUpdateHandler;
 
@@ -32,13 +31,15 @@ public class MasterSpigotServer {
 
     public MasterSpigotServer(Integer port) {
         this.port = port;
-        networkChannel = LiptonMaster.getInstance().getLiptonLibrary().getMaster_Wrapper_Channel();
+        networkChannel = LiptonMaster.getInstance().getLiptonLibrary().getCloudChannel();
         packetHandler = LiptonMaster.getInstance().getPacketHandler();
         adapterHandler = new AdapterHandler();
 
-        adapterHandler.registerAdapter(ServerStoppingPacket.class, new ServerStoppingHandler(networkChannel));
-        adapterHandler.registerAdapter(ServerUpdatePacket.class, new ServerUpdateHandler(networkChannel));
-        adapterHandler.registerAdapter(RegisterPacket.class, new AuthHandler(networkChannel));
+        adapterHandler.registerAdapter(new ServerStoppingHandler());
+        adapterHandler.registerAdapter(new ServerUpdateHandler());
+        adapterHandler.registerAdapter(new RegisterHandler());
+        adapterHandler.registerAdapter(new MessageHandler());
+        adapterHandler.registerAdapter(new GlobalPacketHandler());
 
     }
     public MasterSpigotServer start(){

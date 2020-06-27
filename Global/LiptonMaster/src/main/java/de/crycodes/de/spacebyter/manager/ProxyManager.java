@@ -1,5 +1,6 @@
 package de.crycodes.de.spacebyter.manager;
 
+import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ProxyMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import de.crycodes.de.spacebyter.liptoncloud.utils.CallBack;
@@ -25,6 +26,7 @@ public class ProxyManager {
             return;
         }
         globalProxyList.add(serverMeta);
+        LiptonMaster.getInstance().getColouredConsoleProvider().info("Registered new Proxy: " + serverMeta.getName());
         isAuthenticated.accept(true);
     }
     public void unregisterProxy(ProxyMeta serverMeta){
@@ -33,5 +35,9 @@ public class ProxyManager {
     }
 
     public void unregisterProxy(ProxyMeta meta, Object o) {
+    }
+
+    public List<ProxyMeta> getGlobalProxyList() {
+        return globalProxyList;
     }
 }

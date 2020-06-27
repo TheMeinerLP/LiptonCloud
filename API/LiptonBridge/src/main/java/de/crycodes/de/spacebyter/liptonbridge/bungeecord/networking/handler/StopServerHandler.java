@@ -17,10 +17,6 @@ import net.md_5.bungee.api.ProxyServer;
 
 public class StopServerHandler extends PacketHandlerAdapter {
 
-    public StopServerHandler(NetworkChannel networkChannel) {
-        super(networkChannel);
-    }
-
     @Override
     public void handel(Packet packet) {
         if (packet instanceof StopServerPacketProxy){
@@ -30,6 +26,5 @@ public class StopServerHandler extends PacketHandlerAdapter {
             ProxyServer.getInstance().getServers().remove(serverMeta.getServerName());
             //TODO: BROADCAST: SERVER WAS REMOVED!
         }
-        super.handel(packet);
     }
 }

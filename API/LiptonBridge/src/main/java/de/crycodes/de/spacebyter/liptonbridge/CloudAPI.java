@@ -12,6 +12,9 @@ import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.ReloadPack
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerGroupPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerPacket;
 import de.crycodes.de.spacebyter.liptoncloud.utils.ExitUtil;
+import de.crycodes.de.spacebyter.network.channel.Identifier;
+import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
+import de.crycodes.de.spacebyter.network.channel.Provider;
 import de.crycodes.de.spacebyter.network.packet.Packet;
 
 import java.util.ArrayList;
@@ -77,24 +80,22 @@ public class CloudAPI {
                 return new ProxyConfig(new ArrayList<>(),
                         new ArrayList<>(),
                         new ArrayList<>(),
-                        true,
-                        true,
+                        false,
                         new ArrayList<>(),
                         new ArrayList<>(),
                         new ArrayList<>(),
-                        "",
-                        "",
-                        "",
-                        ""
-                        ,"",
+                        "\n§b§lLiptonCloud §8✸ §bIntelligent §7Cloudsystem\n§7Players: {PLAYERS}",
+                        "\n§7Server: {SERVER}",
+                        "   §b§lLiptonCloud §8✸ §bIntelligent §7Cloudsystem\n         §bAvailable §7✸ §7We are available.",
+                        "   §b§lLiptonCloud §8✸ §bIntelligent §7Cloudsystem\n         §bMaintenance §7✸ §7We are in maintenance mode."
+                        ,"§7[§bWartungsmodus§7]",
                         50,
                         true,
-                        "");
+                        "§bLipton Cloud\n§7We are in maintenance mode");
             } else {
                 return LiptonBungeeBridge.getInstance().getProxyConfig();
             }
         }
-
     }
     public ServerConfig getServerConfig(){
         if (isSpigot){
@@ -157,10 +158,14 @@ public class CloudAPI {
     //<editor-fold desc="sendPacket">
     public void sendPacket(Packet packet){
         if (isSpigot) {
-            LiptonSpigotBridge.getInstance().getSpigotMasterClient().sendPacket(packet);
+            LiptonSpigotBridge.getInstance().getSpigotMasterClient().getThunderClient().sendPacket(LiptonSpigotBridge.getInstance().getSpigotMasterClient().getNetworkChannel(), packet);
         } else {
-            LiptonBungeeBridge.getInstance().getBungeeMasterClient().sendPacket(packet);
+            LiptonBungeeBridge.getInstance().getBungeeMasterClient().getThunderClient().sendPacket(LiptonBungeeBridge.getInstance().getBungeeMasterClient().getNetworkChannel(), packet);
         }
     }
+    //</editor-fold>
+
+    //<editor-fold desc="Channel">
+    public NetworkChannel CloudChannel = new NetworkChannel(new Identifier("Master_Wrapper"), new Provider("LIPTON"));
     //</editor-fold>
 }

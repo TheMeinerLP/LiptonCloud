@@ -16,16 +16,11 @@ import de.crycodes.de.spacebyter.network.packet.Packet;
 
 public class ServerStoppingHandler extends PacketHandlerAdapter {
 
-    public ServerStoppingHandler(NetworkChannel networkChannel) {
-        super(networkChannel);
-    }
-
     @Override
     public void handel(Packet packet) {
         if (packet instanceof ServerStoppingPacket){
             final ServerStoppingPacket serverStoppingPacket = (ServerStoppingPacket) packet;
             LiptonMaster.getInstance().getServerManager().removeServer(serverStoppingPacket.getServerMeta());
         }
-        super.handel(packet);
     }
 }

@@ -25,7 +25,6 @@ public class AuthHandler extends PacketHandlerAdapter {
     private ServerInterface serverInterface;
 
     public AuthHandler(NetworkChannel networkChannel, PacketHandler packetHandler, ServerInterface serverInterface, KeyManager keyManager) {
-        super(networkChannel);
         this.keyManager = keyManager;
         this.networkChannel = networkChannel;
         this.packetHandler = packetHandler;
@@ -43,7 +42,6 @@ public class AuthHandler extends PacketHandlerAdapter {
                 packetHandler.sendPacket(networkChannel, serverInterface, new AuthResponsePacket(false));
             }
         }
-        super.handel(packet);
     }
 
     public KeyManager getKeyManager() {

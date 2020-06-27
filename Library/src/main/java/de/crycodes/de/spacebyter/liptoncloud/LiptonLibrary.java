@@ -40,11 +40,11 @@ public class LiptonLibrary {
 
     private static LiptonLibrary instance;
 
-    private final Scheduler scheduler;
-    private final EventManager eventManager;
-    private final ColouredConsoleProvider colouredConsoleProvider;
-    private final AddonParallelLoader addonParallelLoader;
-    private final Boolean useColor;
+    private  Scheduler scheduler;
+    private  EventManager eventManager;
+    private  ColouredConsoleProvider colouredConsoleProvider;
+    private  AddonParallelLoader addonParallelLoader;
+    private  Boolean useColor;
 
     public LiptonLibrary(Scheduler scheduler, EventManager eventManager, ColouredConsoleProvider colouredConsoleProvider, AddonParallelLoader addonParallelLoader, Boolean useColor) {
         this.scheduler = scheduler;
@@ -54,6 +54,8 @@ public class LiptonLibrary {
         this.useColor = useColor;
         instance = this;
     }
+
+    public LiptonLibrary() { }
 
     public void printAscii(){
         new AsciiPrinter().Print(this.colouredConsoleProvider, this.useColor);
@@ -86,54 +88,10 @@ public class LiptonLibrary {
         });
     }
 
-    private NetworkChannel Master_Wrapper_Channel = new NetworkChannel(new Identifier("Master_Wrapper"), new Provider("LIPTON"));
-    private NetworkChannel SignSystem_Channel = new NetworkChannel(new Identifier("SignSystem"), new Provider("LIPTON"));
-    private NetworkChannel Spigot_Proxy_Channel = new NetworkChannel(new Identifier("Spigot_Proxy"), new Provider("LIPTON"));
-    private NetworkChannel Proxy_Master_Channel = new NetworkChannel(new Identifier("Proxy_Master"), new Provider("LIPTON"));
-    private NetworkChannel Spigot_Master_Channel = new NetworkChannel(new Identifier("Spigot_Master"), new Provider("LIPTON"));
+    private NetworkChannel CloudChannel = new NetworkChannel(new Identifier("Master_Wrapper"), new Provider("LIPTON"));
 
     public static void setInstance(LiptonLibrary instance) {
         LiptonLibrary.instance = instance;
-    }
-
-    public NetworkChannel getMaster_Wrapper_Channel() {
-        return Master_Wrapper_Channel;
-    }
-
-    public void setMaster_Wrapper_Channel(NetworkChannel master_Wrapper_Channel) {
-        Master_Wrapper_Channel = master_Wrapper_Channel;
-    }
-
-    public NetworkChannel getSignSystem_Channel() {
-        return SignSystem_Channel;
-    }
-
-    public void setSignSystem_Channel(NetworkChannel signSystem_Channel) {
-        SignSystem_Channel = signSystem_Channel;
-    }
-
-    public NetworkChannel getSpigot_Proxy_Channel() {
-        return Spigot_Proxy_Channel;
-    }
-
-    public void setSpigot_Proxy_Channel(NetworkChannel spigot_Proxy_Channel) {
-        Spigot_Proxy_Channel = spigot_Proxy_Channel;
-    }
-
-    public NetworkChannel getProxy_Master_Channel() {
-        return Proxy_Master_Channel;
-    }
-
-    public void setProxy_Master_Channel(NetworkChannel proxy_Master_Channel) {
-        Proxy_Master_Channel = proxy_Master_Channel;
-    }
-
-    public NetworkChannel getSpigot_Master_Channel() {
-        return Spigot_Master_Channel;
-    }
-
-    public void setSpigot_Master_Channel(NetworkChannel spigot_Master_Channel) {
-        Spigot_Master_Channel = spigot_Master_Channel;
     }
 
     public static LiptonLibrary getInstance() {
@@ -158,5 +116,9 @@ public class LiptonLibrary {
 
     public Boolean getUseColor() {
         return useColor;
+    }
+
+    public NetworkChannel getCloudChannel() {
+        return CloudChannel;
     }
 }

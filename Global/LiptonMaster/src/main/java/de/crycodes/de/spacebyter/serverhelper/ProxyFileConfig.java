@@ -1,6 +1,7 @@
 package de.crycodes.de.spacebyter.serverhelper;
 
 import de.crycodes.de.spacebyter.liptoncloud.config.Document;
+import de.crycodes.de.spacebyter.liptoncloud.utils.Require;
 
 import java.io.File;
 
@@ -33,8 +34,8 @@ public class ProxyFileConfig {
 
             document.append("tablist_top", "\n§b§lLiptonCloud §8✸ §bIntelligent §7Cloudsystem\n§7Players: {PLAYERS}");
             document.append("tablist_bottom", "\n§7Server: {SERVER}");
-            document.append("default_motd", "   b§lLiptonCloud §8✸ §bIntelligent §7Cloudsystem\n         §bAvailable §7✸ §7We are available.");
-            document.append("maintenance_motd", "   b§lLiptonCloud §8✸ §bIntelligent §7Cloudsystem\n         §bMaintenance §7✸ §7We are in maintenance mode.");
+            document.append("default_motd", "   §b§lLiptonCloud §8✸ §bIntelligent §7Cloudsystem\n         §bAvailable §7✸ §7We are available.");
+            document.append("maintenance_motd", "   §b§lLiptonCloud §8✸ §bIntelligent §7Cloudsystem\n         §bMaintenance §7✸ §7We are in maintenance mode.");
             document.append("maintenanceKickMessage", "§bLipton Cloud\n§7We are in maintenance mode");
             document.append("maintenanceVersionString", "§7[§bWartungsmodus§7]");
 
@@ -43,7 +44,7 @@ public class ProxyFileConfig {
 
             document.saveAsConfig(configFile);
         } else {
-            document = Document.loadDocument(configFile);
+            load();
         }
     }
     public void load(){
@@ -88,6 +89,7 @@ public class ProxyFileConfig {
     }
 
     public Integer getMaxPlayer() {
+        Require.requireNotNull(maxPlayer);
         return maxPlayer;
     }
 

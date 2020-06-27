@@ -18,10 +18,6 @@ import de.crycodes.de.spacebyter.network.packet.PacketHandler;
 
 public class AuthResponseHandler extends PacketHandlerAdapter {
 
-    public AuthResponseHandler(NetworkChannel networkChannel) {
-        super(networkChannel);
-    }
-
     @Override
     public void handel(Packet packet) {
         if (packet instanceof RegisterResponsePacket){
@@ -31,6 +27,5 @@ public class AuthResponseHandler extends PacketHandlerAdapter {
             else
                 System.exit(ExitUtil.CONTROLLERKEY_MISSING);
         }
-        super.handel(packet);
     }
 }

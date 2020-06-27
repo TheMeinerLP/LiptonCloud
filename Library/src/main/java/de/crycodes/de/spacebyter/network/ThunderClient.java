@@ -33,8 +33,6 @@ public class ThunderClient extends BackhandedClient implements ClientInterface {
         start();
     }
 
-
-
     @Override
     public void sendPacket(NetworkChannel networkChannel, Packet packet) {
         sendMessage(new Channel(networkChannel.getChannelID(), packet));

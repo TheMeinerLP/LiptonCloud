@@ -11,10 +11,6 @@ import java.util.List;
 
 public class MaintenanceUpdateHandler extends PacketHandlerAdapter {
 
-    public MaintenanceUpdateHandler(NetworkChannel networkChannel) {
-        super(networkChannel);
-    }
-
     @Override
     public void handel(Packet packet) {
         if (packet instanceof UpdateMaintenancePacket){
@@ -36,6 +32,5 @@ public class MaintenanceUpdateHandler extends PacketHandlerAdapter {
             LiptonMaster.getInstance().getMasterConfig().getDocument().saveAsConfig(LiptonMaster.getInstance().getMasterConfig().getConfigFile());
 
         }
-        super.handel(packet);
     }
 }

@@ -17,10 +17,6 @@ import de.crycodes.de.spacebyter.network.packet.Packet;
 
 public class ServerGroupUpdateHandler extends PacketHandlerAdapter {
 
-    public ServerGroupUpdateHandler(NetworkChannel networkChannel) {
-        super(networkChannel);
-    }
-
     @Override
     public void handel(Packet packet) {
         if (packet instanceof ServerGroupUpdatePacket){
@@ -28,6 +24,5 @@ public class ServerGroupUpdateHandler extends PacketHandlerAdapter {
             LiptonMaster.getInstance().getServerGroupConfig().replace(serverGroupUpdatePacket.getUpdatedServerGroupMeta());
             LiptonMaster.getInstance().getColouredConsoleProvider().info("Updated ServerGroup: " + ((ServerGroupUpdatePacket) packet).getUpdatedServerGroupMeta().getGroupName());
         }
-        super.handel(packet);
     }
 }

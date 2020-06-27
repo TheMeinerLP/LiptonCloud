@@ -41,13 +41,13 @@ public class WrapperMasterClient {
         this.port = port;
         this.host = host;
         packetHandler = LiptonWrapper.getInstance().getPacketHandler();
-        networkChannel = LiptonWrapper.getInstance().getLiptonLibrary().getMaster_Wrapper_Channel();
+        networkChannel = LiptonWrapper.getInstance().getLiptonLibrary().getCloudChannel();
         adapterHandler = new AdapterHandler();
 
-        adapterHandler.registerAdapter(RegisterResponsePacket.class, new AuthResponseHandler(networkChannel));
-        adapterHandler.registerAdapter(CopyServerPacket.class, new CopyServerHandler(networkChannel));
-        adapterHandler.registerAdapter(StartServerPacket.class, new StartServerHandler(networkChannel));
-        adapterHandler.registerAdapter(CreateTemplatePacket.class, new CreateTemplateHandler(networkChannel));
+        adapterHandler.registerAdapter( new AuthResponseHandler());
+        adapterHandler.registerAdapter( new CopyServerHandler());
+        adapterHandler.registerAdapter( new StartServerHandler());
+        adapterHandler.registerAdapter(new CreateTemplateHandler());
 
     }
 

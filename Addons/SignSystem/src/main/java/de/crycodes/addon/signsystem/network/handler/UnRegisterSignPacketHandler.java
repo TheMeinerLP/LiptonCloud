@@ -14,12 +14,7 @@ import de.crycodes.de.spacebyter.network.packet.Packet;
 
 public class UnRegisterSignPacketHandler extends PacketHandlerAdapter {
 
-    public UnRegisterSignPacketHandler(NetworkChannel networkChannel) {
-        super(networkChannel);
-    }
-
     @Override
     public void handel(Packet packet) {
-        super.handel(packet);
     }
 }

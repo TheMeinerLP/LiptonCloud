@@ -22,28 +22,28 @@ public class PlayerConnectEvent implements Listener {
 
     @EventHandler
     public void ProxyPingEvent(ProxyPingEvent event) {
-        if(!(plugin.getCloudAPI().getProxyConfig().isUseProxyConfig())) return;
+        if(!(plugin.getProxyConfig().isUseProxyConfig())) return;
         ServerPing ping = event.getResponse();
-        ping.getPlayers().setMax(plugin.getCloudAPI().getProxyConfig().getMaxPlayer());
+        ping.getPlayers().setMax(plugin.getProxyConfig().getMaxPlayer());
 
-        if(plugin.getCloudAPI().getProxyConfig().getMaintenance()) {
+        if(plugin.getProxyConfig().getMaintenance()) {
             ServerPing.Protocol version = ping.getVersion();
-            version.setName(plugin.getCloudAPI().getProxyConfig().getMaintenanceVersionString());
+            version.setName(plugin.getProxyConfig().getMaintenanceVersionString());
             version.setProtocol(2);
             event.setResponse(ping);
-            event.getResponse().setDescriptionComponent(new TextComponent(ChatColor.translateAlternateColorCodes('&', plugin.getCloudAPI().getProxyConfig().getMaintenance_motd())));
+            event.getResponse().setDescriptionComponent(new TextComponent(ChatColor.translateAlternateColorCodes('&', plugin.getProxyConfig().getMaintenance_motd())));
             return;
         }
-        event.getResponse().setDescriptionComponent(new TextComponent(ChatColor.translateAlternateColorCodes('&', plugin.getCloudAPI().getProxyConfig().getDefault_motd())));
+        event.getResponse().setDescriptionComponent(new TextComponent(ChatColor.translateAlternateColorCodes('&', plugin.getProxyConfig().getDefault_motd())));
     }
 
     @EventHandler
     public void PlayerSwitchEvent(ServerSwitchEvent event) {
 
-        if(!(plugin.getCloudAPI().getProxyConfig().isUseProxyConfig())) return;
+        if(!(plugin.getProxyConfig().isUseProxyConfig())) return;
 
-        String tablistTop = plugin.getCloudAPI().getProxyConfig().getTablist_top().replace("{SERVER}", event.getPlayer().getServer().getInfo().getName()).replace("{PLAYERS}", plugin.getProxy().getPlayers().size() + "");
-        String tablistBottom = plugin.getCloudAPI().getProxyConfig().getTablist_bottom().replace("{SERVER}", event.getPlayer().getServer().getInfo().getName()).replace("{PLAYERS}", plugin.getProxy().getPlayers().size() + "");
+        String tablistTop = plugin.getProxyConfig().getTablist_top().replace("{SERVER}", event.getPlayer().getServer().getInfo().getName()).replace("{PLAYERS}", plugin.getProxy().getPlayers().size() + "");
+        String tablistBottom = plugin.getProxyConfig().getTablist_bottom().replace("{SERVER}", event.getPlayer().getServer().getInfo().getName()).replace("{PLAYERS}", plugin.getProxy().getPlayers().size() + "");
 
         ChatColor.translateAlternateColorCodes('&', tablistTop);
         ChatColor.translateAlternateColorCodes('&', tablistBottom);
@@ -53,17 +53,20 @@ public class PlayerConnectEvent implements Listener {
 
     @EventHandler
     public void PostLoginEvent(PostLoginEvent event) {
-        if(!(plugin.getCloudAPI().getProxyConfig().isUseProxyConfig())) return;
+        if(!(plugin.getProxyConfig().isUseProxyConfig())) return;
 
-        if(!(plugin.getCloudAPI().getProxyConfig().getMaintenancePlayer().contains(event.getPlayer().getName()))) {
-            event.getPlayer().disconnect(new TextComponent(plugin.getCloudAPI().getProxyConfig().getMaintenanceKickMessage()));
-            return;
+        if (plugin.getCloudAPI().getProxyConfig().getMaintenance()){
+            if(!(plugin.getProxyConfig().getMaintenancePlayer().contains(event.getPlayer().getName()))) {
+                event.getPlayer().disconnect(new TextComponent(plugin.getProxyConfig().getMaintenanceKickMessage()));
+                return;
+            }
         }
+
 
         plugin.getProxy().getPlayers().forEach(players -> {
 
-            String tablistTop = plugin.getCloudAPI().getProxyConfig().getTablist_top().replace("{SERVER}", players.getServer().getInfo().getName()).replace("{PLAYERS}", plugin.getProxy().getPlayers().size() + "");
-            String tablistBottom = plugin.getCloudAPI().getProxyConfig().getTablist_bottom().replace("{SERVER}", players.getServer().getInfo().getName()).replace("{PLAYERS}", plugin.getProxy().getPlayers().size() + "");
+            String tablistTop = plugin.getProxyConfig().getTablist_top().replace("{SERVER}", players.getServer().getInfo().getName()).replace("{PLAYERS}", plugin.getProxy().getPlayers().size() + "");
+            String tablistBottom = plugin.getProxyConfig().getTablist_bottom().replace("{SERVER}", players.getServer().getInfo().getName()).replace("{PLAYERS}", plugin.getProxy().getPlayers().size() + "");
 
             ChatColor.translateAlternateColorCodes('&', tablistTop);
             ChatColor.translateAlternateColorCodes('&', tablistBottom);

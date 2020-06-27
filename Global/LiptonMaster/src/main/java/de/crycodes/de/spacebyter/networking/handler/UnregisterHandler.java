@@ -20,10 +20,6 @@ import de.crycodes.de.spacebyter.network.packet.Packet;
 
 public class UnregisterHandler extends PacketHandlerAdapter {
 
-    public UnregisterHandler(NetworkChannel networkChannel) {
-        super(networkChannel);
-    }
-
     @Override
     public void handel(Packet packet) {
         if (packet instanceof UnRegisterPacket){
