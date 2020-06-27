@@ -22,6 +22,12 @@ public class ServerGlobalManager {
 
     public void registerServer(ServerMeta serverMeta, CallBack<Boolean> isAuthenticated){
         if (globalServerList.contains(serverMeta)) {
+            if (serverMeta.getServerName().equalsIgnoreCase("NONE")){
+                isAuthenticated.accept(true);
+                LiptonMaster.getInstance().getColouredConsoleProvider().info("Registered new (Dummy) Server: " + serverMeta.getServerName());
+                return;
+
+            }
             isAuthenticated.accept(false);
             return;
         }

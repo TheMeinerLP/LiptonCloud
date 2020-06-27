@@ -18,7 +18,6 @@ public class SendProxyConfigHandler extends PacketHandlerAdapter {
 
     @Override
     public void handel(Packet packet) {
-        System.out.println("NEW PACKET:" + packet.toString());
         if (packet instanceof SendProxyConfigPacket){
             final SendProxyConfigPacket sendProxyConfigPacket = (SendProxyConfigPacket) packet;
             LiptonBungeeBridge.getInstance().updateConfig(sendProxyConfigPacket.getProxyConfig());

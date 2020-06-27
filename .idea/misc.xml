@@ -15,6 +15,7 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/Addons/BungeeBase/pom.xml" />
         <option value="$PROJECT_DIR$/Command/pom.xml" />
         <option value="$PROJECT_DIR$/Examples/Addon/SignSystem/pom.xml" />
         <option value="$PROJECT_DIR$/Listener/pom.xml" />

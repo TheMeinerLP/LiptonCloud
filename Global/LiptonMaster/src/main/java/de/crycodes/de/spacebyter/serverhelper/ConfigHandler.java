@@ -2,7 +2,9 @@ package de.crycodes.de.spacebyter.serverhelper;
 
 import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.liptoncloud.objects.ProxyConfig;
+import de.crycodes.de.spacebyter.liptoncloud.objects.ServerConfig;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.SendProxyConfigPacket;
+import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.SendServerConfigPacket;
 import de.crycodes.de.spacebyter.liptoncloud.scheduler.Scheduler;
 import de.crycodes.de.spacebyter.liptoncloud.utils.annotiations.ShouldRunAsync;
 
@@ -17,18 +19,18 @@ import java.util.Arrays;
  * Project: LiptonCloud
  */
 
-public class ProxyConfigHandler {
+public class ConfigHandler {
 
     private final LiptonMaster liptonMaster;
     private final Scheduler scheduler;
 
-    public ProxyConfigHandler(LiptonMaster liptonMaster, Scheduler scheduler) {
+    public ConfigHandler(LiptonMaster liptonMaster, Scheduler scheduler) {
         this.liptonMaster = liptonMaster;
         this.scheduler = scheduler;
     }
 
     @ShouldRunAsync
-    public ProxyConfigHandler startUpdateThread(){
+    public ConfigHandler startUpdateThread(){
         scheduler.scheduleAsyncWhile(new Runnable() {
             @Override
             public void run() {
@@ -53,12 +55,28 @@ public class ProxyConfigHandler {
                         liptonMaster.getProxyFileConfig().getMaintenanceKickMessage()
                 );
 
+                ServerConfig serverConfig = new ServerConfig(liptonMaster.getServerGlobalManager().getGlobalServerList(),
+                        liptonMaster.getWrapperManager().getWrapperList(),
+                        liptonMaster.getProxyManager().getGlobalProxyList(),
+                        liptonMaster.getServerGroupConfig().getServerMetas(),
+                        Arrays.asList(liptonMaster.getMasterConfig().getWhiteListed())
+                        );
+
+                liptonMaster.getMasterSpigotServer().getServer().sendPacket(
+                        liptonMaster.getMasterSpigotServer().getNetworkChannel(),
+                        new SendServerConfigPacket(serverConfig, "ALL"));
+
+                if (liptonMaster.getMasterConfig().isDebugMode())
+                    liptonMaster.getColouredConsoleProvider().debug("Send ServerConfig!");
+
                 liptonMaster.getMasterProxyServer().getServer().sendPacket(
                         liptonMaster.getMasterProxyServer().getNetworkChannel(),
                         new SendProxyConfigPacket(proxyConfig, "ALL"));
 
                 if (liptonMaster.getMasterConfig().isDebugMode())
                     liptonMaster.getColouredConsoleProvider().debug("Send ProxyConfig!");
+
+
             }
         }, 2500, 2500);
 

@@ -4,7 +4,7 @@
     "maxMemory": 512,
     "minMemory": 128,
     "dynamicService": true,
-    "maintenance": false,
+    "maintenance": true,
     "maxServer": 2,
     "minServer": 1
   }

@@ -5,6 +5,7 @@ import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.WrapperMeta;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ import java.util.List;
  * Project: LiptonCloud
  */
 
-public class ServerConfig {
+public class ServerConfig implements Serializable {
 
     private final List<ServerMeta> globalServers;
     private final List<WrapperMeta> globalWrappers;

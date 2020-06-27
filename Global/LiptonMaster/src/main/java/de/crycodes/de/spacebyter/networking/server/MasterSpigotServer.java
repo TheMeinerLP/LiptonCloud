@@ -52,4 +52,12 @@ public class MasterSpigotServer {
         this.packetHandler.sendPacket(networkChannel, server, packet);
         return this;
     }
+
+    public NetworkChannel getNetworkChannel() {
+        return networkChannel;
+    }
+
+    public ThunderServer getServer() {
+        return server;
+    }
 }

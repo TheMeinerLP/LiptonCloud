@@ -11,10 +11,11 @@
 
     <artifactId>Addons</artifactId>
     <packaging>pom</packaging>
+
     <modules>
         <module>SignSystem</module>
         <module>CloudFlare</module>
-        <module>BungeeBase</module>
+        <module>MultiProxy</module>
     </modules>
 
 

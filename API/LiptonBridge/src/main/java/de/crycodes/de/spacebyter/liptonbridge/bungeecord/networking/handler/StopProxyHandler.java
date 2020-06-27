@@ -21,6 +21,7 @@ public class StopProxyHandler extends PacketHandlerAdapter {
     public void handel(Packet packet) {
         if (packet instanceof StopProxyPacket){
             final StopProxyPacket stopProxyPacket = (StopProxyPacket) packet;
+            if (LiptonBungeeBridge.getInstance().getCloudAPI().getProxyMeta() == null) System.exit(ExitUtil.TERMINATED);
             if (stopProxyPacket.getProxyMeta().getName().equalsIgnoreCase(LiptonBungeeBridge.getInstance().getCloudAPI().getProxyMeta().getName())
             && stopProxyPacket.getProxyMeta().getId().equals(LiptonBungeeBridge.getInstance().getCloudAPI().getProxyMeta().getId())){
                 System.exit(ExitUtil.TERMINATED);

@@ -102,7 +102,7 @@ public class CloudAPI {
             if (LiptonSpigotBridge.getInstance().getServerConfig() == null){
                 return new ServerConfig(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
             } else {
-                return LiptonSpigotBridge.getInstance().getServerConfig();
+                return LiptonSpigotBridge.getInstance().getServerConfig().get(0);
             }
         } else {
             return null;

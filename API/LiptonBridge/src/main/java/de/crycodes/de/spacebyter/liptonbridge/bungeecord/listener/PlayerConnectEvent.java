@@ -5,6 +5,7 @@ import de.crycodes.de.spacebyter.liptonbridge.bungeecord.LiptonBungeeBridge;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ServerPing;
 import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.event.ProxyPingEvent;
 import net.md_5.bungee.api.event.ServerSwitchEvent;
@@ -53,26 +54,38 @@ public class PlayerConnectEvent implements Listener {
 
     @EventHandler
     public void PostLoginEvent(PostLoginEvent event) {
-        if(!(plugin.getProxyConfig().isUseProxyConfig())) return;
+        try {
+            if(!(plugin.getProxyConfig().isUseProxyConfig())) return;
 
-        if (plugin.getCloudAPI().getProxyConfig().getMaintenance()){
-            if(!(plugin.getProxyConfig().getMaintenancePlayer().contains(event.getPlayer().getName()))) {
-                event.getPlayer().disconnect(new TextComponent(plugin.getProxyConfig().getMaintenanceKickMessage()));
-                return;
+            if (plugin.getCloudAPI().getProxyConfig().getMaintenance()){
+                if(!(plugin.getProxyConfig().getMaintenancePlayer().contains(event.getPlayer().getName()))) {
+                    event.getPlayer().disconnect(new TextComponent(plugin.getProxyConfig().getMaintenanceKickMessage()));
+                    return;
+                }
             }
-        }
-
-
-        plugin.getProxy().getPlayers().forEach(players -> {
-
-            String tablistTop = plugin.getProxyConfig().getTablist_top().replace("{SERVER}", players.getServer().getInfo().getName()).replace("{PLAYERS}", plugin.getProxy().getPlayers().size() + "");
-            String tablistBottom = plugin.getProxyConfig().getTablist_bottom().replace("{SERVER}", players.getServer().getInfo().getName()).replace("{PLAYERS}", plugin.getProxy().getPlayers().size() + "");
+            final ProxiedPlayer player = event.getPlayer();
+            String tablistTop = plugin.getProxyConfig().getTablist_top().replace("{SERVER}", player.getServer().getInfo().getName()).replace("{PLAYERS}", plugin.getProxy().getPlayers().size() + "");
+            String tablistBottom = plugin.getProxyConfig().getTablist_bottom().replace("{SERVER}", player.getServer().getInfo().getName()).replace("{PLAYERS}", plugin.getProxy().getPlayers().size() + "");
 
             ChatColor.translateAlternateColorCodes('&', tablistTop);
             ChatColor.translateAlternateColorCodes('&', tablistBottom);
 
-            players.setTabHeader(new TextComponent(tablistTop), new TextComponent(tablistBottom));
+            player.setTabHeader(new TextComponent(tablistTop), new TextComponent(tablistBottom));
 
-        });
+            if (plugin.getProxy().getPlayers().isEmpty()) return;
+
+            plugin.getProxy().getPlayers().forEach(players -> {
+
+                String tablistTopallAll = plugin.getProxyConfig().getTablist_top().replace("{SERVER}", players.getServer().getInfo().getName()).replace("{PLAYERS}", plugin.getProxy().getPlayers().size() + "");
+                String tablistBottomAll = plugin.getProxyConfig().getTablist_bottom().replace("{SERVER}", players.getServer().getInfo().getName()).replace("{PLAYERS}", plugin.getProxy().getPlayers().size() + "");
+
+                ChatColor.translateAlternateColorCodes('&', tablistTopallAll);
+                ChatColor.translateAlternateColorCodes('&', tablistBottomAll);
+
+                players.setTabHeader(new TextComponent(tablistTopallAll), new TextComponent(tablistBottomAll));
+
+            });
+        } catch (Exception ignored){ } //TODO: FIX
+
     }
 }

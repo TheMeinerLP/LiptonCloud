@@ -3,7 +3,6 @@ package de.crycodes.de.spacebyter.liptonbridge.spigot.networking.handler;
 import de.crycodes.de.spacebyter.liptonbridge.spigot.LiptonSpigotBridge;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.SendServerConfigPacket;
 import de.crycodes.de.spacebyter.network.adapter.PacketHandlerAdapter;
-import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
 import de.crycodes.de.spacebyter.network.packet.Packet;
 
 /**
@@ -20,7 +19,8 @@ public class SendServerConfigHandler extends PacketHandlerAdapter {
     public void handel(Packet packet) {
         if (packet instanceof SendServerConfigPacket){
             final SendServerConfigPacket serverConfigPacket = (SendServerConfigPacket) packet;
-            LiptonSpigotBridge.getInstance().setServerConfig(serverConfigPacket.getServerConfig());
+            LiptonSpigotBridge.getInstance().updateConfig(serverConfigPacket.getServerConfig());
+            System.out.println("UPDATED SERVER CONFIG");
         }
 
     }

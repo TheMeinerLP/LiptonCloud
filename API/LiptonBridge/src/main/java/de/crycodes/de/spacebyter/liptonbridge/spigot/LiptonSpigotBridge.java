@@ -1,19 +1,15 @@
 package de.crycodes.de.spacebyter.liptonbridge.spigot;
 
 import de.crycodes.de.spacebyter.liptonbridge.CloudAPI;
-import de.crycodes.de.spacebyter.liptonbridge.bungeecord.networking.BungeeMasterClient;
+import de.crycodes.de.spacebyter.liptonbridge.bungeecord.commands.CloudCommand;
 import de.crycodes.de.spacebyter.liptonbridge.spigot.networking.SpigotMasterClient;
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
-import de.crycodes.de.spacebyter.liptoncloud.addon.AddonParallelLoader;
-import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
-import de.crycodes.de.spacebyter.liptoncloud.event.EventManager;
 import de.crycodes.de.spacebyter.liptoncloud.objects.ServerConfig;
-import de.crycodes.de.spacebyter.liptoncloud.scheduler.Scheduler;
+import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerStoppingPacket;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.checkerframework.checker.units.qual.A;
-import org.checkerframework.checker.units.qual.C;
 
-import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Coded By CryCodes
@@ -32,7 +28,7 @@ public class LiptonSpigotBridge extends JavaPlugin {
     private static LiptonSpigotBridge instance;
 
     //INSTANCE Cache
-    private ServerConfig serverConfig;
+    private List<ServerConfig> serverConfig = new ArrayList<>();
     //INSTANCE Cache
 
     @Override
@@ -48,15 +44,11 @@ public class LiptonSpigotBridge extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        super.onDisable();
+        spigotMasterClient.getThunderClient().sendPacket(spigotMasterClient.getNetworkChannel(), new ServerStoppingPacket(cloudAPI.getServerMeta()));
     }
 
     public CloudAPI getCloudAPI() {
         return cloudAPI;
-    }
-
-    public ServerConfig getServerConfig() {
-        return serverConfig;
     }
 
     public static LiptonSpigotBridge getInstance() {
@@ -67,8 +59,12 @@ public class LiptonSpigotBridge extends JavaPlugin {
         return spigotMasterClient;
     }
 
-    public void setServerConfig(ServerConfig serverConfig) {
-        this.serverConfig = serverConfig;
+    public void updateConfig(ServerConfig serverConfig){
+        this.serverConfig.clear();
+        this.serverConfig.add(serverConfig);
     }
 
+    public List<ServerConfig> getServerConfig() {
+        return serverConfig;
+    }
 }

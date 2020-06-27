@@ -5,7 +5,7 @@ import de.crycodes.de.spacebyter.config.*;
 import de.crycodes.de.spacebyter.liptoncloud.time.Counter;
 import de.crycodes.de.spacebyter.networking.proxy.MasterProxyServer;
 import de.crycodes.de.spacebyter.networking.server.MasterSpigotServer;
-import de.crycodes.de.spacebyter.serverhelper.ProxyConfigHandler;
+import de.crycodes.de.spacebyter.serverhelper.ConfigHandler;
 import de.crycodes.de.spacebyter.serverhelper.ProxyFileConfig;
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
 import de.crycodes.de.spacebyter.liptoncloud.addon.AddonParallelLoader;
@@ -60,7 +60,7 @@ public class LiptonMaster {
     private MasterWrapperServer masterWrapperServer;
     private MasterProxyServer masterProxyServer;
     private MasterSpigotServer masterSpigotServer;
-    private ProxyConfigHandler proxyConfigHandler;
+    private ConfigHandler proxyConfigHandler;
 
     public LiptonMaster() {
         instance = this;
@@ -112,7 +112,7 @@ public class LiptonMaster {
 
         liptonLibrary.printAscii();
 
-        proxyConfigHandler = new ProxyConfigHandler(this,scheduler).startUpdateThread();
+        proxyConfigHandler = new ConfigHandler(this,scheduler).startUpdateThread();
 
         parallelLoader.loadAddons();
         parallelLoader.enableAddons();
@@ -134,7 +134,8 @@ public class LiptonMaster {
         commandManager.registerCommand(new CreateCommand("create", "Create Wrapper|Proxy|ServerGroups ", new String[]{"build", "make"}));
         commandManager.registerCommand(new ReloadCommand("reload", "Reload Cloud", new String[]{"restart", "reloadconfig"}, this));
         commandManager.registerCommand(new StopCommand("stop", "Stop the Cloud", new String[]{"exit"}));
-        commandManager.registerCommand(new ServiceCommand("service", "Service Command of the Cloud", new String[]{"cloud"}));
+        commandManager.registerCommand(new ServiceCommand("service", "Service Command of the Cloud", new String[]{"cloud"}, this));
+        commandManager.registerCommand(new ExecuteCommand("execute", "Execute Command on Server", new String[]{"send"}, this));
 
         counter.stop();
         counter.printResult("MasterStartup" ,this.getColouredConsoleProvider());
@@ -144,10 +145,6 @@ public class LiptonMaster {
 
     public static LiptonMaster getInstance() {
         return instance;
-    }
-
-    public static void setInstance(LiptonMaster instance) {
-        LiptonMaster.instance = instance;
     }
 
     public ColouredConsoleProvider getColouredConsoleProvider() {
@@ -160,14 +157,6 @@ public class LiptonMaster {
 
     public CommandManager getCommandManager() {
         return commandManager;
-    }
-
-    public void setCommandManager(CommandManager commandManager) {
-        this.commandManager = commandManager;
-    }
-
-    public FileManager getFileManager() {
-        return fileManager;
     }
 
     public MasterConfig getMasterConfig() {
@@ -184,10 +173,6 @@ public class LiptonMaster {
 
     public EventManager getEventManager() {
         return eventManager;
-    }
-
-    public AddonParallelLoader getParallelLoader() {
-        return parallelLoader;
     }
 
     public ServerGroupConfig getServerGroupConfig() {

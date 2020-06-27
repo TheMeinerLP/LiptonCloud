@@ -1,0 +1,50 @@
+[15:36:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterPacket
+[15:36:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.ShutDownPacket
+[15:36:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.SendProxyConfigPacket
+[15:36:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StopProxyPacket
+[15:36:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.ProxyStoppingPacket
+[15:36:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.ExecuteCommandPacket
+[15:36:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.SendServerConfigPacket
+[15:36:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerGroupPacket
+[15:36:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerPacket
+[15:36:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerStoppingPacket
+[15:36:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CopyServerPacket
+[15:36:18] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CreateTemplatePacket
+[15:36:19] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.StartServerPacket
+[15:36:19] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.DebugPacket
+[15:36:19] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.ErrorPacket
+[15:36:19] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.InfoPacket
+[15:36:19] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.WarningPacket
+[15:36:19] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.UpdateMaintenancePacket
+[15:36:19] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.ServerGroupUpdatePacket
+[15:36:19] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerUpdatePacket
+[15:36:19] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterResponsePacket
+[15:36:19] INFO: [34m __    _     ___   _     ___   __   _     __  _____  ____  _     [0m
+[15:36:19] INFO: [34m/ /`  | |   / / \ | | | | | \ ( (` \ \_/ ( (`  | |  | |_  | |\/| [0m
+[15:36:19] INFO: [34m\_\_, |_|__ \_\_/ \_\_/ |_|_/ _)_)  |_|  _)_)  |_|  |_|__ |_|  | [0m
+[15:36:19] INFO: [31m▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬[0m
+[15:36:19] INFO: [34mCoded by CryCodes & SpaceByter[0m
+[15:36:19] INFO: 
+[15:36:19] INFO: Loaded Addon: CloudFlare-1.0-SNAPSHOT
+[15:36:19] INFO: Loaded Addon: SignSystem-1.0-SNAPSHOT
+[15:36:20] ERROR: An error occurred in cloudflare addon: Could not find zone id for given domain, please recheck
+[15:36:20] ERROR: An error occurred in cloudflare addon: Could not find zone id for given domain, please recheck
+[15:36:20] INFO: [SIGNSYSTEM] Starting NetworkServer on (127.0.0.1:8899)!
+[15:36:20] INFO: Using SignSystem for LiptonCloud!
+[15:36:20] INFO: Starting Master-Wrapper Server on Port: (9685) !
+[15:36:20] INFO: Starting Proxy-Wrapper Server on Port: (1784) !
+[15:36:20] INFO: Starting Master-Spigot Server on Port: (7898) !
+[15:36:20] INFO: Action 'MASTERSTARTUP' took: (1.12) Seconds!
+[15:36:24] INFO: service stopserver name
+[15:36:24] INFO: service stopgroup group
+[15:36:27] INFO: service stopserver name
+[15:36:27] INFO: service stopgroup group
+[15:36:34] INFO: Send StopServerGroup to All Server's of Group: Lobby
+[15:36:42] ERROR: No Server's found!
+[15:36:48] ERROR: Server Group: guidhjf was not found!
+[15:38:05] INFO: Trying to Register Proxy: NONE
+[15:38:05] INFO: Registered new Proxy: NONE
+[15:38:12] INFO: Trying to Register Server: NONE
+[15:38:12] INFO: Registered new Server: NONE
+[15:38:19] ERROR: Command Not Found!
+[15:38:29] ERROR: No Server's found!
