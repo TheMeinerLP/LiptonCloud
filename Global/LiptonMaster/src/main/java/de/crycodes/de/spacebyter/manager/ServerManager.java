@@ -1,25 +1,18 @@
 package de.crycodes.de.spacebyter.manager;
 
 import de.crycodes.de.spacebyter.LiptonMaster;
-import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.WrapperMeta;
-import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.SendProxyConfigPacket;
-import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StartServerPacketProxy;
-import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StopServerPacketProxy;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.StartServerPacket;
 import de.crycodes.de.spacebyter.liptoncloud.scheduler.Scheduler;
-import de.crycodes.de.spacebyter.liptoncloud.utils.Require;
 import de.crycodes.de.spacebyter.liptoncloud.utils.annotiations.ShouldNotBeNull;
 import de.crycodes.de.spacebyter.liptoncloud.utils.annotiations.ShouldRunAsync;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -121,7 +114,9 @@ public class ServerManager {
 
         liptonMaster.getMasterProxyServer().getServer().sendPacket(
                 liptonMaster.getMasterProxyServer().getNetworkChannel(),
-                new StopServerPacket(serverMeta.getServerName()));
+                new StopServerPacket(serverMeta.getServerName(), serverMeta.getWrapperID(), serverMeta.getServerGroupMeta().isDynamicService()));
+
+        liptonMaster.getMasterWrapperServer().sendPacket(new StopServerPacket(serverMeta.getServerName(), serverMeta.getWrapperID(), serverMeta.getServerGroupMeta().isDynamicService()));
 
     }
 
@@ -145,7 +140,7 @@ public class ServerManager {
         });
         return amount.get();
     }
-    private ServerMeta getServerByName(String servername){
+    public ServerMeta getServerByName(String servername){
         for (ServerMeta serverMeta : globalserverrlist){
             if (serverMeta.getServerName().equalsIgnoreCase(servername))
                 return serverMeta;

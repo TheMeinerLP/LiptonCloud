@@ -13,10 +13,22 @@ import de.crycodes.de.spacebyter.network.packet.Packet;
 public class StopServerPacket extends Packet {
 
     private final String serverName;
+    private final String wrapperID;
+    private final Boolean dynamic;
 
-    public StopServerPacket(String serverName) {
+    public StopServerPacket(String serverName, String wrapperID, Boolean dynamic) {
         super("StopServerPacket");
         this.serverName = serverName;
+        this.wrapperID = wrapperID;
+        this.dynamic = dynamic;
+    }
+
+    public Boolean getDynamic() {
+        return dynamic;
+    }
+
+    public String getWrapperID() {
+        return wrapperID;
     }
 
     public String getServerName() {

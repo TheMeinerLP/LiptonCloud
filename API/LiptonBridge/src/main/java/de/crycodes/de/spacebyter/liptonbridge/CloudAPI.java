@@ -38,8 +38,8 @@ public class CloudAPI {
     //</editor-fold>
 
     //<editor-fold desc="StopServer Method">
-    public void stopServer(String name){
-        final StopServerPacket stopServerPacket = new StopServerPacket(name);
+    public void stopServer(String name, String wrapperID, boolean isDynamic){
+        final StopServerPacket stopServerPacket = new StopServerPacket(name, wrapperID, isDynamic);
         sendPacket(stopServerPacket);
     }
     //</editor-fold>

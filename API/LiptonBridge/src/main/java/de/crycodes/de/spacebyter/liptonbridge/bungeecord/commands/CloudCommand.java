@@ -117,7 +117,7 @@ public class CloudCommand extends Command {
                 if(args[0].equalsIgnoreCase("stopServer")) {
                     String name = args[1];
                     if(plugin.getCloudAPI().isServerRunning(name)) {
-                        final StopServerPacket stopServerPacket = new StopServerPacket(name);
+                        final StopServerPacket stopServerPacket = new StopServerPacket(name, "-", false); //TODO: SAY IF IS DYNAMIC + GET WRAPPER ID
                         plugin.getCloudAPI().sendPacket(stopServerPacket);
                         player.sendMessage(plugin.getPREFIX() + "§aThe Server " + name + " was successfully stopped.");
                         break;

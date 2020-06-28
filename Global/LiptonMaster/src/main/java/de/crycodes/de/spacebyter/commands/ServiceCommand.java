@@ -4,10 +4,14 @@ import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.liptoncloud.command.CloudCommand;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ProxyMeta;
+import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
+import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StopProxyPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerGroupPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerPacket;
 import de.crycodes.de.spacebyter.liptoncloud.utils.ExitUtil;
+
+import java.util.List;
 
 public class ServiceCommand extends CloudCommand {
 
@@ -34,7 +38,9 @@ public class ServiceCommand extends CloudCommand {
                     return true;
                 }
 
-                liptonMaster.getMasterSpigotServer().sendPacket(new StopServerPacket(name));
+                ServerMeta serverMeta = LiptonMaster.getInstance().getServerManager().getServerByName(name);
+
+                liptonMaster.getMasterSpigotServer().sendPacket(new StopServerPacket(name, serverMeta.getWrapperID(), serverMeta.getServerGroupMeta().isDynamicService()));
 
                 liptonMaster.getColouredConsoleProvider().info("Send StopPacket to Server: " + name);
 

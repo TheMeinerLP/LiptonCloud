@@ -12,10 +12,7 @@ import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CreateTemplatePa
 import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.StartServerPacket;
 import de.crycodes.de.spacebyter.network.adapter.AdapterHandler;
 import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
-import de.crycodes.de.spacebyter.network.handler.AuthResponseHandler;
-import de.crycodes.de.spacebyter.network.handler.CopyServerHandler;
-import de.crycodes.de.spacebyter.network.handler.CreateTemplateHandler;
-import de.crycodes.de.spacebyter.network.handler.StartServerHandler;
+import de.crycodes.de.spacebyter.network.handler.*;
 import de.crycodes.de.spacebyter.network.packet.Packet;
 import de.crycodes.de.spacebyter.network.packet.PacketHandler;
 
@@ -48,6 +45,7 @@ public class WrapperMasterClient {
         adapterHandler.registerAdapter( new CopyServerHandler());
         adapterHandler.registerAdapter( new StartServerHandler());
         adapterHandler.registerAdapter(new CreateTemplateHandler());
+        adapterHandler.registerAdapter(new StopServerHandler());
 
     }
 
