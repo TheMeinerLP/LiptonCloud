@@ -13,9 +13,13 @@ import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 import de.crycodes.de.spacebyter.liptoncloud.event.EventManager;
 import de.crycodes.de.spacebyter.liptoncloud.scheduler.Scheduler;
 import de.crycodes.de.spacebyter.liptoncloud.time.Counter;
+import de.crycodes.de.spacebyter.liptoncloud.utils.DeletUtils;
 import de.crycodes.de.spacebyter.liptoncloud.utils.ExitUtil;
 import de.crycodes.de.spacebyter.network.WrapperMasterClient;
 import de.crycodes.de.spacebyter.network.packet.PacketHandler;
+import de.crycodes.de.spacebyter.server.ServerFileManager;
+import de.crycodes.de.spacebyter.server.ServerStartHandler;
+import de.crycodes.de.spacebyter.server.TemplateManager;
 import de.crycodes.de.spacebyter.versionsmanager.VersionsManager;
 import org.checkerframework.checker.units.qual.C;
 
@@ -47,6 +51,9 @@ public class LiptonWrapper {
     private AddonParallelLoader parallelLoader;
     private VersionsManager versionsManager;
     private Counter counter;
+    private TemplateManager templateManager;
+    private ServerStartHandler serverStartHandler;
+    private ServerFileManager serverFileManager;
 
     public LiptonWrapper() {
         instance = this;
@@ -54,6 +61,8 @@ public class LiptonWrapper {
 
         counter = new Counter();
         counter.start();
+
+        DeletUtils.deleteDirectory(new File("./liptonWrapper/server/dynamic/"));
 
         fileManager = new FileManager("./liptonWrapper","api","modules", "resources", "server", "logs", "server/dynamic","server/static", "templates").create();
         wrapperConfig = new WrapperConfig();
@@ -82,6 +91,9 @@ public class LiptonWrapper {
         wrapperMasterClient = new WrapperMasterClient(this.wrapperConfig.getHost(), this.wrapperConfig.getPort()).start();
         versionsManager = new VersionsManager(wrapperConfig);
 
+        templateManager = new TemplateManager();
+        serverFileManager = new ServerFileManager();
+        serverStartHandler = new ServerStartHandler();
 
         commandManager = new CommandManager(colouredConsoleProvider);
         commandManager.registerCommand(new HelpCommand("help", "Shows all CloudCommands", new String[]{"?"}, this));
@@ -163,5 +175,17 @@ public class LiptonWrapper {
 
     public void setIsrunning(boolean isrunning) {
         this.isrunning = isrunning;
+    }
+
+    public TemplateManager getTemplateManager() {
+        return templateManager;
+    }
+
+    public ServerStartHandler getServerStartHandler() {
+        return serverStartHandler;
+    }
+
+    public ServerFileManager getServerFileManager() {
+        return serverFileManager;
     }
 }

@@ -6,6 +6,8 @@ import de.crycodes.de.spacebyter.network.adapter.PacketHandlerAdapter;
 import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
 import de.crycodes.de.spacebyter.network.packet.Packet;
 
+import java.io.IOException;
+
 /**
  * Coded By CryCodes
  * Class: StartServerHandler
@@ -21,8 +23,18 @@ public class StartServerHandler extends PacketHandlerAdapter {
         if (packet instanceof StartServerPacket){
             final StartServerPacket startServerPacket = (StartServerPacket) packet;
             if (LiptonWrapper.getInstance().getWrapperConfig().getWrapperID().equalsIgnoreCase(startServerPacket.getWrapperID())){
-                LiptonWrapper.getInstance().getColouredConsoleProvider().info(startServerPacket.getServerMeta().toString());
-                //TODO: STARTSERVER METHOD
+
+                try {
+
+                    LiptonWrapper.getInstance().getTemplateManager().checkTemplate(startServerPacket.getServerMeta().getServerGroupMeta());
+
+                    LiptonWrapper.getInstance().getServerFileManager().createServer(startServerPacket.getServerMeta());
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
             } else {
                 return;
             }

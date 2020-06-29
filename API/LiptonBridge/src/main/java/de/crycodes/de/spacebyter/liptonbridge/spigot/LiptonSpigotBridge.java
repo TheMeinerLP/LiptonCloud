@@ -4,12 +4,14 @@ import de.crycodes.de.spacebyter.liptonbridge.CloudAPI;
 import de.crycodes.de.spacebyter.liptonbridge.bungeecord.commands.CloudCommand;
 import de.crycodes.de.spacebyter.liptonbridge.spigot.networking.SpigotMasterClient;
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
+import de.crycodes.de.spacebyter.liptoncloud.config.Document;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import de.crycodes.de.spacebyter.liptoncloud.objects.ServerConfig;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerStoppingPacket;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +56,13 @@ public class LiptonSpigotBridge extends JavaPlugin {
             serverMeta = LiptonSpigotBridge.getInstance().getCloudAPI().getServerMeta();
 
         spigotMasterClient.getThunderClient().sendPacket(spigotMasterClient.getNetworkChannel(), new ServerStoppingPacket(serverMeta));
+
+        Document document;
+        File metaFile = new File("./META.json");
+        document = Document.loadDocument(metaFile);
+        System.out.println("LOADED META");
+
+        System.out.println(document.getObject("META", ServerMeta.class));
     }
 
     public CloudAPI getCloudAPI() {

@@ -50,6 +50,50 @@ public class TextTockens {
                 "enable-rcon=false\n" +
                 "motd=CryCloud | CloudServer";
     }
+    public String eulaShit(){
+        return "eula=true";
+    }
+
+    public String propertiesContent(String serverName, Integer port){
+        return "spawn-protection=0\n" +
+                "server-name=" + serverName + "\n" +
+                "generator-settings=\n" +
+                "force-gamemode=false\n" +
+                "allow-nether=false\n" +
+                "gamemode=0\n" +
+                "broadcast-console-to-ops=true\n" +
+                "enable-query=false\n" +
+                "player-idle-timeout=0\n" +
+                "difficulty=1\n" +
+                "spawn-monsters=true\n" +
+                "op-permission-level=0\n" +
+                "resource-pack-hash=\n" +
+                "announce-player-achievements=false\n" +
+                "pvp=true\n" +
+                "snooper-enabled=true\n" +
+                "level-type=DEFAULT\n" +
+                "hardcore=false\n" +
+                "enable-command-block=false\n" +
+                "max-players=50\n" +
+                "network-compression-threshold=256\n" +
+                "max-world-size=29999984\n" +
+                "server-port=" + port + "\n" +
+                "debug=false\n" +
+                "server-ip=\n" +
+                "spawn-npcs=true\n" +
+                "allow-flight=false\n" +
+                "level-name=world\n" +
+                "view-distance=10\n" +
+                "resource-pack=\n" +
+                "spawn-animals=true\n" +
+                "white-list=false\n" +
+                "generate-structures=true\n" +
+                "online-mode=false\n" +
+                "max-build-height=256\n" +
+                "level-seed=\n" +
+                "enable-rcon=false\n" +
+                "motd=CryCloud | CloudServer";
+    }
     public String bungeeconfigContent(int count){
         return "player_limit: 550\n" +
                 "permissions:\n" +

@@ -97,7 +97,7 @@ public class SpigotMasterClient {
 
         ServerMeta serverMeta;
         if (LiptonSpigotBridge.getInstance().getCloudAPI().getProxyMeta() == null)
-            serverMeta = new ServerMeta("NONE", 1, new ServerGroupMeta("NONE", 512, 128, false,false, 0,0), "NONE", "127.0.0.1", 0);
+            serverMeta = new ServerMeta(Bukkit.getServerName(), 1, new ServerGroupMeta("NONE", 512, 128, false,false, 0,0), "NONE", "127.0.0.1", 0);
         else
             serverMeta = LiptonSpigotBridge.getInstance().getCloudAPI().getServerMeta();
 

@@ -2,6 +2,7 @@ package de.crycodes.de.spacebyter.liptonbridge;
 
 import de.crycodes.de.spacebyter.liptonbridge.bungeecord.LiptonBungeeBridge;
 import de.crycodes.de.spacebyter.liptonbridge.spigot.LiptonSpigotBridge;
+import de.crycodes.de.spacebyter.liptoncloud.config.Document;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ProxyMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
@@ -17,6 +18,7 @@ import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
 import de.crycodes.de.spacebyter.network.channel.Provider;
 import de.crycodes.de.spacebyter.network.packet.Packet;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -110,23 +112,21 @@ public class CloudAPI {
     }
     //</editor-fold>
 
-    //<editor-fold desc="getServerInfo">
-    //ONLY SPIGOT //TODO: DO THIS
-    public ServerMeta getServerInfo(){
-        return null;
-    }
-    //</editor-fold>
-
     //<editor-fold desc="getProxyMeta">
     //ONLY PROXY //TODO: DO THIS
     public ProxyMeta getProxyMeta(){
         return null;
     }
     //</editor-fold>
+
     //<editor-fold desc="getServerMeta">
-    //ONLY SERVER //TODO: DO THIS
+    //ONLY SERVER
     public ServerMeta getServerMeta(){
-        return null;
+        Document document;
+        File metaFile = new File("./META.json");
+        document = Document.loadDocument(metaFile);
+        System.out.println("LOADED META");
+        return document.getObject("META", ServerMeta.class);
     }
     //</editor-fold>
 

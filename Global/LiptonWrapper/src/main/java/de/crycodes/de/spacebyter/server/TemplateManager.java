@@ -27,10 +27,15 @@ public class TemplateManager {
         spigotLocation = new File("liptonWrapper/resources");
     }
 
-    public void checkTemplate(ServerGroupMeta serverGroupMeta) throws IOException {
+    public void checkTemplate(ServerGroupMeta serverGroupMeta) {
         final File template = new File(templateLocation + serverGroupMeta.getGroupName());
-        if (!template.exists())
-            createTemplate(serverGroupMeta);
+        if (!template.exists()) {
+            try {
+                createTemplate(serverGroupMeta);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void createTemplate(ServerGroupMeta serverGroupMeta) throws IOException {
@@ -41,19 +46,8 @@ public class TemplateManager {
         template.mkdirs();
         pluginlocation.mkdirs();
 
-        FileUtils.copyFile(spigotLocation, spigotLocationInTemplate);
-        FileWriter writer = new FileWriter(template + "/server.properties");
-        writer.write("#By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).\n" +
-                "#Thu Apr 16 11:47:52 CEST 2020\n" +
-                "eula=true\n");
-        writer.flush();
-        writer.close();
+        FileUtils.copyFile(new File(spigotLocation + "/" + version.getJarName()), spigotLocationInTemplate);
 
-        FileWriter propertiesWriter = new FileWriter(template + "/server.properties");
-        TextTockens textTockens = new TextTockens();
-        propertiesWriter.write(textTockens.propertiesContent());
-        propertiesWriter.flush();
-        propertiesWriter.close();
         LiptonWrapper.getInstance().getColouredConsoleProvider().info("New Template was created for Server-Group: " + serverGroupMeta.getGroupName());
     }
 

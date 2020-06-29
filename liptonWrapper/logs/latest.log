@@ -1,36 +1,31 @@
-[21:23:06] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterPacket
-[21:23:06] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.ShutDownPacket
-[21:23:06] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.SendProxyConfigPacket
-[21:23:06] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StopProxyPacket
-[21:23:06] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.ProxyStoppingPacket
-[21:23:06] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.ExecuteCommandPacket
-[21:23:06] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.SendServerConfigPacket
-[21:23:06] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerGroupPacket
-[21:23:06] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerPacket
-[21:23:06] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerStoppingPacket
-[21:23:06] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CopyServerPacket
-[21:23:06] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CreateTemplatePacket
-[21:23:06] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.StartServerPacket
-[21:23:06] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.DebugPacket
-[21:23:06] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.ErrorPacket
-[21:23:06] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.InfoPacket
-[21:23:06] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.WarningPacket
-[21:23:06] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.UpdateMaintenancePacket
-[21:23:06] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.ServerGroupUpdatePacket
-[21:23:06] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerUpdatePacket
-[21:23:06] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterResponsePacket
-[21:23:06] INFO: [34m __    _     ___   _     ___   __   _     __  _____  ____  _     [0m
-[21:23:06] INFO: [34m/ /`  | |   / / \ | | | | | \ ( (` \ \_/ ( (`  | |  | |_  | |\/| [0m
-[21:23:06] INFO: [34m\_\_, |_|__ \_\_/ \_\_/ |_|_/ _)_)  |_|  _)_)  |_|  |_|__ |_|  | [0m
-[21:23:06] INFO: [31m▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬[0m
-[21:23:06] INFO: [34mCoded by CryCodes & SpaceByter[0m
-[21:23:06] INFO: 
-[21:23:06] INFO: Startet WrapperMaster Client on: (127.0.0.1:9685)
-[21:23:06] INFO: Connected Successful to Master!
-[21:23:06] INFO: This Cloud is Using the Version spigot-1.12.2
-[21:23:06] INFO: Action 'WRAPPERSTARTUP' took: (0.4) Seconds!
-[21:23:08] INFO: ServerMeta{serverName='Bedwars-1', id=1, serverGroupMeta=ServerGroupMeta{groupName='Bedwars', maxMemory=512, minMemory=128, dynamicService=true, maintenance=false, maxServer=4, minServer=3}, wrapperID='Wrapper-1', host='127.0.0.1', port=30000}
-[21:23:08] INFO: ServerMeta{serverName='Lobby-1', id=1, serverGroupMeta=ServerGroupMeta{groupName='Lobby', maxMemory=512, minMemory=128, dynamicService=true, maintenance=true, maxServer=2, minServer=1}, wrapperID='Wrapper-1', host='127.0.0.1', port=30001}
-[21:23:10] INFO: ServerMeta{serverName='Bedwars-2', id=2, serverGroupMeta=ServerGroupMeta{groupName='Bedwars', maxMemory=512, minMemory=128, dynamicService=true, maintenance=false, maxServer=4, minServer=3}, wrapperID='Wrapper-1', host='127.0.0.1', port=30002}
-[21:23:13] INFO: ServerMeta{serverName='Bedwars-3', id=3, serverGroupMeta=ServerGroupMeta{groupName='Bedwars', maxMemory=512, minMemory=128, dynamicService=true, maintenance=false, maxServer=4, minServer=3}, wrapperID='Wrapper-1', host='127.0.0.1', port=30003}
-[21:27:27] INFO: Stopping Cloud [ShutDownHookWrapper]
+[10:37:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterPacket
+[10:37:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.ShutDownPacket
+[10:37:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.SendProxyConfigPacket
+[10:37:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StopProxyPacket
+[10:37:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.ProxyStoppingPacket
+[10:37:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.ExecuteCommandPacket
+[10:37:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.SendServerConfigPacket
+[10:37:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerGroupPacket
+[10:37:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerPacket
+[10:37:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerStoppingPacket
+[10:37:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CopyServerPacket
+[10:37:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CreateTemplatePacket
+[10:37:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.StartServerPacket
+[10:37:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.DebugPacket
+[10:37:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.ErrorPacket
+[10:37:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.InfoPacket
+[10:37:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.WarningPacket
+[10:37:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.UpdateMaintenancePacket
+[10:37:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.ServerGroupUpdatePacket
+[10:37:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerUpdatePacket
+[10:37:28] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterResponsePacket
+[10:37:28] INFO: [34m __    _     ___   _     ___   __   _     __  _____  ____  _     [0m
+[10:37:28] INFO: [34m/ /`  | |   / / \ | | | | | \ ( (` \ \_/ ( (`  | |  | |_  | |\/| [0m
+[10:37:28] INFO: [34m\_\_, |_|__ \_\_/ \_\_/ |_|_/ _)_)  |_|  _)_)  |_|  |_|__ |_|  | [0m
+[10:37:28] INFO: [31m▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬[0m
+[10:37:28] INFO: [34mCoded by CryCodes & SpaceByter[0m
+[10:37:28] INFO: 
+[10:37:28] INFO: Startet WrapperMaster Client on: (127.0.0.1:9685)
+[10:37:28] INFO: Connected Successful to Master!
+[10:37:28] INFO: This Cloud is Using the Version spigot-1.8.8-R0.1-SNAPSHOT-latest
+[10:37:28] INFO: Action 'WRAPPERSTARTUP' took: (0.4) Seconds!
