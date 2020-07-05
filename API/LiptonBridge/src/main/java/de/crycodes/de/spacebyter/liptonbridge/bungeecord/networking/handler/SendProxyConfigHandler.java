@@ -29,7 +29,6 @@ public class SendProxyConfigHandler extends PacketHandlerAdapter {
         if (packet instanceof SendProxyConfigPacket){
             final SendProxyConfigPacket sendProxyConfigPacket = (SendProxyConfigPacket) packet;
             LiptonBungeeBridge.getInstance().updateConfig(sendProxyConfigPacket.getProxyConfig());
-            System.out.println("UPDATED PROXY CONFIG");
 
             List<ServerMeta> newAddedServer = new ArrayList<>();
             List<String> newAddedServerName = new ArrayList<>();
@@ -53,17 +52,13 @@ public class SendProxyConfigHandler extends PacketHandlerAdapter {
                 }
             }
 
-            System.out.println("ADD: " + newAddedServerName.toString());
-            System.out.println("REM: " + oldRemovedServer.toString());
-
             newAddedServer.forEach(serverMeta -> {
 
                 ServerInfo info = ProxyServer.getInstance().constructServerInfo(serverMeta.getServerName(),
                         new InetSocketAddress("127.0.0.1", serverMeta.getPort()),
                         "Lipton-Service",
                         false);
-                System.out.println("ADDED SERVER: " + info.getName());
-
+                System.out.println(serverMeta.toString());
                 ProxyServer.getInstance().getServers().put(serverMeta.getServerName(), info);
 
                 String startMessage = LiptonBungeeBridge.getInstance().getCloudAPI().getProxyConfig().getServer_start_message(); //TODO: BROADCAST: SERVER WAS ADDED!
@@ -71,7 +66,6 @@ public class SendProxyConfigHandler extends PacketHandlerAdapter {
 
             oldRemovedServer.forEach(name -> {
                 ProxyServer.getInstance().getServers().remove(name);
-                System.out.println("REMOVED SERVER: " + name);
 
                 String stopMessage = LiptonBungeeBridge.getInstance().getCloudAPI().getProxyConfig().getServer_stop_message();//TODO: BROADCAST: SERVER WAS REMOVED!
             });

@@ -21,8 +21,7 @@ public class ServerUpdateHandler extends PacketHandlerAdapter {
     public void handel(Packet packet) {
         if (packet instanceof ServerUpdatePacket){
             final ServerUpdatePacket serverUpdatePacket = (ServerUpdatePacket) packet;
-            LiptonMaster.getInstance().getServerManager().replaceServer(serverUpdatePacket.getUpdatedServerMeta());
-            LiptonMaster.getInstance().getColouredConsoleProvider().info("Updated Server: " + ((ServerUpdatePacket) packet).getUpdatedServerMeta().getServerName());
+            //LiptonMaster.getInstance().getColouredConsoleProvider().info("Updated Server: " + ((ServerUpdatePacket) packet).getUpdatedServerMeta().getServerName());
         }
     }
 }

@@ -22,35 +22,20 @@ public class StopServerGroupHandler extends PacketHandlerAdapter {
 
     @Override
     public void handel(Packet packet) {
-        if (packet instanceof StopServerGroupPacket){
+        if (packet instanceof StopServerGroupPacket) {
             final StopServerGroupPacket stopServerGroupPacket = (StopServerGroupPacket) packet;
             if (LiptonSpigotBridge.getInstance().getCloudAPI().getServerMeta() == null) {
-
-                ServerMeta serverMeta;
-                if (LiptonSpigotBridge.getInstance().getCloudAPI().getProxyMeta() == null)
-                    serverMeta = new ServerMeta("NONE", 1, new ServerGroupMeta("NONE", 512, 128, false,false, 0,0), "NONE", "127.0.0.1", 0);
-                else
-                    serverMeta = LiptonSpigotBridge.getInstance().getCloudAPI().getServerMeta();
-
-                LiptonSpigotBridge.getInstance().getSpigotMasterClient().getThunderClient().sendPacket(LiptonSpigotBridge.getInstance().getSpigotMasterClient().getNetworkChannel(), new ServerStoppingPacket(serverMeta));
-                System.exit(0);
-                return;
-            }
-
-            ServerMeta serverMeta;
-            if (LiptonSpigotBridge.getInstance().getCloudAPI().getProxyMeta() == null)
-                serverMeta = new ServerMeta("NONE", 1, new ServerGroupMeta("NONE", 512, 128, false,false, 0,0), "NONE", "127.0.0.1", 0);
-            else
-                serverMeta = LiptonSpigotBridge.getInstance().getCloudAPI().getServerMeta();
-
-            String serverGroupName = LiptonSpigotBridge.getInstance().getCloudAPI().getServerMeta().getServerGroupMeta().getGroupName();
-            if (serverGroupName.equalsIgnoreCase(stopServerGroupPacket.getServerGroupMeta().getGroupName())){
-                LiptonSpigotBridge.getInstance().getSpigotMasterClient().getThunderClient().sendPacket(LiptonSpigotBridge.getInstance().getSpigotMasterClient().getNetworkChannel(), new ServerStoppingPacket(serverMeta));
                 System.exit(stopServerGroupPacket.getStopID());
-            } else {
                 return;
             }
+
+            if (LiptonSpigotBridge.getInstance().getCloudAPI().getProxyMeta() == null)
+                System.exit(stopServerGroupPacket.getStopID());
+        } else {
+            return;
+        }
+
 
         }
-    }
+
 }

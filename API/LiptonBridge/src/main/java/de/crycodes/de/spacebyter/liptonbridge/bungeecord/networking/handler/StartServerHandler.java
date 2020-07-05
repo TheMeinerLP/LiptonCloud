@@ -26,7 +26,6 @@ public class StartServerHandler extends PacketHandlerAdapter {
 
     @Override
     public void handel(Packet packet) {
-        System.out.println("PACKET: " + packet.toString());
         if (packet instanceof StartServerPacket){
             final StartServerPacket startServerPacketProxy = (StartServerPacket) packet;
             

@@ -41,6 +41,8 @@ public class LiptonSpigotBridge extends JavaPlugin {
 
         cloudAPI = new CloudAPI(true);
 
+        cloudAPI.getServerMeta();
+
         spigotMasterClient = new SpigotMasterClient("127.0.0.1", 7898).start();
 
         super.onEnable();
@@ -49,11 +51,7 @@ public class LiptonSpigotBridge extends JavaPlugin {
     @Override
     public void onDisable() {
 
-        ServerMeta serverMeta;
-        if (LiptonSpigotBridge.getInstance().getCloudAPI().getProxyMeta() == null)
-            serverMeta = new ServerMeta("NONE", 1, new ServerGroupMeta("NONE", 512, 128, false,false, 0,0), "NONE", "127.0.0.1", 0);
-        else
-            serverMeta = LiptonSpigotBridge.getInstance().getCloudAPI().getServerMeta();
+        ServerMeta serverMeta = LiptonSpigotBridge.getInstance().getCloudAPI().getServerMeta();
 
         spigotMasterClient.getThunderClient().sendPacket(spigotMasterClient.getNetworkChannel(), new ServerStoppingPacket(serverMeta));
 

@@ -95,12 +95,7 @@ public class SpigotMasterClient {
     public SpigotMasterClient start(){
         thunderClient = new ThunderClient(adapterHandler, networkChannel ,host, port, 5000);
 
-        ServerMeta serverMeta;
-        if (LiptonSpigotBridge.getInstance().getCloudAPI().getProxyMeta() == null)
-            serverMeta = new ServerMeta(Bukkit.getServerName(), 1, new ServerGroupMeta("NONE", 512, 128, false,false, 0,0), "NONE", "127.0.0.1", 0);
-        else
-            serverMeta = LiptonSpigotBridge.getInstance().getCloudAPI().getServerMeta();
-
+        ServerMeta serverMeta = LiptonSpigotBridge.getInstance().getCloudAPI().getServerMeta();
 
         thunderClient.sendPacket(this.networkChannel, new RegisterPacket(serverMeta, RegisterType.SERVER));
 

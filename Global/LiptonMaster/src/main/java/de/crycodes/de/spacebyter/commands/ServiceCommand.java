@@ -32,19 +32,21 @@ public class ServiceCommand extends CloudCommand {
 
             if (args[0].equalsIgnoreCase("stopserver")){
 
-                if (liptonMaster.getServerGlobalManager().getGlobalServerList().isEmpty()){
+                if (liptonMaster.getServerManager().getGlobalServerList().isEmpty()){
 
                     liptonMaster.getColouredConsoleProvider().error("No Server's found!");
                     return true;
                 }
 
-                ServerMeta serverMeta = LiptonMaster.getInstance().getServerManager().getServerByName(name);
+                if (LiptonMaster.getInstance().getServerManager().getServersFromName(name) == null)
+                    return true;
+
+                ServerMeta serverMeta = LiptonMaster.getInstance().getServerManager().getServersFromName(name);
 
                 liptonMaster.getMasterSpigotServer().sendPacket(new StopServerPacket(name, serverMeta.getWrapperID(), serverMeta.getServerGroupMeta().isDynamicService()));
 
                 liptonMaster.getColouredConsoleProvider().info("Send StopPacket to Server: " + name);
 
-                return true;
             }
 
             if (args[0].equalsIgnoreCase("stopproxy")){

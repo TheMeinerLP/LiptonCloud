@@ -260,7 +260,8 @@ public class BackhandedClient {
                 try {
 
                     tempSocket.connect(address, timeout);
-                } catch (Exception ignored){ }
+                } catch (Exception ignored) {
+                }
 
             }
 
@@ -280,11 +281,7 @@ public class BackhandedClient {
             if (raw instanceof Channel) {
                 return (Channel) raw;
             }
-        } catch (EOFException ex) {
-        } catch (IOException | ClassNotFoundException ex) {
-            onLogError("[Client] Error while sending message");
-            ex.printStackTrace();
-        }
+        } catch (IOException | ClassNotFoundException ignored) { }
 
         return null;
     }

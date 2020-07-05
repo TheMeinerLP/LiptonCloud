@@ -25,27 +25,12 @@ public class StopServerHandler extends PacketHandlerAdapter {
         if (packet instanceof StopServerPacket){
             final StopServerPacket stopServerPacket = (StopServerPacket) packet;
             if (LiptonSpigotBridge.getInstance().getCloudAPI().getServerMeta() == null) {
-
-                ServerMeta serverMeta;
-                if (LiptonSpigotBridge.getInstance().getCloudAPI().getProxyMeta() == null)
-                    serverMeta = new ServerMeta("NONE", 1, new ServerGroupMeta("NONE", 512, 128, false,false, 0,0), "NONE", "127.0.0.1", 0);
-                else
-                    serverMeta = LiptonSpigotBridge.getInstance().getCloudAPI().getServerMeta();
-
-                LiptonSpigotBridge.getInstance().getSpigotMasterClient().getThunderClient().sendPacket(LiptonSpigotBridge.getInstance().getSpigotMasterClient().getNetworkChannel(), new ServerStoppingPacket(serverMeta));
                 System.exit(0);
                 return;
             }
 
-            ServerMeta serverMeta;
-            if (LiptonSpigotBridge.getInstance().getCloudAPI().getProxyMeta() == null)
-                serverMeta = new ServerMeta("NONE", 1, new ServerGroupMeta("NONE", 512, 128, false,false, 0,0), "NONE", "127.0.0.1", 0);
-            else
-                serverMeta = LiptonSpigotBridge.getInstance().getCloudAPI().getServerMeta();
-
             String serverName = LiptonSpigotBridge.getInstance().getCloudAPI().getServerMeta().getServerName();
             if (serverName.equalsIgnoreCase(stopServerPacket.getServerName())){
-                LiptonSpigotBridge.getInstance().getSpigotMasterClient().getThunderClient().sendPacket(LiptonSpigotBridge.getInstance().getSpigotMasterClient().getNetworkChannel(), new ServerStoppingPacket(serverMeta));
                 System.exit(0);
             } else {
                 return;

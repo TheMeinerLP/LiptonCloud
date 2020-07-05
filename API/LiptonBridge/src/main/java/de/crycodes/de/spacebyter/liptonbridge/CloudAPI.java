@@ -17,6 +17,7 @@ import de.crycodes.de.spacebyter.network.channel.Identifier;
 import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
 import de.crycodes.de.spacebyter.network.channel.Provider;
 import de.crycodes.de.spacebyter.network.packet.Packet;
+import org.bukkit.Bukkit;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -125,8 +126,17 @@ public class CloudAPI {
         Document document;
         File metaFile = new File("./META.json");
         document = Document.loadDocument(metaFile);
-        System.out.println("LOADED META");
-        return document.getObject("META", ServerMeta.class);
+
+        String name = document.getString("NAME");
+        String wrapperID = document.getString("WRAPPER-ID");
+        String group = document.getString("GROUP");
+        Integer serverID = document.getInt("ID");
+        Boolean dynamic = document.getBoolean("DYNAMIC");
+        Boolean maintenance = document.getBoolean("MAINTENANCE");
+
+        ServerMeta serverMeta = new ServerMeta(name, serverID, new ServerGroupMeta(group, 512, 128,dynamic, maintenance, 0, 0 ), wrapperID, "127.0.0.1", Bukkit.getPort());
+        System.out.println(serverMeta.toString());
+        return serverMeta;
     }
     //</editor-fold>
 

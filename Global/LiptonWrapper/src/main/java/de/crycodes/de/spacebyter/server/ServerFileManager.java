@@ -29,10 +29,18 @@ public class ServerFileManager {
 
         TextTockens textTockens = new TextTockens();
 
-        FileWriter writer = new FileWriter(new File(serverDir + "/server.properties"));
-        writer.write(textTockens.propertiesContent(serverMeta.getServerName(), serverMeta.getPort()));
-        writer.flush();
-        writer.close();
+        try (FileInputStream stream = new FileInputStream(new File(serverDir + "/server.properties"))){
+            Properties properties = new Properties();
+            properties.load(stream);
+
+            properties.setProperty("server-port", serverMeta.getPort() + "");
+            properties.setProperty("server-ip", "127.0.0.1");
+            properties.setProperty("max-players", 20 + "");
+            properties.setProperty("server-name", serverMeta.getServerName());
+            properties.setProperty("online-mode", "false");
+
+            properties.save(new FileOutputStream(new File(serverDir + "/server.properties")), "Edit by Cloud");
+        } catch (Exception exception){ }
 
         FileWriter eula = new FileWriter(new File(serverDir + "/eula.txt"));
         eula.write(textTockens.eulaShit());
@@ -41,11 +49,17 @@ public class ServerFileManager {
 
 
         Document document = new Document();
-        document.append("META", serverMeta);
+
+        document.append("NAME", serverMeta.getServerName());
+        document.append("WRAPPER-ID", serverMeta.getWrapperID());
+        document.append("GROUP", serverMeta.getServerGroupMeta().getGroupName());
+        document.append("ID", serverMeta.getId());
+        document.append("DYNAMIC", serverMeta.getServerGroupMeta().isDynamicService());
+        document.append("MAINTENANCE", serverMeta.getServerGroupMeta().isMaintenance());
+
         document.saveAsConfig(new File(serverDir + "/META.json"));
 
         LiptonWrapper.getInstance().getServerStartHandler().startServer(serverMeta);
-
 
     }
 }

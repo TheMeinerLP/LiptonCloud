@@ -1,0 +1,45 @@
+[20:31:11] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterPacket
+[20:31:11] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.ShutDownPacket
+[20:31:11] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.SendProxyConfigPacket
+[20:31:11] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StopProxyPacket
+[20:31:11] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.ProxyStoppingPacket
+[20:31:11] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.ExecuteCommandPacket
+[20:31:11] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.SendServerConfigPacket
+[20:31:11] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerGroupPacket
+[20:31:11] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerPacket
+[20:31:11] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerStoppingPacket
+[20:31:11] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CopyServerPacket
+[20:31:11] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CreateTemplatePacket
+[20:31:11] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.StartServerPacket
+[20:31:11] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.DebugPacket
+[20:31:11] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.ErrorPacket
+[20:31:11] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.InfoPacket
+[20:31:11] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.WarningPacket
+[20:31:11] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.UpdateMaintenancePacket
+[20:31:11] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.ServerGroupUpdatePacket
+[20:31:11] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerUpdatePacket
+[20:31:11] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterResponsePacket
+[20:31:11] INFO: [34m░█████╗░██╗░░░░░░█████╗░██╗░░░██╗██████╗░[0m
+[20:31:11] INFO: [34m██╔══██╗██║░░░░░██╔══██╗██║░░░██║██╔══██╗[0m
+[20:31:11] INFO: [34m██║░░╚═╝██║░░░░░██║░░██║██║░░░██║██║░░██║[0m
+[20:31:11] INFO: [34m██║░░██╗██║░░░░░██║░░██║██║░░░██║██║░░██║[0m
+[20:31:11] INFO: [34m╚█████╔╝███████╗╚█████╔╝╚██████╔╝██████╔╝[0m
+[20:31:11] INFO: [34m░╚════╝░╚══════╝░╚════╝░░╚═════╝░╚═════╝░[0m
+[20:31:11] INFO: ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+[20:31:11] INFO: Coded by CryCodes & SpaceByter
+[20:31:11] INFO: 
+[20:31:11] INFO: Loaded Addon: CloudFlare-1.0-SNAPSHOT
+[20:31:11] INFO: Loaded Addon: SignSystem-1.0-SNAPSHOT
+[20:31:12] ERROR: An error occurred in cloudflare addon: Could not find zone id for given domain, please recheck
+[20:31:12] ERROR: An error occurred in cloudflare addon: Could not find zone id for given domain, please recheck
+[20:31:12] INFO: [SIGNSYSTEM] Starting NetworkServer on (127.0.0.1:8899)!
+[20:31:12] INFO: Using SignSystem for LiptonCloud!
+[20:31:12] INFO: Starting Master-Wrapper Server on Port: (9685) !
+[20:31:12] INFO: Starting Proxy-Wrapper Server on Port: (1784) !
+[20:31:12] INFO: Starting Master-Spigot Server on Port: (7898) !
+[20:31:12] INFO: Started BungeeCord Server on: 25565 !
+[20:31:12] INFO: Action 'MASTERSTARTUP' took: (1.13) Seconds!
+[20:31:13] INFO: Registered new Proxy: NONE
+[20:31:14] INFO: Registered new Wrapper: Wrapper-1
+[20:31:14] INFO: [AUTOSTART] StartetServer 'Lobby' stats: (1/1) Port: 30000 | ID: 1 !
+[20:31:25] INFO: Registered new Server: Lobby-1

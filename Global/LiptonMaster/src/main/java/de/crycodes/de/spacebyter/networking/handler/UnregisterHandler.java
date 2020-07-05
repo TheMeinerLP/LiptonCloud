@@ -34,7 +34,10 @@ public class UnregisterHandler extends PacketHandlerAdapter {
                     LiptonMaster.getInstance().getColouredConsoleProvider().info("Unregistered " + unRegisterPacket.getRegisterType().name() + " | " + ((ProxyMeta) unRegisterPacket.getMeta()).getName());
                     break;
                 case SERVER:
-                    LiptonMaster.getInstance().getServerGlobalManager().unregisterServer((ServerMeta) unRegisterPacket.getMeta());
+                    final ServerMeta serverMeta = (ServerMeta) unRegisterPacket.getMeta();
+
+                    LiptonMaster.getInstance().getServerManager().unregisterServer(serverMeta.getServerName());
+
                     LiptonMaster.getInstance().getColouredConsoleProvider().info("Unregistered " + unRegisterPacket.getRegisterType().name() + " | " + ((ServerMeta) unRegisterPacket.getMeta()).getServerName());
                     break;
 

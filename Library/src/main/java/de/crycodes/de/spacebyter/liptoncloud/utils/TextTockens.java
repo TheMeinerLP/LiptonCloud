@@ -94,7 +94,7 @@ public class TextTockens {
                 "enable-rcon=false\n" +
                 "motd=CryCloud | CloudServer";
     }
-    public String bungeeconfigContent(int count){
+    public String bungeeconfigContent(int port){
         return "player_limit: 550\n" +
                 "permissions:\n" +
                 "  default: []\n" +
@@ -104,7 +104,7 @@ public class TextTockens {
                 "    - bungeecord.command.ip\n" +
                 "    - bungeecord.command.reload\n" +
                 "    - bungeecord.command.send\n" +
-                "    - bungeecord.command.service\n" +
+                "    - liptoncloud.cloudCommand\n" +
                 "    - bungeecord.command.server\n" +
                 "    - bungeecord.command.list\n" +
                 "timeout: 30000\n" +
@@ -125,7 +125,7 @@ public class TextTockens {
                 "    bind_local_address: true\n" +
                 "    tab_list: GLOBAL_PING\n" +
                 "    query_enabled: false\n" +
-                "    host: 0.0.0.0:" + count + "\n" +
+                "    host: 0.0.0.0:" + port + "\n" +
                 "    forced_hosts:\n" +
                 "      pvp.md-5.net: pvp\n" +
                 "    max_players: 0\n" +
@@ -136,14 +136,6 @@ public class TextTockens {
                 "network_compression_threshold: 256\n" +
                 "groups:\n" +
                 "  CryCodes:\n" +
-                "    - admin\n" +
-                "  CoderPvP:\n" +
-                "    - admin\n" +
-                "  Noitrix:\n" +
-                "    - admin\n" +
-                "  LufixYT:\n" +
-                "    - admin\n" +
-                "  Z_S:\n" +
                 "    - admin\n" +
                 "connection_throttle: -1\n" +
                 "stats: 13be5ac9-5731-4502-9ccc-c4a80163f14a\n" +

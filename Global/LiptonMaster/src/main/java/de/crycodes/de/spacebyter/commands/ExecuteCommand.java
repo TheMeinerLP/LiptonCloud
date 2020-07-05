@@ -31,7 +31,7 @@ public class ExecuteCommand extends CloudCommand {
             colouredConsoleProvider.info("execute server command");
             return true;
         }
-        if (liptonMaster.getServerGlobalManager().getGlobalServerList().isEmpty()){
+        if (liptonMaster.getServerManager().getGlobalServerList().isEmpty()){
 
             liptonMaster.getColouredConsoleProvider().error("No Server's found!");
             return true;

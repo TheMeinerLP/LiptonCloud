@@ -20,7 +20,11 @@ public class ServerStoppingHandler extends PacketHandlerAdapter {
     public void handel(Packet packet) {
         if (packet instanceof ServerStoppingPacket){
             final ServerStoppingPacket serverStoppingPacket = (ServerStoppingPacket) packet;
-            LiptonMaster.getInstance().getServerManager().removeServer(serverStoppingPacket.getServerMeta());
+
+            System.out.println(serverStoppingPacket.toString());
+
+            LiptonMaster.getInstance().getServerManager().unregisterServer(serverStoppingPacket.getServerMeta().getServerName());
+            LiptonMaster.getInstance().getMasterProxyServer().getServer().sendPacket(LiptonMaster.getInstance().getMasterProxyServer().getNetworkChannel(), serverStoppingPacket);
         }
     }
 }

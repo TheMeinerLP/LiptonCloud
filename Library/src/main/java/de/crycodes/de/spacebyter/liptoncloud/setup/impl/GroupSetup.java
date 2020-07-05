@@ -34,16 +34,16 @@ public class GroupSetup extends Setup {
     }
 
     @SetupPart(id = 5, question = "How many Servers should allways be Online ?", forbiddenAnswers = {"0"})
-    private int maxServer;
-
-    public int getMaxServer() {
-        return maxServer;
-    }
-
-    @SetupPart(id = 6, question = "How many Servers should be minimal Online ?", forbiddenAnswers = {"0"})
     private int minServer;
 
-    public int getMinServer() {
+    public int getMaxServer() {
         return minServer;
+    }
+
+    @SetupPart(id = 6, question = "How many Servers should be max Online ?", forbiddenAnswers = {"0"})
+    private int maxyServer;
+
+    public int getMinServer() {
+        return maxyServer;
     }
 }

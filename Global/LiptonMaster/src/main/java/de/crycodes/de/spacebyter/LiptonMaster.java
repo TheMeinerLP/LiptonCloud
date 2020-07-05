@@ -5,6 +5,7 @@ import de.crycodes.de.spacebyter.config.*;
 import de.crycodes.de.spacebyter.liptoncloud.time.Counter;
 import de.crycodes.de.spacebyter.networking.proxy.MasterProxyServer;
 import de.crycodes.de.spacebyter.networking.server.MasterSpigotServer;
+import de.crycodes.de.spacebyter.proxy.BungeeCordManager;
 import de.crycodes.de.spacebyter.serverhelper.ConfigHandler;
 import de.crycodes.de.spacebyter.serverhelper.ProxyFileConfig;
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
@@ -49,7 +50,6 @@ public class LiptonMaster {
     private CommandManager commandManager;
     private FileManager fileManager;
     private WrapperManager wrapperManager;
-    private ServerGlobalManager serverGlobalManager;
     private PortManager portManager;
     private IDManager idManager;
     private EventManager eventManager;
@@ -61,6 +61,8 @@ public class LiptonMaster {
     private MasterProxyServer masterProxyServer;
     private MasterSpigotServer masterSpigotServer;
     private ConfigHandler proxyConfigHandler;
+
+    private BungeeCordManager bungeeCordManager;
 
     public LiptonMaster() {
         instance = this;
@@ -84,7 +86,6 @@ public class LiptonMaster {
         portManager = new PortManager(this);
         idManager = new IDManager();
 
-        serverGlobalManager = new ServerGlobalManager();
         proxyManager = new ProxyManager();
 
         if (serverGroupConfig.getServerMetaByName("Lobby") == null)
@@ -125,10 +126,10 @@ public class LiptonMaster {
         masterSpigotServer = new MasterSpigotServer(7898).start();
 
 
-        serverManager = new ServerManager(this, scheduler);
+        serverManager = new ServerManager(this, serverGroupConfig);
         serverManager.start();
 
-
+        bungeeCordManager = new BungeeCordManager();
 
         commandManager.registerCommand(new HelpCommand("help", "Shows all CloudCommands", new String[]{"?", "tftodo"}, this));
         commandManager.registerCommand(new CreateCommand("create", "Create Wrapper|Proxy|ServerGroups ", new String[]{"build", "make"}));
@@ -201,10 +202,6 @@ public class LiptonMaster {
 
     public WrapperGroupConfig getWrapperConfig() {
         return wrapperConfig;
-    }
-
-    public ServerGlobalManager getServerGlobalManager() {
-        return serverGlobalManager;
     }
 
     public PacketHandler getPacketHandler() {

@@ -1,5 +1,6 @@
 package de.crycodes.examples.addon;
 
+import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.addon.MasterAddon;
 import de.crycodes.de.spacebyter.liptoncloud.event.enums.EventTargetType;
 import de.crycodes.examples.addon.commands.TestCommand;
@@ -19,12 +20,12 @@ public class ExampleAddon extends MasterAddon {
     @Override
     public void onLoading() {
 
-        getInternalCloudSystem().getColouredConsoleProvider().info("Starting Addon: " + this.getAddonName());
+        LiptonMaster.getInstance().getColouredConsoleProvider().info("Starting Addon: " + this.getAddonName());
 
         //REGISTER COMMAND
         registerCommand(new TestCommand("test", "Test Command from addon!", new String[]{"lol", "eintest"}));
         //REGISTER EVENT
-        registerEvent(new TestEvent(getInternalCloudSystem().getColouredConsoleProvider()));
+        registerEvent(new TestEvent(LiptonMaster.getInstance().getColouredConsoleProvider()));
         //REGISTER LISTENER
         registerListener(new TestListener("TestListner", EventTargetType.NOT_DEFINED));
 
@@ -39,7 +40,7 @@ public class ExampleAddon extends MasterAddon {
 
     @Override
     public void onReadyToClose() {
-        getInternalCloudSystem().getColouredConsoleProvider().info("Stopping Addon: " + this.getAddonName());
+        LiptonMaster.getInstance().getColouredConsoleProvider().info("Stopping Addon: " + this.getAddonName());
         super.onReadyToClose();
     }
 

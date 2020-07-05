@@ -42,11 +42,17 @@ public class TemplateManager {
         final File template = new File(templateLocation + "/" + serverGroupMeta.getGroupName().toUpperCase());
         final File pluginlocation = new File(template + "/plugins/");
         final File spigotLocationInTemplate = new File(template + "/SPIGOT.JAR");
+        final TextTockens textTockens = new TextTockens();
         if (template.exists()) return;
         template.mkdirs();
         pluginlocation.mkdirs();
 
         FileUtils.copyFile(new File(spigotLocation + "/" + version.getJarName()), spigotLocationInTemplate);
+
+        FileWriter propertiesWriter = new FileWriter(template + "/server.properties");
+        propertiesWriter.write(textTockens.propertiesContent());
+        propertiesWriter.flush();
+        propertiesWriter.close();
 
         LiptonWrapper.getInstance().getColouredConsoleProvider().info("New Template was created for Server-Group: " + serverGroupMeta.getGroupName());
     }

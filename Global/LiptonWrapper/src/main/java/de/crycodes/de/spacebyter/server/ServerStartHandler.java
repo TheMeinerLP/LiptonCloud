@@ -1,5 +1,6 @@
 package de.crycodes.de.spacebyter.server;
 
+import de.crycodes.de.spacebyter.LiptonWrapper;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import de.crycodes.de.spacebyter.liptoncloud.utils.CallBack;
 
@@ -21,25 +22,24 @@ public class ServerStartHandler {
 
         File serverDir = new File(serverLocation + "/" + serverType + "/" + serverMeta.getServerGroupMeta().getGroupName() + "/" + serverMeta.getServerName() + "/");
 
-        System.out.println(serverDir.toPath());
 
-                if (!serverDir.exists()){
-                    return;
-                }
-                try {
-                    final String[] cmd = new String[]
-                            {
-                                    "java",
-                                    "-jar",
-                                    "SPIGOT.JAR"
-                            };
+        if (!serverDir.exists()){
+            return;
+        }
+        try {
+            final String[] cmd = new String[]
+                    {
+                            "java",
+                            "-jar",
+                            "SPIGOT.JAR"
+                    };
 
-                    ProcessBuilder processBuilder = new ProcessBuilder(cmd).directory(serverDir);
-                    Process process = processBuilder.start();
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            ProcessBuilder processBuilder = new ProcessBuilder(cmd).directory(serverDir);
+            Process process = processBuilder.start();
+            LiptonWrapper.getInstance().getColouredConsoleProvider().info("Server Startet: " + serverMeta.getServerName() + " on (§c" + serverMeta.getPort() +  "§r)");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }

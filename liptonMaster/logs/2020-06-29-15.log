@@ -1,0 +1,42 @@
+[10:37:20] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterPacket
+[10:37:20] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.ShutDownPacket
+[10:37:20] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.SendProxyConfigPacket
+[10:37:20] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StopProxyPacket
+[10:37:20] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.ProxyStoppingPacket
+[10:37:20] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.ExecuteCommandPacket
+[10:37:20] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.SendServerConfigPacket
+[10:37:20] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerGroupPacket
+[10:37:20] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerPacket
+[10:37:20] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerStoppingPacket
+[10:37:20] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CopyServerPacket
+[10:37:20] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CreateTemplatePacket
+[10:37:20] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.StartServerPacket
+[10:37:20] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.DebugPacket
+[10:37:20] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.ErrorPacket
+[10:37:20] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.InfoPacket
+[10:37:20] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.WarningPacket
+[10:37:20] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.UpdateMaintenancePacket
+[10:37:20] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.ServerGroupUpdatePacket
+[10:37:20] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerUpdatePacket
+[10:37:20] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterResponsePacket
+[10:37:20] INFO: [34m __    _     ___   _     ___   __   _     __  _____  ____  _     [0m
+[10:37:20] INFO: [34m/ /`  | |   / / \ | | | | | \ ( (` \ \_/ ( (`  | |  | |_  | |\/| [0m
+[10:37:20] INFO: [34m\_\_, |_|__ \_\_/ \_\_/ |_|_/ _)_)  |_|  _)_)  |_|  |_|__ |_|  | [0m
+[10:37:20] INFO: [31m▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬[0m
+[10:37:20] INFO: [34mCoded by CryCodes & SpaceByter[0m
+[10:37:20] INFO: 
+[10:37:20] INFO: Loaded Addon: CloudFlare-1.0-SNAPSHOT
+[10:37:20] INFO: Loaded Addon: SignSystem-1.0-SNAPSHOT
+[10:37:21] ERROR: An error occurred in cloudflare addon: Could not find zone id for given domain, please recheck
+[10:37:21] ERROR: An error occurred in cloudflare addon: Could not find zone id for given domain, please recheck
+[10:37:21] INFO: [SIGNSYSTEM] Starting NetworkServer on (127.0.0.1:8899)!
+[10:37:21] INFO: Using SignSystem for LiptonCloud!
+[10:37:21] INFO: Starting Master-Wrapper Server on Port: (9685) !
+[10:37:21] INFO: Starting Proxy-Wrapper Server on Port: (1784) !
+[10:37:21] INFO: Starting Master-Spigot Server on Port: (7898) !
+[10:37:21] INFO: Action 'MASTERSTARTUP' took: (1.13) Seconds!
+[10:37:28] INFO: Trying to Register Wrapper: Wrapper-1
+[10:37:28] INFO: Registered new Wrapper: Wrapper-1
+[10:37:28] INFO: [AUTOSTART] StartetServer 'Lobby' stats: (1/1) Port: 30000 | ID: 1 !
+[10:37:39] INFO: Trying to Register Server: Lobby-1
+[10:37:39] INFO: Registered new Server: Lobby-1

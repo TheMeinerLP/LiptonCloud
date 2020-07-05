@@ -27,13 +27,11 @@ public class RegisterHandler extends PacketHandlerAdapter {
             final RegisterPacket registerPacket = (RegisterPacket) packet;
             switch (registerPacket.getRegisterType()){
                 case WRAPPER:
-                    LiptonMaster.getInstance().getColouredConsoleProvider().info("Trying to Register Wrapper: " + ((WrapperMeta) registerPacket.getMeta()).getWrapperConfig().getWrapperId());
                     LiptonMaster.getInstance().getWrapperManager().registerWrapper((WrapperMeta) registerPacket.getMeta(),result -> {
                         LiptonMaster.getInstance().getMasterWrapperServer().sendPacket(new RegisterResponsePacket(result));
                     });
                     break;
                 case PROXY:
-                    LiptonMaster.getInstance().getColouredConsoleProvider().info("Trying to Register Proxy: " + ((ProxyMeta) registerPacket.getMeta()).getName());
                     LiptonMaster.getInstance().getProxyManager().registerProxy((ProxyMeta) registerPacket.getMeta(), result -> {
                         LiptonMaster.getInstance().getMasterProxyServer().getServer().sendPacket(
                                 LiptonMaster.getInstance().getMasterProxyServer().getNetworkChannel(),
@@ -41,10 +39,10 @@ public class RegisterHandler extends PacketHandlerAdapter {
                     });
                     break;
                 case SERVER:
-                    LiptonMaster.getInstance().getColouredConsoleProvider().info("Trying to Register Server: " + ((ServerMeta) registerPacket.getMeta()).getServerName());
-                    LiptonMaster.getInstance().getServerGlobalManager().registerServer((ServerMeta) registerPacket.getMeta(),result -> {
-                        LiptonMaster.getInstance().getMasterSpigotServer().sendPacket(new RegisterResponsePacket(result));
-                    });
+                    if (registerPacket.getMeta() instanceof ServerMeta){
+                        final ServerMeta serverMeta = (ServerMeta) registerPacket.getMeta();
+                        LiptonMaster.getInstance().getServerManager().registerServer(serverMeta.getServerName());
+                    }
                     break;
 
                 default:

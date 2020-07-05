@@ -1,0 +1,52 @@
+connection_throttle: -1
+online_mode: true
+remote_ping_timeout: 5000
+groups:
+  CryCodes:
+  - admin
+servers:
+  Lobby-1:
+    motd: ''
+    address: 127.0.0.1:30000
+    restricted: false
+remote_ping_cache: -1
+connection_throttle_limit: 3
+ip_forward: true
+server_connect_timeout: 5000
+player_limit: 550
+disabled_commands:
+- disabledcommandhere
+log_pings: true
+forge_support: false
+log_commands: false
+stats: 13be5ac9-5731-4502-9ccc-c4a80163f14a
+listeners:
+- query_port: 25577
+  motd: ''
+  priorities:
+  - Lobby-1
+  bind_local_address: true
+  tab_list: GLOBAL_PING
+  query_enabled: false
+  host: 0.0.0.0:25565
+  forced_hosts:
+    pvp.md-5.net: pvp
+  max_players: 0
+  tab_size: 60
+  ping_passthrough: false
+  force_default_server: false
+  proxy_protocol: false
+network_compression_threshold: 256
+permissions:
+  default: []
+  admin:
+  - bungeecord.command.alert
+  - bungeecord.command.end
+  - bungeecord.command.ip
+  - bungeecord.command.reload
+  - bungeecord.command.send
+  - liptoncloud.cloudCommand
+  - bungeecord.command.server
+  - bungeecord.command.list
+prevent_proxy_connections: false
+timeout: 30000
