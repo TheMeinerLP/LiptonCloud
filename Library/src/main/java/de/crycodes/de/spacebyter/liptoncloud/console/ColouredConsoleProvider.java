@@ -42,7 +42,8 @@ public class ColouredConsoleProvider {
         this.fileLogger = org.apache.log4j.Logger.getLogger( "CloudSystemFileLogger" );
 
         //PatternLayout layout = new PatternLayout( "[%d{HH:mm:ss}] [%t] %m%n" );
-        PatternLayout layout = new PatternLayout( "[%d{HH:mm:ss}] %m%n" );
+        String threadName = Thread.currentThread().getName().equalsIgnoreCase("main") ? "Cloud-Thread" : Thread.currentThread().getName();
+        PatternLayout layout = new PatternLayout( "[" + threadName + " | %d{HH:mm:ss}] %m%n" );
         ConsoleAppender consoleAppender = new ConsoleAppender( layout );
         this.getApacheLogger().addAppender( consoleAppender );
 

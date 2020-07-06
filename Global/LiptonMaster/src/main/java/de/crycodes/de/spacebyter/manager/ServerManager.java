@@ -81,7 +81,7 @@ public class ServerManager {
             return;
         }
         int port = liptonMaster.getPortManager().getFreePort();
-        int id = liptonMaster.getIdManager().getFreeID(serverGroupMeta);
+        int id = liptonMaster.getIdManager().getFreeID(serverGroupMeta.getGroupName());
         final ServerMeta serverMeta = new ServerMeta(serverGroupMeta.getGroupName() + liptonMaster.getMasterConfig().getServerNameSplitter() + id ,id, serverGroupMeta, wrapperID, "127.0.0.1", port);
         this.startedServer.put(serverMeta.getServerName().toUpperCase() ,serverMeta);
 
@@ -92,7 +92,7 @@ public class ServerManager {
         LiptonMaster.getInstance().getMasterWrapperServer().sendPacket(new StartServerPacket(wrapperID, serverMeta));
 
         if (!autoStart) this.liptonMaster.getColouredConsoleProvider().info("StartetServer: " + serverMeta.getServerName() + " | on port: " + serverMeta.getPort() + " | on wrapper: " + serverMeta.getWrapperID() + " | group: " + serverGroupMeta.getGroupName() + " !");
-        if (autoStart)  liptonMaster.getColouredConsoleProvider().info("§c[AUTOSTART]§r StartetServer '" + serverGroupMeta.getGroupName() + "' stats: (" + getStartedServerByGroup(serverGroupMeta) + "/" + serverGroupMeta.getMinServer() + ") Port: §a" + port + "§r | ID: §a" + id + "§r !");
+        if (autoStart)  liptonMaster.getColouredConsoleProvider().info("§c[AUTOSTART]§r StartetServer '" + serverGroupMeta.getGroupName() + "' stats: (" + getGlobalStartedAndOnlineServerByGroup(serverGroupMeta) + "/" + serverGroupMeta.getMinServer() + ") Port: §a" + port + "§r | ID: §a" + id + "§r !");
     }
     //</editor-fold>
 
@@ -126,11 +126,11 @@ public class ServerManager {
         if (this.globalServerList.containsKey(name)){
             final ServerMeta serverMeta = globalServerList.get(name);
 
-            if (!(liptonMaster.getIdManager().getServerIdList().get(serverMeta.getServerGroupMeta()) == null)){
-                if (liptonMaster.getIdManager().getServerIdList().get(serverMeta.getServerGroupMeta()).contains(serverMeta.getId())){
-                    liptonMaster.getIdManager().removeID(serverMeta.getServerGroupMeta(),serverMeta.getId());
+
+                if (liptonMaster.getIdManager().getServerIdList().get(serverMeta.getServerGroupMeta().getGroupName()).contains(serverMeta.getId())){
+                    liptonMaster.getIdManager().removeID(serverMeta.getServerGroupMeta().getGroupName(),serverMeta.getId());
                 }
-            }
+
 
             this.globalServerList.remove(name);
 
@@ -156,6 +156,20 @@ public class ServerManager {
     public int getOnlineServerByGroup(ServerGroupMeta serverGroupMeta){
         int count = 0;
         for (ServerMeta serverMeta : getOnlineServers()){
+            if (serverMeta.getServerGroupMeta().getGroupName().equalsIgnoreCase(serverGroupMeta.getGroupName())){
+                count++;
+            }
+        }
+        return count;
+    }
+    public int getGlobalStartedAndOnlineServerByGroup(ServerGroupMeta serverGroupMeta){
+        int count = 0;
+        for (ServerMeta serverMeta : getOnlineServers()){
+            if (serverMeta.getServerGroupMeta().getGroupName().equalsIgnoreCase(serverGroupMeta.getGroupName())){
+                count++;
+            }
+        }
+        for (ServerMeta serverMeta : getStartedServers()){
             if (serverMeta.getServerGroupMeta().getGroupName().equalsIgnoreCase(serverGroupMeta.getGroupName())){
                 count++;
             }

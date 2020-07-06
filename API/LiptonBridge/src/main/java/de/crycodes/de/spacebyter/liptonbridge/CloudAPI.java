@@ -105,7 +105,7 @@ public class CloudAPI {
             if (LiptonSpigotBridge.getInstance().getServerConfig() == null){
                 return new ServerConfig(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
             } else {
-                return LiptonSpigotBridge.getInstance().getServerConfig().get(0);
+                return LiptonSpigotBridge.getInstance().getServerConfig();
             }
         } else {
             return null;
@@ -135,7 +135,6 @@ public class CloudAPI {
         Boolean maintenance = document.getBoolean("MAINTENANCE");
 
         ServerMeta serverMeta = new ServerMeta(name, serverID, new ServerGroupMeta(group, 512, 128,dynamic, maintenance, 0, 0 ), wrapperID, "127.0.0.1", Bukkit.getPort());
-        System.out.println(serverMeta.toString());
         return serverMeta;
     }
     //</editor-fold>

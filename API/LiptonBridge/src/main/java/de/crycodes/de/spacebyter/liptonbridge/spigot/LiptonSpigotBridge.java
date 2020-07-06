@@ -1,14 +1,15 @@
 package de.crycodes.de.spacebyter.liptonbridge.spigot;
 
 import de.crycodes.de.spacebyter.liptonbridge.CloudAPI;
-import de.crycodes.de.spacebyter.liptonbridge.bungeecord.commands.CloudCommand;
+import de.crycodes.de.spacebyter.liptonbridge.spigot.commands.CreateSignCommand;
+import de.crycodes.de.spacebyter.liptonbridge.spigot.listeners.ClickListener;
 import de.crycodes.de.spacebyter.liptonbridge.spigot.networking.SpigotMasterClient;
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
 import de.crycodes.de.spacebyter.liptoncloud.config.Document;
-import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import de.crycodes.de.spacebyter.liptoncloud.objects.ServerConfig;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerStoppingPacket;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -31,6 +32,8 @@ public class LiptonSpigotBridge extends JavaPlugin {
 
     private static LiptonSpigotBridge instance;
 
+    private CloudSignManager cloudSignManager;
+
     //INSTANCE Cache
     private List<ServerConfig> serverConfig = new ArrayList<>();
     //INSTANCE Cache
@@ -44,6 +47,14 @@ public class LiptonSpigotBridge extends JavaPlugin {
         cloudAPI.getServerMeta();
 
         spigotMasterClient = new SpigotMasterClient("127.0.0.1", 7898).start();
+
+        cloudSignManager = new CloudSignManager();
+
+         getCommand("createsign").setExecutor(new CreateSignCommand());
+
+        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
+
+        Bukkit.getPluginManager().registerEvents(new ClickListener(), this);
 
         super.onEnable();
     }
@@ -60,7 +71,7 @@ public class LiptonSpigotBridge extends JavaPlugin {
         document = Document.loadDocument(metaFile);
         System.out.println("LOADED META");
 
-        System.out.println(document.getObject("META", ServerMeta.class));
+
     }
 
     public CloudAPI getCloudAPI() {
@@ -80,7 +91,11 @@ public class LiptonSpigotBridge extends JavaPlugin {
         this.serverConfig.add(serverConfig);
     }
 
-    public List<ServerConfig> getServerConfig() {
-        return serverConfig;
+    public ServerConfig getServerConfig() {
+        return this.serverConfig.iterator().next();
+    }
+
+    public CloudSignManager getCloudSignManager() {
+        return cloudSignManager;
     }
 }

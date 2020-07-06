@@ -107,6 +107,7 @@ public class LiptonMaster {
         parallelLoader = new AddonParallelLoader("./liptonMaster/modules");
 
         liptonLibrary = new LiptonLibrary(scheduler, eventManager, colouredConsoleProvider, parallelLoader, masterConfig.isColorConsole());
+        liptonLibrary.checkAPIFile(new File("./liptonMaster/api/LiptopnBridge-1.0-SNAPSHOT.jar"));
 
         packetHandler = new PacketHandler();
         liptonLibrary.registerPacket(packetHandler);

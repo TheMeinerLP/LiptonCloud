@@ -47,6 +47,8 @@ public class ServiceCommand extends CloudCommand {
 
                 liptonMaster.getColouredConsoleProvider().info("Send StopPacket to Server: " + name);
 
+                return true;
+
             }
 
             if (args[0].equalsIgnoreCase("stopproxy")){

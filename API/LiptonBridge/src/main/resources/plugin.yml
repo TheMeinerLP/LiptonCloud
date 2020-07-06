@@ -2,3 +2,5 @@ main: de.crycodes.de.spacebyter.liptonbridge.spigot.LiptonSpigotBridge
 name: Spigot-Cloud-API
 version: 1.0
 authors: [CryCodes, SpaceByter]
+commands:
+  createsign:

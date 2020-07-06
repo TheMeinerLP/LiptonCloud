@@ -23,10 +23,13 @@ import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.InfoPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.WarningPacket;
 import de.crycodes.de.spacebyter.liptoncloud.scheduler.Scheduler;
 import de.crycodes.de.spacebyter.liptoncloud.utils.AsciiPrinter;
+import de.crycodes.de.spacebyter.liptoncloud.utils.ExitUtil;
 import de.crycodes.de.spacebyter.network.channel.Identifier;
 import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
 import de.crycodes.de.spacebyter.network.channel.Provider;
 import de.crycodes.de.spacebyter.network.packet.PacketHandler;
+
+import java.io.File;
 
 /**
  * Coded By CryCodes
@@ -53,6 +56,11 @@ public class LiptonLibrary {
         this.addonParallelLoader = addonParallelLoader;
         this.useColor = useColor;
         instance = this;
+    }
+    public void checkAPIFile(File file){
+        if (file.exists()) return;
+        System.out.println("NO LiptonBridge found! please add API to api folder!");
+        System.exit(ExitUtil.STOPPED_SUCESS);
     }
 
     public LiptonLibrary() { }

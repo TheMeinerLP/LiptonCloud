@@ -7,16 +7,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="MultiProxy" />
-        <module name="SignSystem" />
         <module name="LiptonMaster" />
         <module name="LiptonWrapper" />
+        <module name="Event" />
+        <module name="CloudFlare" />
+        <module name="Library" />
+        <module name="CommandSystem" />
+        <module name="LiptonBridge" />
         <module name="Listener" />
         <module name="Command" />
-        <module name="Library" />
-        <module name="LiptonBridge" />
-        <module name="Event" />
-        <module name="CommandSystem" />
-        <module name="CloudFlare" />
+        <module name="SignSystem" />
         <module name="LiptopnBridge" />
       </profile>
     </annotationProcessing>

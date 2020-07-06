@@ -97,7 +97,7 @@ public class BungeeMasterClient {
 
         ProxyMeta proxyMeta;
         if (LiptonBungeeBridge.getInstance().getCloudAPI().getProxyMeta() == null)
-            proxyMeta = new ProxyMeta("NONE", 0, false);
+            proxyMeta = new ProxyMeta("MainProxy", 1, true);
         else
             proxyMeta = LiptonBungeeBridge.getInstance().getCloudAPI().getProxyMeta();
 

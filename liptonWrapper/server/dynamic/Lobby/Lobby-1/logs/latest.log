@@ -1,245 +1,105 @@
-[18:07:41] [Server thread/INFO]: Starting minecraft server version 1.8.8
-[18:07:41] [Server thread/INFO]: Loading properties
-[18:07:41] [Server thread/INFO]: Default game type: SURVIVAL
-[18:07:42] [Server thread/INFO]: This server is running CraftBukkit version git-Spigot-db6de12-18fbb24 (MC: 1.8.8) (Implementing API version 1.8.8-R0.1-SNAPSHOT)
-[18:07:42] [Server thread/INFO]: Unable to find file banned-players.json, creating it.
-[18:07:42] [Server thread/INFO]: Unable to find file banned-ips.json, creating it.
-[18:07:42] [Server thread/INFO]: Unable to find file ops.json, creating it.
-[18:07:42] [Server thread/INFO]: Unable to find file whitelist.json, creating it.
-[18:07:42] [Server thread/INFO]: Debug logging is disabled
-[18:07:42] [Server thread/INFO]: Server Ping Player Sample Count: 12
-[18:07:42] [Server thread/INFO]: Using 4 threads for Netty based IO
-[18:07:42] [Server thread/INFO]: Generating keypair
-[18:07:42] [Server thread/INFO]: Starting Minecraft server on 127.0.0.1:30000
-[18:07:42] [Server thread/INFO]: Using default channel type
-[18:07:42] [Server thread/INFO]: Set PluginClassLoader as parallel capable
-[18:07:42] [Server thread/INFO]: [Spigot-Cloud-API] Loading Spigot-Cloud-API v1.0
-[18:07:42] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
-[18:07:42] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
-[18:07:42] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
-[18:07:42] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
-[18:07:42] [Server thread/INFO]: **** Beginning UUID conversion, this may take A LONG time ****
-[18:07:42] [Server thread/INFO]: Preparing level "world"
-[18:07:42] [Server thread/INFO]: -------- World Settings For [world] --------
-[18:07:42] [Server thread/INFO]: Item Despawn Rate: 6000
-[18:07:42] [Server thread/INFO]: Item Merge Radius: 2.5
-[18:07:42] [Server thread/INFO]: Arrow Despawn Rate: 1200
-[18:07:42] [Server thread/INFO]: View Distance: 10
-[18:07:42] [Server thread/INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
-[18:07:42] [Server thread/INFO]: Max Entity Collisions: 8
-[18:07:42] [Server thread/INFO]: Custom Map Seeds:  Village: 10387312 Feature: 14357617
-[18:07:42] [Server thread/INFO]: Chunks to Grow per Tick: 650
-[18:07:42] [Server thread/INFO]: Clear tick list: false
-[18:07:42] [Server thread/INFO]: Experience Merge Radius: 3.0
-[18:07:42] [Server thread/INFO]: Zombie Aggressive Towards Villager: true
-[18:07:42] [Server thread/INFO]: Structure Info Saving: true
-[18:07:42] [Server thread/INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
-[18:07:42] [Server thread/INFO]: Sending up to 10 chunks per packet
-[18:07:42] [Server thread/INFO]: Random Lighting Updates: false
-[18:07:42] [Server thread/INFO]: Nerfing mobs spawned from spawners: false
-[18:07:42] [Server thread/INFO]: Cactus Growth Modifier: 100%
-[18:07:42] [Server thread/INFO]: Cane Growth Modifier: 100%
-[18:07:42] [Server thread/INFO]: Melon Growth Modifier: 100%
-[18:07:42] [Server thread/INFO]: Mushroom Growth Modifier: 100%
-[18:07:42] [Server thread/INFO]: Pumpkin Growth Modifier: 100%
-[18:07:42] [Server thread/INFO]: Sapling Growth Modifier: 100%
-[18:07:42] [Server thread/INFO]: Wheat Growth Modifier: 100%
-[18:07:42] [Server thread/INFO]: NetherWart Growth Modifier: 100%
-[18:07:42] [Server thread/INFO]: Anti X-Ray: true
-[18:07:42] [Server thread/INFO]: 	Engine Mode: 1
-[18:07:42] [Server thread/INFO]: 	Hidden Blocks: [14, 15, 16, 21, 48, 49, 54, 56, 73, 74, 82, 129, 130]
-[18:07:42] [Server thread/INFO]: 	Replace Blocks: [1, 5]
-[18:07:42] [Server thread/INFO]: Entity Activation Range: An 32 / Mo 32 / Mi 16
-[18:07:42] [Server thread/INFO]: Mob Spawn Range: 4
-[18:07:42] [Server thread/INFO]: Hopper Transfer: 8 Hopper Check: 8 Hopper Amount: 1
-[18:07:42] [Server thread/INFO]: Max TNT Explosions: 100
-[18:07:42] [Server thread/INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
-[18:07:42] [Server thread/INFO]: -------- World Settings For [world_the_end] --------
-[18:07:42] [Server thread/INFO]: Item Despawn Rate: 6000
-[18:07:42] [Server thread/INFO]: Item Merge Radius: 2.5
-[18:07:42] [Server thread/INFO]: Arrow Despawn Rate: 1200
-[18:07:42] [Server thread/INFO]: View Distance: 10
-[18:07:42] [Server thread/INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
-[18:07:42] [Server thread/INFO]: Max Entity Collisions: 8
-[18:07:42] [Server thread/INFO]: Custom Map Seeds:  Village: 10387312 Feature: 14357617
-[18:07:42] [Server thread/INFO]: Chunks to Grow per Tick: 650
-[18:07:42] [Server thread/INFO]: Clear tick list: false
-[18:07:42] [Server thread/INFO]: Experience Merge Radius: 3.0
-[18:07:42] [Server thread/INFO]: Zombie Aggressive Towards Villager: true
-[18:07:42] [Server thread/INFO]: Structure Info Saving: true
-[18:07:42] [Server thread/INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
-[18:07:42] [Server thread/INFO]: Sending up to 10 chunks per packet
-[18:07:42] [Server thread/INFO]: Random Lighting Updates: false
-[18:07:42] [Server thread/INFO]: Nerfing mobs spawned from spawners: false
-[18:07:42] [Server thread/INFO]: Cactus Growth Modifier: 100%
-[18:07:42] [Server thread/INFO]: Cane Growth Modifier: 100%
-[18:07:42] [Server thread/INFO]: Melon Growth Modifier: 100%
-[18:07:42] [Server thread/INFO]: Mushroom Growth Modifier: 100%
-[18:07:42] [Server thread/INFO]: Pumpkin Growth Modifier: 100%
-[18:07:42] [Server thread/INFO]: Sapling Growth Modifier: 100%
-[18:07:42] [Server thread/INFO]: Wheat Growth Modifier: 100%
-[18:07:42] [Server thread/INFO]: NetherWart Growth Modifier: 100%
-[18:07:42] [Server thread/INFO]: Anti X-Ray: true
-[18:07:42] [Server thread/INFO]: 	Engine Mode: 1
-[18:07:42] [Server thread/INFO]: 	Hidden Blocks: [14, 15, 16, 21, 48, 49, 54, 56, 73, 74, 82, 129, 130]
-[18:07:42] [Server thread/INFO]: 	Replace Blocks: [1, 5]
-[18:07:42] [Server thread/INFO]: Entity Activation Range: An 32 / Mo 32 / Mi 16
-[18:07:42] [Server thread/INFO]: Mob Spawn Range: 4
-[18:07:42] [Server thread/INFO]: Hopper Transfer: 8 Hopper Check: 8 Hopper Amount: 1
-[18:07:42] [Server thread/INFO]: Max TNT Explosions: 100
-[18:07:42] [Server thread/INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
-[18:07:42] [Server thread/INFO]: Preparing start region for level 0 (Seed: 59736913973652436)
-[18:07:43] [Server thread/INFO]: Preparing spawn area: 9%
-[18:07:44] [Server thread/INFO]: Preparing spawn area: 21%
-[18:07:45] [Server thread/INFO]: Preparing spawn area: 36%
-[18:07:46] [Server thread/INFO]: Preparing spawn area: 56%
-[18:07:47] [Server thread/INFO]: Preparing spawn area: 75%
-[18:07:48] [Server thread/INFO]: Preparing spawn area: 91%
-[18:07:49] [Server thread/INFO]: Preparing start region for level 1 (Seed: 59736913973652436)
-[18:07:50] [Server thread/INFO]: Preparing spawn area: 73%
-[18:07:50] [Server thread/INFO]: [Spigot-Cloud-API] Enabling Spigot-Cloud-API v1.0
-[18:07:50] [Server thread/INFO]: ServerMeta{serverName='Lobby-1', id=1, serverGroupMeta=ServerGroupMeta{groupName='Lobby', maxMemory=512, minMemory=128, dynamicService=true, maintenance=true, maxServer=0, minServer=0}, wrapperID='Wrapper-1', host='127.0.0.1', port=30000}
-[18:07:50] [Server thread/INFO]: LOADED
-[18:07:50] [Server thread/INFO]: ServerMeta{serverName='Lobby-1', id=1, serverGroupMeta=ServerGroupMeta{groupName='Lobby', maxMemory=512, minMemory=128, dynamicService=true, maintenance=true, maxServer=0, minServer=0}, wrapperID='Wrapper-1', host='127.0.0.1', port=30000}
-[18:07:50] [Server thread/INFO]: Started ProxyMaster Client on: (127.0.0.1:7898)
-[18:07:50] [Server thread/INFO]: Done (8,125s)! For help, type "help" or "?"
-[18:07:53] [Thread-7/INFO]: UPDATED SERVER CONFIG
-[18:07:55] [Thread-8/INFO]: UPDATED SERVER CONFIG
-[18:07:57] [Thread-9/INFO]: UPDATED SERVER CONFIG
-[18:08:00] [Thread-10/INFO]: UPDATED SERVER CONFIG
-[18:08:02] [Thread-11/INFO]: UUID of player CryCodes is ebe04110-30ab-344f-abd4-6fbc93373063
-[18:08:02] [Server thread/INFO]: CryCodes[/127.0.0.1:50835] logged in with entity id 2266 at ([world]-42.5, 64.0, 248.5)
-[18:08:02] [Thread-12/INFO]: UPDATED SERVER CONFIG
-[18:08:05] [Thread-13/INFO]: UPDATED SERVER CONFIG
-[18:08:08] [Thread-14/INFO]: UPDATED SERVER CONFIG
-[18:08:10] [Thread-15/INFO]: UPDATED SERVER CONFIG
-[18:08:13] [Thread-16/INFO]: UPDATED SERVER CONFIG
-[18:08:15] [Thread-17/INFO]: UPDATED SERVER CONFIG
-[18:08:18] [Thread-18/INFO]: UPDATED SERVER CONFIG
-[18:08:20] [Thread-19/INFO]: UPDATED SERVER CONFIG
-[18:08:23] [Thread-20/INFO]: UPDATED SERVER CONFIG
-[18:08:25] [Thread-21/INFO]: UPDATED SERVER CONFIG
-[18:08:28] [Thread-22/INFO]: UPDATED SERVER CONFIG
-[18:08:30] [Thread-23/INFO]: UPDATED SERVER CONFIG
-[18:08:33] [Thread-24/INFO]: UPDATED SERVER CONFIG
-[18:08:35] [Thread-25/INFO]: UPDATED SERVER CONFIG
-[18:08:38] [Thread-26/INFO]: UPDATED SERVER CONFIG
-[18:08:40] [Thread-27/INFO]: UPDATED SERVER CONFIG
-[18:08:43] [Thread-28/INFO]: UPDATED SERVER CONFIG
-[18:08:45] [Thread-29/INFO]: UPDATED SERVER CONFIG
-[18:08:48] [Thread-30/INFO]: UPDATED SERVER CONFIG
-[18:08:50] [Thread-31/INFO]: UPDATED SERVER CONFIG
-[18:08:53] [Thread-32/INFO]: UPDATED SERVER CONFIG
-[18:08:55] [Thread-33/INFO]: UPDATED SERVER CONFIG
-[18:08:58] [Thread-34/INFO]: UPDATED SERVER CONFIG
-[18:09:00] [Thread-35/INFO]: UPDATED SERVER CONFIG
-[18:09:03] [Thread-36/INFO]: UPDATED SERVER CONFIG
-[18:09:05] [Thread-37/INFO]: UPDATED SERVER CONFIG
-[18:09:08] [Thread-38/INFO]: UPDATED SERVER CONFIG
-[18:09:10] [Thread-39/INFO]: UPDATED SERVER CONFIG
-[18:09:13] [Thread-40/INFO]: UPDATED SERVER CONFIG
-[18:09:15] [Thread-41/INFO]: UPDATED SERVER CONFIG
-[18:09:18] [Thread-42/INFO]: UPDATED SERVER CONFIG
-[18:09:20] [Thread-43/INFO]: UPDATED SERVER CONFIG
-[18:09:23] [Thread-44/INFO]: UPDATED SERVER CONFIG
-[18:09:25] [Thread-45/INFO]: UPDATED SERVER CONFIG
-[18:09:28] [Thread-46/INFO]: UPDATED SERVER CONFIG
-[18:09:30] [Thread-47/INFO]: UPDATED SERVER CONFIG
-[18:09:33] [Thread-48/INFO]: UPDATED SERVER CONFIG
-[18:09:35] [Thread-49/INFO]: UPDATED SERVER CONFIG
-[18:09:38] [Thread-50/INFO]: UPDATED SERVER CONFIG
-[18:09:40] [Thread-51/INFO]: UPDATED SERVER CONFIG
-[18:09:43] [Thread-52/INFO]: UPDATED SERVER CONFIG
-[18:09:45] [Thread-53/INFO]: UPDATED SERVER CONFIG
-[18:09:48] [Thread-54/INFO]: UPDATED SERVER CONFIG
-[18:09:49] [Thread-55/INFO]: ServerMeta{serverName='Lobby-1', id=1, serverGroupMeta=ServerGroupMeta{groupName='Lobby', maxMemory=512, minMemory=128, dynamicService=true, maintenance=true, maxServer=0, minServer=0}, wrapperID='Wrapper-1', host='127.0.0.1', port=30000}
-[18:09:49] [Thread-55/INFO]: ServerMeta{serverName='Lobby-1', id=1, serverGroupMeta=ServerGroupMeta{groupName='Lobby', maxMemory=512, minMemory=128, dynamicService=true, maintenance=true, maxServer=0, minServer=0}, wrapperID='Wrapper-1', host='127.0.0.1', port=30000}
-[18:09:50] [Thread-56/INFO]: UPDATED SERVER CONFIG
-[18:09:53] [Thread-57/INFO]: UPDATED SERVER CONFIG
-[18:09:55] [Thread-58/INFO]: UPDATED SERVER CONFIG
-[18:09:58] [Thread-59/INFO]: UPDATED SERVER CONFIG
-[18:10:00] [Thread-60/INFO]: UPDATED SERVER CONFIG
-[18:10:03] [Thread-61/INFO]: UPDATED SERVER CONFIG
-[18:10:05] [Thread-62/INFO]: UPDATED SERVER CONFIG
-[18:10:08] [Thread-63/INFO]: UPDATED SERVER CONFIG
-[18:10:10] [Thread-64/INFO]: UPDATED SERVER CONFIG
-[18:10:13] [Thread-65/INFO]: UPDATED SERVER CONFIG
-[18:10:15] [Thread-66/INFO]: UPDATED SERVER CONFIG
-[18:10:18] [Thread-67/INFO]: UPDATED SERVER CONFIG
-[18:10:20] [Thread-68/INFO]: UPDATED SERVER CONFIG
-[18:10:23] [Thread-69/INFO]: UPDATED SERVER CONFIG
-[18:10:25] [Thread-70/INFO]: UPDATED SERVER CONFIG
-[18:10:28] [Thread-71/INFO]: UPDATED SERVER CONFIG
-[18:10:30] [Thread-72/INFO]: UPDATED SERVER CONFIG
-[18:10:33] [Thread-73/INFO]: UPDATED SERVER CONFIG
-[18:10:35] [Thread-74/INFO]: UPDATED SERVER CONFIG
-[18:10:38] [Thread-75/INFO]: UPDATED SERVER CONFIG
-[18:10:40] [Thread-76/INFO]: UPDATED SERVER CONFIG
-[18:10:43] [Thread-77/INFO]: UPDATED SERVER CONFIG
-[18:10:45] [Thread-78/INFO]: UPDATED SERVER CONFIG
-[18:10:48] [Thread-79/INFO]: UPDATED SERVER CONFIG
-[18:10:50] [Thread-80/INFO]: UPDATED SERVER CONFIG
-[18:10:53] [Thread-81/INFO]: UPDATED SERVER CONFIG
-[18:10:55] [Thread-82/INFO]: UPDATED SERVER CONFIG
-[18:10:58] [Thread-83/INFO]: UPDATED SERVER CONFIG
-[18:11:00] [Thread-84/INFO]: UPDATED SERVER CONFIG
-[18:11:03] [Thread-85/INFO]: UPDATED SERVER CONFIG
-[18:11:05] [Thread-86/INFO]: UPDATED SERVER CONFIG
-[18:11:08] [Thread-87/INFO]: UPDATED SERVER CONFIG
-[18:11:10] [Thread-88/INFO]: UPDATED SERVER CONFIG
-[18:11:13] [Thread-89/INFO]: UPDATED SERVER CONFIG
-[18:11:15] [Thread-90/INFO]: UPDATED SERVER CONFIG
-[18:11:18] [Thread-91/INFO]: UPDATED SERVER CONFIG
-[18:11:20] [Thread-92/INFO]: UPDATED SERVER CONFIG
-[18:11:23] [Thread-93/INFO]: UPDATED SERVER CONFIG
-[18:11:25] [Thread-94/INFO]: UPDATED SERVER CONFIG
-[18:11:28] [Thread-95/INFO]: UPDATED SERVER CONFIG
-[18:11:30] [Thread-96/INFO]: UPDATED SERVER CONFIG
-[18:11:33] [Thread-97/INFO]: UPDATED SERVER CONFIG
-[18:11:35] [Thread-98/INFO]: UPDATED SERVER CONFIG
-[18:11:38] [Thread-99/INFO]: UPDATED SERVER CONFIG
-[18:11:40] [Thread-100/INFO]: UPDATED SERVER CONFIG
-[18:11:43] [Thread-101/INFO]: UPDATED SERVER CONFIG
-[18:11:45] [Thread-102/INFO]: UPDATED SERVER CONFIG
-[18:11:48] [Thread-103/INFO]: UPDATED SERVER CONFIG
-[18:11:50] [Thread-104/INFO]: UPDATED SERVER CONFIG
-[18:11:53] [Thread-105/INFO]: UPDATED SERVER CONFIG
-[18:11:55] [Thread-106/INFO]: UPDATED SERVER CONFIG
-[18:11:58] [Thread-107/INFO]: UPDATED SERVER CONFIG
-[18:12:00] [Thread-108/INFO]: UPDATED SERVER CONFIG
-[18:12:03] [Thread-109/INFO]: UPDATED SERVER CONFIG
-[18:12:05] [Thread-110/INFO]: UPDATED SERVER CONFIG
-[18:12:08] [Thread-111/INFO]: UPDATED SERVER CONFIG
-[18:12:10] [Thread-112/INFO]: UPDATED SERVER CONFIG
-[18:12:13] [Thread-113/INFO]: UPDATED SERVER CONFIG
-[18:12:15] [Thread-114/INFO]: UPDATED SERVER CONFIG
-[18:12:18] [Thread-115/INFO]: UPDATED SERVER CONFIG
-[18:12:20] [Thread-116/INFO]: UPDATED SERVER CONFIG
-[18:12:23] [Thread-117/INFO]: UPDATED SERVER CONFIG
-[18:12:25] [Thread-118/INFO]: UPDATED SERVER CONFIG
-[18:12:28] [Thread-119/INFO]: UPDATED SERVER CONFIG
-[18:12:30] [Thread-120/INFO]: UPDATED SERVER CONFIG
-[18:12:33] [Thread-121/INFO]: UPDATED SERVER CONFIG
-[18:12:35] [Thread-122/INFO]: UPDATED SERVER CONFIG
-[18:12:38] [Thread-123/INFO]: UPDATED SERVER CONFIG
-[18:12:40] [Thread-124/INFO]: UPDATED SERVER CONFIG
-[18:12:43] [Thread-125/INFO]: UPDATED SERVER CONFIG
-[18:12:45] [Thread-126/INFO]: UPDATED SERVER CONFIG
-[18:12:48] [Thread-127/INFO]: UPDATED SERVER CONFIG
-[18:12:50] [Thread-128/INFO]: UPDATED SERVER CONFIG
-[18:12:53] [Thread-129/INFO]: UPDATED SERVER CONFIG
-[18:12:55] [Thread-130/INFO]: UPDATED SERVER CONFIG
-[18:12:58] [Thread-131/INFO]: UPDATED SERVER CONFIG
-[18:13:00] [Thread-132/INFO]: UPDATED SERVER CONFIG
-[18:13:03] [Thread-133/INFO]: UPDATED SERVER CONFIG
-[18:13:05] [Thread-134/INFO]: UPDATED SERVER CONFIG
-[18:13:08] [Thread-135/INFO]: UPDATED SERVER CONFIG
-[18:13:10] [Thread-136/INFO]: UPDATED SERVER CONFIG
-[18:13:13] [Thread-137/INFO]: UPDATED SERVER CONFIG
-[18:13:15] [Thread-138/INFO]: UPDATED SERVER CONFIG
-[18:13:18] [Thread-139/INFO]: UPDATED SERVER CONFIG
-[18:13:20] [Thread-140/INFO]: UPDATED SERVER CONFIG
-[18:13:22] [Server thread/INFO]: CryCodes lost connection: Disconnected
-[18:13:22] [Server thread/INFO]: CryCodes left the game.
-[18:13:23] [Thread-141/INFO]: UPDATED SERVER CONFIG
-[18:13:25] [Thread-142/INFO]: UPDATED SERVER CONFIG
+[00:32:22] [Server thread/INFO]: Starting minecraft server version 1.8.8
+[00:32:22] [Server thread/INFO]: Loading properties
+[00:32:22] [Server thread/INFO]: Default game type: SURVIVAL
+[00:32:22] [Server thread/INFO]: This server is running CraftBukkit version git-Spigot-db6de12-18fbb24 (MC: 1.8.8) (Implementing API version 1.8.8-R0.1-SNAPSHOT)
+[00:32:22] [Server thread/INFO]: Unable to find file banned-players.json, creating it.
+[00:32:22] [Server thread/INFO]: Unable to find file banned-ips.json, creating it.
+[00:32:22] [Server thread/INFO]: Unable to find file ops.json, creating it.
+[00:32:22] [Server thread/INFO]: Unable to find file whitelist.json, creating it.
+[00:32:22] [Server thread/INFO]: Debug logging is disabled
+[00:32:22] [Server thread/INFO]: Server Ping Player Sample Count: 12
+[00:32:22] [Server thread/INFO]: Using 4 threads for Netty based IO
+[00:32:22] [Server thread/INFO]: Generating keypair
+[00:32:23] [Server thread/INFO]: Starting Minecraft server on 127.0.0.1:30000
+[00:32:23] [Server thread/INFO]: Using default channel type
+[00:32:23] [Server thread/INFO]: Set PluginClassLoader as parallel capable
+[00:32:23] [Server thread/INFO]: [Spigot-Cloud-API] Loading Spigot-Cloud-API v1.0
+[00:32:23] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[00:32:23] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+[00:32:23] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[00:32:23] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[00:32:23] [Server thread/INFO]: **** Beginning UUID conversion, this may take A LONG time ****
+[00:32:23] [Server thread/INFO]: Preparing level "world"
+[00:32:23] [Server thread/INFO]: -------- World Settings For [world] --------
+[00:32:23] [Server thread/INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
+[00:32:23] [Server thread/INFO]: Zombie Aggressive Towards Villager: true
+[00:32:23] [Server thread/INFO]: Arrow Despawn Rate: 1200
+[00:32:23] [Server thread/INFO]: Item Despawn Rate: 6000
+[00:32:23] [Server thread/INFO]: Item Merge Radius: 2.5
+[00:32:23] [Server thread/INFO]: Mob Spawn Range: 4
+[00:32:23] [Server thread/INFO]: Cactus Growth Modifier: 100%
+[00:32:23] [Server thread/INFO]: Cane Growth Modifier: 100%
+[00:32:23] [Server thread/INFO]: Melon Growth Modifier: 100%
+[00:32:23] [Server thread/INFO]: Mushroom Growth Modifier: 100%
+[00:32:23] [Server thread/INFO]: Pumpkin Growth Modifier: 100%
+[00:32:23] [Server thread/INFO]: Sapling Growth Modifier: 100%
+[00:32:23] [Server thread/INFO]: Wheat Growth Modifier: 100%
+[00:32:23] [Server thread/INFO]: NetherWart Growth Modifier: 100%
+[00:32:23] [Server thread/INFO]: Entity Activation Range: An 32 / Mo 32 / Mi 16
+[00:32:23] [Server thread/INFO]: Anti X-Ray: true
+[00:32:23] [Server thread/INFO]: 	Engine Mode: 1
+[00:32:23] [Server thread/INFO]: 	Hidden Blocks: [14, 15, 16, 21, 48, 49, 54, 56, 73, 74, 82, 129, 130]
+[00:32:23] [Server thread/INFO]: 	Replace Blocks: [1, 5]
+[00:32:23] [Server thread/INFO]: Nerfing mobs spawned from spawners: false
+[00:32:23] [Server thread/INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
+[00:32:23] [Server thread/INFO]: Sending up to 10 chunks per packet
+[00:32:23] [Server thread/INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
+[00:32:23] [Server thread/INFO]: Hopper Transfer: 8 Hopper Check: 8 Hopper Amount: 1
+[00:32:23] [Server thread/INFO]: Structure Info Saving: true
+[00:32:23] [Server thread/INFO]: Random Lighting Updates: false
+[00:32:23] [Server thread/INFO]: Max TNT Explosions: 100
+[00:32:23] [Server thread/INFO]: View Distance: 10
+[00:32:23] [Server thread/INFO]: Chunks to Grow per Tick: 650
+[00:32:23] [Server thread/INFO]: Clear tick list: false
+[00:32:23] [Server thread/INFO]: Experience Merge Radius: 3.0
+[00:32:23] [Server thread/INFO]: Max Entity Collisions: 8
+[00:32:23] [Server thread/INFO]: Custom Map Seeds:  Village: 10387312 Feature: 14357617
+[00:32:23] [Server thread/WARN]: Unable to find spawn biome
+[00:32:23] [Server thread/INFO]: -------- World Settings For [world_the_end] --------
+[00:32:23] [Server thread/INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
+[00:32:23] [Server thread/INFO]: Zombie Aggressive Towards Villager: true
+[00:32:23] [Server thread/INFO]: Arrow Despawn Rate: 1200
+[00:32:23] [Server thread/INFO]: Item Despawn Rate: 6000
+[00:32:23] [Server thread/INFO]: Item Merge Radius: 2.5
+[00:32:23] [Server thread/INFO]: Mob Spawn Range: 4
+[00:32:23] [Server thread/INFO]: Cactus Growth Modifier: 100%
+[00:32:23] [Server thread/INFO]: Cane Growth Modifier: 100%
+[00:32:23] [Server thread/INFO]: Melon Growth Modifier: 100%
+[00:32:23] [Server thread/INFO]: Mushroom Growth Modifier: 100%
+[00:32:23] [Server thread/INFO]: Pumpkin Growth Modifier: 100%
+[00:32:23] [Server thread/INFO]: Sapling Growth Modifier: 100%
+[00:32:23] [Server thread/INFO]: Wheat Growth Modifier: 100%
+[00:32:23] [Server thread/INFO]: NetherWart Growth Modifier: 100%
+[00:32:23] [Server thread/INFO]: Entity Activation Range: An 32 / Mo 32 / Mi 16
+[00:32:23] [Server thread/INFO]: Anti X-Ray: true
+[00:32:23] [Server thread/INFO]: 	Engine Mode: 1
+[00:32:23] [Server thread/INFO]: 	Hidden Blocks: [14, 15, 16, 21, 48, 49, 54, 56, 73, 74, 82, 129, 130]
+[00:32:23] [Server thread/INFO]: 	Replace Blocks: [1, 5]
+[00:32:23] [Server thread/INFO]: Nerfing mobs spawned from spawners: false
+[00:32:23] [Server thread/INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
+[00:32:23] [Server thread/INFO]: Sending up to 10 chunks per packet
+[00:32:23] [Server thread/INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
+[00:32:23] [Server thread/INFO]: Hopper Transfer: 8 Hopper Check: 8 Hopper Amount: 1
+[00:32:23] [Server thread/INFO]: Structure Info Saving: true
+[00:32:23] [Server thread/INFO]: Random Lighting Updates: false
+[00:32:23] [Server thread/INFO]: Max TNT Explosions: 100
+[00:32:23] [Server thread/INFO]: View Distance: 10
+[00:32:23] [Server thread/INFO]: Chunks to Grow per Tick: 650
+[00:32:23] [Server thread/INFO]: Clear tick list: false
+[00:32:23] [Server thread/INFO]: Experience Merge Radius: 3.0
+[00:32:23] [Server thread/INFO]: Max Entity Collisions: 8
+[00:32:23] [Server thread/INFO]: Custom Map Seeds:  Village: 10387312 Feature: 14357617
+[00:32:23] [Server thread/INFO]: Preparing start region for level 0 (Seed: 5174962203408844052)
+[00:32:24] [Server thread/INFO]: Preparing spawn area: 13%
+[00:32:25] [Server thread/INFO]: Preparing spawn area: 30%
+[00:32:26] [Server thread/INFO]: Preparing spawn area: 46%
+[00:32:27] [Server thread/INFO]: Preparing spawn area: 65%
+[00:32:28] [Server thread/INFO]: Preparing spawn area: 84%
+[00:32:29] [Server thread/INFO]: Preparing start region for level 1 (Seed: 5174962203408844052)
+[00:32:30] [Server thread/INFO]: Preparing spawn area: 69%
+[00:32:30] [Server thread/INFO]: [Spigot-Cloud-API] Enabling Spigot-Cloud-API v1.0
+[00:32:30] [Server thread/INFO]: LOADED
+[00:32:30] [Server thread/INFO]: Started ProxyMaster Client on: (127.0.0.1:7898)
+[00:32:30] [Server thread/INFO]: Done (7,619s)! For help, type "help" or "?"
+[00:32:45] [Thread-6/INFO]: [ERROR - TNFW]> [Client] Connection lost
+[00:32:45] [Thread-3/INFO]: Stopping server

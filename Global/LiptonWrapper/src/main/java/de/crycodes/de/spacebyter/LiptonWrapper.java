@@ -83,6 +83,7 @@ public class LiptonWrapper {
         parallelLoader.enableAddons();
 
         liptonLibrary = new LiptonLibrary(scheduler, eventManager, colouredConsoleProvider, parallelLoader, wrapperConfig.isColorUse());
+        liptonLibrary.checkAPIFile(new File("./liptonWrapper/api/LiptopnBridge-1.0-SNAPSHOT.jar"));
 
         liptonLibrary.registerPacket(packetHandler);
 
