@@ -7,6 +7,9 @@ package de.crycodes.de.spacebyter.liptoncloud.event.utils;
 
 
 public abstract class Cancelable {
+
+    private boolean canceled;
+
     public abstract void setCancelled(boolean cancelled);
     public abstract boolean isCancelled();
 }

@@ -13,58 +13,60 @@ import de.crycodes.de.spacebyter.liptoncloud.utils.annotiations.ShouldNotBeNull;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
+import net.md_5.bungee.api.plugin.TabExecutor;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CloudCommand extends Command {
+public class CloudCommand extends Command implements TabExecutor {
 
     private final LiptonBungeeBridge plugin;
 
 
     public CloudCommand(LiptonBungeeBridge plugin) {
-        super("cloud", "liptoncloud.cloudCommand", "c");
+        super("cloud");
         this.plugin = plugin;
         plugin.getProxy().getPluginManager().registerCommand(plugin, this);
     }
 
     public void execute(CommandSender sender, String[] args) {
-        if(!(sender.hasPermission("liptoncloud.cloudCommand"))) return;
+
         if(!(sender instanceof ProxiedPlayer)) return;
         ProxiedPlayer player = (ProxiedPlayer) sender;
+
+        if (!plugin.getProxyConfig().getCloudAdminPlayers().contains(player.getName())){
+            player.sendMessage(LiptonBungeeBridge.getInstance().getPREFIX() + "No Permissions to Execute this Command!");
+            return;
+        }
+
         switch (args.length) {
             case 0:
                 this.sendUsage(player);
                 break;
             case 1:
                 if(args[0].equalsIgnoreCase("version")) {
-                    player.sendMessage(plugin.getPREFIX() + "§7LiptonCloud RELEASE #1.0 by CryCodes & SpaceByter");
+                    player.sendMessage(plugin.getPREFIX() + "§7LiptonCloud RELEASE #1.0 by CryCodes & SpaceByter & ErazeYT");
                     break;
                 }
 
-                if(args[0].equalsIgnoreCase("rl") || args[0].equalsIgnoreCase("reload")) {
-                    plugin.getCloudAPI().reloadCloud();
-                    player.sendMessage(plugin.getPREFIX() + "§aThe Cloud was successfully reloaded!");
-                    break;
-                }
                 if(args[0].equalsIgnoreCase("listGroups")) {
                     player.sendMessage(plugin.getPREFIX() + "§7Groups:");
                     plugin.getCloudAPI().getAvailableServerGroups().forEach(groups -> {
-                        player.sendMessage("§7- §b" + groups.getGroupName() + " §7| §b" + groups.getMaxMemory() + "MB");
+                        player.sendMessage(plugin.getPREFIX() + "§7Group: [§b" + groups.getGroupName() + " §7| §b" + groups.getMaxMemory() + "MB "  + "§7]");
                     });
                     break;
                 }
                 if(args[0].equalsIgnoreCase("listProxys")) {
                     player.sendMessage(plugin.getPREFIX() + "§7Proxys:");
                     plugin.getCloudAPI().getProxyConfig().getGlobalProxys().forEach(proxys -> {
-                        player.sendMessage("§7- §b" + proxys.getName() + " §7| §b" + proxys.getId());
+                        player.sendMessage(plugin.getPREFIX() + "§7Proxy: [§b" + proxys.getName() + " §7| §b" + proxys.getId()  + "§7]");
                     });
                     break;
                 }
                 if(args[0].equalsIgnoreCase("listServers")) {
                     player.sendMessage(plugin.getPREFIX() + "§7Servers:");
                     plugin.getCloudAPI().getAvailableServers().forEach(servers -> {
-                        player.sendMessage("§7- §b" + servers.getServerName() + "§7(§bPLAYERS§7) | W-ID §b" + servers.getWrapperID());
+                        player.sendMessage(plugin.getPREFIX() + "§7Server: [§b" + servers.getServerName() + " | W-ID §b" + servers.getWrapperID() + "§7]");
                     });
                     break;
                 }
@@ -72,130 +74,34 @@ public class CloudCommand extends Command {
                 if(args[0].equalsIgnoreCase("listWrappers")) {
                     player.sendMessage(plugin.getPREFIX() + "§7Wrappers:");
                     plugin.getCloudAPI().getProxyConfig().getGlobalWrappers().forEach(wrappers -> {
-                        player.sendMessage("§7- §b" + wrappers.getWrapperConfig().getWrapperId());
+                        player.sendMessage(plugin.getPREFIX() + "Wrapper: §7[§b" + wrappers.getWrapperConfig().getWrapperId() + "§7/§b" + wrappers.getWrapperConfig().getHost() + "§7]");
                     });
                     break;
                 }
 
                 if(args[0].equalsIgnoreCase("list")) {
+                    player.sendMessage(LiptonBungeeBridge.getInstance().getPREFIX() + "Online: ");
                     plugin.getCloudAPI().getProxyConfig().getGlobalWrappers().forEach(wrappers -> {
-                        player.sendMessage("§7[§b" + wrappers.getWrapperConfig().getWrapperId() + "§7/§b" + wrappers.getWrapperConfig().getHost() + "§7]");
+                        player.sendMessage(plugin.getPREFIX() + "Wrapper: §7[§b" + wrappers.getWrapperConfig().getWrapperId() + "§7/§b" + wrappers.getWrapperConfig().getHost() + "§7]");
                     });
                     plugin.getCloudAPI().getProxyConfig().getGlobalProxys().forEach(proxys -> {
-                        player.sendMessage("§7[§b" + proxys.getName() + "§7] (PLAYERS)");
+                        player.sendMessage(plugin.getPREFIX() + "Proxy: §7[§b" + proxys.getName() + "§7]");
                     });
                     plugin.getCloudAPI().getAvailableServerGroups().forEach(groups -> {
-                        player.sendMessage("§7Group: §b" + groups.getGroupName());
+                        player.sendMessage(plugin.getPREFIX() + "§7Group: §b" + groups.getGroupName());
                         plugin.getCloudAPI().getAvailableServers().forEach(servers -> {
                             if(servers.getServerGroupMeta().getGroupName().equalsIgnoreCase(groups.getGroupName())) {
-                                player.sendMessage(plugin.getPREFIX() + "§7[§b" + servers.getServerName() + "§7] (PLAYERS) | STATE");
+                                player.sendMessage(plugin.getPREFIX() + "§7Server: [§b" + servers.getServerName() + " | W-ID §b" + servers.getWrapperID() + " | PORT §b" + servers.getPort()  + "§7]");
                             }
                         });
                     });
                     break;
                 }
 
-                if(args[0].equalsIgnoreCase("globalMaintenance")) {
-                    if(args[1].equalsIgnoreCase("toggle")) {
-
-                        if(plugin.getCloudAPI().getProxyConfig().getMaintenance()) {
-                            final UpdateMaintenancePacket updateMaintenancePacket = new UpdateMaintenancePacket(new ArrayList<String>(), new ArrayList<String>(), false);
-                            plugin.getCloudAPI().sendPacket(updateMaintenancePacket);
-                            player.sendMessage(plugin.getPREFIX() + "§7The Network is now in §aMaintenance §7Mode.");
-                            break;
-                        }
-                        final UpdateMaintenancePacket updateMaintenancePacket = new UpdateMaintenancePacket(new ArrayList<String>(), new ArrayList<String>(), true);
-                        plugin.getCloudAPI().sendPacket(updateMaintenancePacket);
-                        player.sendMessage(plugin.getPREFIX() + "§7The Network no longer in §cMaintenance §7Mode.");
-                        break;
-                    }
-                }
-
                 this.sendUsage(player);
                 break;
-            case 2:
-                if(args[0].equalsIgnoreCase("stopServer")) {
-                    String name = args[1];
-                    if(plugin.getCloudAPI().isServerRunning(name)) {
-                        final StopServerPacket stopServerPacket = new StopServerPacket(name, "-", false); //TODO: SAY IF IS DYNAMIC + GET WRAPPER ID
-                        plugin.getCloudAPI().sendPacket(stopServerPacket);
-                        player.sendMessage(plugin.getPREFIX() + "§aThe Server " + name + " was successfully stopped.");
-                        break;
-                    }
-                    player.sendMessage(plugin.getPREFIX() + "§cThe Server " + name + " wasn't found.");
-                    break;
-                }
-
-                if(args[0].equalsIgnoreCase("stopGroup")) {
-                    String name = args[1];
-                    for(ServerGroupMeta groupMeta : plugin.getCloudAPI().getAvailableServerGroups()) {
-                        if(groupMeta.getGroupName().equalsIgnoreCase(name)) {
-                            final StopServerGroupPacket stopServerGroupPacket = new StopServerGroupPacket(groupMeta, ExitUtil.STOPPED_SUCESS);
-                            plugin.getCloudAPI().sendPacket(stopServerGroupPacket);
-                            player.sendMessage(plugin.getPREFIX() + "§aThe Group " + name + " was successfully stopped.");
-                            break;
-                        }
-                    }
-                    player.sendMessage(plugin.getPREFIX() + "§cThe Group " + name + " wasn't found.");
-                }
-
-                if(args[0].equalsIgnoreCase("maintenance")) {
-                    String name = args[1];
-                    for(ServerGroupMeta current : plugin.getCloudAPI().getAvailableServerGroups()) {
-                        if(current.getGroupName().equalsIgnoreCase(name)) {
-                            if(current.isMaintenance()) {
-                                current.setMaintenance(false);
-                                makeServeGroupChanges(current);
-                                player.sendMessage(plugin.getPREFIX() + "§7The Group is now in §aMaintenance §7Mode.");
-                                break;
-                            }
-                            current.setMaintenance(true);
-                            makeServeGroupChanges(current);
-                            player.sendMessage(plugin.getPREFIX() + "§7The Group no longer in §cMaintenance §7Mode.");
-                            break;
-                        }
-                    }
-                }
-
-                if(args[0].equalsIgnoreCase("globalMaintenance")) {
-
-                    String name = args[2];
-
-                    if(args[1].equalsIgnoreCase("add")) {
-
-                        if(!(plugin.getCloudAPI().getProxyConfig().getMaintenancePlayer().contains(name))) {
-
-                            List<String> addPlayers = new ArrayList<>();
-                            addPlayers.add(name);
-
-                            final UpdateMaintenancePacket updateMaintenancePacket = new UpdateMaintenancePacket(addPlayers, new ArrayList<String>(), plugin.getCloudAPI().getProxyConfig().getMaintenance());
-                            plugin.getCloudAPI().sendPacket(updateMaintenancePacket);
-                            player.sendMessage(plugin.getPREFIX() + "§7The Player §b" + name + " §7is now on the whitelist.");
-                            break;
-                        }
-                        player.sendMessage(plugin.getPREFIX() + "§7The Player §b" + name + " §7is already on the whitelist.");
-                        break;
-                    }
-
-                    if(args[1].equalsIgnoreCase("remove")) {
-
-                        if(plugin.getCloudAPI().getProxyConfig().getMaintenancePlayer().contains(name)) {
-
-                            List<String> removePlayer = new ArrayList<>();
-                            removePlayer.add(name);
-
-                            final UpdateMaintenancePacket updateMaintenancePacket = new UpdateMaintenancePacket(new ArrayList<String>(), removePlayer, plugin.getCloudAPI().getProxyConfig().getMaintenance());
-                            plugin.getCloudAPI().sendPacket(updateMaintenancePacket);
-                            player.sendMessage(plugin.getPREFIX() + "§7The Player §b" + name + " §7is no longer on the whitelist.");
-                            break;
-                        }
-                        player.sendMessage(plugin.getPREFIX() + "§7The Player §b" + name + " §7isn't on the whitelist.");
-                        break;
-                    }
-                }
-
+            default:
                 this.sendUsage(player);
-                break;
         }
 
     }
@@ -203,19 +109,12 @@ public class CloudCommand extends Command {
     private void sendUsage(@ShouldNotBeNull ProxiedPlayer player) {
         player.sendMessage(plugin.getPREFIX() + "§bCloud Commands§7:");
         player.sendMessage(" ");
-        player.sendMessage(plugin.getPREFIX() + "§7/cloud maintenance <Group>"); //Yes
-        player.sendMessage(plugin.getPREFIX() + "§7/cloud globalMaintenance <add | remove> <Player>"); //Yes
-        player.sendMessage(plugin.getPREFIX() + "§7/cloud globalMaintenance <toggle>"); //Yes
-        player.sendMessage(plugin.getPREFIX() + "§7/cloud rl"); //Yes
-        player.sendMessage(plugin.getPREFIX() + "§7/cloud listOnline");
-        player.sendMessage(plugin.getPREFIX() + "§7/cloud listProxys"); //Yes
-        player.sendMessage(plugin.getPREFIX() + "§7/cloud listServers"); //Yes
-        player.sendMessage(plugin.getPREFIX() + "§7/cloud listWrappers"); //Yes
-        player.sendMessage(plugin.getPREFIX() + "§7/cloud listGroups"); //Yes
-        player.sendMessage(plugin.getPREFIX() + "§7/cloud stopGroup <Group>"); //Yes
-        player.sendMessage(plugin.getPREFIX() + "§7/cloud stopServer <Server>"); //Yes
-        player.sendMessage(plugin.getPREFIX() + "§7/cloud list"); //Yes
-        player.sendMessage(plugin.getPREFIX() + "§7/cloud version"); //Yes
+        player.sendMessage(plugin.getPREFIX() + "§7/cloud listProxys");
+        player.sendMessage(plugin.getPREFIX() + "§7/cloud listServers");
+        player.sendMessage(plugin.getPREFIX() + "§7/cloud listWrappers");
+        player.sendMessage(plugin.getPREFIX() + "§7/cloud listGroups");
+        player.sendMessage(plugin.getPREFIX() + "§7/cloud list");
+        player.sendMessage(plugin.getPREFIX() + "§7/cloud version");
     }
 
     //<editor-fold desc="makeServerChanges">
@@ -229,6 +128,34 @@ public class CloudCommand extends Command {
     public void makeServeGroupChanges(ServerGroupMeta serverGroupMeta){
         final ServerGroupUpdatePacket packet = new ServerGroupUpdatePacket(serverGroupMeta);
         plugin.getCloudAPI().sendPacket(packet);
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="getServerByName">
+    private ServerMeta getServerByName(String name){
+        for (ServerMeta serverMeta : plugin.getProxyConfig().getGlobalServers())
+            if (serverMeta.getServerName().equalsIgnoreCase(name))
+                return serverMeta;
+        return null;
+    }
+
+    @Override
+    public Iterable<String> onTabComplete(CommandSender commandSender, String[] strings) {
+        if (!LiptonBungeeBridge.getInstance().getProxyConfig().getCloudAdminPlayers().contains(commandSender.getName())){
+            commandSender.sendMessage(LiptonBungeeBridge.getInstance().getPREFIX() + "No Permissions to Execute this Command!");
+            return new ArrayList<>();
+        } else {
+            List<String> tabs = new ArrayList<>();
+
+            tabs.add("listProxys");
+            tabs.add("listServers");
+            tabs.add("listWrappers");
+            tabs.add("listGroups");
+            tabs.add("list");
+            tabs.add("version");
+
+            return tabs;
+        }
     }
     //</editor-fold>
 }

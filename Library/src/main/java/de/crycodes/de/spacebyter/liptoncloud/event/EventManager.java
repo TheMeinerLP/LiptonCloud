@@ -7,6 +7,11 @@ package de.crycodes.de.spacebyter.liptoncloud.event;
 
 
 import de.crycodes.de.spacebyter.liptoncloud.event.enums.EventTargetType;
+import de.crycodes.de.spacebyter.liptoncloud.event.events.CloudStartedEvent;
+import de.crycodes.de.spacebyter.liptoncloud.event.events.server.StartProxyEvent;
+import de.crycodes.de.spacebyter.liptoncloud.event.events.server.StartServerEvent;
+import de.crycodes.de.spacebyter.liptoncloud.event.events.server.StopProxyEvent;
+import de.crycodes.de.spacebyter.liptoncloud.event.events.server.StopServerEvent;
 import de.crycodes.de.spacebyter.liptoncloud.event.utils.Event;
 
 import java.util.ArrayList;
@@ -29,19 +34,26 @@ public final class EventManager {
         listeners.clear();
     }
 
-    public void callEvent(final EventTargetType eventTargetType, final Event event) {
+    public void callEvent(final Event event) {
         listeners.stream()
-                .filter(e -> e.getEventTargetType().equals(eventTargetType))
-                .forEach(e -> handleEvent(event, eventTargetType.name(), e));
+                .forEach(e -> handleEvent(event, e));
     }
 
     public void registerEvent(Event event){
         this.events.add(event);
     }
 
-    private void handleEvent(final Event event, final String name, final Listener listener) {
-        if (true /*TODO: ASK EVENT*/);
-
+    private void handleEvent(final Event event , final Listener listener) {
+        if (event instanceof CloudStartedEvent)
+            listener.handel((CloudStartedEvent) event);
+        else if (event instanceof StartServerEvent)
+            listener.handel((StartServerEvent) event);
+        else if (event instanceof StopServerEvent)
+            listener.handel((StopServerEvent) event);
+        else if (event instanceof StopProxyEvent)
+            listener.handel((StopProxyEvent) event);
+        else if (event instanceof StartProxyEvent)
+            listener.handel((StartProxyEvent)event);
         else
             throw new IllegalStateException("Cannot resole Event Type, or its undefined");
     }

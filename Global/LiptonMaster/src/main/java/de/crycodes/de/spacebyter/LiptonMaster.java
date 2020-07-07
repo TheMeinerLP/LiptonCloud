@@ -46,6 +46,9 @@ public class LiptonMaster {
     private WrapperGroupConfig wrapperConfig;
     private MasterConfig masterConfig;
     private ProxyFileConfig proxyFileConfig;
+    private ConfigHandler proxyConfigHandler;
+    private CloudAdminConfig adminConfig;
+    private CloudMaintenanceConfig maintenanceConfig;
 
     private CommandManager commandManager;
     private FileManager fileManager;
@@ -60,7 +63,7 @@ public class LiptonMaster {
     private MasterWrapperServer masterWrapperServer;
     private MasterProxyServer masterProxyServer;
     private MasterSpigotServer masterSpigotServer;
-    private ConfigHandler proxyConfigHandler;
+
 
     private BungeeCordManager bungeeCordManager;
 
@@ -75,6 +78,9 @@ public class LiptonMaster {
         masterConfig = new MasterConfig();
 
         proxyFileConfig = new ProxyFileConfig();
+
+        adminConfig = new CloudAdminConfig();
+        maintenanceConfig = new CloudMaintenanceConfig();
 
         serverGroupConfig = new ServerGroupConfig();
         proxyGroupConfig = new ProxyGroupConfig();
@@ -138,6 +144,9 @@ public class LiptonMaster {
         commandManager.registerCommand(new StopCommand("stop", "Stop the Cloud", new String[]{"exit"}));
         commandManager.registerCommand(new ServiceCommand("service", "Service Command of the Cloud", new String[]{"cloud"}, this));
         commandManager.registerCommand(new ExecuteCommand("execute", "Execute Command on Server", new String[]{"send"}, this));
+        commandManager.registerCommand(new PermsCommand("perms", "Simple Command to manage CloudAdmins", new String[]{"cloudadmin", "user", "admin"}, this));
+        commandManager.registerCommand(new MaintenanceCommand("maintenance", "Simple Maintenance Command for the Cloud", new String[]{}, this));
+        commandManager.registerCommand(new CopyServerCommand("copy", "Simple Command to Copy Servers to Templates",  new String[]{}, this));
 
         counter.stop();
         counter.printResult("MasterStartup" ,this.getColouredConsoleProvider());
@@ -227,5 +236,13 @@ public class LiptonMaster {
 
     public MasterSpigotServer getMasterSpigotServer() {
         return masterSpigotServer;
+    }
+
+    public CloudAdminConfig getAdminConfig() {
+        return adminConfig;
+    }
+
+    public CloudMaintenanceConfig getMaintenanceConfig() {
+        return maintenanceConfig;
     }
 }

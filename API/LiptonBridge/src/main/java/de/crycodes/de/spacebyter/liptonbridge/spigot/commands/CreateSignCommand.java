@@ -36,7 +36,7 @@ import java.util.Set;
 
 public class CreateSignCommand implements CommandExecutor {
 
-    private final String prefix = "§bCloud §7✸ ";
+    private final String prefix = "§8┃ §b§lLipton §7× ";
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

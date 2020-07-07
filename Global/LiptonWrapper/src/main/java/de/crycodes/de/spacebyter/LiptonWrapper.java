@@ -70,8 +70,17 @@ public class LiptonWrapper {
         colouredConsoleProvider = new ColouredConsoleProvider(new File("./liptonWrapper/logs"));
         colouredConsoleProvider.setUsecolor(wrapperConfig.isColorUse());
 
-        if (wrapperConfig.getWrapperID().equalsIgnoreCase( " ") || wrapperConfig.getWrapperID().equalsIgnoreCase("-"))
+        if (wrapperConfig.getWrapperID() != null){
+            if (wrapperConfig.getWrapperID().equalsIgnoreCase( " ") || wrapperConfig.getWrapperID().equalsIgnoreCase("-")) {
+                System.out.println("Wrapper Key is invalidate!");
+                System.exit(ExitUtil.TERMINATED);
+            }
+        } else {
+            System.out.println("Wrapper Key is invalidate!");
             System.exit(ExitUtil.TERMINATED);
+        }
+
+
 
         scheduler = new Scheduler();
         eventManager = new EventManager();

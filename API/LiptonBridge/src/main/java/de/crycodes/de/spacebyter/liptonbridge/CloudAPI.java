@@ -114,9 +114,9 @@ public class CloudAPI {
     //</editor-fold>
 
     //<editor-fold desc="getProxyMeta">
-    //ONLY PROXY //TODO: DO THIS
+    //ONLY PROXY
     public ProxyMeta getProxyMeta(){
-        return null;
+        return new ProxyMeta("MainProxy", 1, true);
     }
     //</editor-fold>
 

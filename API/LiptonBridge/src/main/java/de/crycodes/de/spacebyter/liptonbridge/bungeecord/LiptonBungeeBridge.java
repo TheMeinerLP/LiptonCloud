@@ -2,7 +2,10 @@ package de.crycodes.de.spacebyter.liptonbridge.bungeecord;
 
 import de.crycodes.de.spacebyter.liptonbridge.CloudAPI;
 import de.crycodes.de.spacebyter.liptonbridge.bungeecord.commands.CloudCommand;
+import de.crycodes.de.spacebyter.liptonbridge.bungeecord.commands.HubCommand;
+import de.crycodes.de.spacebyter.liptonbridge.bungeecord.commands.ServerCommand;
 import de.crycodes.de.spacebyter.liptonbridge.bungeecord.listener.PlayerConnectEvent;
+import de.crycodes.de.spacebyter.liptonbridge.bungeecord.manager.HubManager;
 import de.crycodes.de.spacebyter.liptonbridge.bungeecord.networking.BungeeMasterClient;
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
 import de.crycodes.de.spacebyter.liptoncloud.objects.ProxyConfig;
@@ -28,6 +31,7 @@ public class LiptonBungeeBridge extends Plugin {
     private CloudAPI cloudAPI;
     private BungeeMasterClient bungeeMasterClient;
     private LiptonLibrary liptonLibrary;
+    private HubManager hubManager;
 
     //INSTANCE Cache
     private final List<ProxyConfig> proxyConfig = new ArrayList<>();
@@ -35,13 +39,19 @@ public class LiptonBungeeBridge extends Plugin {
 
 
     private static LiptonBungeeBridge instance;
-    private final String PREFIX = "§bCloud §7✸ ";
+    private final String PREFIX = "§8┃ §b§lLipton §7× ";
 
 
     @Override
     public void onEnable() {
         instance = this;
         cloudAPI = new CloudAPI(false);
+
+        hubManager = new HubManager();
+
+        ProxyServer.getInstance().getPluginManager().registerCommand(this , new HubCommand());
+        ProxyServer.getInstance().getPluginManager().registerCommand(this , new ServerCommand());
+        ProxyServer.getInstance().getPluginManager().registerListener(this, hubManager);
 
         bungeeMasterClient = new BungeeMasterClient("127.0.0.1", 1784).start();
 
@@ -99,4 +109,7 @@ public class LiptonBungeeBridge extends Plugin {
         return instance;
     }
 
+    public HubManager getHubManager() {
+        return hubManager;
+    }
 }

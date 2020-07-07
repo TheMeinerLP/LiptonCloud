@@ -47,6 +47,8 @@ public class TemplateManager {
         template.mkdirs();
         pluginlocation.mkdirs();
 
+        FileUtils.copyFile(new File("./liptonWrapper/api/LiptopnBridge-1.0-SNAPSHOT.jar"), new File(pluginlocation + "/LiptopnBridge-1.0-SNAPSHOT.jar"));
+
         FileUtils.copyFile(new File(spigotLocation + "/" + version.getJarName()), spigotLocationInTemplate);
 
         FileWriter propertiesWriter = new FileWriter(template + "/server.properties");

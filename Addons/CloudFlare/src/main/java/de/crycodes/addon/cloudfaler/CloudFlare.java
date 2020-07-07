@@ -1,5 +1,6 @@
 package de.crycodes.addon.cloudfaler;
 
+import de.crycodes.addon.cloudfaler.listener.ServerHandlerListener;
 import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.addon.MasterAddon;
 
@@ -15,22 +16,31 @@ public class CloudFlare extends MasterAddon {
 
     private static CloudFlare instance;
 
+    private CloudFlareUtil cloudFlareUtil;
+    private ServerHandlerListener serverHandlerListener;
 
     @Override
     public void onLoading() {
         instance = this;
-        new CloudFlareUtil(LiptonMaster.getInstance());
-        //TODO: REGISTER LISTENER
+        cloudFlareUtil = new CloudFlareUtil(LiptonMaster.getInstance());
+
+        serverHandlerListener = new ServerHandlerListener("ServerHandlerListener");
+
+        LiptonMaster.getInstance().getEventManager().registerListener(serverHandlerListener);
     }
 
     @Override
     public void onReadyToClose() {
         CloudFlareUtil.getInstance().shutdown();
-       //TODO: UNREGISTER LISTENER
+        LiptonMaster.getInstance().getEventManager().unregisterListner(serverHandlerListener);
     }
 
 
     public static CloudFlare getInstance() {
         return instance;
+    }
+
+    public CloudFlareUtil getCloudFlareUtil() {
+        return cloudFlareUtil;
     }
 }

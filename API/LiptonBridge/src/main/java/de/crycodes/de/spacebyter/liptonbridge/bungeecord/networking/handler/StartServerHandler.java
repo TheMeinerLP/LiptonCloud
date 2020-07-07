@@ -28,8 +28,6 @@ public class StartServerHandler extends PacketHandlerAdapter {
     public void handel(Packet packet) {
         if (packet instanceof StartServerPacket){
             final StartServerPacket startServerPacketProxy = (StartServerPacket) packet;
-            
-            //TODO: BROADCAST: SERVER WAS ADDED!
 
             String startMessage = LiptonBungeeBridge.getInstance().getCloudAPI().getProxyConfig().getServer_start_message();
 

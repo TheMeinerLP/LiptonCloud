@@ -49,7 +49,7 @@ public final class AddonParallelLoader extends AddonLoader implements Serializab
     public void enableAddons() {
         this.javaAddons.forEach(consumer -> {
             consumer.onLoading();
-            //TODO:ENABLED MESSAGE
+
         });
     }
 
@@ -62,7 +62,7 @@ public final class AddonParallelLoader extends AddonLoader implements Serializab
         do {
             JavaAddon consumer = javaAddons.poll();
             consumer.onReadyToClose();
-            //TODO:LOADED MESSAGE
+
         } while (!javaAddons.isEmpty());
     }
 
@@ -78,7 +78,6 @@ public final class AddonParallelLoader extends AddonLoader implements Serializab
         }
 
         javaAddon.onReadyToClose();
-        //TODO:DISABLED MESSAGE
 
         this.javaAddons.remove(javaAddon);
         return true;

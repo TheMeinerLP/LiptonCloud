@@ -16,12 +16,18 @@ public class CopyServerPacket extends Packet {
     private final ServerGroupMeta serverGroupMeta;
     private final String serverName;
     private final String wrapperID;
+    private final Boolean dynamic;
 
-    public CopyServerPacket(ServerGroupMeta serverGroupMeta, String serverName, String wrapperID) {
+    public CopyServerPacket(ServerGroupMeta serverGroupMeta, String serverName, String wrapperID, Boolean dynamic) {
         super("CopyServerPacket");
         this.serverGroupMeta = serverGroupMeta;
         this.serverName = serverName;
         this.wrapperID = wrapperID;
+        this.dynamic = dynamic;
+    }
+
+    public Boolean getDynamic() {
+        return dynamic;
     }
 
     public ServerGroupMeta getServerGroupMeta() {

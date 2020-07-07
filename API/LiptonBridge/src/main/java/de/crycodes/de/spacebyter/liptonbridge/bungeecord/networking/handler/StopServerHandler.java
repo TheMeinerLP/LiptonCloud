@@ -9,6 +9,7 @@ import de.crycodes.de.spacebyter.network.adapter.PacketHandlerAdapter;
 import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
 import de.crycodes.de.spacebyter.network.packet.Packet;
 import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 /**
  * Coded By CryCodes
@@ -27,6 +28,14 @@ public class StopServerHandler extends PacketHandlerAdapter {
 
             ProxyServer.getInstance().getServers().remove(stopServerPacketProxy.getServerMeta().getServerName());
             System.out.println("Stopping: " + stopServerPacketProxy.getServerMeta().getServerName());
+
+            String stopMessage = LiptonBungeeBridge.getInstance().getCloudAPI().getProxyConfig().getServer_stop_message().replace("{SERVER}", stopServerPacketProxy.getServerMeta().getServerName()).replace("{WRAPPER}", stopServerPacketProxy.getServerMeta().getWrapperID()).replace("{GROUP}", stopServerPacketProxy.getServerMeta().getServerGroupMeta().getGroupName());
+
+            for (ProxiedPlayer current : ProxyServer.getInstance().getPlayers()){
+                if (LiptonBungeeBridge.getInstance().getProxyConfig().getCloudAdminPlayers().contains(current.getName())){
+                    current.sendMessage(LiptonBungeeBridge.getInstance().getPREFIX() + stopMessage);
+                }
+            }
 
         }
     }

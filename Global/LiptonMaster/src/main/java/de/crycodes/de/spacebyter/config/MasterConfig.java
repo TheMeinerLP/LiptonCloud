@@ -64,6 +64,20 @@ public class MasterConfig {
         this.maintenance = document.getBoolean("maintenance");
         this.whiteListed = document.getObject("whitelistedUser", String[].class);
     }
+    public boolean switchMaintenance(){
+        document = Document.loadDocument(configFile);
+        if (this.maintenance){
+            document.append("maintenance", false);
+
+            document.saveAsConfig(configFile);
+            return false;
+        } else {
+            document.append("maintenance", true);
+
+            document.saveAsConfig(configFile);
+            return true;
+        }
+    }
 
     public String getHost() {
         return host;

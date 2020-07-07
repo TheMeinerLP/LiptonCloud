@@ -68,39 +68,47 @@ public class CloudSignManager {
     }
 
     private void start() {
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(LiptonSpigotBridge.getInstance(), () -> {
+        new Thread("SIGN UPDATE THREAD"){
 
-            offlinesigns.clear();
+            @Override
+            public synchronized void start() {
+                Bukkit.getScheduler().scheduleSyncRepeatingTask(LiptonSpigotBridge.getInstance(), () -> {
 
-            List<String> serverGroups = new ArrayList<>();
+                    offlinesigns.clear();
 
-            if (this.globalServerList == null) return;
+                    List<String> serverGroups = new ArrayList<>();
 
-            for (ServerGroupMeta serverGroupMeta : LiptonSpigotBridge.getInstance().getServerConfig().getGlobalServerGroups()){
-                serverGroups.add(serverGroupMeta.getGroupName());
-            }
+                    if (globalServerList == null) return;
 
-            for (String serverGroup : serverGroups){
-                List<ServerMeta> serversByGroup = getServersByName(serverGroup);
-                List<CloudSign> signsByGroup = cloudSignConfig.getServerByGroup(serverGroup);
-
-                for (CloudSign sign : signsByGroup){
-                    if (serversByGroup.isEmpty()){
-                        sign.setServerMeta(null);
-                        setSign(sign, true);
-                        replace(sign, true);
-                        offlinesigns.add(sign);
-                    } else {
-                        ServerMeta serverMeta = getRandomServer(serversByGroup);
-                        serversByGroup.remove(serverMeta);
-                        sign.setServerMeta(serverMeta);
-                        setSign(sign, false);
-                        replace(sign, false);
+                    for (ServerGroupMeta serverGroupMeta : LiptonSpigotBridge.getInstance().getServerConfig().getGlobalServerGroups()){
+                        serverGroups.add(serverGroupMeta.getGroupName());
                     }
-                }
+
+                    for (String serverGroup : serverGroups){
+                        List<ServerMeta> serversByGroup = getServersByName(serverGroup);
+                        List<CloudSign> signsByGroup = cloudSignConfig.getServerByGroup(serverGroup);
+
+                        for (CloudSign sign : signsByGroup){
+                            if (serversByGroup.isEmpty()){
+                                sign.setServerMeta(null);
+                                setSign(sign, true);
+                                replace(sign, true);
+                                offlinesigns.add(sign);
+                            } else {
+                                ServerMeta serverMeta = getRandomServer(serversByGroup);
+                                serversByGroup.remove(serverMeta);
+                                sign.setServerMeta(serverMeta);
+                                setSign(sign, false);
+                                replace(sign, false);
+                            }
+                        }
+                    }
+
+                }, 0, 40*3);
             }
 
-        }, 0, 40*3);
+        }.start();
+
     }
     private ServerMeta getRandomServer(List<ServerMeta> list){
         Random random = new Random();

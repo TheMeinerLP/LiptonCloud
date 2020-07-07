@@ -5,7 +5,7 @@
   "maintenance_motd": "   §b§lLiptonCloud §8✸ §bIntelligent §7Cloudsystem\n         §bMaintenance §7✸ §7We are in maintenance mode.",
   "maintenanceKickMessage": "§bLipton Cloud\n§7We are in maintenance mode",
   "maintenanceVersionString": "§c§lWartungen",
-  "server_start_message": "[STARTING]> {SERVER} - {WRAPPER} - {GROUP}",
+  "server_start_message": "Server is Starting with Name §a{SERVER}§7 on Wrapper §a{WRAPPER}§7 with group §a{GROUP}§7!",
   "server_stop_message": "[STOPPING]> {SERVER} - {WRAPPER} - {GROUP}",
   "server_online_message": "[ONLINE]> {SERVER} - {WRAPPER} - {GROUP}",
   "useNotify": false,

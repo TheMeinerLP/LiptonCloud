@@ -21,7 +21,7 @@ public class CreateTemplateHandler extends PacketHandlerAdapter {
         if (packet instanceof CreateTemplatePacket){
             final CreateTemplatePacket templatePacket = (CreateTemplatePacket) packet;
             if (LiptonWrapper.getInstance().getWrapperConfig().getWrapperID().equalsIgnoreCase(templatePacket.getWrapperID())){
-                //TODO: CREATETEMPLATE METHOD
+                LiptonWrapper.getInstance().getTemplateManager().checkTemplate(templatePacket.getServerGroupMeta());
             } else {
                 return;
             }

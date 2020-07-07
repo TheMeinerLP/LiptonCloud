@@ -2,6 +2,8 @@ package de.crycodes.de.spacebyter.manager;
 
 import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.config.ServerGroupConfig;
+import de.crycodes.de.spacebyter.liptoncloud.exceprtion.ServerIDNotFoundException;
+import de.crycodes.de.spacebyter.liptoncloud.exceprtion.ServerNotStartedException;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.WrapperMeta;
@@ -55,10 +57,20 @@ public class ServerManager {
 
                 availableServerGroups.forEach(serverGroupMeta -> {
 
-                    int minServer = serverGroupMeta.getMinServer();
-
                     final WrapperMeta wrapperMeta = liptonMaster.getWrapperManager().getBestFreeWrapper();
                     final String bestWrapperID = wrapperMeta.getWrapperConfig().getWrapperId();
+
+
+                    if (getOnlineServerByGroup(LiptonMaster.getInstance().getServerGroupConfig().getServerMetaByName("Lobby")) == 0 &&
+                            getStartedServerByGroup(LiptonMaster.getInstance().getServerGroupConfig().getServerMetaByName("Lobby")) == 0 ){
+
+                        startServer(LiptonMaster.getInstance().getServerGroupConfig().getServerMetaByName("Lobby"), bestWrapperID, true);
+                        return;
+                    }
+
+                    int minServer = serverGroupMeta.getMinServer();
+
+
 
 
                     if (getOnlineServerByGroup(serverGroupMeta) + getStartedServerByGroup(serverGroupMeta) < minServer)
@@ -108,6 +120,11 @@ public class ServerManager {
 
         if (!this.startedServer.containsKey(name)){
             liptonMaster.getColouredConsoleProvider().error("Server with name: '" + serverName + "' was not found in StartServer-List!");
+            try {
+                throw new ServerNotStartedException("Server: " + name + " was not found");
+            } catch (ServerNotStartedException e) {
+                e.printStackTrace();
+            }
             return;
         }
 
@@ -126,9 +143,14 @@ public class ServerManager {
         if (this.globalServerList.containsKey(name)){
             final ServerMeta serverMeta = globalServerList.get(name);
 
-
                 if (liptonMaster.getIdManager().getServerIdList().get(serverMeta.getServerGroupMeta().getGroupName()).contains(serverMeta.getId())){
                     liptonMaster.getIdManager().removeID(serverMeta.getServerGroupMeta().getGroupName(),serverMeta.getId());
+                } else {
+                    try {
+                        throw new ServerIDNotFoundException("Server id for server: '" + serverName + "' was mot found");
+                    } catch (ServerIDNotFoundException e) {
+                        e.printStackTrace();
+                    }
                 }
 
 

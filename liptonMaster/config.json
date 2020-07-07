@@ -9,7 +9,7 @@
   "disabledModules": [
     ""
   ],
-  "maintenance": false,
+  "maintenance": true,
   "whitelistedUser": [
     "CryCodes"
   ]

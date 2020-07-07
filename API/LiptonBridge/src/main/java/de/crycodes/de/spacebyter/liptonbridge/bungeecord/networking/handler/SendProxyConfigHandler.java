@@ -9,6 +9,7 @@ import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
 import de.crycodes.de.spacebyter.network.packet.Packet;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.config.ServerInfo;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 import java.net.InetSocketAddress;
 import java.util.ArrayList;
@@ -61,14 +62,37 @@ public class SendProxyConfigHandler extends PacketHandlerAdapter {
                 System.out.println(serverMeta.toString());
                 ProxyServer.getInstance().getServers().put(serverMeta.getServerName(), info);
 
-                String startMessage = LiptonBungeeBridge.getInstance().getCloudAPI().getProxyConfig().getServer_start_message(); //TODO: BROADCAST: SERVER WAS ADDED!
+                String startMessage = LiptonBungeeBridge.getInstance().getCloudAPI().getProxyConfig().getServer_start_message().replace("{SERVER}", serverMeta.getServerName()).replace("{WRAPPER}", serverMeta.getWrapperID()).replace("{GROUP}", serverMeta.getServerGroupMeta().getGroupName());
+                for (ProxiedPlayer current : ProxyServer.getInstance().getPlayers()){
+                    if (current.hasPermission("liptoncloud.cloudCommand")){
+                        current.sendMessage(LiptonBungeeBridge.getInstance().getPREFIX() + startMessage);
+                    }
+                }
             });
 
             oldRemovedServer.forEach(name -> {
+
                 ProxyServer.getInstance().getServers().remove(name);
 
-                String stopMessage = LiptonBungeeBridge.getInstance().getCloudAPI().getProxyConfig().getServer_stop_message();//TODO: BROADCAST: SERVER WAS REMOVED!
+
+                String stopMessage = LiptonBungeeBridge.getInstance().getCloudAPI().getProxyConfig().getServer_stop_message().replace("{SERVER}", name);
+
+                for (ProxiedPlayer current : ProxyServer.getInstance().getPlayers()){
+                    if (LiptonBungeeBridge.getInstance().getProxyConfig().getCloudAdminPlayers().contains(current.getName())){
+                        current.sendMessage(LiptonBungeeBridge.getInstance().getPREFIX() + stopMessage);
+                    }
+                }
             });
+
+            if (sendProxyConfigPacket.getProxyConfig().getMaintenance()){
+                for (ProxiedPlayer player : ProxyServer.getInstance().getPlayers()){
+                    if (!sendProxyConfigPacket.getProxyConfig().getMaintenancePlayer().contains(player.getName())){
+                        player.disconnect(sendProxyConfigPacket.getProxyConfig().getMaintenanceKickMessage());
+                    }
+                }
+            }
+
+
 
         }
     }

@@ -60,8 +60,6 @@ public class CloudFlareUtil implements Serializable {
             zoneID = currentZoneID;
         }
 
-        this.createServerEntries();
-        this.createProxyEntries();
     }
 
     private List<Result> results = new LinkedList<>();
@@ -270,14 +268,6 @@ public class CloudFlareUtil implements Serializable {
                     ex
             );
         }
-    }
-
-    private void createServerEntries() {
-        /*TODO: ADD SERVER*/
-    }
-
-    private void createProxyEntries() {
-        /*TODO: ADD PROXY*/
     }
 
     public void createClientEntry(ServerMeta client) {

@@ -85,7 +85,7 @@ public class PlayerConnectEvent implements Listener {
                 players.setTabHeader(new TextComponent(tablistTopallAll), new TextComponent(tablistBottomAll));
 
             });
-        } catch (Exception ignored){ } //TODO: FIX
+        } catch (Exception ignored){ }
 
     }
 }
