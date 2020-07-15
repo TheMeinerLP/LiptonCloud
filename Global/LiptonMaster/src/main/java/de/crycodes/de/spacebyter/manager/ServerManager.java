@@ -88,6 +88,11 @@ public class ServerManager {
 
     //<editor-fold desc="StartServer Method">
     public void startServer(@ShouldNotBeNull ServerGroupMeta serverGroupMeta, String wrapperID, boolean autoStart){
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         if (getStartedServerByGroup(serverGroupMeta) >= serverGroupMeta.getMaxMemory()) {
             liptonMaster.getColouredConsoleProvider().error("To many Server's are running of group " + serverGroupMeta.getGroupName());
             return;
@@ -143,7 +148,7 @@ public class ServerManager {
         if (this.globalServerList.containsKey(name)){
             final ServerMeta serverMeta = globalServerList.get(name);
 
-                if (liptonMaster.getIdManager().getServerIdList().get(serverMeta.getServerGroupMeta().getGroupName()).contains(serverMeta.getId())){
+                if (liptonMaster.getIdManager().getServerIdList().get(serverMeta.getServerGroupMeta().getGroupName()).containsKey(serverMeta.getId())){
                     liptonMaster.getIdManager().removeID(serverMeta.getServerGroupMeta().getGroupName(),serverMeta.getId());
                 } else {
                     try {
@@ -216,6 +221,14 @@ public class ServerManager {
         return servers;
     }
     //</editor-fold>
+    public List<ServerMeta> getOnlineServersByGroup(String name){
+        List<ServerMeta> serverMetas = new ArrayList<>();
+        this.getOnlineServers().forEach(serverMeta -> {
+            if (serverMeta.getServerGroupMeta().getGroupName().equalsIgnoreCase(name))
+                serverMetas.add(serverMeta);
+        });
+        return serverMetas;
+    }
 
     //SERVER MANAGER GETTER
 
@@ -223,6 +236,13 @@ public class ServerManager {
     public ServerMeta getServersFromName(String serverName){
         for (ServerMeta serverMeta : getOnlineServers()){
             if (serverMeta.getServerName().equalsIgnoreCase(serverName))
+                return serverMeta;
+        }
+        return null;
+    }
+    public ServerMeta getServersFromID(Integer id){
+        for (ServerMeta serverMeta : getOnlineServers()){
+            if (serverMeta.getId().equals(id))
                 return serverMeta;
         }
         return null;

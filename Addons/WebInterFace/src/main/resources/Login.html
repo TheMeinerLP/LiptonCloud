@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+            body {
+                font-family: "Lato", sans-serif;
+            }
+
+            html{
+                background: url("https://images2.alphacoders.com/743/thumb-1920-743487.jpg") fixed;
+            }
+            .sidenav {
+                height: 100%;
+                width: 160px;
+                position: fixed;
+                z-index: 1;
+                top: 0;
+                left: 0;
+                background-color: #111;
+                overflow-x: hidden;
+                padding-top: 20px;
+            }
+
+            .sidenav a {
+                padding: 6px 8px 6px 16px;
+                text-decoration: none;
+                font-size: 25px;
+                color: #818181;
+                display: block;
+            }
+
+            .sidenav a:hover {
+                color: #f1f1f1;
+            }
+            main{
+                text-align: center;
+                background-color: #111;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                padding-right: 10px;
+                padding-left: 10px;
+                border-radius: 10px;
+                color: white;
+            }
+
+            #formblock{
+                padding-top: 15%;
+                padding-left: 40%;
+                padding-right: 40%;
+            }
+        </style>
+</head>
+<body>
+
+
+<div id="formblock">
+    <main>
+        <form method="POST">
+            <label for="name">Username:</label><br>
+            <input type="text" name="name" required pattern=".{1,60}" title="1-60 chars" ><br>
+            <label for="passwort">Passwort:</label><br>
+            <input type="password" name="password" required pattern=".{1,60}" title="1-60 chars"><br>
+            <input type="submit" value="Login">
+        </form>
+        <p style="color: red">[wrong?]</p>
+    </main>
+</div>
+</body>
+</html>

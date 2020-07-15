@@ -23,7 +23,10 @@ public class StartServerHandler extends PacketHandlerAdapter {
         if (packet instanceof StartServerPacket){
             final StartServerPacket startServerPacket = (StartServerPacket) packet;
             if (LiptonWrapper.getInstance().getWrapperConfig().getWrapperID().equalsIgnoreCase(startServerPacket.getWrapperID())){
-
+                if(LiptonWrapper.getInstance().getWrapperConfig().getSpigotVersion().equals("-")) {
+                    LiptonWrapper.getInstance().getColouredConsoleProvider().error("No Version Defined in Config use the install Command to install a Version");
+                    return;
+                }
                 try {
 
                     LiptonWrapper.getInstance().getTemplateManager().checkTemplate(startServerPacket.getServerMeta().getServerGroupMeta());

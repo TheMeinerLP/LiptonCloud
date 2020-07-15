@@ -28,7 +28,7 @@ public class TemplateManager {
     }
 
     public void checkTemplate(ServerGroupMeta serverGroupMeta) {
-        final File template = new File(templateLocation + serverGroupMeta.getGroupName());
+        final File template = new File(templateLocation + serverGroupMeta.getGroupName().toUpperCase());
         if (!template.exists()) {
             try {
                 createTemplate(serverGroupMeta);

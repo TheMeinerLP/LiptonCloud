@@ -63,15 +63,7 @@ public class LiptonSpigotBridge extends JavaPlugin {
     public void onDisable() {
 
         ServerMeta serverMeta = LiptonSpigotBridge.getInstance().getCloudAPI().getServerMeta();
-
         spigotMasterClient.getThunderClient().sendPacket(spigotMasterClient.getNetworkChannel(), new ServerStoppingPacket(serverMeta));
-
-        Document document;
-        File metaFile = new File("./META.json");
-        document = Document.loadDocument(metaFile);
-        System.out.println("LOADED META");
-
-
     }
 
     public CloudAPI getCloudAPI() {

@@ -18,28 +18,37 @@ public class ServerStartHandler {
 
     public void startServer(ServerMeta serverMeta){
 
-        String serverType = serverMeta.getServerGroupMeta().isDynamicService() ? "dynamic" : "static";
+        new Thread(serverMeta.getServerName()) {
 
-        File serverDir = new File(serverLocation + "/" + serverType + "/" + serverMeta.getServerGroupMeta().getGroupName() + "/" + serverMeta.getServerName() + "/");
+            @Override
+            public synchronized void start() {
+                String serverType = serverMeta.getServerGroupMeta().isDynamicService() ? "dynamic" : "static";
+
+                File serverDir = new File(serverLocation + "/" + serverType + "/" + serverMeta.getServerGroupMeta().getGroupName() + "/" + serverMeta.getServerName() + "/");
 
 
-        if (!serverDir.exists()){
-            return;
-        }
-        try {
-            final String[] cmd = new String[]
-                    {
-                            "java",
-                            "-jar",
-                            "SPIGOT.JAR"
-                    };
+                if (!serverDir.exists()){
+                    return;
+                }
+                try {
+                    final String[] cmd = new String[]
+                            {
+                                    "java",
+                                    "-jar",
+                                    "SPIGOT.JAR"
+                            };
 
-            ProcessBuilder processBuilder = new ProcessBuilder(cmd).directory(serverDir);
-            Process process = processBuilder.start();
-            LiptonWrapper.getInstance().getColouredConsoleProvider().info("Server Startet: " + serverMeta.getServerName() + " on (§c" + serverMeta.getPort() +  "§r)");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+                    ProcessBuilder processBuilder = new ProcessBuilder(cmd).directory(serverDir);
+                    Process process = processBuilder.start();
+                    LiptonWrapper.getInstance().getColouredConsoleProvider().info("Server Startet: " + serverMeta.getServerName() + " on (§c" + serverMeta.getPort() +  "§r)");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }.start();
+
+
 
     }
 }

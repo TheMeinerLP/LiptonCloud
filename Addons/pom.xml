@@ -13,9 +13,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>SignSystem</module>
         <module>CloudFlare</module>
-        <module>MultiProxy</module>
+        <module>WebInterFace</module>
     </modules>
 
 

@@ -20,25 +20,25 @@ import java.util.List;
 public class SignLayout {
 
 
-    String defaultline1 = "&b&l%server%";
+    String defaultline1 = "§b§l%server%";
     String defaultline2 = "%state%";
     String defaultline3 = "%online%/%max%";
-    String defaultline4 = "&7[&c&lCLICK&7]";
+    String defaultline4 = "§7[§c§lCLICK§7]";
 
-    String loadingline1_0 = "&0";
-    String loadingline2_0 = "&cLoading";
-    String loadingline3_0 = "&c⬛⬜⬜";
-    String loadingline4_0 = "&1";
+    String loadingline1_0 = "§0";
+    String loadingline2_0 = "§cLoading";
+    String loadingline3_0 = "§c⬛⬜⬜";
+    String loadingline4_0 = "§1";
 
-    String loadingline1_1 = "&0";
-    String loadingline2_1 = "&cLoading";
-    String loadingline3_1 = "&c⬛⬛⬜";
-    String loadingline4_1 = "&1";
+    String loadingline1_1 = "§0";
+    String loadingline2_1 = "§cLoading";
+    String loadingline3_1 = "§c⬛⬛⬜";
+    String loadingline4_1 = "§1";
 
-    String loadingline1_2 = "&0";
-    String loadingline2_2 = "&cLoading";
-    String loadingline3_2 = "&c⬛⬛⬛";
-    String loadingline4_2 = "&1";
+    String loadingline1_2 = "§0";
+    String loadingline2_2 = "§cLoading";
+    String loadingline3_2 = "§c⬛⬛⬛";
+    String loadingline4_2 = "§1";
 
 
     public List<String> getDefaultLayOut(){

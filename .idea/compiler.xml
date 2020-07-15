@@ -6,23 +6,24 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="MultiProxy" />
+        <module name="Command" />
         <module name="LiptonMaster" />
         <module name="LiptonWrapper" />
-        <module name="Event" />
-        <module name="CloudFlare" />
-        <module name="Library" />
-        <module name="CommandSystem" />
-        <module name="LiptonBridge" />
         <module name="Listener" />
-        <module name="Command" />
-        <module name="SignSystem" />
+        <module name="Library" />
+        <module name="CloudFlare" />
+        <module name="LiptonBridge" />
+        <module name="Event" />
+        <module name="CommandSystem" />
+        <module name="WebInterFace" />
         <module name="LiptopnBridge" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="BungeeBase" target="1.5" />
       <module name="Master" target="8" />
+      <module name="MultiProxy" target="7" />
+      <module name="SignSystem" target="7" />
       <module name="Wrapper" target="8" />
     </bytecodeTargetLevel>
   </component>

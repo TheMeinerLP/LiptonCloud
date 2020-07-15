@@ -50,6 +50,7 @@ public class CloudSignManager {
     private Pinger pinger;
 
     public CloudSignManager() {
+        if (!LiptonSpigotBridge.getInstance().getCloudAPI().getServerMeta().getServerName().contains("Lobby")) return;
 
         cloudSigns = new ArrayList<>();
 
@@ -116,85 +117,94 @@ public class CloudSignManager {
     }
 
     public void startOfflineSignUpdate(){
-
-        scheduler.scheduleAsyncWhile(new Runnable() {
-            int tick = 0;
+        new Thread("OFFLINE SIGNS UPDATE"){
 
             @Override
-            public void run() {
+            public synchronized void start() {
+                Bukkit.getScheduler().scheduleAsyncRepeatingTask(LiptonSpigotBridge.getInstance(), new Runnable() {
+                    // scheduler.scheduleAsyncWhile(new Runnable() {
+                    int tick = 0;
 
-                switch (tick){
-                    case 0:
-                        for (CloudSign sign : offlinesigns){
+                    @Override
+                    public void run() {
 
-                            Block block = Bukkit.getWorld(sign.getWorld()).getBlockAt(sign.getX(),sign.getY(),sign.getZ());
-                            Sign signBlock = (Sign) block.getState();
+                        switch (tick) {
+                            case 0:
+                                for (CloudSign sign : offlinesigns) {
 
-                            signBlock.setLine(0, signLayout.getloadingDefaultLayOut(0).get(0));
-                            signBlock.setLine(1, signLayout.getloadingDefaultLayOut(0).get(1));
-                            signBlock.setLine(2, signLayout.getloadingDefaultLayOut(0).get(2));
-                            signBlock.setLine(3, signLayout.getloadingDefaultLayOut(0).get(3));
+                                    Block block = Bukkit.getWorld(sign.getWorld()).getBlockAt(sign.getX(), sign.getY(), sign.getZ());
+                                    Sign signBlock = (Sign) block.getState();
 
-                            signBlock.update();
+                                    signBlock.setLine(0, signLayout.getloadingDefaultLayOut(0).get(0));
+                                    signBlock.setLine(1, signLayout.getloadingDefaultLayOut(0).get(1));
+                                    signBlock.setLine(2, signLayout.getloadingDefaultLayOut(0).get(2));
+                                    signBlock.setLine(3, signLayout.getloadingDefaultLayOut(0).get(3));
 
+                                    signBlock.update();
+
+                                }
+                                break;
+                            case 1:
+                                for (CloudSign sign : offlinesigns) {
+
+                                    Block block = Bukkit.getWorld(sign.getWorld()).getBlockAt(sign.getX(), sign.getY(), sign.getZ());
+                                    Sign signBlock = (Sign) block.getState();
+
+                                    signBlock.setLine(0, signLayout.getloadingDefaultLayOut(1).get(0));
+                                    signBlock.setLine(1, signLayout.getloadingDefaultLayOut(1).get(1));
+                                    signBlock.setLine(2, signLayout.getloadingDefaultLayOut(1).get(2));
+                                    signBlock.setLine(3, signLayout.getloadingDefaultLayOut(1).get(3));
+
+                                    signBlock.update();
+
+                                }
+                                break;
+                            case 2:
+                                for (CloudSign sign : offlinesigns) {
+
+                                    Block block = Bukkit.getWorld(sign.getWorld()).getBlockAt(sign.getX(), sign.getY(), sign.getZ());
+                                    Sign signBlock = (Sign) block.getState();
+
+                                    signBlock.setLine(0, signLayout.getloadingDefaultLayOut(2).get(0));
+                                    signBlock.setLine(1, signLayout.getloadingDefaultLayOut(2).get(1));
+                                    signBlock.setLine(2, signLayout.getloadingDefaultLayOut(2).get(2));
+                                    signBlock.setLine(3, signLayout.getloadingDefaultLayOut(2).get(3));
+
+                                    signBlock.update();
+
+                                }
+
+                                break;
+                            case 3:
+                                for (CloudSign sign : offlinesigns) {
+
+                                    Block block = Bukkit.getWorld(sign.getWorld()).getBlockAt(sign.getX(), sign.getY(), sign.getZ());
+                                    Sign signBlock = (Sign) block.getState();
+
+                                    signBlock.setLine(0, signLayout.getloadingDefaultLayOut(3).get(0));
+                                    signBlock.setLine(1, signLayout.getloadingDefaultLayOut(3).get(1));
+                                    signBlock.setLine(2, signLayout.getloadingDefaultLayOut(3).get(2));
+                                    signBlock.setLine(3, signLayout.getloadingDefaultLayOut(3).get(3));
+
+                                    signBlock.update();
+
+                                }
+
+                                tick = 0;
+                                break;
+                            default:
+                                tick = 0;
+                                break;
                         }
-                        break;
-                    case 1:
-                        for (CloudSign sign : offlinesigns){
 
-                            Block block = Bukkit.getWorld(sign.getWorld()).getBlockAt(sign.getX(),sign.getY(),sign.getZ());
-                            Sign signBlock = (Sign) block.getState();
-
-                            signBlock.setLine(0, signLayout.getloadingDefaultLayOut(1).get(0).replace("&", "§"));
-                            signBlock.setLine(1, signLayout.getloadingDefaultLayOut(1).get(1).replace("&", "§"));
-                            signBlock.setLine(2, signLayout.getloadingDefaultLayOut(1).get(2).replace("&", "§"));
-                            signBlock.setLine(3, signLayout.getloadingDefaultLayOut(1).get(3).replace("&", "§"));
-
-                            signBlock.update();
-
-                        }
-                        break;
-                    case 2:
-                        for (CloudSign sign : offlinesigns){
-
-                            Block block = Bukkit.getWorld(sign.getWorld()).getBlockAt(sign.getX(),sign.getY(),sign.getZ());
-                            Sign signBlock = (Sign) block.getState();
-
-                            signBlock.setLine(0, signLayout.getloadingDefaultLayOut(2).get(0).replace("&", "§"));
-                            signBlock.setLine(1, signLayout.getloadingDefaultLayOut(2).get(1).replace("&", "§"));
-                            signBlock.setLine(2, signLayout.getloadingDefaultLayOut(2).get(2).replace("&", "§"));
-                            signBlock.setLine(3, signLayout.getloadingDefaultLayOut(2).get(3).replace("&", "§"));
-
-                            signBlock.update();
-
-                        }
-
-                        break;
-                    case 3:
-                        for (CloudSign sign : offlinesigns){
-
-                            Block block = Bukkit.getWorld(sign.getWorld()).getBlockAt(sign.getX(),sign.getY(),sign.getZ());
-                            Sign signBlock = (Sign) block.getState();
-
-                            signBlock.setLine(0, signLayout.getloadingDefaultLayOut(3).get(0).replace("&", "§"));
-                            signBlock.setLine(1, signLayout.getloadingDefaultLayOut(3).get(1).replace("&", "§"));
-                            signBlock.setLine(2, signLayout.getloadingDefaultLayOut(3).get(2).replace("&", "§"));
-                            signBlock.setLine(3, signLayout.getloadingDefaultLayOut(3).get(3).replace("&", "§"));
-
-                            signBlock.update();
-
-                        }
-
-                        tick = 0;
-                        break;
-                    default:
-                        tick = 0;
-                        break;
-                }
-
-                tick++;
+                        tick++;
+                    }
+                }, 20, 20);
+              //  }, 2000,2000);
             }
-        }, 2000, 2000);
+
+        }.start();
+
     }
     public void setSign(CloudSign sign, boolean offline){
 
@@ -267,10 +277,10 @@ public class CloudSignManager {
             state = SignState.UNKNOWN.name();
         }
 
-        lines.add(signLayout.getDefaultLayOut().get(0).replace("%online%", users +"").replace("%max%", maxusers +"").replace("%server%", servername).replace("%state%", state).replace("&", "§"));
-        lines.add(signLayout.getDefaultLayOut().get(1).replace("%online%", users +"").replace("%max%", maxusers +"").replace("%server%", servername).replace("%state%", state).replace("&", "§"));
-        lines.add(signLayout.getDefaultLayOut().get(2).replace("%online%", users +"").replace("%max%", maxusers +"").replace("%server%", servername).replace("%state%", state).replace("&", "§"));
-        lines.add(signLayout.getDefaultLayOut().get(3).replace("%online%", users +"").replace("%max%", maxusers +"").replace("%server%", servername).replace("%state%", state).replace("&", "§"));
+        lines.add(signLayout.getDefaultLayOut().get(0).replace("%online%", users +"").replace("%max%", maxusers +"").replace("%server%", servername).replace("%state%", state));
+        lines.add(signLayout.getDefaultLayOut().get(1).replace("%online%", users +"").replace("%max%", maxusers +"").replace("%server%", servername).replace("%state%", state));
+        lines.add(signLayout.getDefaultLayOut().get(2).replace("%online%", users +"").replace("%max%", maxusers +"").replace("%server%", servername).replace("%state%", state));
+        lines.add(signLayout.getDefaultLayOut().get(3).replace("%online%", users +"").replace("%max%", maxusers +"").replace("%server%", servername).replace("%state%", state));
 
         return lines.toArray(new String[0]);
     }

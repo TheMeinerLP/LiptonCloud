@@ -1,9 +1,11 @@
 package de.crycodes.de.spacebyter.manager;
 
-import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
+import scala.Int;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -16,20 +18,20 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class IDManager {
 
-    private ConcurrentHashMap<String, List<Integer>> serverIdList = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<String, Map<Integer, Integer>> serverIdList = new ConcurrentHashMap<>();
 
     public int getFreeID(String serverGroupMeta){
         if (!this.serverIdList.containsKey(serverGroupMeta)){
-            List<Integer> ids = new ArrayList<>();
-            ids.add(1);
+            Map<Integer,Integer> ids = new HashMap();
+            ids.put(1, 1);
             this.serverIdList.put(serverGroupMeta, ids);
             return 1;
         } else {
             for (int i = 1; i < 2000; i++){
-                if (this.serverIdList.get(serverGroupMeta).contains(i))
+                if (this.serverIdList.get(serverGroupMeta).containsKey(i))
                     continue;
                 else {
-                    this.serverIdList.get(serverGroupMeta).add(i);
+                    this.serverIdList.get(serverGroupMeta).put(i, i);
                     return i;
                 }
             }
@@ -37,7 +39,7 @@ public class IDManager {
         return 404;
     }
     public void removeID(String serverGroupMeta, int id){
-        List<Integer> ids = serverIdList.get(serverGroupMeta);
+        Map<Integer,Integer> ids = serverIdList.get(serverGroupMeta);
 
         ids.remove(id - 1);
 
@@ -46,7 +48,7 @@ public class IDManager {
 
     }
 
-    public ConcurrentHashMap<String, List<Integer>> getServerIdList() {
+    public ConcurrentHashMap<String, Map<Integer, Integer>> getServerIdList() {
         return serverIdList;
     }
 

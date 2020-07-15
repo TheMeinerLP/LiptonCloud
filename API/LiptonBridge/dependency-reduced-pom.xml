@@ -49,20 +49,8 @@
       <scope>provided</scope>
       <exclusions>
         <exclusion>
-          <artifactId>commons-lang</artifactId>
-          <groupId>commons-lang</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>json-simple</artifactId>
-          <groupId>com.googlecode.json-simple</groupId>
-        </exclusion>
-        <exclusion>
           <artifactId>ebean</artifactId>
           <groupId>org.avaje</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>snakeyaml</artifactId>
-          <groupId>org.yaml</groupId>
         </exclusion>
         <exclusion>
           <artifactId>bungeecord-chat</artifactId>
@@ -77,20 +65,8 @@
       <scope>provided</scope>
       <exclusions>
         <exclusion>
-          <artifactId>commons-lang</artifactId>
-          <groupId>commons-lang</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>json-simple</artifactId>
-          <groupId>com.googlecode.json-simple</groupId>
-        </exclusion>
-        <exclusion>
           <artifactId>ebean</artifactId>
           <groupId>org.avaje</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>snakeyaml</artifactId>
-          <groupId>org.yaml</groupId>
         </exclusion>
       </exclusions>
     </dependency>

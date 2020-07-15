@@ -1,0 +1,103 @@
+[09:49:59] [Server thread/INFO]: Starting minecraft server version 1.8.8
+[09:49:59] [Server thread/INFO]: Loading properties
+[09:49:59] [Server thread/INFO]: Default game type: SURVIVAL
+[09:49:59] [Server thread/INFO]: This server is running CraftBukkit version git-Spigot-db6de12-18fbb24 (MC: 1.8.8) (Implementing API version 1.8.8-R0.1-SNAPSHOT)
+[09:49:59] [Server thread/INFO]: Unable to find file banned-players.json, creating it.
+[09:49:59] [Server thread/INFO]: Unable to find file banned-ips.json, creating it.
+[09:49:59] [Server thread/INFO]: Unable to find file ops.json, creating it.
+[09:49:59] [Server thread/INFO]: Unable to find file whitelist.json, creating it.
+[09:49:59] [Server thread/INFO]: Debug logging is disabled
+[09:49:59] [Server thread/INFO]: Server Ping Player Sample Count: 12
+[09:49:59] [Server thread/INFO]: Using 4 threads for Netty based IO
+[09:49:59] [Server thread/INFO]: Generating keypair
+[09:49:59] [Server thread/INFO]: Starting Minecraft server on 127.0.0.1:30002
+[09:49:59] [Server thread/INFO]: Using default channel type
+[09:49:59] [Server thread/INFO]: Set PluginClassLoader as parallel capable
+[09:49:59] [Server thread/INFO]: [Spigot-Cloud-API] Loading Spigot-Cloud-API v1.0
+[09:49:59] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[09:49:59] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+[09:49:59] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[09:49:59] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[09:49:59] [Server thread/INFO]: **** Beginning UUID conversion, this may take A LONG time ****
+[09:49:59] [Server thread/INFO]: Preparing level "world"
+[09:49:59] [Server thread/INFO]: -------- World Settings For [world] --------
+[09:49:59] [Server thread/INFO]: View Distance: 10
+[09:49:59] [Server thread/INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
+[09:49:59] [Server thread/INFO]: Entity Activation Range: An 32 / Mo 32 / Mi 16
+[09:49:59] [Server thread/INFO]: Hopper Transfer: 8 Hopper Check: 8 Hopper Amount: 1
+[09:49:59] [Server thread/INFO]: Structure Info Saving: true
+[09:49:59] [Server thread/INFO]: Cactus Growth Modifier: 100%
+[09:49:59] [Server thread/INFO]: Cane Growth Modifier: 100%
+[09:49:59] [Server thread/INFO]: Melon Growth Modifier: 100%
+[09:49:59] [Server thread/INFO]: Mushroom Growth Modifier: 100%
+[09:49:59] [Server thread/INFO]: Pumpkin Growth Modifier: 100%
+[09:49:59] [Server thread/INFO]: Sapling Growth Modifier: 100%
+[09:49:59] [Server thread/INFO]: Wheat Growth Modifier: 100%
+[09:49:59] [Server thread/INFO]: NetherWart Growth Modifier: 100%
+[09:49:59] [Server thread/INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
+[09:49:59] [Server thread/INFO]: Mob Spawn Range: 4
+[09:49:59] [Server thread/INFO]: Anti X-Ray: true
+[09:49:59] [Server thread/INFO]: 	Engine Mode: 1
+[09:49:59] [Server thread/INFO]: 	Hidden Blocks: [14, 15, 16, 21, 48, 49, 54, 56, 73, 74, 82, 129, 130]
+[09:49:59] [Server thread/INFO]: 	Replace Blocks: [1, 5]
+[09:49:59] [Server thread/INFO]: Random Lighting Updates: false
+[09:49:59] [Server thread/INFO]: Sending up to 10 chunks per packet
+[09:49:59] [Server thread/INFO]: Nerfing mobs spawned from spawners: false
+[09:49:59] [Server thread/INFO]: Max TNT Explosions: 100
+[09:49:59] [Server thread/INFO]: Item Merge Radius: 2.5
+[09:49:59] [Server thread/INFO]: Item Despawn Rate: 6000
+[09:49:59] [Server thread/INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
+[09:49:59] [Server thread/INFO]: Arrow Despawn Rate: 1200
+[09:49:59] [Server thread/INFO]: Zombie Aggressive Towards Villager: true
+[09:49:59] [Server thread/INFO]: Chunks to Grow per Tick: 650
+[09:49:59] [Server thread/INFO]: Clear tick list: false
+[09:49:59] [Server thread/INFO]: Experience Merge Radius: 3.0
+[09:49:59] [Server thread/INFO]: Max Entity Collisions: 8
+[09:49:59] [Server thread/INFO]: Custom Map Seeds:  Village: 10387312 Feature: 14357617
+[09:50:00] [Server thread/INFO]: -------- World Settings For [world_the_end] --------
+[09:50:00] [Server thread/INFO]: View Distance: 10
+[09:50:00] [Server thread/INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
+[09:50:00] [Server thread/INFO]: Entity Activation Range: An 32 / Mo 32 / Mi 16
+[09:50:00] [Server thread/INFO]: Hopper Transfer: 8 Hopper Check: 8 Hopper Amount: 1
+[09:50:00] [Server thread/INFO]: Structure Info Saving: true
+[09:50:00] [Server thread/INFO]: Cactus Growth Modifier: 100%
+[09:50:00] [Server thread/INFO]: Cane Growth Modifier: 100%
+[09:50:00] [Server thread/INFO]: Melon Growth Modifier: 100%
+[09:50:00] [Server thread/INFO]: Mushroom Growth Modifier: 100%
+[09:50:00] [Server thread/INFO]: Pumpkin Growth Modifier: 100%
+[09:50:00] [Server thread/INFO]: Sapling Growth Modifier: 100%
+[09:50:00] [Server thread/INFO]: Wheat Growth Modifier: 100%
+[09:50:00] [Server thread/INFO]: NetherWart Growth Modifier: 100%
+[09:50:00] [Server thread/INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
+[09:50:00] [Server thread/INFO]: Mob Spawn Range: 4
+[09:50:00] [Server thread/INFO]: Anti X-Ray: true
+[09:50:00] [Server thread/INFO]: 	Engine Mode: 1
+[09:50:00] [Server thread/INFO]: 	Hidden Blocks: [14, 15, 16, 21, 48, 49, 54, 56, 73, 74, 82, 129, 130]
+[09:50:00] [Server thread/INFO]: 	Replace Blocks: [1, 5]
+[09:50:00] [Server thread/INFO]: Random Lighting Updates: false
+[09:50:00] [Server thread/INFO]: Sending up to 10 chunks per packet
+[09:50:00] [Server thread/INFO]: Nerfing mobs spawned from spawners: false
+[09:50:00] [Server thread/INFO]: Max TNT Explosions: 100
+[09:50:00] [Server thread/INFO]: Item Merge Radius: 2.5
+[09:50:00] [Server thread/INFO]: Item Despawn Rate: 6000
+[09:50:00] [Server thread/INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
+[09:50:00] [Server thread/INFO]: Arrow Despawn Rate: 1200
+[09:50:00] [Server thread/INFO]: Zombie Aggressive Towards Villager: true
+[09:50:00] [Server thread/INFO]: Chunks to Grow per Tick: 650
+[09:50:00] [Server thread/INFO]: Clear tick list: false
+[09:50:00] [Server thread/INFO]: Experience Merge Radius: 3.0
+[09:50:00] [Server thread/INFO]: Max Entity Collisions: 8
+[09:50:00] [Server thread/INFO]: Custom Map Seeds:  Village: 10387312 Feature: 14357617
+[09:50:00] [Server thread/INFO]: Preparing start region for level 0 (Seed: -2712299434506846085)
+[09:50:01] [Server thread/INFO]: Preparing spawn area: 19%
+[09:50:02] [Server thread/INFO]: Preparing spawn area: 41%
+[09:50:03] [Server thread/INFO]: Preparing spawn area: 67%
+[09:50:04] [Server thread/INFO]: Preparing spawn area: 93%
+[09:50:05] [Server thread/INFO]: Preparing start region for level 1 (Seed: -2712299434506846085)
+[09:50:06] [Server thread/INFO]: Preparing spawn area: 68%
+[09:50:06] [Server thread/INFO]: [Spigot-Cloud-API] Enabling Spigot-Cloud-API v1.0
+[09:50:06] [Server thread/INFO]: LOADED
+[09:50:06] [Server thread/INFO]: Started ProxyMaster Client on: (127.0.0.1:7898)
+[09:50:06] [Server thread/INFO]: Done (6,835s)! For help, type "help" or "?"
+[10:15:04] [Thread-6/INFO]: [ERROR - TNFW]> [Client] Connection lost
+[10:15:04] [Thread-3/INFO]: Stopping server

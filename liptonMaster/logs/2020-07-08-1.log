@@ -1,0 +1,41 @@
+[Cloud-Thread | 13:11:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterPacket
+[Cloud-Thread | 13:11:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.ShutDownPacket
+[Cloud-Thread | 13:11:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.SendProxyConfigPacket
+[Cloud-Thread | 13:11:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StopProxyPacket
+[Cloud-Thread | 13:11:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.ProxyStoppingPacket
+[Cloud-Thread | 13:11:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.ExecuteCommandPacket
+[Cloud-Thread | 13:11:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.SendServerConfigPacket
+[Cloud-Thread | 13:11:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerGroupPacket
+[Cloud-Thread | 13:11:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerPacket
+[Cloud-Thread | 13:11:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerStoppingPacket
+[Cloud-Thread | 13:11:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CopyServerPacket
+[Cloud-Thread | 13:11:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CreateTemplatePacket
+[Cloud-Thread | 13:11:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.StartServerPacket
+[Cloud-Thread | 13:11:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.DebugPacket
+[Cloud-Thread | 13:11:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.ErrorPacket
+[Cloud-Thread | 13:11:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.InfoPacket
+[Cloud-Thread | 13:11:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.WarningPacket
+[Cloud-Thread | 13:11:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.UpdateMaintenancePacket
+[Cloud-Thread | 13:11:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.ServerGroupUpdatePacket
+[Cloud-Thread | 13:11:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerUpdatePacket
+[Cloud-Thread | 13:11:04] INFO: Registered Packet By Clazz: de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterResponsePacket
+[Cloud-Thread | 13:11:04] INFO: [31m.____    .__        __                _________ .__                   .___
+[Cloud-Thread | 13:11:04] INFO: [31m|    |   |__|______/  |_  ____   ____ \_   ___ \|  |   ____  __ __  __| _/
+[Cloud-Thread | 13:11:04] INFO: [31m|    |   |  \____ \   __\/  _ \ /    \/    \  \/|  |  /  _ \|  |  \/ __ | 
+[Cloud-Thread | 13:11:04] INFO: [31m|    |___|  |  |_> >  | (  <_> )   |  \     \___|  |_(  <_> )  |  / /_/ | 
+[Cloud-Thread | 13:11:04] INFO: [31m|_______ \__|   __/|__|  \____/|___|  /\______  /____/\____/|____/\____ | 
+[Cloud-Thread | 13:11:04] INFO: [31m        \/  |__|                    \/        \/                       \/ 
+[Cloud-Thread | 13:11:04] INFO: Coded by CryCodes & SpaceByter
+[Cloud-Thread | 13:11:04] INFO: 
+[Cloud-Thread | 13:11:04] INFO: Loaded Addon: WebInterFace-1.0-SNAPSHOT
+[Cloud-Thread | 13:11:04] INFO: Start Webserver... (Port: 8080)
+[Cloud-Thread | 13:11:04] INFO: Starting Master-Wrapper Server on Port: (9685) !
+[Cloud-Thread | 13:11:04] INFO: Starting Proxy-Wrapper Server on Port: (1784) !
+[Cloud-Thread | 13:11:04] INFO: Starting Master-Spigot Server on Port: (7898) !
+[Cloud-Thread | 13:11:05] INFO: Started BungeeCord Server on: 25565 !
+[Cloud-Thread | 13:11:05] INFO: Action 'MASTERSTARTUP' took: (0.8) Seconds!
+[Cloud-Thread | 13:11:06] INFO: Registered new Proxy: MainProxy
+[Cloud-Thread | 13:11:48] INFO: Registered new Wrapper: Wrapper-1
+[Cloud-Thread | 13:11:51] INFO: [AUTOSTART] StartetServer 'Lobby' stats: (1/2) Port: 30000 | ID: 1 !
+[Cloud-Thread | 13:11:53] INFO: [AUTOSTART] StartetServer 'Lobby' stats: (2/2) Port: 30001 | ID: 2 !
+[Cloud-Thread | 13:11:58] INFO: [AUTOSTART] StartetServer 'Bedwars' stats: (1/1) Port: 30002 | ID: 1 !

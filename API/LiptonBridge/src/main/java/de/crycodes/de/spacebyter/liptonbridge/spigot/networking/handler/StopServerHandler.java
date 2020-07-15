@@ -9,6 +9,7 @@ import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerSto
 import de.crycodes.de.spacebyter.network.adapter.PacketHandlerAdapter;
 import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
 import de.crycodes.de.spacebyter.network.packet.Packet;
+import org.bukkit.Bukkit;
 
 /**
  * Coded By CryCodes
@@ -25,13 +26,15 @@ public class StopServerHandler extends PacketHandlerAdapter {
         if (packet instanceof StopServerPacket){
             final StopServerPacket stopServerPacket = (StopServerPacket) packet;
             if (LiptonSpigotBridge.getInstance().getCloudAPI().getServerMeta() == null) {
-                System.exit(0);
+             //   System.exit(0);
+                Bukkit.shutdown();
                 return;
             }
 
             String serverName = LiptonSpigotBridge.getInstance().getCloudAPI().getServerMeta().getServerName();
             if (serverName.equalsIgnoreCase(stopServerPacket.getServerName())){
-                System.exit(0);
+              //  System.exit(0);
+                Bukkit.shutdown();
             } else {
                 return;
             }
