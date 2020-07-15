@@ -148,7 +148,7 @@ public class ServerManager {
         if (this.globalServerList.containsKey(name)){
             final ServerMeta serverMeta = globalServerList.get(name);
 
-                if (liptonMaster.getIdManager().getServerIdList().get(serverMeta.getServerGroupMeta().getGroupName()).containsKey(serverMeta.getId())){
+                if (liptonMaster.getIdManager().getServerIdList().get(serverMeta.getServerGroupMeta().getGroupName()).contains(serverMeta.getId())){
                     liptonMaster.getIdManager().removeID(serverMeta.getServerGroupMeta().getGroupName(),serverMeta.getId());
                 } else {
                     try {

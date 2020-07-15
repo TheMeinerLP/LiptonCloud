@@ -28,7 +28,8 @@
 [Cloud-Thread | 17:08:56] INFO: Coded by CryCodes & SpaceByter
 [Cloud-Thread | 17:08:56] INFO: 
 [Cloud-Thread | 17:08:56] INFO: Startet WrapperMaster Client on: (127.0.0.1:9685)
-[Cloud-Thread | 17:08:56] INFO: Connected Successful to Master!
+[Cloud-Thread | 17:08:56] 17:08:56] INFO: Connected Successful to Master![36mINFO[0m: Startet WrapperMaster Client on: (127.0.0.1:9685)[0m
+
 [Cloud-Thread | 17:08:56] INFO: This Cloud is Using the Version spigot-1.8.8-R0.1-SNAPSHOT-latest
 [Cloud-Thread | 17:08:56] INFO: Action 'WRAPPERSTARTUP' took: (1.16) Seconds!
 [Cloud-Thread | 17:09:00] INFO: Server Startet: Lobby-1 on (30000)

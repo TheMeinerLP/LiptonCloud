@@ -2,10 +2,7 @@ package de.crycodes.de.spacebyter.manager;
 
 import scala.Int;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -18,20 +15,20 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class IDManager {
 
-    private ConcurrentHashMap<String, Map<Integer, Integer>> serverIdList = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<String, List<Integer>> serverIdList = new ConcurrentHashMap<>();
 
     public int getFreeID(String serverGroupMeta){
         if (!this.serverIdList.containsKey(serverGroupMeta)){
-            Map<Integer,Integer> ids = new HashMap();
-            ids.put(1, 1);
+            List<Integer> ids = new ArrayList<>();
+            ids.add(1);
             this.serverIdList.put(serverGroupMeta, ids);
             return 1;
         } else {
             for (int i = 1; i < 2000; i++){
-                if (this.serverIdList.get(serverGroupMeta).containsKey(i))
+                if (this.serverIdList.get(serverGroupMeta).contains(i))
                     continue;
                 else {
-                    this.serverIdList.get(serverGroupMeta).put(i, i);
+                    this.serverIdList.get(serverGroupMeta).add(i);
                     return i;
                 }
             }
@@ -39,16 +36,19 @@ public class IDManager {
         return 404;
     }
     public void removeID(String serverGroupMeta, int id){
-        Map<Integer,Integer> ids = serverIdList.get(serverGroupMeta);
+        List<Integer> ids = serverIdList.get(serverGroupMeta);
 
-        ids.remove(id - 1);
+        Collection<Integer> toRemove = new ArrayList<>();
+        toRemove.add(id);
+
+        ids.removeAll(toRemove);
 
         this.serverIdList.remove(serverGroupMeta);
         this.serverIdList.put(serverGroupMeta, ids);
 
     }
 
-    public ConcurrentHashMap<String, Map<Integer, Integer>> getServerIdList() {
+    public ConcurrentHashMap<String,List<Integer>> getServerIdList() {
         return serverIdList;
     }
 

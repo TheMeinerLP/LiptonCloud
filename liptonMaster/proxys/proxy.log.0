@@ -4151,3 +4151,33 @@ java.lang.ArrayIndexOutOfBoundsException: 2
 09:50:06 [INFORMATION] [/127.0.0.1:58108] <-> InitialHandler has pinged
 09:50:08 [INFORMATION] ServerMeta{serverName='Bedwars-1', id=1, serverGroupMeta=ServerGroupMeta{groupName='Bedwars', maxMemory=512, minMemory=128, dynamicService=true, maintenance=false, maxServer=1, minServer=1}, wrapperID='Wrapper-1', host='127.0.0.1', port=30002}
 09:50:08 [INFORMATION] [/192.168.178.36:58118] <-> InitialHandler has pinged
+17:08:54 [INFORMATION] Using standard Java JCE cipher.
+17:08:54 [INFORMATION] Using standard Java compressor.
+17:08:54 [INFORMATION] Enabled BungeeCord version git:BungeeCord-Bootstrap:1.16-R0.2-SNAPSHOT:2e4b08e:1518
+17:08:54 [INFORMATION] Discovered module: ModuleSpec(name=cmd_alert, file=modules\cmd_alert.jar, provider=JenkinsModuleSource())
+17:08:54 [INFORMATION] Discovered module: ModuleSpec(name=cmd_find, file=modules\cmd_find.jar, provider=JenkinsModuleSource())
+17:08:54 [INFORMATION] Discovered module: ModuleSpec(name=cmd_list, file=modules\cmd_list.jar, provider=JenkinsModuleSource())
+17:08:54 [INFORMATION] Discovered module: ModuleSpec(name=cmd_send, file=modules\cmd_send.jar, provider=JenkinsModuleSource())
+17:08:54 [INFORMATION] Discovered module: ModuleSpec(name=cmd_server, file=modules\cmd_server.jar, provider=JenkinsModuleSource())
+17:08:54 [INFORMATION] Discovered module: ModuleSpec(name=reconnect_yaml, file=modules\reconnect_yaml.jar, provider=JenkinsModuleSource())
+17:08:54 [INFORMATION] Loaded plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+17:08:54 [INFORMATION] Loaded plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+17:08:54 [INFORMATION] Loaded plugin Bungee-Cloud-API version 1.0 by null
+17:08:54 [INFORMATION] Loaded plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+17:08:54 [INFORMATION] Loaded plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+17:08:54 [INFORMATION] Loaded plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+17:08:54 [INFORMATION] Loaded plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+17:08:54 [WARNUNG] Forced host server pvp is not defined
+17:08:54 [INFORMATION] Enabled plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+17:08:54 [INFORMATION] Enabled plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+17:08:54 [INFORMATION] Started ProxyMaster Client on: (127.0.0.1:1784)
+17:08:54 [INFORMATION] Connected To Master
+17:08:54 [INFORMATION] Enabled plugin Bungee-Cloud-API version 1.0 by null
+17:08:54 [INFORMATION] Enabled plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+17:08:54 [INFORMATION] Enabled plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+17:08:54 [INFORMATION] Enabled plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+17:08:54 [INFORMATION] Enabled plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+17:08:55 [INFORMATION] Listening on /0.0.0.0:25565
+17:09:17 [INFORMATION] ServerMeta{serverName='Lobby-2', id=2, serverGroupMeta=ServerGroupMeta{groupName='Lobby', maxMemory=512, minMemory=128, dynamicService=true, maintenance=false, maxServer=3, minServer=2}, wrapperID='Wrapper-1', host='127.0.0.1', port=30001}
+17:09:22 [INFORMATION] ServerMeta{serverName='Bedwars-1', id=1, serverGroupMeta=ServerGroupMeta{groupName='Bedwars', maxMemory=512, minMemory=128, dynamicService=true, maintenance=false, maxServer=1, minServer=1}, wrapperID='Wrapper-1', host='127.0.0.1', port=30002}
+17:09:27 [INFORMATION] Stopping: Bedwars-1
