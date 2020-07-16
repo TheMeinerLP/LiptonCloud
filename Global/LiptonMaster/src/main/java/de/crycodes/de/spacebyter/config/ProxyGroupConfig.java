@@ -3,7 +3,6 @@ package de.crycodes.de.spacebyter.config;
 import de.crycodes.de.spacebyter.liptoncloud.config.Document;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ProxyMeta;
-import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -25,8 +24,7 @@ public class ProxyGroupConfig {
     private File configFile;
 
 
-    public ProxyGroupConfig() { }
-
+    //<editor-fold desc="Class methods">
     public void create(ProxyMeta serverGroupMeta){
         this.serverMeta = serverGroupMeta;
         this.configFile = new File("./liptonMaster/groups/proxy/" + serverMeta.getName() + ".json");
@@ -68,4 +66,5 @@ public class ProxyGroupConfig {
     public void reload(){
         this.serverMeta = document.getObject("group", ProxyMeta.class);
     }
+    //</editor-fold>
 }

@@ -6,7 +6,6 @@ import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.ErrorPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.InfoPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.WarningPacket;
 import de.crycodes.de.spacebyter.network.adapter.PacketHandlerAdapter;
-import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
 import de.crycodes.de.spacebyter.network.packet.Packet;
 
 /**
@@ -19,26 +18,36 @@ import de.crycodes.de.spacebyter.network.packet.Packet;
 
 public class MessageHandler extends PacketHandlerAdapter {
 
+    private final LiptonMaster liptonMaster;
+
+    //<editor-fold desc="MessageHandler">
+    public MessageHandler(LiptonMaster liptonMaster) {
+        this.liptonMaster = liptonMaster;
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="handel">
     @Override
     public void handel(Packet packet) {
         if (packet instanceof ErrorPacket){
             final ErrorPacket errorPacket = (ErrorPacket) packet;
             if (errorPacket.getException() == null)
-                LiptonMaster.getInstance().getColouredConsoleProvider().error(errorPacket.getMessage());
+                liptonMaster.getColouredConsoleProvider().error(errorPacket.getMessage());
             else
-                LiptonMaster.getInstance().getColouredConsoleProvider().error(errorPacket.getMessage(), errorPacket.getException());
+                liptonMaster.getColouredConsoleProvider().error(errorPacket.getMessage(), errorPacket.getException());
         }
         if (packet instanceof InfoPacket){
             final InfoPacket infoPacket = (InfoPacket) packet;
-            LiptonMaster.getInstance().getColouredConsoleProvider().info(infoPacket.getMessage());
+            liptonMaster.getColouredConsoleProvider().info(infoPacket.getMessage());
         }
         if (packet instanceof WarningPacket){
             final WarningPacket warningPacket = (WarningPacket) packet;
-            LiptonMaster.getInstance().getColouredConsoleProvider().warning(warningPacket.getMessage());
+            liptonMaster.getColouredConsoleProvider().warning(warningPacket.getMessage());
         }
         if (packet instanceof DebugPacket){
             final DebugPacket debugPacket = (DebugPacket) packet;
-            LiptonMaster.getInstance().getColouredConsoleProvider().debug(debugPacket.getMessage());
+            liptonMaster.getColouredConsoleProvider().debug(debugPacket.getMessage());
         }
     }
+    //</editor-fold>
 }

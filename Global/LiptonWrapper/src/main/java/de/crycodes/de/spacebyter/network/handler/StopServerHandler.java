@@ -14,6 +14,7 @@ import de.crycodes.de.spacebyter.network.packet.Packet;
 
 public class StopServerHandler extends PacketHandlerAdapter {
 
+    //<editor-fold desc="handel">
     @Override
     public void handel(Packet packet) {
         if (packet instanceof StopServerPacket){
@@ -23,4 +24,5 @@ public class StopServerHandler extends PacketHandlerAdapter {
             System.out.println("DYNAMIC: " + stopServerPacket.getDynamic());
         }
     }
+    //</editor-fold>
 }

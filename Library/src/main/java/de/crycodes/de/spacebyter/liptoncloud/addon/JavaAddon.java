@@ -6,7 +6,9 @@ import de.crycodes.de.spacebyter.liptoncloud.addon.loader.AddonMainClassLoader;
 
 import java.util.Objects;
 
-public abstract class JavaAddon {
+public abstract class JavaAddon<E> {
+
+    public abstract E getInternalCloudSystem();
 
     protected JavaAddon() {
     }
@@ -24,7 +26,7 @@ public abstract class JavaAddon {
     /**
      * This method will be called when loading the addon
      */
-    public void onPrepare() {
+    public void onEnable() {
     }
 
     /**
@@ -36,7 +38,7 @@ public abstract class JavaAddon {
     /**
      * This method will be called when disabling the module
      */
-    public void onReadyToClose() {
+    public void onDisable() {
     }
 
     /**

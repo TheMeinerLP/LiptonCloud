@@ -1,10 +1,8 @@
 package de.crycodes.de.spacebyter.config;
 
-import com.sun.org.apache.xpath.internal.objects.XString;
 import de.crycodes.de.spacebyter.liptoncloud.config.Document;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
-import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -18,8 +16,7 @@ public class ServerGroupConfig {
     private File configFile;
 
 
-    public ServerGroupConfig() { }
-
+    //<editor-fold desc="Class Methods">
     public void create(ServerGroupMeta serverGroupMeta){
         this.serverMeta = serverGroupMeta;
         this.configFile = new File("./liptonMaster/groups/server/" + serverMeta.getGroupName() + ".json");
@@ -70,5 +67,6 @@ public class ServerGroupConfig {
     public void reload(){
         this.serverMeta = document.getObject("group", ServerGroupMeta.class);
     }
+    //</editor-fold>
 
 }

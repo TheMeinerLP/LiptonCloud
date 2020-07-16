@@ -1,7 +1,6 @@
 package de.crycodes.addon.cloudfaler.config;
 
 import de.crycodes.addon.cloudfaler.CloudFlare;
-import de.crycodes.de.spacebyter.liptoncloud.config.Configuration;
 import de.crycodes.de.spacebyter.liptoncloud.utils.files.FileUtils;
 
 import java.io.Serializable;

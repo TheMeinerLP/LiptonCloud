@@ -1,8 +1,6 @@
 package de.crycodes.de.spacebyter.networking;
 
 import de.crycodes.de.spacebyter.LiptonMaster;
-import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
-import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.StartServerPacket;
 import de.crycodes.de.spacebyter.network.ThunderServer;
 import de.crycodes.de.spacebyter.network.adapter.AdapterHandler;
 import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
@@ -24,33 +22,41 @@ import de.crycodes.de.spacebyter.networking.handler.UnregisterHandler;
 public class MasterWrapperServer {
 
     private final Integer port;
+    private final LiptonMaster liptonMaster;
 
     private ThunderServer server;
     private NetworkChannel networkChannel;
     private AdapterHandler adapterHandler;
     private PacketHandler packetHandler;
 
-    public MasterWrapperServer(Integer port) {
+    //<editor-fold desc="MasterWrapperServer">
+    public MasterWrapperServer(Integer port, LiptonMaster liptonMaster) {
         this.port = port;
-        networkChannel = LiptonMaster.getInstance().getLiptonLibrary().getCloudChannel();
-        packetHandler = LiptonMaster.getInstance().getPacketHandler();
+        this.liptonMaster = liptonMaster;
+        networkChannel = this.liptonMaster.getLiptonLibrary().getCloudChannel();
+        packetHandler = this.liptonMaster.getPacketHandler();
         adapterHandler = new AdapterHandler();
 
-        adapterHandler.registerAdapter(new RegisterHandler());
-        adapterHandler.registerAdapter(new UnregisterHandler());
-        adapterHandler.registerAdapter(new MaintenanceUpdateHandler());
-        adapterHandler.registerAdapter(new MessageHandler());
-        adapterHandler.registerAdapter(new GlobalPacketHandler());
+        adapterHandler.registerAdapter(new RegisterHandler(this.liptonMaster));
+        adapterHandler.registerAdapter(new UnregisterHandler(this.liptonMaster));
+        adapterHandler.registerAdapter(new MaintenanceUpdateHandler(this.liptonMaster));
+        adapterHandler.registerAdapter(new MessageHandler(this.liptonMaster));
+        adapterHandler.registerAdapter(new GlobalPacketHandler(this.liptonMaster));
     }
+    //</editor-fold>
+    //<editor-fold desc="start">
     public MasterWrapperServer start(){
         server = new ThunderServer(adapterHandler, networkChannel, port);
 
 
-        LiptonMaster.getInstance().getColouredConsoleProvider().info("Starting Master-Wrapper Server on Port: (§c" + port + "§r) !");
+        liptonMaster.getColouredConsoleProvider().info("Starting Master-Wrapper Server on Port: (§c" + port + "§r) !");
         return this;
     }
+    //</editor-fold>
+    //<editor-fold desc="sendPacket">
     public MasterWrapperServer sendPacket(Packet packet){
         this.packetHandler.sendPacket(networkChannel, server, packet);
         return this;
     }
+    //</editor-fold>
 }

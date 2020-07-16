@@ -12,5 +12,9 @@ import de.crycodes.de.spacebyter.LiptonWrapper;
 
 public class LauncherWrapper {
 
-    public static void main(String[] args) {new LiptonWrapper();}
+    //<editor-fold desc="Main Method">
+    public static void main(String[] args) {
+        new LiptonWrapper();
+    }
+    //</editor-fold>
 }

@@ -3,7 +3,6 @@ package de.crycodes.de.spacebyter.network.handler;
 import de.crycodes.de.spacebyter.LiptonWrapper;
 import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CreateTemplatePacket;
 import de.crycodes.de.spacebyter.network.adapter.PacketHandlerAdapter;
-import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
 import de.crycodes.de.spacebyter.network.packet.Packet;
 
 /**
@@ -16,15 +15,23 @@ import de.crycodes.de.spacebyter.network.packet.Packet;
 
 public class CreateTemplateHandler extends PacketHandlerAdapter {
 
+    private final LiptonWrapper liptonWrapper;
+
+    public CreateTemplateHandler(LiptonWrapper liptonWrapper) {
+        this.liptonWrapper = liptonWrapper;
+    }
+
+    //<editor-fold desc="handel">
     @Override
     public void handel(Packet packet) {
         if (packet instanceof CreateTemplatePacket){
             final CreateTemplatePacket templatePacket = (CreateTemplatePacket) packet;
-            if (LiptonWrapper.getInstance().getWrapperConfig().getWrapperID().equalsIgnoreCase(templatePacket.getWrapperID())){
-                LiptonWrapper.getInstance().getTemplateManager().checkTemplate(templatePacket.getServerGroupMeta());
+            if (liptonWrapper.getWrapperConfig().getWrapperID().equalsIgnoreCase(templatePacket.getWrapperID())){
+                liptonWrapper.getTemplateManager().checkTemplate(templatePacket.getServerGroupMeta());
             } else {
                 return;
             }
         }
     }
+    //</editor-fold>
 }

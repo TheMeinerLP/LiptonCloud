@@ -1,5 +1,7 @@
 package de.crycodes.de.spacebyter.proxy;
 
+import de.crycodes.de.spacebyter.LiptonMaster;
+
 import java.io.IOException;
 
 /**
@@ -14,17 +16,24 @@ public class BungeeCordManager {
 
     private BungeeStartUpHandler bungeeStartUpHandler;
 
-    public BungeeCordManager() {
+    private final LiptonMaster liptonMaster;
+
+    //<editor-fold desc="BungeeCordManager">
+    public BungeeCordManager(LiptonMaster liptonMaster) {
+        this.liptonMaster = liptonMaster;
         try {
-            bungeeStartUpHandler = new BungeeStartUpHandler();
+            bungeeStartUpHandler = new BungeeStartUpHandler(this.liptonMaster);
             bungeeStartUpHandler.start();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    //</editor-fold>
 
+    //<editor-fold desc="getBungeeStartUpHandler">
     public BungeeStartUpHandler getBungeeStartUpHandler() {
         return bungeeStartUpHandler;
     }
+    //</editor-fold>
 }

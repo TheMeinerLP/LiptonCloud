@@ -2,6 +2,7 @@ package de.crycodes.addon.webinterface;
 
 import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.addon.MasterAddon;
+import spark.Spark;
 
 /**
  * Coded By CryCodes
@@ -34,6 +35,8 @@ public class WebInterFace extends MasterAddon {
 
     @Override
     public void onReadyToClose() {
+        Spark.awaitStop();
+        this.webServer.stop();
         super.onReadyToClose();
     }
 

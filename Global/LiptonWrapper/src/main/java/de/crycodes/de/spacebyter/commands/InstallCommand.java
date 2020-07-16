@@ -7,13 +7,16 @@ import de.crycodes.de.spacebyter.liptoncloud.versions.SpigotVersions;
 
 public class InstallCommand extends CloudCommand {
 
-    private final LiptonWrapper wrapper;
+    private final LiptonWrapper liptonWrapper;
 
+    //<editor-fold desc="InstallCommand">
     public InstallCommand(String name, String description, String[] aliases, LiptonWrapper wrapper) {
         super(name, description, aliases);
-        this.wrapper = wrapper;
+        this.liptonWrapper = wrapper;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="execute">
     @Override
     protected boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args) {
 
@@ -23,10 +26,10 @@ public class InstallCommand extends CloudCommand {
                 return true;
             }
 
-            if(isinteger(args[0])) {
+            if(isInteger(args[0])) {
                 Integer id = Integer.valueOf(args[0]);
                 SpigotVersions spigotVersions = SpigotVersions.getVersionById(id);
-                LiptonWrapper.getInstance().getVersionsManager().install(spigotVersions);
+                liptonWrapper.getVersionsManager().install(spigotVersions);
                 return true;
             }
             colouredConsoleProvider.error("Please use only the ID's");
@@ -42,8 +45,10 @@ public class InstallCommand extends CloudCommand {
             colouredConsoleProvider.info(spigotVersions.getJarName().replace(".jar", "") + " | (§a" + spigotVersions.getId() + "§r)");
         }
     }
+    //</editor-fold>
 
-    private boolean isinteger(String message){
+    //<editor-fold desc="isInteger">
+    private boolean isInteger(String message){
         try {
             Integer.valueOf(message);
             return true;
@@ -51,9 +56,12 @@ public class InstallCommand extends CloudCommand {
             return false;
         }
     }
+    //</editor-fold>
+    //<editor-fold desc="sendUsage">
     private void sendUsage(ColouredConsoleProvider colouredConsoleProvider){
         colouredConsoleProvider.info("install list");
         colouredConsoleProvider.info("install <id>");
     }
+    //</editor-fold>
 
 }

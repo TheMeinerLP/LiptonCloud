@@ -1,7 +1,6 @@
 package de.crycodes.de.spacebyter.serverhelper;
 
 import de.crycodes.de.spacebyter.liptoncloud.config.Document;
-import de.crycodes.de.spacebyter.liptoncloud.utils.Require;
 
 import java.io.File;
 
@@ -33,6 +32,7 @@ public class ProxyFileConfig {
     private File configFile = new File("./liptonMaster/proxyconfig.json");
     private Document document;
 
+    //<editor-fold desc="ProxyFileConfig">
     public ProxyFileConfig() {
         if (!configFile.exists()){
             document = new Document();
@@ -57,6 +57,9 @@ public class ProxyFileConfig {
             load();
         }
     }
+    //</editor-fold>
+
+    //<editor-fold desc="load">
     public void load(){
         document = Document.loadDocument(configFile);
         this.tablist_top = document.getString("tablist_top");
@@ -74,7 +77,9 @@ public class ProxyFileConfig {
         this.server_online_message = document.getString("server_online_message");
         this.server_stop_message = document.getString("server_stop_message");
     }
+    //</editor-fold>
 
+    //<editor-fold desc="Getter - Setter">
     public String getTablist_top() {
         return tablist_top;
     }
@@ -122,4 +127,5 @@ public class ProxyFileConfig {
     public Boolean getUseNotify() {
         return useNotify;
     }
+    //</editor-fold>
 }

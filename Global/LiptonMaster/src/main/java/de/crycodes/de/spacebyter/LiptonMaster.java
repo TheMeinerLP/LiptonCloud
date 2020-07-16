@@ -31,8 +31,7 @@ import java.io.File;
 
 public class LiptonMaster {
 
-    private static LiptonMaster instance;
-
+    //<editor-fold desc="Objects">
     private ColouredConsoleProvider colouredConsoleProvider;
 
     private LiptonLibrary liptonLibrary;
@@ -66,9 +65,10 @@ public class LiptonMaster {
 
 
     private BungeeCordManager bungeeCordManager;
+    //</editor-fold>
 
+    //<editor-fold desc="LiptonMaster">
     public LiptonMaster() {
-        instance = this;
 
         counter = new Counter();
         counter.start();
@@ -79,8 +79,8 @@ public class LiptonMaster {
 
         proxyFileConfig = new ProxyFileConfig();
 
-        adminConfig = new CloudAdminConfig();
-        maintenanceConfig = new CloudMaintenanceConfig();
+        adminConfig = new CloudAdminConfig(this);
+        maintenanceConfig = new CloudMaintenanceConfig(this);
 
         serverGroupConfig = new ServerGroupConfig();
         proxyGroupConfig = new ProxyGroupConfig();
@@ -92,7 +92,7 @@ public class LiptonMaster {
         portManager = new PortManager(this);
         idManager = new IDManager();
 
-        proxyManager = new ProxyManager();
+        proxyManager = new ProxyManager(this);
 
         if (serverGroupConfig.getServerMetaByName("Lobby") == null)
             serverGroupConfig.create(new ServerGroupMeta("Lobby",
@@ -128,20 +128,20 @@ public class LiptonMaster {
         if (parallelLoader.isAddonEnabled("SignSystem"))
             colouredConsoleProvider.info("Using SignSystem for LiptonCloud!");
 
-        masterWrapperServer = new MasterWrapperServer(this.masterConfig.getPort()).start();
-        masterProxyServer = new MasterProxyServer(1784).start();
-        masterSpigotServer = new MasterSpigotServer(7898).start();
+        masterWrapperServer = new MasterWrapperServer(this.masterConfig.getPort(), this).start();
+        masterProxyServer = new MasterProxyServer(1784, this).start();
+        masterSpigotServer = new MasterSpigotServer(7898, this).start();
 
 
         serverManager = new ServerManager(this, serverGroupConfig);
         serverManager.start();
 
-        bungeeCordManager = new BungeeCordManager();
+        bungeeCordManager = new BungeeCordManager(this);
 
         commandManager.registerCommand(new HelpCommand("help", "Shows all CloudCommands", new String[]{"?", "tftodo"}, this));
-        commandManager.registerCommand(new CreateCommand("create", "Create Wrapper|Proxy|ServerGroups ", new String[]{"build", "make"}));
+        commandManager.registerCommand(new CreateCommand("create", "Create Wrapper|Proxy|ServerGroups ", new String[]{"build", "make"}, this));
         commandManager.registerCommand(new ReloadCommand("reload", "Reload Cloud", new String[]{"restart", "reloadconfig"}, this));
-        commandManager.registerCommand(new StopCommand("stop", "Stop the Cloud", new String[]{"exit"}));
+        commandManager.registerCommand(new StopCommand("stop", "Stop the Cloud", new String[]{"exit"}, this));
         commandManager.registerCommand(new ServiceCommand("service", "Service Command of the Cloud", new String[]{"cloud"}, this));
         commandManager.registerCommand(new ExecuteCommand("execute", "Execute Command on Server", new String[]{"send"}, this));
         commandManager.registerCommand(new PermsCommand("perms", "Simple Command to manage CloudAdmins", new String[]{"cloudadmin", "user", "admin"}, this));
@@ -153,11 +153,9 @@ public class LiptonMaster {
 
         commandManager.run();
     }
+    //</editor-fold>
 
-    public static LiptonMaster getInstance() {
-        return instance;
-    }
-
+    //<editor-fold desc="Getter - Setter">
     public ColouredConsoleProvider getColouredConsoleProvider() {
         return colouredConsoleProvider;
     }
@@ -245,4 +243,9 @@ public class LiptonMaster {
     public CloudMaintenanceConfig getMaintenanceConfig() {
         return maintenanceConfig;
     }
+
+    public AddonParallelLoader getParallelLoader() {
+        return parallelLoader;
+    }
+    //</editor-fold>
 }

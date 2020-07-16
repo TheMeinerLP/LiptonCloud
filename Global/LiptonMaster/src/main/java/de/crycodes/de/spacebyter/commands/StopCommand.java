@@ -1,5 +1,6 @@
 package de.crycodes.de.spacebyter.commands;
 
+import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.liptoncloud.command.CloudCommand;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 
@@ -13,13 +14,20 @@ import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 
 public class StopCommand extends CloudCommand {
 
-    public StopCommand(String name, String description, String[] aliases) {
-        super(name, description, aliases);
-    }
+    private final LiptonMaster liptonMaster;
 
+    //<editor-fold desc="StopCommand">
+    public StopCommand(String name, String description, String[] aliases, LiptonMaster liptonMaster) {
+        super(name, description, aliases);
+        this.liptonMaster = liptonMaster;
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="execute">
     @Override
     protected boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args) {
         System.exit(0);
         return false;
     }
+    //</editor-fold>
 }

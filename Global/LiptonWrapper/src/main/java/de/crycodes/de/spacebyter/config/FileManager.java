@@ -15,11 +15,14 @@ public class FileManager {
     private final String dir;
     private final String[] roots;
 
+    //<editor-fold desc="FileManager">
     public FileManager(String dir, String... roots) {
         this.dir = dir;
         this.roots = roots;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="create">
     public FileManager create() {
         File dirFile = new File(dir);
         if (!dirFile.exists()) dirFile.mkdirs();
@@ -33,5 +36,6 @@ public class FileManager {
 
         return this;
     }
+    //</editor-fold>
 
 }

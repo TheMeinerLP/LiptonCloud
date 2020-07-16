@@ -10,19 +10,26 @@ import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.UnRegisterPacke
 
 public class StopCommand extends CloudCommand {
 
-    public StopCommand(String name, String description, String[] aliases) {
-        super(name, description, aliases);
-    }
+    private final LiptonWrapper liptonWrapper;
 
+    //<editor-fold desc="StopCommand">
+    public StopCommand(String name, String description, String[] aliases, LiptonWrapper liptonWrapper) {
+        super(name, description, aliases);
+        this.liptonWrapper = liptonWrapper;
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="execute">
     @Override
     protected boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args) {
-        LiptonWrapper.getInstance().setIsrunning(false);
+        liptonWrapper.setIsrunning(false);
         colouredConsoleProvider.info("Stopping Cloud");
-        LiptonWrapper.getInstance().getWrapperMasterClient().sendPacket(new UnRegisterPacket(RegisterType.WRAPPER, new WrapperMeta(false, new WrapperConfig(LiptonWrapper.getInstance().getWrapperConfig().getWrapperID(), LiptonWrapper.getInstance().getWrapperConfig().getHost(), true))));
+        liptonWrapper.getWrapperMasterClient().sendPacket(new UnRegisterPacket(RegisterType.WRAPPER, new WrapperMeta(false, new WrapperConfig(liptonWrapper.getWrapperConfig().getWrapperID(), liptonWrapper.getWrapperConfig().getHost(), true))));
         System.exit(0);
 
         return false;
     }
+    //</editor-fold>
 
 
 }

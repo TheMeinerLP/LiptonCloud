@@ -31,6 +31,7 @@ public class MasterConfig {
     private Document document;
     private File configFile = new File("./liptonMaster/config.json");
 
+    //<editor-fold desc="MasterConfig - Class Methods">
     public MasterConfig() {
         if (configFile.exists()){
             reload();
@@ -78,7 +79,9 @@ public class MasterConfig {
             return true;
         }
     }
+    //</editor-fold>
 
+    //<editor-fold desc="getter - setter">
     public String getHost() {
         return host;
     }
@@ -126,6 +129,7 @@ public class MasterConfig {
     public boolean isMaintenance() {
         return maintenance;
     }
+    //</editor-fold>
 
 }
 

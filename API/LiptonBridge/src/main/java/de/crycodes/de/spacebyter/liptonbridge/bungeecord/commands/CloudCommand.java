@@ -145,16 +145,19 @@ public class CloudCommand extends Command implements TabExecutor {
             commandSender.sendMessage(LiptonBungeeBridge.getInstance().getPREFIX() + "No Permissions to Execute this Command!");
             return new ArrayList<>();
         } else {
-            List<String> tabs = new ArrayList<>();
+            if (strings.length == 1) {
+                List<String> tabs = new ArrayList<>();
 
-            tabs.add("listProxys");
-            tabs.add("listServers");
-            tabs.add("listWrappers");
-            tabs.add("listGroups");
-            tabs.add("list");
-            tabs.add("version");
+                tabs.add("listProxys");
+                tabs.add("listServers");
+                tabs.add("listWrappers");
+                tabs.add("listGroups");
+                tabs.add("list");
+                tabs.add("version");
 
-            return tabs;
+                return tabs;
+            } else
+                return new ArrayList<>();
         }
     }
     //</editor-fold>

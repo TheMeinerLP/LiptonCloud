@@ -6,9 +6,7 @@ import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.WrapperMeta;
 import de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterResponsePacket;
-import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.StartServerPacket;
 import de.crycodes.de.spacebyter.network.adapter.PacketHandlerAdapter;
-import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
 import de.crycodes.de.spacebyter.network.packet.Packet;
 
 /**
@@ -20,28 +18,37 @@ import de.crycodes.de.spacebyter.network.packet.Packet;
  */
 
 public class RegisterHandler extends PacketHandlerAdapter {
+    
+    private final LiptonMaster liptonMaster;
 
+    //<editor-fold desc="RegisterHandler">
+    public RegisterHandler(LiptonMaster liptonMaster) {
+        this.liptonMaster = liptonMaster;
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="handel">
     @Override
     public void handel(Packet packet) {
         if (packet instanceof RegisterPacket){
             final RegisterPacket registerPacket = (RegisterPacket) packet;
             switch (registerPacket.getRegisterType()){
                 case WRAPPER:
-                    LiptonMaster.getInstance().getWrapperManager().registerWrapper((WrapperMeta) registerPacket.getMeta(),result -> {
-                        LiptonMaster.getInstance().getMasterWrapperServer().sendPacket(new RegisterResponsePacket(result));
+                    liptonMaster.getWrapperManager().registerWrapper((WrapperMeta) registerPacket.getMeta(),result -> {
+                        liptonMaster.getMasterWrapperServer().sendPacket(new RegisterResponsePacket(result));
                     });
                     break;
                 case PROXY:
-                    LiptonMaster.getInstance().getProxyManager().registerProxy((ProxyMeta) registerPacket.getMeta(), result -> {
-                        LiptonMaster.getInstance().getMasterProxyServer().getServer().sendPacket(
-                                LiptonMaster.getInstance().getMasterProxyServer().getNetworkChannel(),
+                    liptonMaster.getProxyManager().registerProxy((ProxyMeta) registerPacket.getMeta(), result -> {
+                        liptonMaster.getMasterProxyServer().getServer().sendPacket(
+                                liptonMaster.getMasterProxyServer().getNetworkChannel(),
                                 new RegisterResponsePacket(result));
                     });
                     break;
                 case SERVER:
                     if (registerPacket.getMeta() instanceof ServerMeta){
                         final ServerMeta serverMeta = (ServerMeta) registerPacket.getMeta();
-                        LiptonMaster.getInstance().getServerManager().registerServer(serverMeta.getServerName());
+                        liptonMaster.getServerManager().registerServer(serverMeta.getServerName());
                     }
                     break;
 
@@ -50,4 +57,5 @@ public class RegisterHandler extends PacketHandlerAdapter {
             }
         }
     }
+    //</editor-fold>
 }

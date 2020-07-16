@@ -17,11 +17,14 @@ public class PermsCommand extends CloudCommand {
 
     private final LiptonMaster liptonMaster;
 
+    //<editor-fold desc="PermsCommand">
     public PermsCommand(String name, String description, String[] aliases, LiptonMaster liptonMaster) {
         super(name, description, aliases);
         this.liptonMaster = liptonMaster;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="execute">
     @Override
     protected boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args) {
         if (args.length == 1)
@@ -45,12 +48,15 @@ public class PermsCommand extends CloudCommand {
             sendUsage(colouredConsoleProvider);
         return false;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="sendUsage">
     private void sendUsage(ColouredConsoleProvider colouredConsoleProvider){
         colouredConsoleProvider.info("perms <check> <user>");
         colouredConsoleProvider.info("perms <set> <user>");
         colouredConsoleProvider.info("perms <remove> <user>");
         colouredConsoleProvider.info("perms <help>");
     }
+    //</editor-fold>
 
 }

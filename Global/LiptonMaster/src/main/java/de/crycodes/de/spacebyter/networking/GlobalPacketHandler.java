@@ -14,9 +14,19 @@ import de.crycodes.de.spacebyter.network.packet.Packet;
 
 public class GlobalPacketHandler extends PacketHandlerAdapter {
 
+    private final LiptonMaster liptonMaster;
+
+    //<editor-fold desc="GlobalPacketHandler">
+    public GlobalPacketHandler(LiptonMaster liptonMaster) {
+        this.liptonMaster = liptonMaster;
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="handel">
     @Override
     public void handel(Packet packet) {
-        if (LiptonMaster.getInstance().getMasterConfig().isDebugMode())
-            LiptonMaster.getInstance().getColouredConsoleProvider().info("NEW PACKET - " + packet.getClass().getSimpleName());
+        if (liptonMaster.getMasterConfig().isDebugMode())
+            liptonMaster.getColouredConsoleProvider().info("NEW PACKET - " + packet.getClass().getSimpleName());
     }
+    //</editor-fold>
 }

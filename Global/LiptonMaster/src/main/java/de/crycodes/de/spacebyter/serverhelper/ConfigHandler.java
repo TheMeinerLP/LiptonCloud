@@ -24,11 +24,14 @@ public class ConfigHandler {
     private final LiptonMaster liptonMaster;
     private final Scheduler scheduler;
 
+    //<editor-fold desc="ConfigHandler">
     public ConfigHandler(LiptonMaster liptonMaster, Scheduler scheduler) {
         this.liptonMaster = liptonMaster;
         this.scheduler = scheduler;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="DescstartUpdateThreadription">
     @ShouldRunAsync
     public ConfigHandler startUpdateThread(){
         scheduler.scheduleAsyncWhile(new Runnable() {
@@ -88,6 +91,7 @@ public class ConfigHandler {
 
         return this;
     }
+    //</editor-fold>
 
 
 }

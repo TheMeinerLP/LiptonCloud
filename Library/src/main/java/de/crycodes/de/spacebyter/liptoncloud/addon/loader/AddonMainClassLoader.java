@@ -33,7 +33,7 @@ public class AddonMainClassLoader extends URLClassLoader implements AddonPreLoad
             .getDeclaredConstructor().newInstance();
 
         javaAddon.setAddonClassConfig(this.addonClassConfig);
-        javaAddon.onPrepare();
+        javaAddon.onEnable();
 
         return javaAddon;
     }

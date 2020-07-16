@@ -19,11 +19,14 @@ public class CopyServerCommand extends CloudCommand {
 
     private final LiptonMaster liptonMaster;
 
+    //<editor-fold desc="CopyServerCommand">
     public CopyServerCommand(String name, String description, String[] aliases, LiptonMaster liptonMaster) {
         super(name, description, aliases);
         this.liptonMaster = liptonMaster;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="execute">
     @Override
     protected boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args) {
         if (args.length == 2){
@@ -52,4 +55,5 @@ public class CopyServerCommand extends CloudCommand {
         }
         return false;
     }
+    //</editor-fold>
 }

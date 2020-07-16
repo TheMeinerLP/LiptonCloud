@@ -2,9 +2,7 @@ package de.crycodes.de.spacebyter.network.handler;
 
 import de.crycodes.de.spacebyter.LiptonWrapper;
 import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CopyServerPacket;
-import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.StartServerPacket;
 import de.crycodes.de.spacebyter.network.adapter.PacketHandlerAdapter;
-import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
 import de.crycodes.de.spacebyter.network.packet.Packet;
 
 import java.io.*;
@@ -22,11 +20,18 @@ public class CopyServerHandler extends PacketHandlerAdapter {
     private final File serverLocation = new File("liptonWrapper/server/");
     private final File templateLocation = new File("liptonWrapper/templates/");
 
+    private final LiptonWrapper liptonWrapper;
+
+    public CopyServerHandler(LiptonWrapper liptonWrapper) {
+        this.liptonWrapper = liptonWrapper;
+    }
+
+    //<editor-fold desc="handel">
     @Override
     public void handel(Packet packet) {
         if (packet instanceof CopyServerPacket){
             final CopyServerPacket copyServerPacket = (CopyServerPacket) packet;
-            if (LiptonWrapper.getInstance().getWrapperConfig().getWrapperID().equalsIgnoreCase(copyServerPacket.getWrapperID())){
+            if (liptonWrapper.getWrapperConfig().getWrapperID().equalsIgnoreCase(copyServerPacket.getWrapperID())){
                 String serverName = copyServerPacket.getServerName();
                 String templateName = copyServerPacket.getServerGroupMeta().getGroupName().toUpperCase();
 
@@ -41,20 +46,23 @@ public class CopyServerHandler extends PacketHandlerAdapter {
                     e.printStackTrace();
                 }
 
-                LiptonWrapper.getInstance().getColouredConsoleProvider().info("Copied Server: '" + serverName + "' in Template of ServerGroup: '" + copyServerPacket.getServerGroupMeta().getGroupName() + "' !");
+                liptonWrapper.getColouredConsoleProvider().info("Copied Server: '" + serverName + "' in Template of ServerGroup: '" + copyServerPacket.getServerGroupMeta().getGroupName() + "' !");
 
             } else {
                 return;
             }
         }
     }
+    //</editor-fold>
 
+    
     /**
      * Method to Copy a Folder
      *
      * @param src | Folder from
      * @param dest | Folder to
      * */
+    //<editor-fold desc="copyFolder">
     private void copyFolder(File src, File dest) throws IOException {
         if(src.isDirectory()){
             if(!dest.exists()){
@@ -85,5 +93,6 @@ public class CopyServerHandler extends PacketHandlerAdapter {
             out.close();
         }
     }
+    //</editor-fold>
 
 }

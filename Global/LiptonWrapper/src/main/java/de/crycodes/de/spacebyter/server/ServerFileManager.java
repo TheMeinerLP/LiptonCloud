@@ -14,6 +14,15 @@ public class ServerFileManager {
     private final File serverLocation = new File("liptonWrapper/server/");
     private final File templateLocation = new File("liptonWrapper/templates/");
 
+    private final LiptonWrapper liptonWrapper;
+
+    //<editor-fold desc="ServerFileManager">
+    public ServerFileManager(LiptonWrapper liptonWrapper) {
+        this.liptonWrapper = liptonWrapper;
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="createServer">
     public void createServer(ServerMeta serverMeta) throws IOException {
 
         String serverType = serverMeta.getServerGroupMeta().isDynamicService() ? "dynamic" : "static";
@@ -59,7 +68,8 @@ public class ServerFileManager {
 
         document.saveAsConfig(new File(serverDir + "/META.json"));
 
-        LiptonWrapper.getInstance().getServerStartHandler().startServer(serverMeta);
+        liptonWrapper.getServerStartHandler().startServer(serverMeta);
 
     }
+    //</editor-fold>
 }

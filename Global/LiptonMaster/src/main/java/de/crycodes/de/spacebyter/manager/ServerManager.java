@@ -61,10 +61,10 @@ public class ServerManager {
                     final String bestWrapperID = wrapperMeta.getWrapperConfig().getWrapperId();
 
 
-                    if (getOnlineServerByGroup(LiptonMaster.getInstance().getServerGroupConfig().getServerMetaByName("Lobby")) == 0 &&
-                            getStartedServerByGroup(LiptonMaster.getInstance().getServerGroupConfig().getServerMetaByName("Lobby")) == 0 ){
+                    if (getOnlineServerByGroup(liptonMaster.getServerGroupConfig().getServerMetaByName("Lobby")) == 0 &&
+                            getStartedServerByGroup(liptonMaster.getServerGroupConfig().getServerMetaByName("Lobby")) == 0 ){
 
-                        startServer(LiptonMaster.getInstance().getServerGroupConfig().getServerMetaByName("Lobby"), bestWrapperID, true);
+                        startServer(liptonMaster.getServerGroupConfig().getServerMetaByName("Lobby"), bestWrapperID, true);
                         return;
                     }
 
@@ -106,7 +106,7 @@ public class ServerManager {
                 liptonMaster.getMasterProxyServer().getNetworkChannel(),
                 new StartServerPacket(wrapperID ,serverMeta));
 
-        LiptonMaster.getInstance().getMasterWrapperServer().sendPacket(new StartServerPacket(wrapperID, serverMeta));
+        liptonMaster.getMasterWrapperServer().sendPacket(new StartServerPacket(wrapperID, serverMeta));
 
         if (!autoStart) this.liptonMaster.getColouredConsoleProvider().info("StartetServer: " + serverMeta.getServerName() + " | on port: " + serverMeta.getPort() + " | on wrapper: " + serverMeta.getWrapperID() + " | group: " + serverGroupMeta.getGroupName() + " !");
         if (autoStart)  liptonMaster.getColouredConsoleProvider().info("§c[AUTOSTART]§r StartetServer '" + serverGroupMeta.getGroupName() + "' stats: (" + getGlobalStartedAndOnlineServerByGroup(serverGroupMeta) + "/" + serverGroupMeta.getMinServer() + ") Port: §a" + port + "§r | ID: §a" + id + "§r !");

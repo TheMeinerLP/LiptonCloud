@@ -3,7 +3,6 @@ package de.crycodes.de.spacebyter.network.handler;
 import de.crycodes.de.spacebyter.LiptonWrapper;
 import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.StartServerPacket;
 import de.crycodes.de.spacebyter.network.adapter.PacketHandlerAdapter;
-import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
 import de.crycodes.de.spacebyter.network.packet.Packet;
 
 import java.io.IOException;
@@ -18,20 +17,29 @@ import java.io.IOException;
 
 public class StartServerHandler extends PacketHandlerAdapter {
 
+    private final LiptonWrapper liptonWrapper;
+
+    //<editor-fold desc="StartServerHandler">
+    public StartServerHandler(LiptonWrapper liptonWrapper) {
+        this.liptonWrapper = liptonWrapper;
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="handel">
     @Override
     public void handel(Packet packet) {
         if (packet instanceof StartServerPacket){
             final StartServerPacket startServerPacket = (StartServerPacket) packet;
-            if (LiptonWrapper.getInstance().getWrapperConfig().getWrapperID().equalsIgnoreCase(startServerPacket.getWrapperID())){
-                if(LiptonWrapper.getInstance().getWrapperConfig().getSpigotVersion().equals("-")) {
-                    LiptonWrapper.getInstance().getColouredConsoleProvider().error("No Version Defined in Config use the install Command to install a Version");
+            if (liptonWrapper.getWrapperConfig().getWrapperID().equalsIgnoreCase(startServerPacket.getWrapperID())){
+                if(liptonWrapper.getWrapperConfig().getSpigotVersion().equals("-")) {
+                    liptonWrapper.getColouredConsoleProvider().error("No Version Defined in Config use the install Command to install a Version");
                     return;
                 }
                 try {
 
-                    LiptonWrapper.getInstance().getTemplateManager().checkTemplate(startServerPacket.getServerMeta().getServerGroupMeta());
+                    liptonWrapper.getTemplateManager().checkTemplate(startServerPacket.getServerMeta().getServerGroupMeta());
 
-                    LiptonWrapper.getInstance().getServerFileManager().createServer(startServerPacket.getServerMeta());
+                    liptonWrapper.getServerFileManager().createServer(startServerPacket.getServerMeta());
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -43,4 +51,5 @@ public class StartServerHandler extends PacketHandlerAdapter {
             }
         }
     }
+    //</editor-fold>
 }

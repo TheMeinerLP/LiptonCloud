@@ -23,11 +23,14 @@ public class PortManager {
         this.liptonMaster = liptonMaster;
     }
 
+    //<editor-fold desc="removePort">
     public void removePort(Integer port){
         if (this.portlist.contains(port))
             this.portlist.remove(port);
     }
+    //</editor-fold>
 
+    //<editor-fold desc="getFreePort">
     public int getFreePort(){
         for (int i = 30000; i < 40000; i++){
             if (portlist.contains(i))
@@ -38,7 +41,9 @@ public class PortManager {
         }
         return 0;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="getter">
     public LiptonMaster getLiptonMaster() {
         return liptonMaster;
     }
@@ -46,4 +51,5 @@ public class PortManager {
     public List<Integer> getPortlist() {
         return portlist;
     }
+    //</editor-fold>
 }

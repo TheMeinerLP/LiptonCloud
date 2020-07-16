@@ -4,6 +4,7 @@ import de.crycodes.addon.webinterface.routes.*;
 import de.crycodes.addon.webinterface.routes.post.LoginPostRoute;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 import spark.Session;
+import spark.Spark;
 import spark.utils.IOUtils;
 
 import java.io.IOException;
@@ -92,5 +93,9 @@ public class WebServer {
             }
         }
         return access;
+    }
+
+    public void stop() {
+        Spark.stop();
     }
 }

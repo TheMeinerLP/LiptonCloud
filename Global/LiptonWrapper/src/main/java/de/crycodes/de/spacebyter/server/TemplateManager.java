@@ -13,20 +13,27 @@ import java.io.IOException;
 
 public class TemplateManager {
 
-    private final SpigotVersions version = LiptonWrapper.getInstance().getVersionsManager().getCurrenServerVersion();
+    private SpigotVersions version;
     private File templateLocation;
     private File spigotLocation;
+    
+    private final LiptonWrapper liptonWrapper;
 
-    public TemplateManager() {
+    //<editor-fold desc="TemplateManager">
+    public TemplateManager(LiptonWrapper liptonWrapper) {
+        this.liptonWrapper = liptonWrapper;
+        version = liptonWrapper.getVersionsManager().getCurrentServerVersion();
         if(version == null) {
-            LiptonWrapper.getInstance().getColouredConsoleProvider().error("No Server Version found. Can't create Template");
-            LiptonWrapper.getInstance().getWrapperMasterClient().sendPacket(new ErrorPacket("Could not create Template" ,LiptonWrapper.getInstance().getWrapperConfig().getWrapperID(), new Exception("No Server Version found")));
+            liptonWrapper.getColouredConsoleProvider().error("No Server Version found. Can't create Template");
+            liptonWrapper.getWrapperMasterClient().sendPacket(new ErrorPacket("Could not create Template" ,liptonWrapper.getWrapperConfig().getWrapperID(), new Exception("No Server Version found")));
             return;
         }
         templateLocation = new File("liptonWrapper/templates");
         spigotLocation = new File("liptonWrapper/resources");
     }
+    //</editor-fold>
 
+    //<editor-fold desc="checkTemplate">
     public void checkTemplate(ServerGroupMeta serverGroupMeta) {
         final File template = new File(templateLocation + serverGroupMeta.getGroupName().toUpperCase());
         if (!template.exists()) {
@@ -37,7 +44,9 @@ public class TemplateManager {
             }
         }
     }
+    //</editor-fold>
 
+    //<editor-fold desc="createTemplate">
     private void createTemplate(ServerGroupMeta serverGroupMeta) throws IOException {
         final File template = new File(templateLocation + "/" + serverGroupMeta.getGroupName().toUpperCase());
         final File pluginlocation = new File(template + "/plugins/");
@@ -56,7 +65,8 @@ public class TemplateManager {
         propertiesWriter.flush();
         propertiesWriter.close();
 
-        LiptonWrapper.getInstance().getColouredConsoleProvider().info("New Template was created for Server-Group: " + serverGroupMeta.getGroupName());
+        liptonWrapper.getColouredConsoleProvider().info("New Template was created for Server-Group: " + serverGroupMeta.getGroupName());
     }
+    //</editor-fold>
 
 }

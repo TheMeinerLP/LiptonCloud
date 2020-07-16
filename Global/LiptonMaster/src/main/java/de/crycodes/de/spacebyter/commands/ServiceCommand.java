@@ -17,12 +17,15 @@ public class ServiceCommand extends CloudCommand {
 
     private final LiptonMaster liptonMaster;
 
+    //<editor-fold desc="ServiceCommand">
     public ServiceCommand(String name, String description, String[] aliases, LiptonMaster liptonMaster) {
         super(name, description, aliases);
         this.liptonMaster = liptonMaster;
     }
+    //</editor-fold>
 
 
+    //<editor-fold desc="execute">
     @Override
     protected boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args) {
 
@@ -38,10 +41,10 @@ public class ServiceCommand extends CloudCommand {
                     return true;
                 }
 
-                if (LiptonMaster.getInstance().getServerManager().getServersFromName(name) == null)
+                if (liptonMaster.getServerManager().getServersFromName(name) == null)
                     return true;
 
-                ServerMeta serverMeta = LiptonMaster.getInstance().getServerManager().getServersFromName(name);
+                ServerMeta serverMeta = liptonMaster.getServerManager().getServersFromName(name);
 
                 liptonMaster.getMasterSpigotServer().sendPacket(new StopServerPacket(name, serverMeta.getWrapperID(), serverMeta.getServerGroupMeta().isDynamicService()));
 
@@ -96,12 +99,15 @@ public class ServiceCommand extends CloudCommand {
 
         return false;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="sendUsage">
     private void sendUsage(ColouredConsoleProvider colouredConsoleProvider){
-        colouredConsoleProvider.info("service stopserver name");
-        colouredConsoleProvider.info("service stopproxy name");
-        colouredConsoleProvider.info("service stopgroup group");
+        colouredConsoleProvider.info("service <stopserver> <name>");
+        colouredConsoleProvider.info("service <stopproxy> <name>");
+        colouredConsoleProvider.info("service <stopgroup> <group>");
 
     }
+    //</editor-fold>
 
 }

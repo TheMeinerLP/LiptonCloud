@@ -18,18 +18,21 @@ public class ShutDownHookWrapper extends Thread {
 
     private final LiptonWrapper liptonWrapper;
 
+    //<editor-fold desc="ShutDownHookWrapper">
     public ShutDownHookWrapper(LiptonWrapper liptonWrapper){
         this.liptonWrapper = liptonWrapper;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="run">
     @Override
     public void run() {
         if (liptonWrapper.isIsrunning()){
             liptonWrapper.getColouredConsoleProvider().info("Stopping Cloud [ShutDownHookWrapper]");
-            LiptonWrapper.getInstance().getWrapperMasterClient().sendPacket(new UnRegisterPacket(RegisterType.WRAPPER, new WrapperMeta(false, new WrapperConfig(LiptonWrapper.getInstance().getWrapperConfig().getWrapperID(), LiptonWrapper.getInstance().getWrapperConfig().getHost(), true))));
-            System.exit(ExitUtil.TERMINATED);
+           liptonWrapper.getWrapperMasterClient().sendPacket(new UnRegisterPacket(RegisterType.WRAPPER, new WrapperMeta(false, new WrapperConfig(liptonWrapper.getWrapperConfig().getWrapperID(), liptonWrapper.getWrapperConfig().getHost(), true))));
+            if (!this.isInterrupted())
+                this.interrupt();
         }
-
-        super.run();
     }
+    //</editor-fold>
 }

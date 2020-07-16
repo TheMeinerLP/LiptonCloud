@@ -20,9 +20,18 @@ import java.util.List;
 
 public class CloudMaintenanceConfig {
 
+    private final LiptonMaster liptonMaster;
+
     private static Document document;
     private static File configFile = new File("./liptonMaster/maintenance.json");
 
+    //<editor-fold desc="CloudMaintenanceConfig">
+    public CloudMaintenanceConfig(LiptonMaster liptonMaster) {
+        this.liptonMaster = liptonMaster;
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Class Methods">
     public List<String> getList(){
         if (!configFile.exists()){
             document = new Document();
@@ -46,9 +55,9 @@ public class CloudMaintenanceConfig {
             document =  new Document().loadToExistingDocument(configFile);
             document.append("MaintenancePlayers", whitelist);
             document.saveAsConfig(configFile);
-            LiptonMaster.getInstance().getColouredConsoleProvider().info("The user '" + name + "' is now in Maintenance List!");
+            liptonMaster.getColouredConsoleProvider().info("The user '" + name + "' is now in Maintenance List!");
         } else {
-            LiptonMaster.getInstance().getColouredConsoleProvider().info("The user '" + name + "' is already in Maintenance List!");
+            liptonMaster.getColouredConsoleProvider().info("The user '" + name + "' is already in Maintenance List!");
             return;
         }
     }
@@ -59,9 +68,9 @@ public class CloudMaintenanceConfig {
             document =  new Document().loadToExistingDocument(configFile);
             document.append("MaintenancePlayers", whitelist);
             document.saveAsConfig(configFile);
-            LiptonMaster.getInstance().getColouredConsoleProvider().info("The user '" + name + "' is no longer in Maintenance List!");
+            liptonMaster.getColouredConsoleProvider().info("The user '" + name + "' is no longer in Maintenance List!");
         } else {
-            LiptonMaster.getInstance().getColouredConsoleProvider().info("The user '" + name + "' was not found!");
+            liptonMaster.getColouredConsoleProvider().info("The user '" + name + "' was not found!");
             return;
         }
     }
@@ -74,4 +83,5 @@ public class CloudMaintenanceConfig {
             return false;
         }
     }
+    //</editor-fold>
 }

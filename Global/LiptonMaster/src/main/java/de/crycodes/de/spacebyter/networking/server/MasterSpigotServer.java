@@ -23,36 +23,46 @@ import de.crycodes.de.spacebyter.networking.server.handler.ServerUpdateHandler;
 public class MasterSpigotServer {
 
     private final Integer port;
+    
+    private final LiptonMaster liptonMaster;
 
     private ThunderServer server;
     private NetworkChannel networkChannel;
     private AdapterHandler adapterHandler;
     private PacketHandler packetHandler;
 
-    public MasterSpigotServer(Integer port) {
+    //<editor-fold desc="MasterSpigotServer">
+    public MasterSpigotServer(Integer port, LiptonMaster liptonMaster) {
         this.port = port;
-        networkChannel = LiptonMaster.getInstance().getLiptonLibrary().getCloudChannel();
-        packetHandler = LiptonMaster.getInstance().getPacketHandler();
+        this.liptonMaster = liptonMaster;
+        networkChannel = liptonMaster.getLiptonLibrary().getCloudChannel();
+        packetHandler = liptonMaster.getPacketHandler();
         adapterHandler = new AdapterHandler();
 
-        adapterHandler.registerAdapter(new ServerStoppingHandler());
+        adapterHandler.registerAdapter(new ServerStoppingHandler(this.liptonMaster));
         adapterHandler.registerAdapter(new ServerUpdateHandler());
-        adapterHandler.registerAdapter(new RegisterHandler());
-        adapterHandler.registerAdapter(new MessageHandler());
-        adapterHandler.registerAdapter(new GlobalPacketHandler());
+        adapterHandler.registerAdapter(new RegisterHandler(this.liptonMaster));
+        adapterHandler.registerAdapter(new MessageHandler(this.liptonMaster));
+        adapterHandler.registerAdapter(new GlobalPacketHandler(liptonMaster));
 
     }
+    //</editor-fold>
+    //<editor-fold desc="start">
     public MasterSpigotServer start(){
         server = new ThunderServer(adapterHandler, networkChannel, port);
 
-        LiptonMaster.getInstance().getColouredConsoleProvider().info("Starting Master-Spigot Server on Port: (§c" + port + "§r) !");
+        liptonMaster.getColouredConsoleProvider().info("Starting Master-Spigot Server on Port: (§c" + port + "§r) !");
         return this;
     }
+    //</editor-fold>
+    //<editor-fold desc="sendPacket">
     public MasterSpigotServer sendPacket(Packet packet){
         this.packetHandler.sendPacket(networkChannel, server, packet);
         return this;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="getter - setter">
     public NetworkChannel getNetworkChannel() {
         return networkChannel;
     }
@@ -60,4 +70,5 @@ public class MasterSpigotServer {
     public ThunderServer getServer() {
         return server;
     }
+    //</editor-fold>
 }

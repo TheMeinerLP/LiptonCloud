@@ -7,10 +7,8 @@ import de.crycodes.de.spacebyter.liptonbridge.spigot.objects.CloudSign;
 import de.crycodes.de.spacebyter.liptoncloud.config.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

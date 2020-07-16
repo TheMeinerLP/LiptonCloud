@@ -23,6 +23,15 @@ public class CloudAdminConfig {
     private static Document document;
     private static File configFile = new File("./liptonMaster/cloudAdmins.json");
 
+    private final LiptonMaster liptonMaster;
+
+    //<editor-fold desc="CloudAdminConfig">
+    public CloudAdminConfig(LiptonMaster liptonMaster) {
+        this.liptonMaster = liptonMaster;
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Class Methods">
     public List<String> getList(){
         if (!configFile.exists()){
             document = new Document();
@@ -46,9 +55,9 @@ public class CloudAdminConfig {
             document =  new Document().loadToExistingDocument(configFile);
             document.append("ADMINS", whitelist);
             document.saveAsConfig(configFile);
-            LiptonMaster.getInstance().getColouredConsoleProvider().info("The user '" + name + "' is now CloudAdmin!");
+            liptonMaster.getColouredConsoleProvider().info("The user '" + name + "' is now CloudAdmin!");
         } else {
-            LiptonMaster.getInstance().getColouredConsoleProvider().info("The user '" + name + "' is already an CloudAdmin!");
+            liptonMaster.getColouredConsoleProvider().info("The user '" + name + "' is already an CloudAdmin!");
             return;
         }
     }
@@ -59,9 +68,9 @@ public class CloudAdminConfig {
             document =  new Document().loadToExistingDocument(configFile);
             document.append("ADMINS", whitelist);
             document.saveAsConfig(configFile);
-            LiptonMaster.getInstance().getColouredConsoleProvider().info("The user '" + name + "' is no longer CloudAdmin!");
+            liptonMaster.getColouredConsoleProvider().info("The user '" + name + "' is no longer CloudAdmin!");
         } else {
-            LiptonMaster.getInstance().getColouredConsoleProvider().info("The user '" + name + "' was not found!");
+            liptonMaster.getColouredConsoleProvider().info("The user '" + name + "' was not found!");
             return;
         }
     }
@@ -74,4 +83,5 @@ public class CloudAdminConfig {
             return false;
         }
     }
+    //</editor-fold>
 }

@@ -17,8 +17,8 @@ import java.net.URL;
 public class BungeeCordFileManager {
 
     private final String bungeeurl = "https://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar";
-   // private final String bungeeurl = "http://venzeu.net/bungee/FlameCord.jar";
 
+    //<editor-fold desc="BungeeCordFileManager">
     public BungeeCordFileManager() throws IOException {
         final File location = new File( "./liptonMaster/proxys/");
         final File pluginLocation = new File( "./liptonMaster/proxys/plugins/");
@@ -37,13 +37,15 @@ public class BungeeCordFileManager {
         if (bungeeCordFile.exists()) return;
         getJar(bungeeurl, bungeeCordFile);
     }
+    //</editor-fold>
 
     /**
      * Method to Download an Jar or other file
      *
      * @param Url | for Url Connection
      * */
-    public void getJar(String Url, File location) {
+    //<editor-fold desc="getJar">
+    private void getJar(String Url, File location) {
         try (BufferedInputStream inputStream = new BufferedInputStream(new URL(Url).openStream());
              FileOutputStream fileOS = new FileOutputStream(location)) {
             byte data[] = new byte[1024];
@@ -55,5 +57,6 @@ public class BungeeCordFileManager {
 
         }
     }
+    //</editor-fold>
 
 }

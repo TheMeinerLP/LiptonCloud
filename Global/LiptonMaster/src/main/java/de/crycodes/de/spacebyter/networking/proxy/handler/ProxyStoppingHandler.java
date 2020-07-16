@@ -4,7 +4,6 @@ import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ProxyMeta;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.ProxyStoppingPacket;
 import de.crycodes.de.spacebyter.network.adapter.PacketHandlerAdapter;
-import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
 import de.crycodes.de.spacebyter.network.packet.Packet;
 
 /**
@@ -17,12 +16,22 @@ import de.crycodes.de.spacebyter.network.packet.Packet;
 
 public class ProxyStoppingHandler extends PacketHandlerAdapter {
 
+    private final LiptonMaster liptonMaster;
+
+    //<editor-fold desc="ProxyStoppingHandler">
+    public ProxyStoppingHandler(LiptonMaster liptonMaster) {
+        this.liptonMaster = liptonMaster;
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="handel">
     @Override
     public void handel(Packet packet) {
         if (packet instanceof ProxyStoppingPacket){
             final ProxyStoppingPacket stoppingPacket = (ProxyStoppingPacket) packet;
             ProxyMeta proxyMeta = stoppingPacket.getProxyMeta();
-            LiptonMaster.getInstance().getProxyManager().unregisterProxy(proxyMeta);
+            liptonMaster.getProxyManager().unregisterProxy(proxyMeta);
         }
     }
+    //</editor-fold>
 }

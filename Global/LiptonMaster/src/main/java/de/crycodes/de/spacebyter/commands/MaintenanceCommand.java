@@ -17,18 +17,21 @@ public class MaintenanceCommand extends CloudCommand {
 
     private final LiptonMaster liptonMaster;
 
+    //<editor-fold desc="MaintenanceCommand">
     public MaintenanceCommand(String name, String description, String[] aliases, LiptonMaster liptonMaster) {
         super(name, description, aliases);
         this.liptonMaster = liptonMaster;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="execute">
     @Override
     protected boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args) {
 
         if (args.length == 1){
             if (args[0].equalsIgnoreCase("toggle")){
 
-                if (LiptonMaster.getInstance().getMasterConfig().switchMaintenance()){
+                if (liptonMaster.getMasterConfig().switchMaintenance()){
                     colouredConsoleProvider.info("The Network is now in §aMaintenance §7Mode.");
                 } else {
                     colouredConsoleProvider.info("The Network is no longer in §cMaintenance §7Mode.");
@@ -61,10 +64,13 @@ public class MaintenanceCommand extends CloudCommand {
 
         return false;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="sendUsage">
     private void sendUsage(ColouredConsoleProvider colouredConsoleProvider){
         colouredConsoleProvider.info("maintenance <add> <user>");
         colouredConsoleProvider.info("maintenance <remove> <user>");
         colouredConsoleProvider.info("maintenance <toggle>");
     }
+    //</editor-fold>
 }

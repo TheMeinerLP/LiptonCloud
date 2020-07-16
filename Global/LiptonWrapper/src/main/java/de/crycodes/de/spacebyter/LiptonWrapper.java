@@ -1,6 +1,5 @@
 package de.crycodes.de.spacebyter;
 
-import com.google.gson.internal.$Gson$Preconditions;
 import de.crycodes.de.spacebyter.commands.HelpCommand;
 import de.crycodes.de.spacebyter.commands.InstallCommand;
 import de.crycodes.de.spacebyter.commands.StopCommand;
@@ -17,11 +16,11 @@ import de.crycodes.de.spacebyter.liptoncloud.utils.DeletUtils;
 import de.crycodes.de.spacebyter.liptoncloud.utils.ExitUtil;
 import de.crycodes.de.spacebyter.network.WrapperMasterClient;
 import de.crycodes.de.spacebyter.network.packet.PacketHandler;
+import de.crycodes.de.spacebyter.screen.ScreenManager;
 import de.crycodes.de.spacebyter.server.ServerFileManager;
 import de.crycodes.de.spacebyter.server.ServerStartHandler;
 import de.crycodes.de.spacebyter.server.TemplateManager;
 import de.crycodes.de.spacebyter.versionsmanager.VersionsManager;
-import org.checkerframework.checker.units.qual.C;
 
 import java.io.File;
 
@@ -35,8 +34,7 @@ import java.io.File;
 
 public class LiptonWrapper {
 
-    private static LiptonWrapper instance;
-
+    //<editor-fold desc="Objects">
     private boolean isrunning = false;
 
     private ColouredConsoleProvider colouredConsoleProvider;
@@ -54,9 +52,11 @@ public class LiptonWrapper {
     private TemplateManager templateManager;
     private ServerStartHandler serverStartHandler;
     private ServerFileManager serverFileManager;
+    private ScreenManager screenManager;
+    //</editor-fold>
 
+    //<editor-fold desc="LiptonWrapper">
     public LiptonWrapper() {
-        instance = this;
         isrunning = true;
 
         counter = new Counter();
@@ -64,7 +64,7 @@ public class LiptonWrapper {
 
         DeletUtils.deleteDirectory(new File("./liptonWrapper/server/dynamic/"));
 
-        fileManager = new FileManager("./liptonWrapper","api","modules", "resources", "server", "logs", "server/dynamic","server/static", "templates").create();
+        fileManager = new FileManager("./liptonWrapper","api", "resources", "server", "logs", "server/dynamic","server/static", "templates").create();
         wrapperConfig = new WrapperConfig();
 
         colouredConsoleProvider = new ColouredConsoleProvider(new File("./liptonWrapper/logs"));
@@ -72,15 +72,15 @@ public class LiptonWrapper {
 
         if (wrapperConfig.getWrapperID() != null){
             if (wrapperConfig.getWrapperID().equalsIgnoreCase( " ") || wrapperConfig.getWrapperID().equalsIgnoreCase("-")) {
-                System.out.println("Wrapper Key is invalidate!");
+                System.out.println("Wrapper-ID in Config.json is invalidate!");
                 System.exit(ExitUtil.TERMINATED);
             }
         } else {
-            System.out.println("Wrapper Key is invalidate!");
+            System.out.println("Wrapper-ID in Config.json is invalidate!");
             System.exit(ExitUtil.TERMINATED);
         }
 
-
+        screenManager = new ScreenManager();
 
         scheduler = new Scheduler();
         eventManager = new EventManager();
@@ -98,17 +98,17 @@ public class LiptonWrapper {
 
         liptonLibrary.printAscii();
 
-        wrapperMasterClient = new WrapperMasterClient(this.wrapperConfig.getHost(), this.wrapperConfig.getPort()).start();
-        versionsManager = new VersionsManager(wrapperConfig);
+        wrapperMasterClient = new WrapperMasterClient(this.wrapperConfig.getHost(), this.wrapperConfig.getPort(), this).start();
+        versionsManager = new VersionsManager(wrapperConfig, this);
 
-        templateManager = new TemplateManager();
-        serverFileManager = new ServerFileManager();
-        serverStartHandler = new ServerStartHandler();
+        templateManager = new TemplateManager(this);
+        serverFileManager = new ServerFileManager(this);
+        serverStartHandler = new ServerStartHandler(this);
 
         commandManager = new CommandManager(colouredConsoleProvider);
         commandManager.registerCommand(new HelpCommand("help", "Shows all CloudCommands", new String[]{"?"}, this));
         commandManager.registerCommand(new InstallCommand("install", "Installs a Spigot Version", new String[]{"version", "changeVersion"}, this));
-        commandManager.registerCommand(new StopCommand("stop", "Stops The CloudSystem", new String[]{"quit", "exit"}));
+        commandManager.registerCommand(new StopCommand("stop", "Stops The CloudSystem", new String[]{"quit", "exit"}, this));
 
         addShutDownHook();
 
@@ -119,18 +119,15 @@ public class LiptonWrapper {
 
 
     }
+    //</editor-fold>
 
+    //<editor-fold desc="addShutDownHook">
     public void addShutDownHook(){
         Runtime.getRuntime().addShutdownHook(new ShutDownHookWrapper(this));
     }
+    //</editor-fold>
 
-
-
-
-    public static LiptonWrapper getInstance() {
-        return instance;
-    }
-
+    //<editor-fold desc="getter - setter">
     public ColouredConsoleProvider getColouredConsoleProvider() {
         return colouredConsoleProvider;
     }
@@ -157,18 +154,6 @@ public class LiptonWrapper {
 
     public WrapperMasterClient getWrapperMasterClient() {
         return wrapperMasterClient;
-    }
-
-    public Scheduler getScheduler() {
-        return scheduler;
-    }
-
-    public EventManager getEventManager() {
-        return eventManager;
-    }
-
-    public AddonParallelLoader getParallelLoader() {
-        return parallelLoader;
     }
 
     public VersionsManager getVersionsManager() {
@@ -198,4 +183,9 @@ public class LiptonWrapper {
     public ServerFileManager getServerFileManager() {
         return serverFileManager;
     }
+
+    public ScreenManager getScreenManager() {
+        return screenManager;
+    }
+    //</editor-fold>
 }

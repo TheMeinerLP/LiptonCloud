@@ -17,11 +17,12 @@ import de.crycodes.de.spacebyter.network.packet.Packet;
 
 public class ServerUpdateHandler extends PacketHandlerAdapter {
 
+    //<editor-fold desc="handel">
     @Override
     public void handel(Packet packet) {
         if (packet instanceof ServerUpdatePacket){
             final ServerUpdatePacket serverUpdatePacket = (ServerUpdatePacket) packet;
-            //LiptonMaster.getInstance().getColouredConsoleProvider().info("Updated Server: " + ((ServerUpdatePacket) packet).getUpdatedServerMeta().getServerName());
         }
     }
+    //</editor-fold>
 }

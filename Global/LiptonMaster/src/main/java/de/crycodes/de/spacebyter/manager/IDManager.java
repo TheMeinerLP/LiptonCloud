@@ -17,6 +17,7 @@ public class IDManager {
 
     private ConcurrentHashMap<String, List<Integer>> serverIdList = new ConcurrentHashMap<>();
 
+    //<editor-fold desc="getFreeID">
     public int getFreeID(String serverGroupMeta){
         if (!this.serverIdList.containsKey(serverGroupMeta)){
             List<Integer> ids = new ArrayList<>();
@@ -35,6 +36,9 @@ public class IDManager {
         }
         return 404;
     }
+    //</editor-fold>
+
+    //<editor-fold desc="removeID">
     public void removeID(String serverGroupMeta, int id){
         List<Integer> ids = serverIdList.get(serverGroupMeta);
 
@@ -47,10 +51,13 @@ public class IDManager {
         this.serverIdList.put(serverGroupMeta, ids);
 
     }
+    //</editor-fold>
 
+    //<editor-fold desc="getServerIdList">
     public ConcurrentHashMap<String,List<Integer>> getServerIdList() {
         return serverIdList;
     }
+    //</editor-fold>
 
 
 }

@@ -10,14 +10,10 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Coded By CryCodes
- * Class: Document
- * Date : 24.06.2020
- * Time : 11:11
- * Project: LiptonCloud
+ * Created by Tareko
  */
 
-public class Document implements DocumentAbstract {
+public class Document {
 
     protected static final Gson GSON = (new GsonBuilder()).serializeNulls().setPrettyPrinting().disableHtmlEscaping().create();
     protected static final JsonParser PARSER = new JsonParser();

@@ -5,7 +5,6 @@ import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 import de.crycodes.de.spacebyter.liptoncloud.meta.WrapperMeta;
 
 import java.io.File;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +27,7 @@ public class WrapperGroupConfig {
 
     public WrapperGroupConfig() { }
 
+    //<editor-fold desc="Class Methods">
     public void create(WrapperMeta serverGroupMeta){
         this.serverMeta = serverGroupMeta;
         this.configFile = new File("./liptonMaster/groups/wrapper/" + serverMeta.getWrapperConfig().getWrapperId() + ".json");
@@ -69,5 +69,6 @@ public class WrapperGroupConfig {
     public void reload(){
         this.serverMeta = document.getObject("group", WrapperMeta.class);
     }
+    //</editor-fold>
 
 }

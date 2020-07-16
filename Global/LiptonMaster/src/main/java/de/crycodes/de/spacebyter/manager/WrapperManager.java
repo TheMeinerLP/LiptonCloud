@@ -15,18 +15,21 @@ public class WrapperManager {
 
     private final LiptonMaster liptonMaster;
 
+    //<editor-fold desc="WrapperManager">
     public WrapperManager(LiptonMaster liptonMaster) {
         this.liptonMaster = liptonMaster;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="register - unregister - assailable - bestfreewrapper">
     public void registerWrapper(@ShouldNotBeNull  WrapperMeta wrapperMeta, CallBack<Boolean> isAuthenticated) {
-        if (LiptonMaster.getInstance().getWrapperConfig().getWrapperByID(wrapperMeta.getWrapperConfig().getWrapperId()) != null) {
+        if (liptonMaster.getWrapperConfig().getWrapperByID(wrapperMeta.getWrapperConfig().getWrapperId()) != null) {
             if (!(wrapperList.contains(wrapperMeta)))
                 wrapperList.add(wrapperMeta);
             liptonMaster.getColouredConsoleProvider().info("Registered new Wrapper: " + wrapperMeta.getWrapperConfig().getWrapperId());
             isAuthenticated.accept(true);
         } else {
-            LiptonMaster.getInstance().getColouredConsoleProvider().error("Wrapper Tried to Connect but found no WrapperGroup -> (create <wrapper>)!");
+            liptonMaster.getColouredConsoleProvider().error("Wrapper Tried to Connect but found no WrapperGroup -> (create <wrapper>)!");
             isAuthenticated.accept(false);
         }
     }
@@ -45,7 +48,7 @@ public class WrapperManager {
             return this.wrapperList.get(0);
         else {
             if (liptonMaster.getMasterConfig().isDebugMode())
-                LiptonMaster.getInstance().getColouredConsoleProvider().error("No Wrapper Available -> (create <wrapper>)!");
+                liptonMaster.getColouredConsoleProvider().error("No Wrapper Available -> (create <wrapper>)!");
         }
         return null;
     }
@@ -55,8 +58,11 @@ public class WrapperManager {
             wrapperList.remove(wrapperMeta);
         liptonMaster.getColouredConsoleProvider().info("UnRegistered Wrapper: " + wrapperMeta.getWrapperConfig().getWrapperId());
     }
+    //</editor-fold>
 
+    //<editor-fold desc="getter">
     public List<WrapperMeta> getWrapperList() {
         return wrapperList;
     }
+    //</editor-fold>
 }

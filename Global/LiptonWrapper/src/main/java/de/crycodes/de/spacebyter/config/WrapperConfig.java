@@ -20,6 +20,7 @@ public class WrapperConfig {
     private Document document;
     private File configFile = new File("./liptonWrapper/config.json");
 
+    //<editor-fold desc="WrapperConfig">
     public WrapperConfig() {
         if (configFile.exists()){
             document = Document.loadDocument(configFile);
@@ -38,6 +39,8 @@ public class WrapperConfig {
         document.saveAsConfig(configFile);
 
     }
+    //</editor-fold>
+    //<editor-fold desc="reload">
     public void reload(){
         this.host = document.getString("host");
         this.wrapperID = document.getString("wrapperID");
@@ -48,7 +51,9 @@ public class WrapperConfig {
         this.colorUse = document.getBoolean("colorUse");
         this.spigotVersion = document.getString("spigotVersion");
     }
+    //</editor-fold>
 
+    //<editor-fold desc="geetter - setter">
     public String getHost() {
         return host;
     }
@@ -88,4 +93,5 @@ public class WrapperConfig {
     public File getConfigFile() {
         return configFile;
     }
+    //</editor-fold>
 }

@@ -4,7 +4,6 @@ import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.network.ThunderServer;
 import de.crycodes.de.spacebyter.network.adapter.AdapterHandler;
 import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
-import de.crycodes.de.spacebyter.network.packet.Packet;
 import de.crycodes.de.spacebyter.network.packet.PacketHandler;
 import de.crycodes.de.spacebyter.networking.GlobalPacketHandler;
 import de.crycodes.de.spacebyter.networking.handler.RegisterHandler;
@@ -28,26 +27,34 @@ public class MasterProxyServer {
     private NetworkChannel networkChannel;
     private AdapterHandler adapterHandler;
     private PacketHandler packetHandler;
+    
+    private final LiptonMaster liptonMaster;
 
-    public MasterProxyServer(Integer port) {
+    //<editor-fold desc="MasterProxyServer">
+    public MasterProxyServer(Integer port, LiptonMaster liptonMaster) {
         this.port = port;
-        networkChannel = LiptonMaster.getInstance().getLiptonLibrary().getCloudChannel();
-        packetHandler = LiptonMaster.getInstance().getPacketHandler();
+        this.liptonMaster = liptonMaster;
+        networkChannel = liptonMaster.getLiptonLibrary().getCloudChannel();
+        packetHandler = liptonMaster.getPacketHandler();
         adapterHandler = new AdapterHandler();
 
-        adapterHandler.registerAdapter(new ProxyStoppingHandler());
-        adapterHandler.registerAdapter(new ReloadHandler());
-        adapterHandler.registerAdapter(new ServerGroupUpdateHandler());
-        adapterHandler.registerAdapter(new RegisterHandler());
-        adapterHandler.registerAdapter(new GlobalPacketHandler());
+        adapterHandler.registerAdapter(new ProxyStoppingHandler(this.liptonMaster));
+        adapterHandler.registerAdapter(new ReloadHandler(this.liptonMaster));
+        adapterHandler.registerAdapter(new ServerGroupUpdateHandler(this.liptonMaster));
+        adapterHandler.registerAdapter(new RegisterHandler(this.liptonMaster));
+        adapterHandler.registerAdapter(new GlobalPacketHandler(liptonMaster));
     }
+    //</editor-fold>
+    //<editor-fold desc="start">
     public MasterProxyServer start(){
         server = new ThunderServer(adapterHandler, networkChannel, port);
 
-        LiptonMaster.getInstance().getColouredConsoleProvider().info("Starting Proxy-Wrapper Server on Port: (§c" + port + "§r) !");
+        liptonMaster.getColouredConsoleProvider().info("Starting Proxy-Wrapper Server on Port: (§c" + port + "§r) !");
         return this;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="getter - setter">
     public ThunderServer getServer() {
         return server;
     }
@@ -55,4 +62,5 @@ public class MasterProxyServer {
     public NetworkChannel getNetworkChannel() {
         return networkChannel;
     }
+    //</editor-fold>
 }

@@ -20,15 +20,18 @@ public class ExecuteCommand extends CloudCommand {
 
     private final LiptonMaster liptonMaster;
 
+    //<editor-fold desc="ExecuteCommand">
     public ExecuteCommand(String name, String description, String[] aliases, LiptonMaster liptonMaster) {
         super(name, description, aliases);
         this.liptonMaster = liptonMaster;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="execute">
     @Override
     protected boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args) {
         if (args.length == 0 || args.length == 1){
-            colouredConsoleProvider.info("execute server command");
+            colouredConsoleProvider.info("execute <server> <command>");
             return true;
         }
         if (liptonMaster.getServerManager().getGlobalServerList().isEmpty()){
@@ -51,4 +54,5 @@ public class ExecuteCommand extends CloudCommand {
 
         return false;
     }
+    //</editor-fold>
 }
