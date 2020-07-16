@@ -11,6 +11,8 @@ import java.util.Set;
 
 /**
  * Created by Tareko
+ * Repository: https://github.com/CloudNetService/CloudNet
+ * Permanent File Link: https://github.com/CloudNetService/CloudNet/blob/b69b94ab38e8d9e227baeaa0182147fcdb08efdb/cloudnet-lib/src/main/java/de/dytanic/cloudnet/lib/utility/document/Document.java
  */
 
 public class Document {

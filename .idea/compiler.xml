@@ -8,10 +8,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="LiptonMaster" />
         <module name="LiptonWrapper" />
-        <module name="WebInterFace" />
         <module name="Library" />
         <module name="CommandSystem" />
-        <module name="CloudFlare" />
         <module name="LiptonBridge" />
         <module name="Event" />
         <module name="Command" />
@@ -21,9 +19,11 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="BungeeBase" target="1.5" />
+      <module name="CloudFlare" target="8" />
       <module name="Master" target="8" />
       <module name="MultiProxy" target="7" />
       <module name="SignSystem" target="7" />
+      <module name="WebInterFace" target="8" />
       <module name="Wrapper" target="8" />
     </bytecodeTargetLevel>
   </component>
