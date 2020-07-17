@@ -3,15 +3,13 @@ package de.crycodes.de.spacebyter.commands;
 import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.liptoncloud.command.CloudCommand;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.enums.ExitState;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ProxyMeta;
-import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StopProxyPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerGroupPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerPacket;
-import de.crycodes.de.spacebyter.liptoncloud.utils.ExitUtil;
 
-import java.util.List;
 
 public class ScreenCommand extends CloudCommand {
 
@@ -79,7 +77,7 @@ public class ScreenCommand extends CloudCommand {
 
                 liptonMaster.getServerGroupConfig().getServerMetas().forEach(serverGroupMeta -> {
                     if (serverGroupMeta.getGroupName().equalsIgnoreCase(name)){
-                        liptonMaster.getMasterSpigotServer().sendPacket(new StopServerGroupPacket(serverGroupMeta, ExitUtil.STOPPED_SUCESS));
+                        liptonMaster.getMasterSpigotServer().sendPacket(new StopServerGroupPacket(serverGroupMeta, ExitState.STOPPED_SUCESS.getState()));
                         liptonMaster.getColouredConsoleProvider().info("Send StopServerGroup to All Server's of Group: " + name);
                         return;
                     }

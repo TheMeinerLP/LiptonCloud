@@ -1,6 +1,7 @@
 package de.crycodes.de.spacebyter.liptoncloud;
 
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.enums.ExitState;
 import de.crycodes.de.spacebyter.liptoncloud.event.EventManager;
 import de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterResponsePacket;
@@ -22,7 +23,6 @@ import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.InfoPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.WarningPacket;
 import de.crycodes.de.spacebyter.liptoncloud.scheduler.Scheduler;
 import de.crycodes.de.spacebyter.liptoncloud.utils.AsciiPrinter;
-import de.crycodes.de.spacebyter.liptoncloud.utils.ExitUtil;
 import de.crycodes.de.spacebyter.network.channel.Identifier;
 import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
 import de.crycodes.de.spacebyter.network.channel.Provider;
@@ -57,7 +57,7 @@ public class LiptonLibrary {
     public void checkAPIFile(File file){
         if (file.exists()) return;
         System.out.println("NO LiptonBridge found! please add API to api folder!");
-        System.exit(ExitUtil.STOPPED_SUCESS);
+        System.exit(ExitState.STOPPED_SUCESS.getState());
     }
 
     public LiptonLibrary() { }
