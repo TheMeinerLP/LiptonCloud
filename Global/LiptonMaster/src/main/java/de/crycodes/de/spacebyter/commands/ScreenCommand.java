@@ -103,9 +103,9 @@ public class ScreenCommand extends CloudCommand {
 
     //<editor-fold desc="sendUsage">
     private void sendUsage(ColouredConsoleProvider colouredConsoleProvider){
-        colouredConsoleProvider.info("service <stopserver> <name>");
-        colouredConsoleProvider.info("service <stopproxy> <name>");
-        colouredConsoleProvider.info("service <stopgroup> <group>");
+        colouredConsoleProvider.info("screen <stopserver> <name>");
+        colouredConsoleProvider.info("screen <stopproxy> <name>");
+        colouredConsoleProvider.info("screen <stopgroup> <group>");
 
     }
     //</editor-fold>

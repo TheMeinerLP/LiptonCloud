@@ -140,9 +140,9 @@ public class LiptonMaster {
         commandManager.registerCommand(new CreateCommand("create", "Create Wrapper|Proxy|ServerGroups ", new String[]{"build", "make"}, this));
         commandManager.registerCommand(new ReloadCommand("reload", "Reload Cloud", new String[]{"restart", "reloadconfig"}, this));
         commandManager.registerCommand(new StopCommand("stop", "Stop the Cloud", new String[]{"exit"}, this));
-        commandManager.registerCommand(new ScreenCommand("service", "Service Command of the Cloud", new String[]{"cloud"}, this));
+        commandManager.registerCommand(new ScreenCommand("screen", "Screen Command of the Cloud", new String[]{"cloud"}, this));
         commandManager.registerCommand(new ExecuteCommand("execute", "Execute Command on Server", new String[]{"send"}, this));
-        commandManager.registerCommand(new PermsCommand("perms", "Simple Command to manage CloudAdmins", new String[]{"cloudadmin", "user", "admin"}, this));
+        commandManager.registerCommand(new CloudAdminCommand("cloudadmin", "Simple Command to manage CloudAdmins", new String[]{"user", "admin"}, this));
         commandManager.registerCommand(new MaintenanceCommand("maintenance", "Simple Maintenance Command for the Cloud", new String[]{}, this));
         commandManager.registerCommand(new CopyServerCommand("copy", "Simple Command to Copy Servers to Templates",  new String[]{}, this));
 
