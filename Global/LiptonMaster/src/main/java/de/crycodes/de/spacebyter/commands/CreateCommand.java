@@ -37,7 +37,7 @@ public class CreateCommand extends CloudCommand {
                     groupSetup.start(liptonMaster.getCommandManager().getScanner());
 
                    liptonMaster.getServerGroupConfig().create(new ServerGroupMeta(groupSetup.getServerName(),
-                           groupSetup.getMaxMem(),
+                           "default", groupSetup.getMaxMem(),
                            groupSetup.getMinMem(),
                            groupSetup.isDynamic(),
                            false ,

@@ -1,9 +1,0 @@
-{
-  "group": {
-    "name": "LobbyProxy",
-    "id": 1,
-    "fallbackproxy": false,
-    "mainproxy": true,
-    "serverlist": []
-  }
-}

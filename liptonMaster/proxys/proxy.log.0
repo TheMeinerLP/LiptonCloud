@@ -4594,3 +4594,427 @@ java.lang.ArrayIndexOutOfBoundsException: 2
 13:27:11 [INFORMATION] Enabled plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
 13:27:11 [INFORMATION] Enabled plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
 13:27:11 [INFORMATION] Listening on /0.0.0.0:25565
+14:26:56 [INFORMATION] Using standard Java JCE cipher.
+14:26:56 [INFORMATION] Using standard Java compressor.
+14:26:56 [INFORMATION] Enabled BungeeCord version git:BungeeCord-Bootstrap:1.16-R0.2-SNAPSHOT:2e4b08e:1518
+14:26:56 [INFORMATION] Discovered module: ModuleSpec(name=cmd_alert, file=modules\cmd_alert.jar, provider=JenkinsModuleSource())
+14:26:56 [INFORMATION] Discovered module: ModuleSpec(name=cmd_find, file=modules\cmd_find.jar, provider=JenkinsModuleSource())
+14:26:56 [INFORMATION] Discovered module: ModuleSpec(name=cmd_list, file=modules\cmd_list.jar, provider=JenkinsModuleSource())
+14:26:56 [INFORMATION] Discovered module: ModuleSpec(name=cmd_send, file=modules\cmd_send.jar, provider=JenkinsModuleSource())
+14:26:56 [INFORMATION] Discovered module: ModuleSpec(name=cmd_server, file=modules\cmd_server.jar, provider=JenkinsModuleSource())
+14:26:56 [INFORMATION] Discovered module: ModuleSpec(name=reconnect_yaml, file=modules\reconnect_yaml.jar, provider=JenkinsModuleSource())
+14:26:56 [INFORMATION] Loaded plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:26:56 [INFORMATION] Loaded plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:26:56 [INFORMATION] Loaded plugin Bungee-Cloud-API version 1.0 by null
+14:26:56 [INFORMATION] Loaded plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:26:56 [INFORMATION] Loaded plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:26:56 [INFORMATION] Loaded plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:26:56 [INFORMATION] Loaded plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:26:56 [WARNUNG] Forced host server pvp is not defined
+14:26:56 [INFORMATION] Enabled plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:26:56 [INFORMATION] Enabled plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:26:56 [INFORMATION] Started ProxyMaster Client on: (127.0.0.1:1784)
+14:26:56 [INFORMATION] Connected To Master
+14:26:56 [INFORMATION] Enabled plugin Bungee-Cloud-API version 1.0 by null
+14:26:56 [INFORMATION] Enabled plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:26:56 [INFORMATION] Enabled plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:26:56 [INFORMATION] Enabled plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:26:56 [INFORMATION] Enabled plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:26:56 [INFORMATION] Listening on /0.0.0.0:25565
+14:26:57 [SCHWERWIEGEND] java.io.InvalidClassException: de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta; local class incompatible: stream classdesc serialVersionUID = -1291421898542424697, local class serialVersionUID = 2708345365695233293
+14:26:57 [SCHWERWIEGEND] 	at java.io.ObjectStreamClass.initNonProxy(ObjectStreamClass.java:699)
+14:26:57 [SCHWERWIEGEND] 	at java.io.ObjectInputStream.readNonProxyDesc(ObjectInputStream.java:1885)
+14:26:57 [SCHWERWIEGEND] 	at java.io.ObjectInputStream.readClassDesc(ObjectInputStream.java:1751)
+14:26:57 [SCHWERWIEGEND] 	at java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2042)
+14:26:57 [SCHWERWIEGEND] 	at java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1573)
+14:26:57 [SCHWERWIEGEND] 	at java.io.ObjectInputStream.readObject(ObjectInputStream.java:431)
+14:26:57 [SCHWERWIEGEND] 	at java.util.ArrayList.readObject(ArrayList.java:797)
+14:26:57 [SCHWERWIEGEND] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+14:26:57 [SCHWERWIEGEND] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+14:26:57 [SCHWERWIEGEND] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+14:26:57 [SCHWERWIEGEND] 	at java.lang.reflect.Method.invoke(Method.java:498)
+14:34:40 [INFORMATION] Using standard Java JCE cipher.
+14:34:40 [INFORMATION] Using standard Java compressor.
+14:34:40 [INFORMATION] Enabled BungeeCord version git:BungeeCord-Bootstrap:1.16-R0.2-SNAPSHOT:2e4b08e:1518
+14:34:40 [INFORMATION] Discovered module: ModuleSpec(name=cmd_alert, file=modules\cmd_alert.jar, provider=JenkinsModuleSource())
+14:34:40 [INFORMATION] Discovered module: ModuleSpec(name=cmd_find, file=modules\cmd_find.jar, provider=JenkinsModuleSource())
+14:34:40 [INFORMATION] Discovered module: ModuleSpec(name=cmd_list, file=modules\cmd_list.jar, provider=JenkinsModuleSource())
+14:34:40 [INFORMATION] Discovered module: ModuleSpec(name=cmd_send, file=modules\cmd_send.jar, provider=JenkinsModuleSource())
+14:34:40 [INFORMATION] Discovered module: ModuleSpec(name=cmd_server, file=modules\cmd_server.jar, provider=JenkinsModuleSource())
+14:34:40 [INFORMATION] Discovered module: ModuleSpec(name=reconnect_yaml, file=modules\reconnect_yaml.jar, provider=JenkinsModuleSource())
+14:34:40 [INFORMATION] Loaded plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:34:40 [INFORMATION] Loaded plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:34:40 [INFORMATION] Loaded plugin Bungee-Cloud-API version 1.0 by null
+14:34:40 [INFORMATION] Loaded plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:34:40 [INFORMATION] Loaded plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:34:40 [INFORMATION] Loaded plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:34:40 [INFORMATION] Loaded plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:34:40 [WARNUNG] Forced host server pvp is not defined
+14:34:40 [INFORMATION] Enabled plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:34:40 [INFORMATION] Enabled plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:34:40 [INFORMATION] Started ProxyMaster Client on: (127.0.0.1:1784)
+14:34:40 [INFORMATION] Connected To Master
+14:34:40 [INFORMATION] Enabled plugin Bungee-Cloud-API version 1.0 by null
+14:34:40 [INFORMATION] Enabled plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:34:40 [INFORMATION] Enabled plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:34:40 [INFORMATION] Enabled plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:34:40 [INFORMATION] Enabled plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:34:40 [INFORMATION] Listening on /0.0.0.0:25565
+14:35:04 [INFORMATION] ServerMeta{serverName='Lobby-2', id=2, serverGroupMeta=ServerGroupMeta{groupName='Lobby', template='default', maxMemory=512, minMemory=128, dynamicService=true, maintenance=false, maxServer=10, minServer=2}, wrapperID='Wrapper-1', host='127.0.0.1', port=30001}
+14:36:15 [INFORMATION] Using standard Java JCE cipher.
+14:36:15 [INFORMATION] Using standard Java compressor.
+14:36:15 [INFORMATION] Enabled BungeeCord version git:BungeeCord-Bootstrap:1.16-R0.2-SNAPSHOT:2e4b08e:1518
+14:36:15 [INFORMATION] Discovered module: ModuleSpec(name=cmd_alert, file=modules\cmd_alert.jar, provider=JenkinsModuleSource())
+14:36:15 [INFORMATION] Discovered module: ModuleSpec(name=cmd_find, file=modules\cmd_find.jar, provider=JenkinsModuleSource())
+14:36:15 [INFORMATION] Discovered module: ModuleSpec(name=cmd_list, file=modules\cmd_list.jar, provider=JenkinsModuleSource())
+14:36:15 [INFORMATION] Discovered module: ModuleSpec(name=cmd_send, file=modules\cmd_send.jar, provider=JenkinsModuleSource())
+14:36:15 [INFORMATION] Discovered module: ModuleSpec(name=cmd_server, file=modules\cmd_server.jar, provider=JenkinsModuleSource())
+14:36:15 [INFORMATION] Discovered module: ModuleSpec(name=reconnect_yaml, file=modules\reconnect_yaml.jar, provider=JenkinsModuleSource())
+14:36:15 [INFORMATION] Loaded plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:36:15 [INFORMATION] Loaded plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:36:15 [INFORMATION] Loaded plugin Bungee-Cloud-API version 1.0 by null
+14:36:15 [INFORMATION] Loaded plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:36:15 [INFORMATION] Loaded plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:36:15 [INFORMATION] Loaded plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:36:15 [INFORMATION] Loaded plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:36:15 [WARNUNG] Forced host server pvp is not defined
+14:36:15 [INFORMATION] Enabled plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:36:15 [INFORMATION] Enabled plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:36:15 [INFORMATION] Started ProxyMaster Client on: (127.0.0.1:1784)
+14:36:15 [INFORMATION] Enabled plugin Bungee-Cloud-API version 1.0 by null
+14:36:15 [INFORMATION] Connected To Master
+14:36:15 [INFORMATION] Enabled plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:36:15 [INFORMATION] Enabled plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:36:15 [INFORMATION] Enabled plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:36:15 [INFORMATION] Enabled plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:36:16 [INFORMATION] Listening on /0.0.0.0:25565
+14:36:42 [INFORMATION] ServerMeta{serverName='Lobby-2', id=2, serverGroupMeta=ServerGroupMeta{groupName='Lobby', template='default', maxMemory=512, minMemory=128, dynamicService=true, maintenance=false, maxServer=10, minServer=2}, wrapperID='Wrapper-1', host='127.0.0.1', port=30001}
+14:37:13 [INFORMATION] Using standard Java JCE cipher.
+14:37:13 [INFORMATION] Using standard Java compressor.
+14:37:13 [INFORMATION] Enabled BungeeCord version git:BungeeCord-Bootstrap:1.16-R0.2-SNAPSHOT:2e4b08e:1518
+14:37:13 [INFORMATION] Discovered module: ModuleSpec(name=cmd_alert, file=modules\cmd_alert.jar, provider=JenkinsModuleSource())
+14:37:13 [INFORMATION] Discovered module: ModuleSpec(name=cmd_find, file=modules\cmd_find.jar, provider=JenkinsModuleSource())
+14:37:13 [INFORMATION] Discovered module: ModuleSpec(name=cmd_list, file=modules\cmd_list.jar, provider=JenkinsModuleSource())
+14:37:13 [INFORMATION] Discovered module: ModuleSpec(name=cmd_send, file=modules\cmd_send.jar, provider=JenkinsModuleSource())
+14:37:13 [INFORMATION] Discovered module: ModuleSpec(name=cmd_server, file=modules\cmd_server.jar, provider=JenkinsModuleSource())
+14:37:13 [INFORMATION] Discovered module: ModuleSpec(name=reconnect_yaml, file=modules\reconnect_yaml.jar, provider=JenkinsModuleSource())
+14:37:14 [INFORMATION] Loaded plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:37:14 [INFORMATION] Loaded plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:37:14 [INFORMATION] Loaded plugin Bungee-Cloud-API version 1.0 by null
+14:37:14 [INFORMATION] Loaded plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:37:14 [INFORMATION] Loaded plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:37:14 [INFORMATION] Loaded plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:37:14 [INFORMATION] Loaded plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:37:14 [WARNUNG] Forced host server pvp is not defined
+14:37:14 [INFORMATION] Enabled plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:37:14 [INFORMATION] Enabled plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:37:14 [INFORMATION] Started ProxyMaster Client on: (127.0.0.1:1784)
+14:37:14 [INFORMATION] Connected To Master
+14:37:14 [INFORMATION] Enabled plugin Bungee-Cloud-API version 1.0 by null
+14:37:14 [INFORMATION] Enabled plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:37:14 [INFORMATION] Enabled plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:37:14 [INFORMATION] Enabled plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:37:14 [INFORMATION] Enabled plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:37:14 [INFORMATION] Listening on /0.0.0.0:25565
+14:37:37 [INFORMATION] ServerMeta{serverName='Lobby-2', id=2, serverGroupMeta=ServerGroupMeta{groupName='Lobby', template='default', maxMemory=512, minMemory=128, dynamicService=true, maintenance=false, maxServer=10, minServer=2}, wrapperID='Wrapper-1', host='127.0.0.1', port=30001}
+14:38:51 [INFORMATION] Using standard Java JCE cipher.
+14:38:51 [INFORMATION] Using standard Java compressor.
+14:38:51 [INFORMATION] Enabled BungeeCord version git:BungeeCord-Bootstrap:1.16-R0.2-SNAPSHOT:2e4b08e:1518
+14:38:52 [INFORMATION] Discovered module: ModuleSpec(name=cmd_alert, file=modules\cmd_alert.jar, provider=JenkinsModuleSource())
+14:38:52 [INFORMATION] Discovered module: ModuleSpec(name=cmd_find, file=modules\cmd_find.jar, provider=JenkinsModuleSource())
+14:38:52 [INFORMATION] Discovered module: ModuleSpec(name=cmd_list, file=modules\cmd_list.jar, provider=JenkinsModuleSource())
+14:38:52 [INFORMATION] Discovered module: ModuleSpec(name=cmd_send, file=modules\cmd_send.jar, provider=JenkinsModuleSource())
+14:38:52 [INFORMATION] Discovered module: ModuleSpec(name=cmd_server, file=modules\cmd_server.jar, provider=JenkinsModuleSource())
+14:38:52 [INFORMATION] Discovered module: ModuleSpec(name=reconnect_yaml, file=modules\reconnect_yaml.jar, provider=JenkinsModuleSource())
+14:38:52 [INFORMATION] Loaded plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:38:52 [INFORMATION] Loaded plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:38:52 [INFORMATION] Loaded plugin Bungee-Cloud-API version 1.0 by null
+14:38:52 [INFORMATION] Loaded plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:38:52 [INFORMATION] Loaded plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:38:52 [INFORMATION] Loaded plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:38:52 [INFORMATION] Loaded plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:38:52 [WARNUNG] Forced host server pvp is not defined
+14:38:52 [INFORMATION] Enabled plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:38:52 [INFORMATION] Enabled plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:38:52 [INFORMATION] Started ProxyMaster Client on: (127.0.0.1:1784)
+14:38:52 [INFORMATION] Connected To Master
+14:38:52 [INFORMATION] Enabled plugin Bungee-Cloud-API version 1.0 by null
+14:38:52 [INFORMATION] Enabled plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:38:52 [INFORMATION] Enabled plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:38:52 [INFORMATION] Enabled plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:38:52 [INFORMATION] Enabled plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:38:52 [INFORMATION] Listening on /0.0.0.0:25565
+14:39:18 [INFORMATION] ServerMeta{serverName='Lobby-2', id=2, serverGroupMeta=ServerGroupMeta{groupName='Lobby', template='default', maxMemory=512, minMemory=128, dynamicService=true, maintenance=false, maxServer=10, minServer=2}, wrapperID='Wrapper-1', host='127.0.0.1', port=30001}
+14:40:17 [INFORMATION] Using standard Java JCE cipher.
+14:40:17 [INFORMATION] Using standard Java compressor.
+14:40:17 [INFORMATION] Enabled BungeeCord version git:BungeeCord-Bootstrap:1.16-R0.2-SNAPSHOT:2e4b08e:1518
+14:40:17 [INFORMATION] Discovered module: ModuleSpec(name=cmd_alert, file=modules\cmd_alert.jar, provider=JenkinsModuleSource())
+14:40:17 [INFORMATION] Discovered module: ModuleSpec(name=cmd_find, file=modules\cmd_find.jar, provider=JenkinsModuleSource())
+14:40:17 [INFORMATION] Discovered module: ModuleSpec(name=cmd_list, file=modules\cmd_list.jar, provider=JenkinsModuleSource())
+14:40:17 [INFORMATION] Discovered module: ModuleSpec(name=cmd_send, file=modules\cmd_send.jar, provider=JenkinsModuleSource())
+14:40:17 [INFORMATION] Discovered module: ModuleSpec(name=cmd_server, file=modules\cmd_server.jar, provider=JenkinsModuleSource())
+14:40:17 [INFORMATION] Discovered module: ModuleSpec(name=reconnect_yaml, file=modules\reconnect_yaml.jar, provider=JenkinsModuleSource())
+14:40:17 [INFORMATION] Loaded plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:40:17 [INFORMATION] Loaded plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:40:17 [INFORMATION] Loaded plugin Bungee-Cloud-API version 1.0 by null
+14:40:17 [INFORMATION] Loaded plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:40:17 [INFORMATION] Loaded plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:40:17 [INFORMATION] Loaded plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:40:17 [INFORMATION] Loaded plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:40:17 [WARNUNG] Forced host server pvp is not defined
+14:40:17 [INFORMATION] Enabled plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:40:17 [INFORMATION] Enabled plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:40:17 [INFORMATION] Started ProxyMaster Client on: (127.0.0.1:1784)
+14:40:17 [INFORMATION] Connected To Master
+14:40:17 [INFORMATION] Enabled plugin Bungee-Cloud-API version 1.0 by null
+14:40:17 [INFORMATION] Enabled plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:40:17 [INFORMATION] Enabled plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:40:17 [INFORMATION] Enabled plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:40:17 [INFORMATION] Enabled plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:40:17 [INFORMATION] Listening on /0.0.0.0:25565
+14:40:41 [INFORMATION] ServerMeta{serverName='Lobby-2', id=2, serverGroupMeta=ServerGroupMeta{groupName='Lobby', template='default', maxMemory=512, minMemory=128, dynamicService=true, maintenance=false, maxServer=10, minServer=2}, wrapperID='Wrapper-1', host='127.0.0.1', port=30001}
+14:41:08 [INFORMATION] Using standard Java JCE cipher.
+14:41:08 [INFORMATION] Using standard Java compressor.
+14:41:08 [INFORMATION] Enabled BungeeCord version git:BungeeCord-Bootstrap:1.16-R0.2-SNAPSHOT:2e4b08e:1518
+14:41:09 [INFORMATION] Discovered module: ModuleSpec(name=cmd_alert, file=modules\cmd_alert.jar, provider=JenkinsModuleSource())
+14:41:09 [INFORMATION] Discovered module: ModuleSpec(name=cmd_find, file=modules\cmd_find.jar, provider=JenkinsModuleSource())
+14:41:09 [INFORMATION] Discovered module: ModuleSpec(name=cmd_list, file=modules\cmd_list.jar, provider=JenkinsModuleSource())
+14:41:09 [INFORMATION] Discovered module: ModuleSpec(name=cmd_send, file=modules\cmd_send.jar, provider=JenkinsModuleSource())
+14:41:09 [INFORMATION] Discovered module: ModuleSpec(name=cmd_server, file=modules\cmd_server.jar, provider=JenkinsModuleSource())
+14:41:09 [INFORMATION] Discovered module: ModuleSpec(name=reconnect_yaml, file=modules\reconnect_yaml.jar, provider=JenkinsModuleSource())
+14:41:09 [INFORMATION] Loaded plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:41:09 [INFORMATION] Loaded plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:41:09 [INFORMATION] Loaded plugin Bungee-Cloud-API version 1.0 by null
+14:41:09 [INFORMATION] Loaded plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:41:09 [INFORMATION] Loaded plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:41:09 [INFORMATION] Loaded plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:41:09 [INFORMATION] Loaded plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:41:09 [WARNUNG] Forced host server pvp is not defined
+14:41:09 [INFORMATION] Enabled plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:41:09 [INFORMATION] Enabled plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:41:09 [INFORMATION] Started ProxyMaster Client on: (127.0.0.1:1784)
+14:41:09 [INFORMATION] Connected To Master
+14:41:09 [INFORMATION] Enabled plugin Bungee-Cloud-API version 1.0 by null
+14:41:09 [INFORMATION] Enabled plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:41:09 [INFORMATION] Enabled plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:41:09 [INFORMATION] Enabled plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:41:09 [INFORMATION] Enabled plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:41:09 [INFORMATION] Listening on /0.0.0.0:25565
+14:42:18 [INFORMATION] Using standard Java JCE cipher.
+14:42:18 [INFORMATION] Using standard Java compressor.
+14:42:18 [INFORMATION] Enabled BungeeCord version git:BungeeCord-Bootstrap:1.16-R0.2-SNAPSHOT:2e4b08e:1518
+14:42:18 [INFORMATION] Discovered module: ModuleSpec(name=cmd_alert, file=modules\cmd_alert.jar, provider=JenkinsModuleSource())
+14:42:18 [INFORMATION] Discovered module: ModuleSpec(name=cmd_find, file=modules\cmd_find.jar, provider=JenkinsModuleSource())
+14:42:18 [INFORMATION] Discovered module: ModuleSpec(name=cmd_list, file=modules\cmd_list.jar, provider=JenkinsModuleSource())
+14:42:18 [INFORMATION] Discovered module: ModuleSpec(name=cmd_send, file=modules\cmd_send.jar, provider=JenkinsModuleSource())
+14:42:18 [INFORMATION] Discovered module: ModuleSpec(name=cmd_server, file=modules\cmd_server.jar, provider=JenkinsModuleSource())
+14:42:18 [INFORMATION] Discovered module: ModuleSpec(name=reconnect_yaml, file=modules\reconnect_yaml.jar, provider=JenkinsModuleSource())
+14:42:18 [INFORMATION] Loaded plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:42:18 [INFORMATION] Loaded plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:42:18 [INFORMATION] Loaded plugin Bungee-Cloud-API version 1.0 by null
+14:42:18 [INFORMATION] Loaded plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:42:18 [INFORMATION] Loaded plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:42:18 [INFORMATION] Loaded plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:42:18 [INFORMATION] Loaded plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:42:18 [WARNUNG] Forced host server pvp is not defined
+14:42:18 [INFORMATION] Enabled plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:42:18 [INFORMATION] Enabled plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:42:18 [INFORMATION] Started ProxyMaster Client on: (127.0.0.1:1784)
+14:42:18 [INFORMATION] Connected To Master
+14:42:18 [INFORMATION] Enabled plugin Bungee-Cloud-API version 1.0 by null
+14:42:18 [INFORMATION] Enabled plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:42:18 [INFORMATION] Enabled plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:42:18 [INFORMATION] Enabled plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:42:18 [INFORMATION] Enabled plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:42:18 [INFORMATION] Listening on /0.0.0.0:25565
+14:42:42 [INFORMATION] ServerMeta{serverName='Lobby-2', id=2, serverGroupMeta=ServerGroupMeta{groupName='Lobby', template='default', maxMemory=512, minMemory=128, dynamicService=true, maintenance=false, maxServer=10, minServer=2}, wrapperID='Wrapper-1', host='127.0.0.1', port=30001}
+14:43:08 [INFORMATION] Using standard Java JCE cipher.
+14:43:08 [INFORMATION] Using standard Java compressor.
+14:43:08 [INFORMATION] Enabled BungeeCord version git:BungeeCord-Bootstrap:1.16-R0.2-SNAPSHOT:2e4b08e:1518
+14:43:08 [INFORMATION] Discovered module: ModuleSpec(name=cmd_alert, file=modules\cmd_alert.jar, provider=JenkinsModuleSource())
+14:43:08 [INFORMATION] Discovered module: ModuleSpec(name=cmd_find, file=modules\cmd_find.jar, provider=JenkinsModuleSource())
+14:43:08 [INFORMATION] Discovered module: ModuleSpec(name=cmd_list, file=modules\cmd_list.jar, provider=JenkinsModuleSource())
+14:43:08 [INFORMATION] Discovered module: ModuleSpec(name=cmd_send, file=modules\cmd_send.jar, provider=JenkinsModuleSource())
+14:43:08 [INFORMATION] Discovered module: ModuleSpec(name=cmd_server, file=modules\cmd_server.jar, provider=JenkinsModuleSource())
+14:43:08 [INFORMATION] Discovered module: ModuleSpec(name=reconnect_yaml, file=modules\reconnect_yaml.jar, provider=JenkinsModuleSource())
+14:43:08 [INFORMATION] Loaded plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:08 [INFORMATION] Loaded plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:08 [INFORMATION] Loaded plugin Bungee-Cloud-API version 1.0 by null
+14:43:08 [INFORMATION] Loaded plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:08 [INFORMATION] Loaded plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:08 [INFORMATION] Loaded plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:08 [INFORMATION] Loaded plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:08 [WARNUNG] Forced host server pvp is not defined
+14:43:08 [INFORMATION] Enabled plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:08 [INFORMATION] Enabled plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:08 [INFORMATION] Started ProxyMaster Client on: (127.0.0.1:1784)
+14:43:08 [INFORMATION] Connected To Master
+14:43:08 [INFORMATION] Enabled plugin Bungee-Cloud-API version 1.0 by null
+14:43:08 [INFORMATION] Enabled plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:08 [INFORMATION] Enabled plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:08 [INFORMATION] Enabled plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:08 [INFORMATION] Enabled plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:09 [INFORMATION] Listening on /0.0.0.0:25565
+14:43:24 [INFORMATION] Using standard Java JCE cipher.
+14:43:24 [INFORMATION] Using standard Java compressor.
+14:43:24 [INFORMATION] Enabled BungeeCord version git:BungeeCord-Bootstrap:1.16-R0.2-SNAPSHOT:2e4b08e:1518
+14:43:24 [INFORMATION] Discovered module: ModuleSpec(name=cmd_alert, file=modules\cmd_alert.jar, provider=JenkinsModuleSource())
+14:43:24 [INFORMATION] Discovered module: ModuleSpec(name=cmd_find, file=modules\cmd_find.jar, provider=JenkinsModuleSource())
+14:43:24 [INFORMATION] Discovered module: ModuleSpec(name=cmd_list, file=modules\cmd_list.jar, provider=JenkinsModuleSource())
+14:43:24 [INFORMATION] Discovered module: ModuleSpec(name=cmd_send, file=modules\cmd_send.jar, provider=JenkinsModuleSource())
+14:43:24 [INFORMATION] Discovered module: ModuleSpec(name=cmd_server, file=modules\cmd_server.jar, provider=JenkinsModuleSource())
+14:43:24 [INFORMATION] Discovered module: ModuleSpec(name=reconnect_yaml, file=modules\reconnect_yaml.jar, provider=JenkinsModuleSource())
+14:43:24 [INFORMATION] Loaded plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:24 [INFORMATION] Loaded plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:24 [INFORMATION] Loaded plugin Bungee-Cloud-API version 1.0 by null
+14:43:24 [INFORMATION] Loaded plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:24 [INFORMATION] Loaded plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:24 [INFORMATION] Loaded plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:24 [INFORMATION] Loaded plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:24 [WARNUNG] Forced host server pvp is not defined
+14:43:24 [INFORMATION] Enabled plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:24 [INFORMATION] Enabled plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:24 [INFORMATION] Started ProxyMaster Client on: (127.0.0.1:1784)
+14:43:24 [INFORMATION] Connected To Master
+14:43:24 [INFORMATION] Enabled plugin Bungee-Cloud-API version 1.0 by null
+14:43:24 [INFORMATION] Enabled plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:24 [INFORMATION] Enabled plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:24 [INFORMATION] Enabled plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:24 [INFORMATION] Enabled plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:25 [INFORMATION] Listening on /0.0.0.0:25565
+14:43:51 [INFORMATION] Using standard Java JCE cipher.
+14:43:51 [INFORMATION] Using standard Java compressor.
+14:43:51 [INFORMATION] Enabled BungeeCord version git:BungeeCord-Bootstrap:1.16-R0.2-SNAPSHOT:2e4b08e:1518
+14:43:51 [INFORMATION] Discovered module: ModuleSpec(name=cmd_alert, file=modules\cmd_alert.jar, provider=JenkinsModuleSource())
+14:43:51 [INFORMATION] Discovered module: ModuleSpec(name=cmd_find, file=modules\cmd_find.jar, provider=JenkinsModuleSource())
+14:43:51 [INFORMATION] Discovered module: ModuleSpec(name=cmd_list, file=modules\cmd_list.jar, provider=JenkinsModuleSource())
+14:43:51 [INFORMATION] Discovered module: ModuleSpec(name=cmd_send, file=modules\cmd_send.jar, provider=JenkinsModuleSource())
+14:43:51 [INFORMATION] Discovered module: ModuleSpec(name=cmd_server, file=modules\cmd_server.jar, provider=JenkinsModuleSource())
+14:43:51 [INFORMATION] Discovered module: ModuleSpec(name=reconnect_yaml, file=modules\reconnect_yaml.jar, provider=JenkinsModuleSource())
+14:43:51 [INFORMATION] Loaded plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:51 [INFORMATION] Loaded plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:51 [INFORMATION] Loaded plugin Bungee-Cloud-API version 1.0 by null
+14:43:51 [INFORMATION] Loaded plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:51 [INFORMATION] Loaded plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:51 [INFORMATION] Loaded plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:51 [INFORMATION] Loaded plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:51 [WARNUNG] Forced host server pvp is not defined
+14:43:51 [INFORMATION] Enabled plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:51 [INFORMATION] Enabled plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:51 [INFORMATION] Started ProxyMaster Client on: (127.0.0.1:1784)
+14:43:51 [INFORMATION] Enabled plugin Bungee-Cloud-API version 1.0 by null
+14:43:51 [INFORMATION] Connected To Master
+14:43:51 [INFORMATION] Enabled plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:51 [INFORMATION] Enabled plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:51 [INFORMATION] Enabled plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:51 [INFORMATION] Enabled plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:43:52 [INFORMATION] Listening on /0.0.0.0:25565
+14:44:45 [INFORMATION] Using standard Java JCE cipher.
+14:44:45 [INFORMATION] Using standard Java compressor.
+14:44:45 [INFORMATION] Enabled BungeeCord version git:BungeeCord-Bootstrap:1.16-R0.2-SNAPSHOT:2e4b08e:1518
+14:44:45 [INFORMATION] Discovered module: ModuleSpec(name=cmd_alert, file=modules\cmd_alert.jar, provider=JenkinsModuleSource())
+14:44:45 [INFORMATION] Discovered module: ModuleSpec(name=cmd_find, file=modules\cmd_find.jar, provider=JenkinsModuleSource())
+14:44:45 [INFORMATION] Discovered module: ModuleSpec(name=cmd_list, file=modules\cmd_list.jar, provider=JenkinsModuleSource())
+14:44:45 [INFORMATION] Discovered module: ModuleSpec(name=cmd_send, file=modules\cmd_send.jar, provider=JenkinsModuleSource())
+14:44:45 [INFORMATION] Discovered module: ModuleSpec(name=cmd_server, file=modules\cmd_server.jar, provider=JenkinsModuleSource())
+14:44:45 [INFORMATION] Discovered module: ModuleSpec(name=reconnect_yaml, file=modules\reconnect_yaml.jar, provider=JenkinsModuleSource())
+14:44:45 [INFORMATION] Loaded plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:44:45 [INFORMATION] Loaded plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:44:45 [INFORMATION] Loaded plugin Bungee-Cloud-API version 1.0 by null
+14:44:45 [INFORMATION] Loaded plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:44:45 [INFORMATION] Loaded plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:44:45 [INFORMATION] Loaded plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:44:45 [INFORMATION] Loaded plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:44:45 [WARNUNG] Forced host server pvp is not defined
+14:44:45 [INFORMATION] Enabled plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:44:45 [INFORMATION] Enabled plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:44:45 [INFORMATION] Started ProxyMaster Client on: (127.0.0.1:1784)
+14:44:45 [INFORMATION] Connected To Master
+14:44:45 [INFORMATION] Enabled plugin Bungee-Cloud-API version 1.0 by null
+14:44:45 [INFORMATION] Enabled plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:44:45 [INFORMATION] Enabled plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:44:45 [INFORMATION] Enabled plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:44:45 [INFORMATION] Enabled plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:44:45 [INFORMATION] Listening on /0.0.0.0:25565
+14:46:47 [INFORMATION] Using standard Java JCE cipher.
+14:46:47 [INFORMATION] Using standard Java compressor.
+14:46:47 [INFORMATION] Enabled BungeeCord version git:BungeeCord-Bootstrap:1.16-R0.2-SNAPSHOT:2e4b08e:1518
+14:46:47 [INFORMATION] Discovered module: ModuleSpec(name=cmd_alert, file=modules\cmd_alert.jar, provider=JenkinsModuleSource())
+14:46:47 [INFORMATION] Discovered module: ModuleSpec(name=cmd_find, file=modules\cmd_find.jar, provider=JenkinsModuleSource())
+14:46:47 [INFORMATION] Discovered module: ModuleSpec(name=cmd_list, file=modules\cmd_list.jar, provider=JenkinsModuleSource())
+14:46:47 [INFORMATION] Discovered module: ModuleSpec(name=cmd_send, file=modules\cmd_send.jar, provider=JenkinsModuleSource())
+14:46:47 [INFORMATION] Discovered module: ModuleSpec(name=cmd_server, file=modules\cmd_server.jar, provider=JenkinsModuleSource())
+14:46:47 [INFORMATION] Discovered module: ModuleSpec(name=reconnect_yaml, file=modules\reconnect_yaml.jar, provider=JenkinsModuleSource())
+14:46:47 [INFORMATION] Loaded plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:46:47 [INFORMATION] Loaded plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:46:47 [INFORMATION] Loaded plugin Bungee-Cloud-API version 1.0 by null
+14:46:47 [INFORMATION] Loaded plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:46:47 [INFORMATION] Loaded plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:46:47 [INFORMATION] Loaded plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:46:47 [INFORMATION] Loaded plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:46:47 [WARNUNG] Forced host server pvp is not defined
+14:46:47 [INFORMATION] Enabled plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:46:47 [INFORMATION] Enabled plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:46:48 [INFORMATION] Started ProxyMaster Client on: (127.0.0.1:1784)
+14:46:48 [INFORMATION] Enabled plugin Bungee-Cloud-API version 1.0 by null
+14:46:48 [INFORMATION] Connected To Master
+14:46:48 [INFORMATION] Enabled plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:46:48 [INFORMATION] Enabled plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:46:48 [INFORMATION] Enabled plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:46:48 [INFORMATION] Enabled plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:46:48 [INFORMATION] Listening on /0.0.0.0:25565
+14:47:21 [INFORMATION] Using standard Java JCE cipher.
+14:47:21 [INFORMATION] Using standard Java compressor.
+14:47:21 [INFORMATION] Enabled BungeeCord version git:BungeeCord-Bootstrap:1.16-R0.2-SNAPSHOT:2e4b08e:1518
+14:47:21 [INFORMATION] Discovered module: ModuleSpec(name=cmd_alert, file=modules\cmd_alert.jar, provider=JenkinsModuleSource())
+14:47:21 [INFORMATION] Discovered module: ModuleSpec(name=cmd_find, file=modules\cmd_find.jar, provider=JenkinsModuleSource())
+14:47:21 [INFORMATION] Discovered module: ModuleSpec(name=cmd_list, file=modules\cmd_list.jar, provider=JenkinsModuleSource())
+14:47:21 [INFORMATION] Discovered module: ModuleSpec(name=cmd_send, file=modules\cmd_send.jar, provider=JenkinsModuleSource())
+14:47:21 [INFORMATION] Discovered module: ModuleSpec(name=cmd_server, file=modules\cmd_server.jar, provider=JenkinsModuleSource())
+14:47:21 [INFORMATION] Discovered module: ModuleSpec(name=reconnect_yaml, file=modules\reconnect_yaml.jar, provider=JenkinsModuleSource())
+14:47:21 [INFORMATION] Loaded plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:47:21 [INFORMATION] Loaded plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:47:21 [INFORMATION] Loaded plugin Bungee-Cloud-API version 1.0 by null
+14:47:21 [INFORMATION] Loaded plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:47:21 [INFORMATION] Loaded plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:47:21 [INFORMATION] Loaded plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:47:21 [INFORMATION] Loaded plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:47:21 [WARNUNG] Forced host server pvp is not defined
+14:47:21 [INFORMATION] Enabled plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:47:21 [INFORMATION] Enabled plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:47:21 [INFORMATION] Started ProxyMaster Client on: (127.0.0.1:1784)
+14:47:21 [INFORMATION] Connected To Master
+14:47:21 [INFORMATION] Enabled plugin Bungee-Cloud-API version 1.0 by null
+14:47:21 [INFORMATION] Enabled plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:47:21 [INFORMATION] Enabled plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:47:21 [INFORMATION] Enabled plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:47:21 [INFORMATION] Enabled plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:47:22 [INFORMATION] Listening on /0.0.0.0:25565
+14:47:59 [INFORMATION] Using standard Java JCE cipher.
+14:47:59 [INFORMATION] Using standard Java compressor.
+14:47:59 [INFORMATION] Enabled BungeeCord version git:BungeeCord-Bootstrap:1.16-R0.2-SNAPSHOT:2e4b08e:1518
+14:47:59 [INFORMATION] Discovered module: ModuleSpec(name=cmd_alert, file=modules\cmd_alert.jar, provider=JenkinsModuleSource())
+14:47:59 [INFORMATION] Discovered module: ModuleSpec(name=cmd_find, file=modules\cmd_find.jar, provider=JenkinsModuleSource())
+14:47:59 [INFORMATION] Discovered module: ModuleSpec(name=cmd_list, file=modules\cmd_list.jar, provider=JenkinsModuleSource())
+14:47:59 [INFORMATION] Discovered module: ModuleSpec(name=cmd_send, file=modules\cmd_send.jar, provider=JenkinsModuleSource())
+14:47:59 [INFORMATION] Discovered module: ModuleSpec(name=cmd_server, file=modules\cmd_server.jar, provider=JenkinsModuleSource())
+14:47:59 [INFORMATION] Discovered module: ModuleSpec(name=reconnect_yaml, file=modules\reconnect_yaml.jar, provider=JenkinsModuleSource())
+14:47:59 [INFORMATION] Loaded plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:47:59 [INFORMATION] Loaded plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:47:59 [INFORMATION] Loaded plugin Bungee-Cloud-API version 1.0 by null
+14:47:59 [INFORMATION] Loaded plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:47:59 [INFORMATION] Loaded plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:47:59 [INFORMATION] Loaded plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:47:59 [INFORMATION] Loaded plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:47:59 [WARNUNG] Forced host server pvp is not defined
+14:47:59 [INFORMATION] Enabled plugin reconnect_yaml version git:reconnect_yaml:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:47:59 [INFORMATION] Enabled plugin cmd_find version git:cmd_find:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:47:59 [INFORMATION] Started ProxyMaster Client on: (127.0.0.1:1784)
+14:47:59 [INFORMATION] Enabled plugin Bungee-Cloud-API version 1.0 by null
+14:47:59 [INFORMATION] Connected To Master
+14:47:59 [INFORMATION] Enabled plugin cmd_server version git:cmd_server:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:47:59 [INFORMATION] Enabled plugin cmd_alert version git:cmd_alert:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:47:59 [INFORMATION] Enabled plugin cmd_send version git:cmd_send:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:47:59 [INFORMATION] Enabled plugin cmd_list version git:cmd_list:1.16-R0.2-SNAPSHOT:2e4b08e:1518 by SpigotMC
+14:48:00 [INFORMATION] Listening on /0.0.0.0:25565
+14:48:23 [INFORMATION] ServerMeta{serverName='Lobby-2', id=2, serverGroupMeta=ServerGroupMeta{groupName='Lobby', template='default', maxMemory=512, minMemory=128, dynamicService=true, maintenance=false, maxServer=10, minServer=2}, wrapperID='Wrapper-1', host='127.0.0.1', port=30001}

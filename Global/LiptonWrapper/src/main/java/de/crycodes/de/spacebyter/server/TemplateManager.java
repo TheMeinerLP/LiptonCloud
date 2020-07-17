@@ -35,7 +35,7 @@ public class TemplateManager {
 
     //<editor-fold desc="checkTemplate">
     public void checkTemplate(ServerGroupMeta serverGroupMeta) {
-        final File template = new File(templateLocation + serverGroupMeta.getGroupName().toUpperCase());
+        final File template = new File(templateLocation + serverGroupMeta.getGroupName().toUpperCase() , serverGroupMeta.getTemplate().toUpperCase() + "/");
         if (!template.exists()) {
             try {
                 createTemplate(serverGroupMeta);
@@ -48,11 +48,14 @@ public class TemplateManager {
 
     //<editor-fold desc="createTemplate">
     private void createTemplate(ServerGroupMeta serverGroupMeta) throws IOException {
-        final File template = new File(templateLocation + "/" + serverGroupMeta.getGroupName().toUpperCase());
+        final File templateGroup = new File(templateLocation + "/" + serverGroupMeta.getGroupName().toUpperCase() + "/" );
+        final File template = new File(templateGroup + "/" + serverGroupMeta.getTemplate().toUpperCase() + "/");
         final File pluginlocation = new File(template + "/plugins/");
         final File spigotLocationInTemplate = new File(template + "/SPIGOT.JAR");
         final TextTockens textTockens = new TextTockens();
         if (template.exists()) return;
+
+        templateGroup.mkdirs();
         template.mkdirs();
         pluginlocation.mkdirs();
 

@@ -3,12 +3,12 @@ package de.crycodes.de.spacebyter.liptoncloud.meta;
 import de.crycodes.de.spacebyter.liptoncloud.interfaces.Meta;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Objects;
 
 public class ServerGroupMeta implements Serializable, Meta {
 
     private final String groupName;
+    private final String template;
     private final int maxMemory;
     private final int minMemory;
     private boolean dynamicService;
@@ -16,8 +16,9 @@ public class ServerGroupMeta implements Serializable, Meta {
     private final int maxServer;
     private final int minServer;
 
-    public ServerGroupMeta(String groupName, int maxMemory, int minMemory, boolean dynamicService, boolean maintenance, int maxServer, int minServer) {
+    public ServerGroupMeta(String groupName, String template, int maxMemory, int minMemory, boolean dynamicService, boolean maintenance, int maxServer, int minServer) {
         this.groupName = groupName;
+        this.template = template;
         this.maxMemory = maxMemory;
         this.minMemory = minMemory;
         this.dynamicService = dynamicService;
@@ -26,11 +27,11 @@ public class ServerGroupMeta implements Serializable, Meta {
         this.minServer = minServer;
     }
 
-
     @Override
     public String toString() {
         return "ServerGroupMeta{" +
                 "groupName='" + groupName + '\'' +
+                ", template='" + template + '\'' +
                 ", maxMemory=" + maxMemory +
                 ", minMemory=" + minMemory +
                 ", dynamicService=" + dynamicService +
@@ -51,12 +52,13 @@ public class ServerGroupMeta implements Serializable, Meta {
                 maintenance == that.maintenance &&
                 maxServer == that.maxServer &&
                 minServer == that.minServer &&
-                Objects.equals(groupName, that.groupName);
+                Objects.equals(groupName, that.groupName) &&
+                Objects.equals(template, that.template);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(groupName, maxMemory, minMemory, dynamicService, maintenance, maxServer, minServer);
+        return Objects.hash(groupName, template, maxMemory, minMemory, dynamicService, maintenance, maxServer, minServer);
     }
 
     public String getGroupName() {
@@ -93,5 +95,9 @@ public class ServerGroupMeta implements Serializable, Meta {
 
     public void setMaintenance(boolean maintenance) {
         this.maintenance = maintenance;
+    }
+
+    public String getTemplate() {
+        return template;
     }
 }

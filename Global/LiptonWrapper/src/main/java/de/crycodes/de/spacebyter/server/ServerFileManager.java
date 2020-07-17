@@ -29,7 +29,7 @@ public class ServerFileManager {
 
         File serverGroupDir = new File(serverLocation + "/" + serverType + "/" + serverMeta.getServerGroupMeta().getGroupName());
         File serverDir = new File(serverLocation + "/" + serverType + "/" + serverMeta.getServerGroupMeta().getGroupName() + "/" + serverMeta.getServerName());
-        File templateDir = new File(templateLocation + "/" + serverMeta.getServerGroupMeta().getGroupName().toUpperCase());
+        final File templateDir = new File(templateLocation + "/" + serverMeta.getServerGroupMeta().getGroupName().toUpperCase() + "/" + serverMeta.getServerGroupMeta().getTemplate().toUpperCase() + "/");
 
         serverGroupDir.mkdirs();
         serverDir.mkdirs();

@@ -42,7 +42,6 @@ public class LiptonMaster {
 
     private PacketHandler packetHandler;
 
-    private ProxyGroupConfig proxyGroupConfig;
     private WrapperGroupConfig wrapperConfig;
     private MasterConfig masterConfig;
     private ProxyFileConfig proxyFileConfig;
@@ -76,7 +75,7 @@ public class LiptonMaster {
         counter = new Counter();
         counter.start();
 
-        fileManager = new FileManager("./liptonMaster", "groups","database","groups/server/","groups/proxy/","groups/wrapper/", "local", "logs", "modules", "proxys", "webserver", "api", "resources").create();
+        fileManager = new FileManager("./liptonMaster", "groups","database","groups/server/","groups/wrapper/", "logs", "modules", "proxys", "api").create();
 
         masterConfig = new MasterConfig();
 
@@ -86,7 +85,6 @@ public class LiptonMaster {
         maintenanceConfig = new CloudMaintenanceConfig(this);
 
         serverGroupConfig = new ServerGroupConfig();
-        proxyGroupConfig = new ProxyGroupConfig();
         wrapperConfig = new WrapperGroupConfig();
 
         colouredConsoleProvider = new ColouredConsoleProvider(new File("./liptonMaster/logs"));
@@ -99,7 +97,7 @@ public class LiptonMaster {
 
         if (serverGroupConfig.getServerMetaByName("Lobby") == null)
             serverGroupConfig.create(new ServerGroupMeta("Lobby",
-                    512,
+                    "default", 512,
                     128,
                     true,
                     false ,
@@ -203,10 +201,6 @@ public class LiptonMaster {
 
     public IDManager getIdManager() {
         return idManager;
-    }
-
-    public ProxyGroupConfig getProxyGroupConfig() {
-        return proxyGroupConfig;
     }
 
     public WrapperGroupConfig getWrapperConfig() {

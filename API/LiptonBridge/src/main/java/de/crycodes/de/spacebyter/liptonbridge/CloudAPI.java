@@ -134,14 +134,8 @@ public class CloudAPI {
         Boolean dynamic = document.getBoolean("DYNAMIC");
         Boolean maintenance = document.getBoolean("MAINTENANCE");
 
-        ServerMeta serverMeta = new ServerMeta(name, serverID, new ServerGroupMeta(group, 512, 128,dynamic, maintenance, 0, 0 ), wrapperID, "127.0.0.1", Bukkit.getPort());
+        ServerMeta serverMeta = new ServerMeta(name, serverID, new ServerGroupMeta(group, "default", 512, 128,dynamic, maintenance, 0, 0 ), wrapperID, "127.0.0.1", Bukkit.getPort());
         return serverMeta;
-    }
-    //</editor-fold>
-
-    //<editor-fold desc="stopCloud Method">
-    public void stopCloud(int id){
-        this.sendPacket(new ShutDownPacket(ExitUtil.STOPPED_SUCESS));
     }
     //</editor-fold>
 

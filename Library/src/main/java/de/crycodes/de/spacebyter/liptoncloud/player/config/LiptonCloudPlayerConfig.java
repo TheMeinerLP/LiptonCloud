@@ -73,4 +73,44 @@ public class LiptonCloudPlayerConfig {
         this.mongoPort = document.getInt("mongoPort");
         this.mongoUserName = document.getString("mongoUserName");
     }
+
+    public boolean isUseSystem() {
+        return useSystem;
+    }
+
+    public boolean isMysql() {
+        return mysql;
+    }
+
+    public String getSqlPassword() {
+        return sqlPassword;
+    }
+
+    public String getSqlUserName() {
+        return sqlUserName;
+    }
+
+    public String getSqlHost() {
+        return sqlHost;
+    }
+
+    public Integer getSqlPort() {
+        return sqlPort;
+    }
+
+    public String getMongoPassword() {
+        return mongoPassword;
+    }
+
+    public String getMongoUserName() {
+        return mongoUserName;
+    }
+
+    public String getMongoHost() {
+        return mongoHost;
+    }
+
+    public Integer getMongoPort() {
+        return mongoPort;
+    }
 }

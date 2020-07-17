@@ -1,11 +1,12 @@
 {
   "group": {
     "groupName": "Lobby",
+    "template": "default",
     "maxMemory": 512,
     "minMemory": 128,
     "dynamicService": true,
     "maintenance": false,
-    "maxServer": 3,
+    "maxServer": 10,
     "minServer": 2
   }
 }
