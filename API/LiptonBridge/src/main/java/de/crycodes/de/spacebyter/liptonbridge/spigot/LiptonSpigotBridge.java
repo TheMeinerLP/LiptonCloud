@@ -2,6 +2,7 @@ package de.crycodes.de.spacebyter.liptonbridge.spigot;
 
 import de.crycodes.de.spacebyter.liptonbridge.CloudAPI;
 import de.crycodes.de.spacebyter.liptonbridge.spigot.commands.CreateSignCommand;
+import de.crycodes.de.spacebyter.liptonbridge.spigot.enums.SignState;
 import de.crycodes.de.spacebyter.liptonbridge.spigot.listeners.ClickListener;
 import de.crycodes.de.spacebyter.liptonbridge.spigot.networking.SpigotMasterClient;
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
@@ -11,6 +12,8 @@ import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerSto
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,6 +65,20 @@ public class LiptonSpigotBridge extends JavaPlugin {
 
         ServerMeta serverMeta = LiptonSpigotBridge.getInstance().getCloudAPI().getServerMeta();
         spigotMasterClient.getThunderClient().sendPacket(spigotMasterClient.getNetworkChannel(), new ServerStoppingPacket(serverMeta));
+    }
+
+    public void setMotd(SignState signState)  {
+        String bukkitversion = Bukkit.getServer().getClass().getPackage().getName().substring(23);
+        Object minecraftserver = null;
+        try {
+            minecraftserver = Class.forName("org.bukkit.craftbukkit."+bukkitversion+".CraftServer").getDeclaredMethod("getServer", null).invoke(Bukkit.getServer(), null);
+            Field f = minecraftserver.getClass().getSuperclass().getDeclaredField("motd");
+            f.setAccessible(true);
+            f.set(minecraftserver, signState.name());
+        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException | ClassNotFoundException | NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public CloudAPI getCloudAPI() {

@@ -4,7 +4,6 @@ import de.crycodes.de.spacebyter.liptoncloud.enums.RegisterType;
 import de.crycodes.de.spacebyter.liptoncloud.meta.WrapperMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.config.WrapperConfig;
 import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.UnRegisterPacket;
-import de.crycodes.de.spacebyter.liptoncloud.utils.ExitUtil;
 
 /**
  * Coded By CryCodes

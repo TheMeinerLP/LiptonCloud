@@ -1,8 +1,9 @@
 package de.crycodes.de.spacebyter.network.handler;
 
 import de.crycodes.de.spacebyter.LiptonWrapper;
+import de.crycodes.de.spacebyter.liptoncloud.enums.ExitState;
 import de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterResponsePacket;
-import de.crycodes.de.spacebyter.liptoncloud.utils.ExitUtil;
+
 import de.crycodes.de.spacebyter.network.adapter.PacketHandlerAdapter;
 import de.crycodes.de.spacebyter.network.packet.Packet;
 
@@ -32,7 +33,7 @@ public class AuthResponseHandler extends PacketHandlerAdapter {
             if (((RegisterResponsePacket) packet).isAuthenticated())
                 liptonWrapper.getColouredConsoleProvider().info("Connected Successful to Master!");
             else
-                System.exit(ExitUtil.CONTROLLERKEY_MISSING);
+                System.exit(ExitState.TERMINATED.getState());
         }
     }
     //</editor-fold>

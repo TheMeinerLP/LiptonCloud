@@ -13,7 +13,15 @@ import de.crycodes.de.spacebyter.liptoncloud.event.Listener;
 
 public abstract class CloudModule<T> {
 
-    public abstract T getService();
+    private T t;
+
+    public void setInstance(T t){
+        this.t = t;
+    }
+
+    public T getService(){
+        return this.t;
+    }
 
     public abstract void onEnable();
     public abstract void onDisable();

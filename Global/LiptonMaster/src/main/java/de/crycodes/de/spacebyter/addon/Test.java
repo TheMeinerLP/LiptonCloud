@@ -1,21 +1,24 @@
-package de.crycodes.testmodule;
+package de.crycodes.de.spacebyter.addon;
 
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
 import de.crycodes.de.spacebyter.liptoncloud.addon.CloudModule;
 
 /**
  * Coded By CryCodes
- * Class: TestModule
+ * Class: Test
  * Date : 17.07.2020
- * Time : 11:48
+ * Time : 21:37
  * Project: LiptonCloud
  */
 
-public class TestModule extends CloudModule<LiptonLibrary> {
+public class Test extends CloudModule<LiptonLibrary> {
 
+
+    @Override
     public void onEnable() {
-        System.out.println("test lol!");
     }
 
-    public void onDisable() { }
+    @Override
+    public void onDisable() {
+    }
 }

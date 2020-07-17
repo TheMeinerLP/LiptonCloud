@@ -1,5 +1,6 @@
 package de.crycodes.de.spacebyter.liptoncloud.addon;
 
+import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 
 import java.io.File;
@@ -82,6 +83,13 @@ public class ModuleService {
     public void stopModules(){
         for (int i=0; i < modules.length; i++) {
             modules[i].onDisable();
+        }
+    }
+    //</editor-fold>
+    //<editor-fold desc="setInstance">
+    public void setInstance(LiptonLibrary liptonLibrary){
+        for (int i=0; i < modules.length; i++){
+            modules[i].setInstance(liptonLibrary);
         }
     }
     //</editor-fold>

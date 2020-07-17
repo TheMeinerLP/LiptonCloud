@@ -33,6 +33,9 @@ import java.io.File;
 public class LiptonMaster {
 
     //<editor-fold desc="Objects">
+
+    private LiptonMaster instance;
+
     private ColouredConsoleProvider colouredConsoleProvider;
 
     private LiptonLibrary liptonLibrary;
@@ -71,7 +74,7 @@ public class LiptonMaster {
 
     //<editor-fold desc="LiptonMaster">
     public LiptonMaster() {
-
+        instance = this;
         counter = new Counter();
         counter.start();
 
@@ -151,12 +154,19 @@ public class LiptonMaster {
 
         moduleService.loadModules();
         moduleService.startModules();
+        moduleService.setInstance(this.liptonLibrary);
 
         commandManager.run();
     }
     //</editor-fold>
 
     //<editor-fold desc="Getter - Setter">
+
+
+    public LiptonMaster getInstance() {
+        return instance;
+    }
+
     public ColouredConsoleProvider getColouredConsoleProvider() {
         return colouredConsoleProvider;
     }

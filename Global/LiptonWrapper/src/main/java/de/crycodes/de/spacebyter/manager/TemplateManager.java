@@ -25,7 +25,7 @@ public class TemplateManager {
         version = liptonWrapper.getVersionsManager().getCurrentServerVersion();
         if(version == null) {
             liptonWrapper.getColouredConsoleProvider().error("No Server Version found. Can't create Template");
-            liptonWrapper.getWrapperMasterClient().sendPacket(new ErrorPacket("Could not create Template" ,liptonWrapper.getWrapperConfig().getWrapperID(), new Exception("No Server Version found")));
+          //  liptonWrapper.getWrapperMasterClient().sendPacket(new ErrorPacket("Could not create Template" ,liptonWrapper.getWrapperConfig().getWrapperID(), new Exception("No Server Version found")));
             return;
         }
         templateLocation = new File("liptonWrapper/templates");

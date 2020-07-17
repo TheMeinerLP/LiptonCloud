@@ -8,12 +8,12 @@ import de.crycodes.de.spacebyter.config.WrapperConfig;
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
 import de.crycodes.de.spacebyter.liptoncloud.command.CommandManager;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.enums.ExitState;
 import de.crycodes.de.spacebyter.liptoncloud.event.EventManager;
 import de.crycodes.de.spacebyter.liptoncloud.scheduler.Scheduler;
 import de.crycodes.de.spacebyter.liptoncloud.setup.impl.WrapperSetup;
 import de.crycodes.de.spacebyter.liptoncloud.time.Counter;
 import de.crycodes.de.spacebyter.liptoncloud.utils.DeletUtils;
-import de.crycodes.de.spacebyter.liptoncloud.utils.ExitUtil;
 import de.crycodes.de.spacebyter.liptoncloud.versions.SpigotVersions;
 import de.crycodes.de.spacebyter.manager.DeleteServerManager;
 import de.crycodes.de.spacebyter.network.WrapperMasterClient;
@@ -90,11 +90,11 @@ public class LiptonWrapper {
         if (wrapperConfig.getWrapperID() != null){
             if (wrapperConfig.getWrapperID().equalsIgnoreCase( " ") || wrapperConfig.getWrapperID().equalsIgnoreCase("-")) {
                 System.out.println("Wrapper-ID in Config.json is invalidate!");
-                System.exit(ExitUtil.TERMINATED);
+                System.exit(ExitState.TERMINATED.getState());
             }
         } else {
             System.out.println("Wrapper-ID in Config.json is invalidate!");
-            System.exit(ExitUtil.TERMINATED);
+            System.exit(ExitState.TERMINATED.getState());
         }
 
         screenManager = new ScreenManager();
