@@ -91,37 +91,6 @@ public abstract class BackhandedServer {
     }
 
 
-    public BackhandedServer(int port, boolean autoRegisterEveryClient, boolean keepConnectionAlive, boolean useSSL, boolean muted) {
-        this.clients = new ArrayList<RemoteClient>();
-        this.port = port;
-        this.autoRegisterEveryClient = autoRegisterEveryClient;
-        this.muted = muted;
-
-        this.secureMode = useSSL;
-        if (secureMode) {
-            System.setProperty("javax.net.ssl.keyStore", "ssc.store");
-            System.setProperty("javax.net.ssl.keyStorePassword", "SimpleServerClient");
-        }
-        if (autoRegisterEveryClient) {
-            registerLoginMethod();
-        }
-        preStart();
-
-        start();
-
-        if (keepConnectionAlive) {
-            startPingThread();
-        }
-    }
-
-    public void setMuted(boolean muted) {
-        this.muted = muted;
-    }
-
-    public void setPingInterval(int seconds) {
-        this.pingInterval = seconds * 1000;
-    }
-
     protected void startPingThread() {
         new Thread(new Runnable() {
             @Override
@@ -197,15 +166,6 @@ public abstract class BackhandedServer {
         }
     }
 
-    public synchronized void sendReply(Socket toSocket, Object... datapackageContent) {
-        sendMessage(new RemoteClient(null, toSocket), new Channel("REPLY", datapackageContent));
-    }
-
-    public synchronized void sendMessage(String remoteClientId, String datapackageId,
-                                         Object... datapackageContent) {
-        sendMessage(remoteClientId, new Channel(datapackageId, datapackageContent));
-    }
-
     public synchronized void sendMessage(String remoteClientId, Channel message) {
         for (RemoteClient current : clients) {
             if (current.getId().equals(remoteClientId)) {
@@ -235,32 +195,8 @@ public abstract class BackhandedServer {
                 toBeDeleted.add(remoteClient);
             } else {
                 clients.remove(remoteClient);
-                onClientRemoved(remoteClient);
             }
         }
-    }
-
-    public synchronized int broadcastMessageToGroup(String group, Channel message) {
-        toBeDeleted = new ArrayList<RemoteClient>();
-
-        // send message to all clients
-        int txCounter = 0;
-        for (RemoteClient current : clients) {
-            if (current.getGroup().equals(group)) {
-                sendMessage(current, message);
-                txCounter++;
-            }
-        }
-
-        txCounter -= toBeDeleted.size();
-        for (RemoteClient current : toBeDeleted) {
-            clients.remove(current);
-            onClientRemoved(current);
-        }
-
-        toBeDeleted = null;
-
-        return txCounter;
     }
 
     public synchronized int broadcastMessage(Channel message) {
@@ -275,7 +211,6 @@ public abstract class BackhandedServer {
         txCounter -= toBeDeleted.size();
         for (RemoteClient current : toBeDeleted) {
             clients.remove(current);
-            onClientRemoved(current);
         }
 
         toBeDeleted = null;
@@ -303,8 +238,6 @@ public abstract class BackhandedServer {
                 } else {
                     registerClient(UUID.randomUUID().toString(), socket);
                 }
-                onClientRegistered(msg, socket);
-                onClientRegistered();
             }
         });
     }
@@ -363,20 +296,9 @@ public abstract class BackhandedServer {
         return false;
     }
 
-    public boolean isAnyClientConnected() {
-        return getClientCount() > 0;
-    }
-
     public abstract void preStart();
 
-    public void onClientRegistered() {
-    }
 
-    public void onClientRegistered(Channel msg, Socket socket) {
-    }
-
-    public void onClientRemoved(RemoteClient remoteClient) {
-    }
 
     public void onServerStopped() {
     }

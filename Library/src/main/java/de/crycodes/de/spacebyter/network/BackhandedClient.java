@@ -42,21 +42,10 @@ public class BackhandedClient {
 
     public static final String DEFAULT_GROUP_ID = "_DEFAULT_GROUP_";
 
-    public BackhandedClient(String hostname, int port) {
-        this(hostname, port, 10000, false, DEFAULT_USER_ID, DEFAULT_GROUP_ID);
-    }
-
     public BackhandedClient(String hostname, int port, int timeout) {
         this(hostname, port, timeout, false, DEFAULT_USER_ID, DEFAULT_GROUP_ID);
     }
 
-    public BackhandedClient(String hostname, int port, String id) {
-        this(hostname, port, 10000, false, id, DEFAULT_GROUP_ID);
-    }
-
-    public BackhandedClient(String hostname, int port, String id, String group) {
-        this(hostname, port, 10000, false, id, group);
-    }
 
     public BackhandedClient(String hostname, int port, int timeout, boolean useSSL, String id, String group) {
         this.id = id;
@@ -72,42 +61,6 @@ public class BackhandedClient {
             System.setProperty("javax.net.ssl.keyStorePassword", "SimpleServerClient");
         }
     }
-    public BackhandedClient(String hostname, int port, int timeout, boolean useSSL) {
-
-        this.errorCount = 0;
-        this.address = new InetSocketAddress(hostname, port);
-        this.timeout = timeout;
-
-        this.secureMode = useSSL;
-        if (secureMode) {
-            System.setProperty("javax.net.ssl.trustStore", "ssc.store");
-            System.setProperty("javax.net.ssl.keyStorePassword", "SimpleServerClient");
-        }
-    }
-
-    public boolean isListening() {
-        return isConnected() && listeningThread != null && listeningThread.isAlive() && errorCount == 0;
-    }
-
-    public boolean isConnected() {
-        return loginSocket != null && loginSocket.isConnected();
-    }
-
-    public boolean isServerReachable() {
-        try {
-            Socket tempSocket = new Socket();
-            tempSocket.connect(this.address);
-            tempSocket.isConnected();
-            tempSocket.close();
-            return true;
-        } catch (IOException e) {
-            return false;
-        }
-    }
-
-    public void setMuted(boolean muted) {
-        this.muted = muted;
-    }
 
     public void start() {
         stopped = false;
@@ -122,15 +75,6 @@ public class BackhandedClient {
 
     protected void repairConnection() {
        System.exit(0);
-        /* if (loginSocket != null) {
-            try {
-                loginSocket.close();
-            } catch (IOException e) {
-            }
-            loginSocket = null;
-        }
-        login();
-        startListening();*/
     }
 
     protected void login() {
@@ -284,10 +228,6 @@ public class BackhandedClient {
         } catch (IOException | ClassNotFoundException ignored) { }
 
         return null;
-    }
-
-    public Channel sendMessage(String ID, Object... content) {
-        return sendMessage(new Channel(ID, content));
     }
 
     public Channel sendMessage(Channel message) {

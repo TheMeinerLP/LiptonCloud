@@ -19,7 +19,7 @@ public class WrapperGroupSetup extends Setup {
     @SetupPart(id = 2, question = "What should the wrapper's Host be ?", forbiddenAnswers = {})
     private String host;
 
-    @SetupPart(id = 4, question = "Should the Wrapper use Auto-Update ?", forbiddenAnswers = {})
+    @SetupPart(id = 3, question = "Should the Wrapper use Auto-Update ?", forbiddenAnswers = {})
     private Boolean autoUpdate;
 
     public String getGroupName() {
