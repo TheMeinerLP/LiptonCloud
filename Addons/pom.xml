@@ -13,8 +13,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>CloudFlare</module>
-        <module>WebInterFace</module>
     </modules>
 
 

@@ -8,18 +8,20 @@
         <outputRelativeToContentRoot value="true" />
         <module name="LiptonMaster" />
         <module name="LiptonWrapper" />
+        <module name="Module" />
         <module name="Library" />
-        <module name="CommandSystem" />
         <module name="LiptonBridge" />
-        <module name="Event" />
-        <module name="Command" />
-        <module name="Listener" />
+        <module name="CommandSystem" />
         <module name="LiptopnBridge" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Addon" target="1.5" />
       <module name="BungeeBase" target="1.5" />
       <module name="CloudFlare" target="8" />
+      <module name="Command" target="1.5" />
+      <module name="Event" target="1.5" />
+      <module name="Listener" target="1.5" />
       <module name="Master" target="8" />
       <module name="MultiProxy" target="7" />
       <module name="SignSystem" target="7" />

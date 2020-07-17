@@ -6,21 +6,12 @@ package de.crycodes.de.spacebyter.liptoncloud.event;
  */
 
 
-import de.crycodes.de.spacebyter.liptoncloud.event.enums.EventTargetType;
-import de.crycodes.de.spacebyter.liptoncloud.event.events.CloudStartedEvent;
-import de.crycodes.de.spacebyter.liptoncloud.event.events.server.StartProxyEvent;
-import de.crycodes.de.spacebyter.liptoncloud.event.events.server.StartServerEvent;
-import de.crycodes.de.spacebyter.liptoncloud.event.events.server.StopProxyEvent;
-import de.crycodes.de.spacebyter.liptoncloud.event.events.server.StopServerEvent;
-import de.crycodes.de.spacebyter.liptoncloud.event.utils.Event;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public final class EventManager {
 
     private final List<Listener> listeners = new ArrayList<>();
-    private final List<Event> events = new ArrayList<>();
 
     public void registerListener(final Listener listener) {
         listeners.add(listener);
@@ -34,12 +25,12 @@ public final class EventManager {
         listeners.clear();
     }
 
-    public void callEvent(final Event event) {
+    /*public void callEvent(final Event event) {
         listeners.stream()
                 .forEach(e -> handleEvent(event, e));
-    }
+    }*/
 
-    public void registerEvent(Event event){
+    /*public void registerEvent(Event event){
         this.events.add(event);
     }
 
@@ -56,5 +47,5 @@ public final class EventManager {
             listener.handel((StartProxyEvent)event);
         else
             throw new IllegalStateException("Cannot resole Event Type, or its undefined");
-    }
+    }*/
 }

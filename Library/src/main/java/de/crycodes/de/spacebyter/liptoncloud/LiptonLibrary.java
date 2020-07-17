@@ -1,6 +1,5 @@
 package de.crycodes.de.spacebyter.liptoncloud;
 
-import de.crycodes.de.spacebyter.liptoncloud.addon.AddonParallelLoader;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 import de.crycodes.de.spacebyter.liptoncloud.event.EventManager;
 import de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterPacket;
@@ -46,14 +45,12 @@ public class LiptonLibrary {
     private  Scheduler scheduler;
     private  EventManager eventManager;
     private  ColouredConsoleProvider colouredConsoleProvider;
-    private  AddonParallelLoader addonParallelLoader;
     private  Boolean useColor;
 
-    public LiptonLibrary(Scheduler scheduler, EventManager eventManager, ColouredConsoleProvider colouredConsoleProvider, AddonParallelLoader addonParallelLoader, Boolean useColor) {
+    public LiptonLibrary(Scheduler scheduler, EventManager eventManager, ColouredConsoleProvider colouredConsoleProvider, Boolean useColor) {
         this.scheduler = scheduler;
         this.eventManager = eventManager;
         this.colouredConsoleProvider = colouredConsoleProvider;
-        this.addonParallelLoader = addonParallelLoader;
         this.useColor = useColor;
         instance = this;
     }
@@ -116,10 +113,6 @@ public class LiptonLibrary {
 
     public ColouredConsoleProvider getColouredConsoleProvider() {
         return colouredConsoleProvider;
-    }
-
-    public AddonParallelLoader getAddonParallelLoader() {
-        return addonParallelLoader;
     }
 
     public Boolean getUseColor() {

@@ -26,13 +26,13 @@ public class ReloadCommand extends CloudCommand {
     //<editor-fold desc="execute">
     @Override
     protected boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args) {
-        liptonMaster.getParallelLoader().disableAddons();
+        liptonMaster.getModuleService().stopModules();
         liptonMaster.getServerGroupConfig().getServerMetas();
         liptonMaster.getMasterConfig().reload();
         liptonMaster.getServerManager().start();
         liptonMaster.getProxyFileConfig().load();
-        liptonMaster.getParallelLoader().loadAddons();
-        liptonMaster.getParallelLoader().enableAddons();
+        liptonMaster.getModuleService().loadModules();
+        liptonMaster.getModuleService().startModules();
         liptonMaster.getColouredConsoleProvider().info("Cloud was Reloaded!");
         return false;
     }

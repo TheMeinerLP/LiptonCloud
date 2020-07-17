@@ -2,6 +2,8 @@ package de.crycodes.de.spacebyter;
 
 import de.crycodes.de.spacebyter.commands.*;
 import de.crycodes.de.spacebyter.config.*;
+import de.crycodes.de.spacebyter.liptoncloud.addon.ModuleService;
+import de.crycodes.de.spacebyter.liptoncloud.player.LiptonPlayerManager;
 import de.crycodes.de.spacebyter.liptoncloud.time.Counter;
 import de.crycodes.de.spacebyter.networking.proxy.MasterProxyServer;
 import de.crycodes.de.spacebyter.networking.server.MasterSpigotServer;
@@ -9,7 +11,6 @@ import de.crycodes.de.spacebyter.proxy.BungeeCordManager;
 import de.crycodes.de.spacebyter.serverhelper.ConfigHandler;
 import de.crycodes.de.spacebyter.serverhelper.ProxyFileConfig;
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
-import de.crycodes.de.spacebyter.liptoncloud.addon.AddonParallelLoader;
 import de.crycodes.de.spacebyter.liptoncloud.command.CommandManager;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 import de.crycodes.de.spacebyter.liptoncloud.event.EventManager;
@@ -36,7 +37,7 @@ public class LiptonMaster {
 
     private LiptonLibrary liptonLibrary;
     private Scheduler scheduler;
-    private AddonParallelLoader parallelLoader;
+    private ModuleService moduleService;
     private ServerGroupConfig serverGroupConfig;
 
     private PacketHandler packetHandler;
@@ -59,6 +60,8 @@ public class LiptonMaster {
     private ProxyManager proxyManager;
     private Counter counter;
 
+    private LiptonPlayerManager playerManager;
+
     private MasterWrapperServer masterWrapperServer;
     private MasterProxyServer masterProxyServer;
     private MasterSpigotServer masterSpigotServer;
@@ -73,7 +76,7 @@ public class LiptonMaster {
         counter = new Counter();
         counter.start();
 
-        fileManager = new FileManager("./liptonMaster", "groups","groups/server/","groups/proxy/","groups/wrapper/", "local", "logs", "modules", "proxys", "webserver", "api", "resources").create();
+        fileManager = new FileManager("./liptonMaster", "groups","database","groups/server/","groups/proxy/","groups/wrapper/", "local", "logs", "modules", "proxys", "webserver", "api", "resources").create();
 
         masterConfig = new MasterConfig();
 
@@ -110,9 +113,9 @@ public class LiptonMaster {
 
         commandManager = new CommandManager(colouredConsoleProvider);
 
-        parallelLoader = new AddonParallelLoader("./liptonMaster/modules");
+        moduleService = new ModuleService(new File("./liptonMaster/modules"), colouredConsoleProvider);
 
-        liptonLibrary = new LiptonLibrary(scheduler, eventManager, colouredConsoleProvider, parallelLoader, masterConfig.isColorConsole());
+        liptonLibrary = new LiptonLibrary(scheduler, eventManager, colouredConsoleProvider , masterConfig.isColorConsole());
         liptonLibrary.checkAPIFile(new File("./liptonMaster/api/LiptopnBridge-1.0-SNAPSHOT.jar"));
 
         packetHandler = new PacketHandler();
@@ -122,16 +125,14 @@ public class LiptonMaster {
 
         proxyConfigHandler = new ConfigHandler(this,scheduler).startUpdateThread();
 
-        parallelLoader.loadAddons();
-        parallelLoader.enableAddons();
-
-        if (parallelLoader.isAddonEnabled("SignSystem"))
-            colouredConsoleProvider.info("Using SignSystem for LiptonCloud!");
+        moduleService.loadModules();
+        moduleService.startModules();
 
         masterWrapperServer = new MasterWrapperServer(this.masterConfig.getPort(), this).start();
         masterProxyServer = new MasterProxyServer(1784, this).start();
         masterSpigotServer = new MasterSpigotServer(7898, this).start();
 
+        playerManager = new LiptonPlayerManager(new File("./liptonMaster/database/config.json"));
 
         serverManager = new ServerManager(this, serverGroupConfig);
         serverManager.start();
@@ -244,8 +245,25 @@ public class LiptonMaster {
         return maintenanceConfig;
     }
 
-    public AddonParallelLoader getParallelLoader() {
-        return parallelLoader;
+    public ModuleService getModuleService() {
+        return moduleService;
     }
+
+    public ConfigHandler getProxyConfigHandler() {
+        return proxyConfigHandler;
+    }
+
+    public FileManager getFileManager() {
+        return fileManager;
+    }
+
+    public Counter getCounter() {
+        return counter;
+    }
+
+    public BungeeCordManager getBungeeCordManager() {
+        return bungeeCordManager;
+    }
+
     //</editor-fold>
 }

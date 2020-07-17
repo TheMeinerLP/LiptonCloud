@@ -6,7 +6,6 @@ import de.crycodes.de.spacebyter.commands.StopCommand;
 import de.crycodes.de.spacebyter.config.FileManager;
 import de.crycodes.de.spacebyter.config.WrapperConfig;
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
-import de.crycodes.de.spacebyter.liptoncloud.addon.AddonParallelLoader;
 import de.crycodes.de.spacebyter.liptoncloud.command.CommandManager;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 import de.crycodes.de.spacebyter.liptoncloud.event.EventManager;
@@ -46,7 +45,6 @@ public class LiptonWrapper {
     private WrapperMasterClient wrapperMasterClient;
     private Scheduler scheduler;
     private EventManager eventManager;
-    private AddonParallelLoader parallelLoader;
     private VersionsManager versionsManager;
     private Counter counter;
     private TemplateManager templateManager;
@@ -87,11 +85,7 @@ public class LiptonWrapper {
 
         packetHandler = new PacketHandler();
 
-        parallelLoader = new AddonParallelLoader("./liptonWrapper/modules");
-        parallelLoader.loadAddons();
-        parallelLoader.enableAddons();
-
-        liptonLibrary = new LiptonLibrary(scheduler, eventManager, colouredConsoleProvider, parallelLoader, wrapperConfig.isColorUse());
+        liptonLibrary = new LiptonLibrary(scheduler, eventManager, colouredConsoleProvider, wrapperConfig.isColorUse());
         liptonLibrary.checkAPIFile(new File("./liptonWrapper/api/LiptopnBridge-1.0-SNAPSHOT.jar"));
 
         liptonLibrary.registerPacket(packetHandler);

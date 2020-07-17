@@ -1,0 +1,12 @@
+{
+  "useSystem": false,
+  "mysql": false,
+  "sqlPassword": "password",
+  "sqlUserName": "root",
+  "sqlHost": "127.0.0.1",
+  "sqlPort": "3306",
+  "mongoPassword": "password",
+  "mongoUserName": "admin",
+  "mongoHost": "127.0.0.1",
+  "mongoPort": "27017"
+}
