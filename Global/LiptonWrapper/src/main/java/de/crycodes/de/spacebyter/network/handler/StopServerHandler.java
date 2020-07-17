@@ -1,8 +1,11 @@
 package de.crycodes.de.spacebyter.network.handler;
 
+import de.crycodes.de.spacebyter.LiptonWrapper;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerPacket;
 import de.crycodes.de.spacebyter.network.adapter.PacketHandlerAdapter;
 import de.crycodes.de.spacebyter.network.packet.Packet;
+
+import java.io.IOException;
 
 /**
  * Coded By CryCodes
@@ -14,14 +17,24 @@ import de.crycodes.de.spacebyter.network.packet.Packet;
 
 public class StopServerHandler extends PacketHandlerAdapter {
 
+    private final LiptonWrapper liptonWrapper;
+
+    public StopServerHandler(LiptonWrapper liptonWrapper) {
+        this.liptonWrapper = liptonWrapper;
+    }
+
     //<editor-fold desc="handel">
     @Override
     public void handel(Packet packet) {
         if (packet instanceof StopServerPacket){
             final StopServerPacket stopServerPacket = (StopServerPacket) packet;
-            System.out.println("STOPPED: " + stopServerPacket.getServerName());
-            System.out.println("WRAPPERID: " + stopServerPacket.getWrapperID());
-            System.out.println("DYNAMIC: " + stopServerPacket.getDynamic());
+
+            try {
+                liptonWrapper.getDeleteServerManager().delete(stopServerPacket.getServerName());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
     }
     //</editor-fold>

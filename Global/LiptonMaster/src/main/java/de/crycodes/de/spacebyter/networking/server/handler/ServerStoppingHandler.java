@@ -1,6 +1,7 @@
 package de.crycodes.de.spacebyter.networking.server.handler;
 
 import de.crycodes.de.spacebyter.LiptonMaster;
+import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerStoppingPacket;
 import de.crycodes.de.spacebyter.network.adapter.PacketHandlerAdapter;
 import de.crycodes.de.spacebyter.network.packet.Packet;
@@ -29,10 +30,15 @@ public class ServerStoppingHandler extends PacketHandlerAdapter {
         if (packet instanceof ServerStoppingPacket){
             final ServerStoppingPacket serverStoppingPacket = (ServerStoppingPacket) packet;
 
-            System.out.println(serverStoppingPacket.toString());
+            liptonMaster.getScheduler().scheduleAsyncDelay(new Runnable() {
+                @Override
+                public void run() {
+                    liptonMaster.getServerManager().unregisterServer(serverStoppingPacket.getServerMeta().getServerName());
+                    liptonMaster.getMasterProxyServer().getServer().sendPacket(liptonMaster.getMasterProxyServer().getNetworkChannel(), serverStoppingPacket);
+                    liptonMaster.getMasterWrapperServer().sendPacket(new StopServerPacket(serverStoppingPacket.getServerMeta().getServerName(), serverStoppingPacket.getServerMeta().getWrapperID(), serverStoppingPacket.getServerMeta().getServerGroupMeta().isDynamicService()));
+                }
+            }, 4000);
 
-            liptonMaster.getServerManager().unregisterServer(serverStoppingPacket.getServerMeta().getServerName());
-            liptonMaster.getMasterProxyServer().getServer().sendPacket(liptonMaster.getMasterProxyServer().getNetworkChannel(), serverStoppingPacket);
         }
     }
     //</editor-fold>

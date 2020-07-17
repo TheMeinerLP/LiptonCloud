@@ -114,7 +114,7 @@ public class LiptonMaster {
         moduleService = new ModuleService(new File("./liptonMaster/modules"), colouredConsoleProvider);
 
         liptonLibrary = new LiptonLibrary(scheduler, eventManager, colouredConsoleProvider , masterConfig.isColorConsole());
-        liptonLibrary.checkAPIFile(new File("./liptonMaster/api/LiptopnBridge-1.0-SNAPSHOT.jar"));
+        liptonLibrary.checkAPIFile(new File("./liptonMaster/api/LiptonBridge-1.0-SNAPSHOT.jar"));
 
         packetHandler = new PacketHandler();
         liptonLibrary.registerPacket(packetHandler);
@@ -123,8 +123,7 @@ public class LiptonMaster {
 
         proxyConfigHandler = new ConfigHandler(this,scheduler).startUpdateThread();
 
-        moduleService.loadModules();
-        moduleService.startModules();
+
 
         masterWrapperServer = new MasterWrapperServer(this.masterConfig.getPort(), this).start();
         masterProxyServer = new MasterProxyServer(1784, this).start();
@@ -141,7 +140,7 @@ public class LiptonMaster {
         commandManager.registerCommand(new CreateCommand("create", "Create Wrapper|Proxy|ServerGroups ", new String[]{"build", "make"}, this));
         commandManager.registerCommand(new ReloadCommand("reload", "Reload Cloud", new String[]{"restart", "reloadconfig"}, this));
         commandManager.registerCommand(new StopCommand("stop", "Stop the Cloud", new String[]{"exit"}, this));
-        commandManager.registerCommand(new ServiceCommand("service", "Service Command of the Cloud", new String[]{"cloud"}, this));
+        commandManager.registerCommand(new ScreenCommand("service", "Service Command of the Cloud", new String[]{"cloud"}, this));
         commandManager.registerCommand(new ExecuteCommand("execute", "Execute Command on Server", new String[]{"send"}, this));
         commandManager.registerCommand(new PermsCommand("perms", "Simple Command to manage CloudAdmins", new String[]{"cloudadmin", "user", "admin"}, this));
         commandManager.registerCommand(new MaintenanceCommand("maintenance", "Simple Maintenance Command for the Cloud", new String[]{}, this));
@@ -149,6 +148,9 @@ public class LiptonMaster {
 
         counter.stop();
         counter.printResult("MasterStartup" ,this.getColouredConsoleProvider());
+
+        moduleService.loadModules();
+        moduleService.startModules();
 
         commandManager.run();
     }

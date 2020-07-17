@@ -55,7 +55,7 @@ public class ServerStartHandler {
                     ProcessBuilder processBuilder = new ProcessBuilder(cmd).directory(serverDir);
                     Process process = processBuilder.start();
 
-                    liptonWrapper.getScreenManager().registerScreen(new Screen(thread, process, serverDir), serverMeta.getServerName());
+                    liptonWrapper.getScreenManager().registerScreen(new Screen(thread, process, serverDir, serverMeta.getServerName()), serverMeta.getServerName());
 
                     liptonWrapper.getColouredConsoleProvider().info("Server Startet: " + serverMeta.getServerName() + " on (§c" + serverMeta.getPort() +  "§r)");
                 } catch (IOException e) {

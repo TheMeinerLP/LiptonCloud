@@ -19,9 +19,6 @@ public class WrapperGroupSetup extends Setup {
     @SetupPart(id = 2, question = "What should the wrapper's Host be ?", forbiddenAnswers = {})
     private String host;
 
-    @SetupPart(id = 3, question = "What should the wrapper's Port be ?", forbiddenAnswers = {"25577"})
-    private Integer port;
-
     @SetupPart(id = 4, question = "Should the Wrapper use Auto-Update ?", forbiddenAnswers = {})
     private Boolean autoUpdate;
 
@@ -31,10 +28,6 @@ public class WrapperGroupSetup extends Setup {
 
     public String getHost() {
         return host;
-    }
-
-    public Integer getPort() {
-        return port;
     }
 
     public Boolean getAutoUpdate() {

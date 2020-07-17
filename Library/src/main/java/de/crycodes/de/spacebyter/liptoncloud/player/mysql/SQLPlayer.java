@@ -30,7 +30,10 @@ public class SQLPlayer {
             PreparedStatement ps = mySQL.getConnection().prepareStatement("SELECT * FROM Player WHERE uuid = ?");
             ps.setString(1, liptonPlayer.getUuid().toString());
             ResultSet rs = ps.executeQuery();
-            return rs.next();
+            boolean var = rs.next();
+            rs.close();
+            ps.close();
+            return var;
         }catch (SQLException exception) {
             exception.printStackTrace();
             return false;
@@ -46,6 +49,7 @@ public class SQLPlayer {
                 ps.setLong(3, liptonPlayer.getFirst_login());
                 ps.setLong(4, liptonPlayer.getLast_login());
                 ps.executeUpdate();
+                ps.close();
             }catch (SQLException exception) {
                 exception.printStackTrace();
             }
@@ -58,6 +62,7 @@ public class SQLPlayer {
              ps.setLong(1, lastLogin);
              ps.setString(2, liptonPlayer.getUuid().toString());
              ps.executeUpdate();
+             ps.close();
          }catch (SQLException exception) {
              exception.printStackTrace();
          }
@@ -69,6 +74,7 @@ public class SQLPlayer {
             ps.setString(1, name);
             ps.setString(2, liptonPlayer.getUuid().toString());
             ps.executeUpdate();
+            ps.close();
         }catch (SQLException exception) {
             exception.printStackTrace();
         }

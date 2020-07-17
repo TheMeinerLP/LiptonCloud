@@ -29,7 +29,7 @@ public class BungeeCordFileManager {
 
         if (!pluginLocation.exists()) pluginLocation.mkdirs();
 
-        FileUtils.copyFile(new File("./liptonMaster/api/LiptopnBridge-1.0-SNAPSHOT.jar"), new File("./liptonMaster/proxys/plugins/LiptopnBridge-1.0-SNAPSHOT.jar"));
+        FileUtils.copyFile(new File("./liptonMaster/api/LiptonBridge-1.0-SNAPSHOT.jar"), new File("./liptonMaster/proxys/plugins/LiptonBridge-1.0-SNAPSHOT.jar"));
 
         writer.flush();
         writer.close();

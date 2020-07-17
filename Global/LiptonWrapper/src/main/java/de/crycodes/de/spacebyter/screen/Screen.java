@@ -16,12 +16,14 @@ public class Screen {
     private final Thread thread;
     private final Process process;
     private final File serverDir;
+    private final String name;
 
     //<editor-fold desc="Screen">
-    public Screen(Thread thread, Process process, File serverDir) {
+    public Screen(Thread thread, Process process, File serverDir, String name) {
         this.thread = thread;
         this.process = process;
         this.serverDir = serverDir;
+        this.name = name;
     }
     //</editor-fold>
 
@@ -67,5 +69,10 @@ public class Screen {
     public Process getProcess() {
         return process;
     }
+
+    public String getName() {
+        return name;
+    }
+
     //</editor-fold>
 }

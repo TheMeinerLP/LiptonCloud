@@ -20,7 +20,7 @@ public class AsciiPrinter {
             logger.info(Color.RED + "|    |___|  |  |_> >  | (  <_> )   |  \\     \\___|  |_(  <_> )  |  / /_/ | ");
             logger.info(Color.RED + "|_______ \\__|   __/|__|  \\____/|___|  /\\______  /____/\\____/|____/\\____ | ");
             logger.info(Color.RED + "        \\/  |__|                    \\/        \\/                       \\/ ");
-            logger.info("Coded by CryCodes & SpaceByter & ErazeYT & CoderPVP");
+            logger.info("Coded by CryCodes, SpaceByter, ErazeYT & CoderPVP");
             logger.info("");
             return;
         }
@@ -30,7 +30,7 @@ public class AsciiPrinter {
         logger.info("|    |___|  |  |_> >  | (  <_> )   |  \\     \\___|  |_(  <_> )  |  / /_/ | ");
         logger.info("|_______ \\__|   __/|__|  \\____/|___|  /\\______  /____/\\____/|____/\\____ | ");
         logger.info("        \\/  |__|                    \\/        \\/                       \\/ ");
-        logger.info("Coded by CryCodes & SpaceByter & ErazeYT & CoderPVP");
+        logger.info("Coded by CryCodes, SpaceByter, ErazeYT & CoderPVP");
         logger.info("");
 
     }

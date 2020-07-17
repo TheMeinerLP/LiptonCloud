@@ -31,7 +31,9 @@ public class SQLDB {
         if(!isConnected()) {
             try {
                 connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/LiptonCloud", user, password);
-                connection.prepareStatement("CREATE TABLE IF NOT EXISTS Player(id INT AUTO_INCREMENT PRIMARY KEY NOT NULL, name VARCHAR(64), uuid VARCHAR(64), login_first LONG, login_last LONG)").executeUpdate();
+                PreparedStatement ps = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Player(id INT AUTO_INCREMENT PRIMARY KEY NOT NULL, name VARCHAR(64), uuid VARCHAR(64), login_first LONG, login_last LONG)");
+                ps.executeUpdate();
+                ps.close();
 
             } catch (SQLException exception) {
                 exception.printStackTrace();
@@ -43,6 +45,7 @@ public class SQLDB {
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.executeUpdate();
+            ps.close();
         }catch (SQLException exception) {
             exception.printStackTrace();
         }

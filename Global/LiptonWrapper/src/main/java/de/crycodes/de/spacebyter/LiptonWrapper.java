@@ -10,18 +10,22 @@ import de.crycodes.de.spacebyter.liptoncloud.command.CommandManager;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 import de.crycodes.de.spacebyter.liptoncloud.event.EventManager;
 import de.crycodes.de.spacebyter.liptoncloud.scheduler.Scheduler;
+import de.crycodes.de.spacebyter.liptoncloud.setup.impl.WrapperSetup;
 import de.crycodes.de.spacebyter.liptoncloud.time.Counter;
 import de.crycodes.de.spacebyter.liptoncloud.utils.DeletUtils;
 import de.crycodes.de.spacebyter.liptoncloud.utils.ExitUtil;
+import de.crycodes.de.spacebyter.liptoncloud.versions.SpigotVersions;
+import de.crycodes.de.spacebyter.manager.DeleteServerManager;
 import de.crycodes.de.spacebyter.network.WrapperMasterClient;
 import de.crycodes.de.spacebyter.network.packet.PacketHandler;
 import de.crycodes.de.spacebyter.screen.ScreenManager;
-import de.crycodes.de.spacebyter.server.ServerFileManager;
+import de.crycodes.de.spacebyter.manager.ServerFileManager;
 import de.crycodes.de.spacebyter.server.ServerStartHandler;
-import de.crycodes.de.spacebyter.server.TemplateManager;
-import de.crycodes.de.spacebyter.versionsmanager.VersionsManager;
+import de.crycodes.de.spacebyter.manager.TemplateManager;
+import de.crycodes.de.spacebyter.manager.VersionsManager;
 
 import java.io.File;
+import java.util.Scanner;
 
 /**
  * Coded By CryCodes
@@ -51,6 +55,7 @@ public class LiptonWrapper {
     private ServerStartHandler serverStartHandler;
     private ServerFileManager serverFileManager;
     private ScreenManager screenManager;
+    private DeleteServerManager deleteServerManager;
     //</editor-fold>
 
     //<editor-fold desc="LiptonWrapper">
@@ -63,10 +68,24 @@ public class LiptonWrapper {
         DeletUtils.deleteDirectory(new File("./liptonWrapper/server/dynamic/"));
 
         fileManager = new FileManager("./liptonWrapper","api", "resources", "server", "logs", "server/dynamic","server/static", "templates").create();
-        wrapperConfig = new WrapperConfig();
+        wrapperConfig = new WrapperConfig(false);
+
+        if (!wrapperConfig.isSetupDone()){
+            WrapperSetup wrapperSetup = new WrapperSetup();
+            wrapperSetup.start(new Scanner(System.in));
+            wrapperConfig.createFromSetup(wrapperSetup.getGroupName(),wrapperSetup.getColor(),wrapperSetup.getMasterhost());
+            new LiptonWrapper();
+        }
 
         colouredConsoleProvider = new ColouredConsoleProvider(new File("./liptonWrapper/logs"));
         colouredConsoleProvider.setUsecolor(wrapperConfig.isColorUse());
+
+        versionsManager = new VersionsManager(wrapperConfig, this);
+
+        if(wrapperConfig.getSpigotVersion().equals("-") || wrapperConfig.getSpigotVersion() == null) {
+            this.getColouredConsoleProvider().error("No Version Defined in Config use (Cloud installed default Version: 1.8.8-SPIGOT)!");
+            versionsManager.install(SpigotVersions.SPIGOT_1_8_8);
+        }
 
         if (wrapperConfig.getWrapperID() != null){
             if (wrapperConfig.getWrapperID().equalsIgnoreCase( " ") || wrapperConfig.getWrapperID().equalsIgnoreCase("-")) {
@@ -86,18 +105,20 @@ public class LiptonWrapper {
         packetHandler = new PacketHandler();
 
         liptonLibrary = new LiptonLibrary(scheduler, eventManager, colouredConsoleProvider, wrapperConfig.isColorUse());
-        liptonLibrary.checkAPIFile(new File("./liptonWrapper/api/LiptopnBridge-1.0-SNAPSHOT.jar"));
+        liptonLibrary.checkAPIFile(new File("./liptonWrapper/api/LiptonBridge-1.0-SNAPSHOT.jar"));
 
         liptonLibrary.registerPacket(packetHandler);
 
         liptonLibrary.printAscii();
 
         wrapperMasterClient = new WrapperMasterClient(this.wrapperConfig.getHost(), this.wrapperConfig.getPort(), this).start();
-        versionsManager = new VersionsManager(wrapperConfig, this);
+
 
         templateManager = new TemplateManager(this);
         serverFileManager = new ServerFileManager(this);
         serverStartHandler = new ServerStartHandler(this);
+
+        deleteServerManager = new DeleteServerManager(this);
 
         commandManager = new CommandManager(colouredConsoleProvider);
         commandManager.registerCommand(new HelpCommand("help", "Shows all CloudCommands", new String[]{"?"}, this));
@@ -180,6 +201,18 @@ public class LiptonWrapper {
 
     public ScreenManager getScreenManager() {
         return screenManager;
+    }
+
+    public DeleteServerManager getDeleteServerManager() {
+        return deleteServerManager;
+    }
+
+    public EventManager getEventManager() {
+        return eventManager;
+    }
+
+    public Scheduler getScheduler() {
+        return scheduler;
     }
     //</editor-fold>
 }

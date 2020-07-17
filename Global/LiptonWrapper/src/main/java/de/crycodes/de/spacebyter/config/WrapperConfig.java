@@ -16,28 +16,48 @@ public class WrapperConfig {
     private boolean colorUse;
     private String spigotVersion;
 
+    private boolean setupDone = false;
+
     //DOCUMENT AND FILE
     private Document document;
     private File configFile = new File("./liptonWrapper/config.json");
 
     //<editor-fold desc="WrapperConfig">
-    public WrapperConfig() {
+    public WrapperConfig(boolean create) {
         if (configFile.exists()){
             document = Document.loadDocument(configFile);
             reload();
             return;
         }
+        if (create) {
+            document = new Document("Cloud Config");
+            document.append("host", "127.0.0.1");
+            document.append("wrapperID", "-");
+            document.append("port", "9685");
+            document.append("startPort", 30000);
+            document.append("autoUpdate", false);
+            document.append("GC_CPU_Overheat", true);
+            document.append("colorUse", true);
+            document.append("spigotVersion", "-");
+            document.append("setupDone", "true");
+            document.saveAsConfig(configFile);
+        }
+
+    }
+    //</editor-fold>
+    //<editor-fold desc="createFromSetup">
+    public void createFromSetup(String wrapperID,Boolean color, String hostMaster){
         document = new Document("Cloud Config");
-        document.append("host", "127.0.0.1");
-        document.append("wrapperID", "-");
+        document.append("host", hostMaster);
+        document.append("wrapperID", wrapperID);
         document.append("port", "9685");
-        document.append("startPort", 9685);
+        document.append("startPort", 30000);
         document.append("autoUpdate", false);
         document.append("GC_CPU_Overheat", true);
-        document.append("colorUse", true);
+        document.append("colorUse", color);
         document.append("spigotVersion", "-");
+        document.append("setupDone", "true");
         document.saveAsConfig(configFile);
-
     }
     //</editor-fold>
     //<editor-fold desc="reload">
@@ -50,6 +70,7 @@ public class WrapperConfig {
         this.GC_GPU_Overheat = document.getBoolean("GC_CPU_Overheat");
         this.colorUse = document.getBoolean("colorUse");
         this.spigotVersion = document.getString("spigotVersion");
+        this.setupDone = document.getBoolean("setupDone");
     }
     //</editor-fold>
 
@@ -92,6 +113,10 @@ public class WrapperConfig {
 
     public File getConfigFile() {
         return configFile;
+    }
+
+    public boolean isSetupDone() {
+        return setupDone;
     }
     //</editor-fold>
 }

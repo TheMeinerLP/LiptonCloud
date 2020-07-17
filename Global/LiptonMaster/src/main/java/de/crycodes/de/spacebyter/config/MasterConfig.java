@@ -41,7 +41,7 @@ public class MasterConfig {
         document.append("host", "127.0.0.1");
         document.append("port", 9685);
         document.append("debugMode", false);
-        document.append("colorConsole", true);
+        document.append("colorConsole", false);
         document.append("autoUpdate", false);
         document.append("GC_CPU_Overheat", true);
         document.append("serverNameSplitter", "-");

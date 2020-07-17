@@ -24,6 +24,9 @@ public class ScreenManager {
     public Screen getScreenByName(String name){
         return screenConcurrentHashMap.get(name);
     }
+    public void unregisterScreen(Screen screen) {
+        this.screenConcurrentHashMap.remove(screen.getName());
+    }
     public void registerScreen(Screen screen, String name){
         this.screenConcurrentHashMap.put(name,screen);
     }

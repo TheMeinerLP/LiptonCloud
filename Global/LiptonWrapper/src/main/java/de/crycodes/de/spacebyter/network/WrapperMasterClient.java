@@ -44,7 +44,7 @@ public class WrapperMasterClient {
         adapterHandler.registerAdapter( new CopyServerHandler(liptonWrapper));
         adapterHandler.registerAdapter( new StartServerHandler(liptonWrapper));
         adapterHandler.registerAdapter(new CreateTemplateHandler(liptonWrapper));
-        adapterHandler.registerAdapter(new StopServerHandler());
+        adapterHandler.registerAdapter(new StopServerHandler(liptonWrapper));
 
     }
     //</editor-fold>
