@@ -15,11 +15,22 @@ import java.lang.reflect.Type;
 
 public class LiptonMasterService {
 
+    //<editor-fold desc="instance">
+    private static LiptonMasterService instance;
+    //</editor-fold>
 
     //<editor-fold desc="LiptonMasterService">
     public LiptonMasterService() throws IOException, NoSuchMethodException, NoSuchFieldException, IllegalAccessException, InvocationTargetException {
+
+        instance = this;
         new LiptonMaster();
+
     }
     //</editor-fold>
 
+    //<editor-fold desc="getter">
+    public static LiptonMasterService getInstance() {
+        return instance;
+    }
+    //</editor-fold>
 }

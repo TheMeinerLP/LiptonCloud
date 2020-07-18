@@ -1,6 +1,7 @@
 package de.crycodes.de.spacebyter.commands;
 
 import de.crycodes.de.spacebyter.LiptonMaster;
+import de.crycodes.de.spacebyter.LiptonMasterService;
 import de.crycodes.de.spacebyter.liptoncloud.command.CloudCommand;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 
@@ -30,23 +31,9 @@ public class HelpCommand extends CloudCommand {
 
         colouredConsoleProvider.info("Help Command:");
 
-        colouredConsoleProvider.info("copy <group> <server>");
-        colouredConsoleProvider.info("create <SERVERGROUP>");
-        colouredConsoleProvider.info("create <WRAPPER>");
-        colouredConsoleProvider.info("execute <server> <command>");
-        colouredConsoleProvider.info("maintenance <add> <user>");
-        colouredConsoleProvider.info("maintenance <remove> <user>");
-        colouredConsoleProvider.info("maintenance <toggle>");
-        colouredConsoleProvider.info("perms <check> <user>");
-        colouredConsoleProvider.info("perms <set> <user>");
-        colouredConsoleProvider.info("perms <remove> <user>");
-        colouredConsoleProvider.info("perms <help>");
-        colouredConsoleProvider.info("service <stopserver> <name>");
-        colouredConsoleProvider.info("service <stopproxy> <name>");
-        colouredConsoleProvider.info("service <stopgroup> <group>");
-        colouredConsoleProvider.info("reload");
-        colouredConsoleProvider.info("stop");
-
+        master.getCommandManager().getCommands().forEach(cloudCommand -> {
+            colouredConsoleProvider.info(cloudCommand.getName() + " | " + cloudCommand.getDescription() + " | " + Arrays.toString(cloudCommand.getAliases()));
+        });
 
         return false;
     }

@@ -107,7 +107,7 @@ public class ServerManager {
         liptonMaster.getMasterWrapperServer().sendPacket(new StartServerPacket(wrapperID, serverMeta));
 
         if (!autoStart) this.liptonMaster.getColouredConsoleProvider().info("StartetServer: " + serverMeta.getServerName() + " | on port: " + serverMeta.getPort() + " | on wrapper: " + serverMeta.getWrapperID() + " | group: " + serverGroupMeta.getGroupName() + " !");
-        if (autoStart)  liptonMaster.getColouredConsoleProvider().info("§c[AUTOSTART]§r StartetServer '" + serverGroupMeta.getGroupName() + "' stats: (" + getGlobalStartedAndOnlineServerByGroup(serverGroupMeta) + "/" + serverGroupMeta.getMinServer() + ") Port: §a" + port + "§r | ID: §a" + id + "§r !");
+        if (autoStart)  liptonMaster.getColouredConsoleProvider().sendMessageWithCustomPrefix("§cAUTOSTART:§r"," StartetServer '" + serverGroupMeta.getGroupName() + "' stats: (" + getGlobalStartedAndOnlineServerByGroup(serverGroupMeta) + "/" + serverGroupMeta.getMinServer() + ") Port: §a" + port + "§r | ID: §a" + id + "§r !");
     }
     //</editor-fold>
 

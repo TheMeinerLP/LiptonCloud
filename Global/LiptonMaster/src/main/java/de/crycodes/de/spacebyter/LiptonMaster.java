@@ -37,7 +37,7 @@ public class LiptonMaster {
 
     //<editor-fold desc="Objects">
 
-    private LiptonMaster instance;
+    private static LiptonMaster instance;
 
     private ColouredConsoleProvider colouredConsoleProvider;
 
@@ -169,7 +169,7 @@ public class LiptonMaster {
     //<editor-fold desc="Getter - Setter">
 
 
-    public LiptonMaster getInstance() {
+    public static LiptonMaster getInstance() {
         return instance;
     }
 
