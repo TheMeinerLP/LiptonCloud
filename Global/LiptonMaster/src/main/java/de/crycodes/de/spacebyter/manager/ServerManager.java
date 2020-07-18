@@ -2,8 +2,8 @@ package de.crycodes.de.spacebyter.manager;
 
 import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.config.ServerGroupConfig;
-import de.crycodes.de.spacebyter.liptoncloud.exceprtion.ServerIDNotFoundException;
-import de.crycodes.de.spacebyter.liptoncloud.exceprtion.ServerNotStartedException;
+import de.crycodes.de.spacebyter.liptoncloud.exceptions.ServerIDNotFoundException;
+import de.crycodes.de.spacebyter.liptoncloud.exceptions.ServerNotStartedException;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.WrapperMeta;
@@ -14,8 +14,6 @@ import de.crycodes.de.spacebyter.liptoncloud.utils.annotiations.ShouldRunAsync;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Coded By CryCodes

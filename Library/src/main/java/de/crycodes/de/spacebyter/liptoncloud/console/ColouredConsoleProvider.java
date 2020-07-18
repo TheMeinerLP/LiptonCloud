@@ -86,6 +86,20 @@ public class ColouredConsoleProvider {
     }
 
     /**
+     * logs a normal text into the console whit a custom prefix
+     *
+     * @param message the message which should print into the console
+     */
+    public void sendMessageWithCustomPrefix(String perfix,String message){
+        message = perfix + message + "§r";
+
+        this.getFileLogger().info( this.removeColorCodes( message ) );
+        message = this.translateColorCodes( message );
+
+        this.getApacheLogger().info( message );
+    }
+
+    /**
      * logs an error text into the console
      *
      * @param message the message which should print into the console

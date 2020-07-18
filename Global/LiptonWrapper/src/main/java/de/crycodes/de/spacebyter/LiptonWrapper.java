@@ -10,6 +10,7 @@ import de.crycodes.de.spacebyter.liptoncloud.command.CommandManager;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 import de.crycodes.de.spacebyter.liptoncloud.enums.ExitState;
 import de.crycodes.de.spacebyter.liptoncloud.event.EventManager;
+import de.crycodes.de.spacebyter.liptoncloud.library.JarInjector;
 import de.crycodes.de.spacebyter.liptoncloud.scheduler.Scheduler;
 import de.crycodes.de.spacebyter.liptoncloud.setup.impl.WrapperSetup;
 import de.crycodes.de.spacebyter.liptoncloud.time.Counter;
@@ -25,6 +26,8 @@ import de.crycodes.de.spacebyter.manager.TemplateManager;
 import de.crycodes.de.spacebyter.manager.VersionsManager;
 
 import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Scanner;
 
 /**
@@ -56,10 +59,11 @@ public class LiptonWrapper {
     private ServerFileManager serverFileManager;
     private ScreenManager screenManager;
     private DeleteServerManager deleteServerManager;
+    private JarInjector jarInjector;
     //</editor-fold>
 
     //<editor-fold desc="LiptonWrapper">
-    public LiptonWrapper() {
+    public LiptonWrapper() throws IOException, InvocationTargetException, NoSuchMethodException, IllegalAccessException, NoSuchFieldException {
         isrunning = true;
 
         counter = new Counter();
@@ -67,8 +71,10 @@ public class LiptonWrapper {
 
         DeletUtils.deleteDirectory(new File("./liptonWrapper/server/dynamic/"));
 
-        fileManager = new FileManager("./liptonWrapper","api", "resources", "server", "logs", "server/dynamic","server/static", "templates").create();
+        fileManager = new FileManager("./liptonWrapper","api", "resources", "server", "logs","librarys", "server/dynamic","server/static", "templates").create();
         wrapperConfig = new WrapperConfig(false);
+
+        jarInjector = new JarInjector(new File("./liptonMaster/librarys/"));
 
         if (!wrapperConfig.isSetupDone()){
             WrapperSetup wrapperSetup = new WrapperSetup();

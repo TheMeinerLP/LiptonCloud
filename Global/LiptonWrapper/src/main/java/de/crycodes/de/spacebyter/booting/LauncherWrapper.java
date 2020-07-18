@@ -2,6 +2,9 @@ package de.crycodes.de.spacebyter.booting;
 
 import de.crycodes.de.spacebyter.LiptonWrapper;
 
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+
 /**
  * Coded By CryCodes
  * Class: LauncherMaster
@@ -13,7 +16,7 @@ import de.crycodes.de.spacebyter.LiptonWrapper;
 public class LauncherWrapper {
 
     //<editor-fold desc="Main Method">
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, NoSuchMethodException, NoSuchFieldException, IllegalAccessException, InvocationTargetException {
         new LiptonWrapper();
     }
     //</editor-fold>

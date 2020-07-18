@@ -47,12 +47,13 @@ public class LiptonLibrary {
     private  ColouredConsoleProvider colouredConsoleProvider;
     private  Boolean useColor;
 
-    public LiptonLibrary(Scheduler scheduler, EventManager eventManager, ColouredConsoleProvider colouredConsoleProvider, Boolean useColor) {
+    public LiptonLibrary(Scheduler scheduler, EventManager eventManager, ColouredConsoleProvider colouredConsoleProvider, Boolean useColor ) {
         this.scheduler = scheduler;
         this.eventManager = eventManager;
         this.colouredConsoleProvider = colouredConsoleProvider;
         this.useColor = useColor;
         instance = this;
+
     }
     public void checkAPIFile(File file){
         if (file.exists()) return;

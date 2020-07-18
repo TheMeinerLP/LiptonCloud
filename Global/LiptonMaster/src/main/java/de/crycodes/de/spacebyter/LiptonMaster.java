@@ -3,6 +3,7 @@ package de.crycodes.de.spacebyter;
 import de.crycodes.de.spacebyter.commands.*;
 import de.crycodes.de.spacebyter.config.*;
 import de.crycodes.de.spacebyter.liptoncloud.addon.ModuleService;
+import de.crycodes.de.spacebyter.liptoncloud.library.JarInjector;
 import de.crycodes.de.spacebyter.liptoncloud.player.LiptonPlayerManager;
 import de.crycodes.de.spacebyter.liptoncloud.time.Counter;
 import de.crycodes.de.spacebyter.networking.proxy.MasterProxyServer;
@@ -21,6 +22,8 @@ import de.crycodes.de.spacebyter.network.packet.PacketHandler;
 import de.crycodes.de.spacebyter.networking.MasterWrapperServer;
 
 import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * Coded By CryCodes
@@ -64,21 +67,24 @@ public class LiptonMaster {
 
     private LiptonPlayerManager playerManager;
 
+    private JarInjector jarInjector;
+
     private MasterWrapperServer masterWrapperServer;
     private MasterProxyServer masterProxyServer;
     private MasterSpigotServer masterSpigotServer;
-
 
     private BungeeCordManager bungeeCordManager;
     //</editor-fold>
 
     //<editor-fold desc="LiptonMaster">
-    public LiptonMaster() {
+    public LiptonMaster() throws IOException, InvocationTargetException, NoSuchMethodException, IllegalAccessException, NoSuchFieldException {
         instance = this;
         counter = new Counter();
         counter.start();
 
-        fileManager = new FileManager("./liptonMaster", "groups","database","groups/server/","groups/wrapper/", "logs", "modules", "proxys", "api").create();
+        fileManager = new FileManager("./liptonMaster", "groups","database","groups/server/","groups/wrapper/", "logs", "modules","librarys", "proxys", "api").create();
+
+        jarInjector = new JarInjector(new File("./liptonMaster/librarys/"));
 
         masterConfig = new MasterConfig();
 

@@ -1,6 +1,8 @@
 package de.crycodes.de.spacebyter;
 
+import java.io.IOException;
 import java.lang.annotation.Target;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Type;
 
 /**
@@ -15,7 +17,7 @@ public class LiptonMasterService {
 
 
     //<editor-fold desc="LiptonMasterService">
-    public LiptonMasterService() {
+    public LiptonMasterService() throws IOException, NoSuchMethodException, NoSuchFieldException, IllegalAccessException, InvocationTargetException {
         new LiptonMaster();
     }
     //</editor-fold>
