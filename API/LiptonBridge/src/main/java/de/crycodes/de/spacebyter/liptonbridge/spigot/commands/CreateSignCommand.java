@@ -20,72 +20,65 @@ import org.checkerframework.checker.units.qual.C;
 import java.util.HashSet;
 import java.util.Set;
 
-/**********************************************************************************
- *     Urheberrechtshinweis                                                       *
- *     Copyright @ Max Fischer 2020                                               *
- *     Erstellt: 06.07.2020 / 13:14                                               *
- *                                                                                *
- *     Alle Inhalte dieses Quelltextes sind urheberrechtlich geschützt.           *
- *     Das Urheberrecht liegt, soweit nicht ausdrücklich anders gekennzeichnet,   *
- *     bei Max Fischer. Alle Rechte vorbehalten.                                  *
- *                                                                                *
- *     Jede Art der Vervielfältigung, Verbreitung, Vermietung, Verleihung,        *
- *     öffentlichen Zugänglichmachen oder andere Nutzung                          *
- *     bedarf der ausdrücklichen, schriftlichen Zustimmung von Max Fischer        *
- *********************************************************************************/
-
 public class CreateSignCommand implements CommandExecutor {
 
-    private final String prefix = "§8┃ §b§lLipton §7× ";
+    private final LiptonSpigotBridge plugin;
+
+    public CreateSignCommand(LiptonSpigotBridge plugin) {
+        this.plugin = plugin;
+    }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        if(sender instanceof Player) {
-            Player player = (Player) sender;
-            if(player.hasPermission("liptoncloud.createSignCommand")) {
-                if(args.length >= 1) {
+        if(!(sender instanceof Player)) return true;
+        if(!(sender.hasPermission("liptoncloud.createSignCommand"))) return true;
+        Player player = (Player) sender;
 
-                    String serverGroup = args[0];
+        if(args.length >= 1) {
+            String serverGroup = args[0];
+            if(LiptonSpigotBridge.getInstance().getCloudAPI().doesServerGroupExist(serverGroup)) {
+                CloudSignConfig cloudSignConfig = new CloudSignConfig();
 
-                    if(LiptonSpigotBridge.getInstance().getCloudAPI().doesServerGroupExist(serverGroup)) {
+                Set<Material> materials = new HashSet<>();
+                materials.add(Material.AIR);
 
-                        final CloudSignConfig cloudSignConfig = new CloudSignConfig();
+                if (player.getTargetBlock(materials, 5).getType().equals(Material.WALL_SIGN)) {
 
-                        final Set<Material> materials = new HashSet<>();
-                        materials.add(Material.AIR);
+                    final CloudSign sign = new CloudSign(player.getTargetBlock(materials, 5).getLocation(), serverGroup);
+                    if(!cloudSignConfig.signAlreadyThere(sign)){
+                        cloudSignConfig.addSign(sign);
 
-                        if (player.getTargetBlock(materials, 5).getType().equals(Material.WALL_SIGN)) {
+                        Block block = Bukkit.getWorld(sign.getWorld()).getBlockAt(sign.getX(),sign.getY(),sign.getZ());
+                        Sign signBlock = (Sign) block.getState();
 
-                            final CloudSign sign = new CloudSign(player.getTargetBlock(materials, 5).getLocation(), serverGroup);
-                            if(!cloudSignConfig.signAlreadyThere(sign)){
-                                cloudSignConfig.addSign(sign);
+                        signBlock.setLine(0, "");
+                        signBlock.setLine(1, "§c" + serverGroup.toUpperCase());
+                        signBlock.setLine(2, "§cNEW SIGN");
+                        signBlock.setLine(3, "");
 
-                                Block block = Bukkit.getWorld(sign.getWorld()).getBlockAt(sign.getX(),sign.getY(),sign.getZ());
-                                Sign signBlock = (Sign) block.getState();
+                        signBlock.update(true);
+                        replace(sign, true);
 
-                                signBlock.setLine(0, "");
-                                signBlock.setLine(1, "§c" + serverGroup.toUpperCase());
-                                signBlock.setLine(2, "§cNEW SIGN");
-                                signBlock.setLine(3, "");
-
-                                signBlock.update();
-
-                                replace(sign, true);
-
-                                player.sendMessage(prefix+"You set a new CloudSign.");
-                            }else player.sendMessage(prefix+"This sign is already set.");
-
-                        } else player.sendMessage(prefix+"You must look at a sign.");
-
-                    }else player.sendMessage(prefix+"The ServerGroup " + serverGroup + " wasn't found.");
-                }else player.sendMessage(prefix+"§7/CreateSign <Group>");
+                        player.sendMessage(plugin.getPREFIX() + "§aYou created a new CloudSign.");
+                        return true;
+                    }
+                    player.sendMessage(plugin.getPREFIX() + "§cThis Sign is already a CloudSign.");
+                    return true;
+                }
+                player.sendMessage(plugin.getPREFIX() + "§cYou must look at a Sign.");
+                return true;
             }
+            player.sendMessage(plugin.getPREFIX() + "§cThe ServerGroup " + serverGroup + " wasn't found.");
+            return true;
         }
+        player.sendMessage(plugin.getPREFIX() + "§7/createSign <Group>");
+
         return false;
     }
 
-    public void replace(CloudSign sign, Boolean loading) {
+    //<editor-fold desc="replace">
+    void replace(CloudSign sign, Boolean loading) {
         Block signBlock = Bukkit.getWorld(sign.getWorld()).getBlockAt(sign.getX(),sign.getY(),sign.getZ());
         Sign bukkitSign = (Sign) signBlock.getState();
         Block block = getBlockFaced(bukkitSign.getBlock());
@@ -96,20 +89,23 @@ public class CreateSignCommand implements CommandExecutor {
         }
         block.setType(Material.STAINED_CLAY);
         block.setData((byte)5);
-        return;
     }
+    //</editor-fold>
 
-    public static Block getBlockFaced(Block b) {
-        switch (b.getData()) {
+    //<editor-fold desc="getBlockFaced">
+    Block getBlockFaced(Block block) {
+        switch (block.getData()) {
             case 2:
-                return b.getRelative(BlockFace.SOUTH);
+                return block.getRelative(BlockFace.SOUTH);
             case 3:
-                return b.getRelative(BlockFace.NORTH);
+                return block.getRelative(BlockFace.NORTH);
             case 4:
-                return b.getRelative(BlockFace.EAST);
+                return block.getRelative(BlockFace.EAST);
             case 5:
-                return b.getRelative(BlockFace.WEST);
+                return block.getRelative(BlockFace.WEST);
         }
-        return b;
+        return block;
     }
+    //</editor-fold>
+
 }

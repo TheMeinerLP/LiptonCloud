@@ -3,7 +3,7 @@ package de.crycodes.de.spacebyter.liptonbridge.spigot;
 import de.crycodes.de.spacebyter.liptonbridge.CloudAPI;
 import de.crycodes.de.spacebyter.liptonbridge.spigot.commands.CreateSignCommand;
 import de.crycodes.de.spacebyter.liptonbridge.spigot.enums.SignState;
-import de.crycodes.de.spacebyter.liptonbridge.spigot.listeners.ClickListener;
+import de.crycodes.de.spacebyter.liptonbridge.spigot.listeners.PlayerInteractEvents;
 import de.crycodes.de.spacebyter.liptonbridge.spigot.networking.SpigotMasterClient;
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
@@ -27,6 +27,8 @@ import java.util.List;
 
 public class LiptonSpigotBridge extends JavaPlugin {
 
+    private final String PREFIX = "§8┃ §b§lLipton §7× ";
+
     private CloudAPI cloudAPI;
     private SpigotMasterClient spigotMasterClient;
     private LiptonLibrary liptonLibrary;
@@ -44,18 +46,15 @@ public class LiptonSpigotBridge extends JavaPlugin {
         instance = this;
 
         cloudAPI = new CloudAPI(true);
-
         cloudAPI.getServerMeta();
 
         spigotMasterClient = new SpigotMasterClient("127.0.0.1", 7898).start();
-
         cloudSignManager = new CloudSignManager();
 
-         getCommand("createsign").setExecutor(new CreateSignCommand());
-
+        getCommand("createsign").setExecutor(new CreateSignCommand());
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 
-        Bukkit.getPluginManager().registerEvents(new ClickListener(), this);
+        new PlayerInteractEvents(this);
 
         super.onEnable();
     }
@@ -65,8 +64,12 @@ public class LiptonSpigotBridge extends JavaPlugin {
 
         ServerMeta serverMeta = LiptonSpigotBridge.getInstance().getCloudAPI().getServerMeta();
         spigotMasterClient.getThunderClient().sendPacket(spigotMasterClient.getNetworkChannel(), new ServerStoppingPacket(serverMeta));
+
+        if(getServer().getMessenger().isOutgoingChannelRegistered(this, "BungeeCord"))
+            getServer().getMessenger().unregisterOutgoingPluginChannel(this, "BungeeCord");
     }
 
+    //<editor-fold desc="setMotd">
     public void setMotd(SignState signState)  {
         String bukkitversion = Bukkit.getServer().getClass().getPackage().getName().substring(23);
         Object minecraftserver = null;
@@ -80,29 +83,49 @@ public class LiptonSpigotBridge extends JavaPlugin {
         }
 
     }
+    //</editor-fold>
 
+    //<editor-fold desc="getCloudAPI">
     public CloudAPI getCloudAPI() {
         return cloudAPI;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="getInstance">
     public static LiptonSpigotBridge getInstance() {
         return instance;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="getSpigotMasterClient">
     public SpigotMasterClient getSpigotMasterClient() {
         return spigotMasterClient;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="updateConfig">
     public void updateConfig(ServerConfig serverConfig){
         this.serverConfig.clear();
         this.serverConfig.add(serverConfig);
     }
+    //</editor-fold>
 
+    //<editor-fold desc="getServerConfig">
     public ServerConfig getServerConfig() {
         return this.serverConfig.iterator().next();
     }
+    //</editor-fold>
 
+    //<editor-fold desc="getCloudSignManager">
     public CloudSignManager getCloudSignManager() {
         return cloudSignManager;
     }
+    //</editor-fold>
+
+    //<editor-fold desc="getPREFIX">
+    public String getPREFIX() {
+        return PREFIX;
+    }
+    //</editor-fold>
+
 }

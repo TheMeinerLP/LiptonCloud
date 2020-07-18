@@ -21,9 +21,10 @@ public class HubCommand extends Command {
 
     @Override
     public void execute(CommandSender commandSender, String[] strings) {
-        if (commandSender instanceof ProxiedPlayer){
-            final ProxiedPlayer player = (ProxiedPlayer) commandSender;
-            LiptonBungeeBridge.getInstance().getHubManager().send(player);
-        }
+
+        if(!(commandSender instanceof ProxiedPlayer)) return;
+
+        final ProxiedPlayer player = (ProxiedPlayer) commandSender;
+        LiptonBungeeBridge.getInstance().getHubManager().send(player);
     }
 }

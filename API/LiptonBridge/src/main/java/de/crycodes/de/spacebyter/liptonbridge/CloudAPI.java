@@ -3,16 +3,15 @@ package de.crycodes.de.spacebyter.liptonbridge;
 import de.crycodes.de.spacebyter.liptonbridge.bungeecord.LiptonBungeeBridge;
 import de.crycodes.de.spacebyter.liptonbridge.spigot.LiptonSpigotBridge;
 import de.crycodes.de.spacebyter.liptoncloud.config.Document;
+import de.crycodes.de.spacebyter.liptoncloud.enums.ExitState;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ProxyMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import de.crycodes.de.spacebyter.liptoncloud.objects.ProxyConfig;
 import de.crycodes.de.spacebyter.liptoncloud.objects.ServerConfig;
-import de.crycodes.de.spacebyter.liptoncloud.packets.global.ShutDownPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.ReloadPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerGroupPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerPacket;
-import de.crycodes.de.spacebyter.liptoncloud.utils.ExitUtil;
 import de.crycodes.de.spacebyter.network.channel.Identifier;
 import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
 import de.crycodes.de.spacebyter.network.channel.Provider;
@@ -30,6 +29,7 @@ import java.util.List;
  * Time : 20:56
  * Project: LiptonCloud
  */
+
 public class CloudAPI {
 
     private final boolean isSpigot;
@@ -49,7 +49,7 @@ public class CloudAPI {
 
     //<editor-fold desc="StopServerGroup Method">
     public void stopGroup(ServerGroupMeta serverGroupMeta){
-        final StopServerGroupPacket stopServerGroupPacket = new StopServerGroupPacket(serverGroupMeta, ExitUtil.STOPPED_SUCESS);
+        final StopServerGroupPacket stopServerGroupPacket = new StopServerGroupPacket(serverGroupMeta, ExitState.STOPPED_SUCESS.getState());
         sendPacket(stopServerGroupPacket);
     }
     //</editor-fold>
@@ -150,7 +150,6 @@ public class CloudAPI {
         return isSpigot ? this.getServerConfig().getGlobalServers() : this.getProxyConfig().getGlobalServers();
     }
     //</editor-fold>
-
 
     //<editor-fold desc="reloadCloud">
     public void reloadCloud() {

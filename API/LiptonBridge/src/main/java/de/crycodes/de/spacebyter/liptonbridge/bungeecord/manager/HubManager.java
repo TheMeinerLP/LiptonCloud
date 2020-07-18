@@ -2,6 +2,7 @@ package de.crycodes.de.spacebyter.liptonbridge.bungeecord.manager;
 
 import de.crycodes.de.spacebyter.liptonbridge.bungeecord.LiptonBungeeBridge;
 import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.ServerKickEvent;
@@ -21,25 +22,23 @@ import java.util.Random;
 
 public class HubManager implements Listener {
 
-    public void send(ProxiedPlayer player) {
-        if (player.getServer().getInfo().getName().contains("Lobby")){
-            player.sendMessage(LiptonBungeeBridge.getInstance().getPREFIX() + "Du bist bereits auf einer Lobby!");
-        } else {
-            sendPlayerToFallback(player);
-        }
-    }
-
     @EventHandler
     public void onKick(ServerKickEvent event) {
         final ProxiedPlayer player = event.getPlayer();
 
         ServerInfo serverInfo = event.getPlayer().getServer().getInfo();
-        if(!serverInfo.getName().contains("Lobby")) {
-            event.setCancelled(true);
-            sendPlayerToFallback(player);
+
+        if(serverInfo == null)
             return;
+
+        switch (serverInfo.getName()) {
+            default: {
+                event.setCancelled(true);
+                sendPlayerToFallback(player);
+                break;
+            }
         }
-        System.out.println(event.getKickReason());
+
         if(event.getKickReason().contains("closed")) {
             event.setCancelled(true);
             sendPlayerToFallback(player);
@@ -49,13 +48,23 @@ public class HubManager implements Listener {
 
     }
 
+    //<editor-fold desc="send">
+    public void send(ProxiedPlayer player) {
+        if (player.getServer().getInfo().getName().contains("Lobby")){
+            player.sendMessage(new TextComponent(LiptonBungeeBridge.getInstance().getPREFIX() + "§cYou are already connected to a hub server"));
+        } else {
+            sendPlayerToFallback(player);
+        }
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="sendPlayerToFallback">
     private void sendPlayerToFallback(ProxiedPlayer player){
         ArrayList<String> fallback = new ArrayList<>();
 
         ProxyServer.getInstance().getServers().forEach((name, server) ->{
             if(name.contains("Lobby")){
                 fallback.add(name);
-                System.out.println(fallback.toArray().toString());
             }
         });
 
@@ -65,5 +74,6 @@ public class HubManager implements Listener {
         if(info != null)
             LiptonBungeeBridge.getInstance().getProxy().getPlayer(player.getName()).connect(info);
     }
+    //</editor-fold>
 
 }

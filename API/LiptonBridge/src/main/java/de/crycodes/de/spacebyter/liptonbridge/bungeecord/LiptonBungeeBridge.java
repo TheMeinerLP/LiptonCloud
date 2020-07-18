@@ -10,10 +10,7 @@ import de.crycodes.de.spacebyter.liptonbridge.bungeecord.networking.BungeeMaster
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
 import de.crycodes.de.spacebyter.liptoncloud.objects.ProxyConfig;
 import net.md_5.bungee.api.ProxyServer;
-import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.plugin.Plugin;
-
-import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +56,14 @@ public class LiptonBungeeBridge extends Plugin {
         new PlayerConnectEvent(this);
     }
 
+    //<editor-fold desc="onDisable">
+    @Override
+    public void onDisable() {
+        super.onDisable();
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="getProxyConfig">
     public ProxyConfig getProxyConfig(){
         if (proxyConfig.isEmpty()){
             System.out.println("NO CONFIG FOUND");
@@ -78,38 +83,47 @@ public class LiptonBungeeBridge extends Plugin {
                         true,
                         "§bLipton Cloud\n§7We are in maintenance mode", "server_start_message", "server_stop_message", "server_online_message", false);
             } else {
-                return proxyConfig.get(0);
+                return proxyConfig.iterator().next();
             }
 
     }
+    //</editor-fold>
 
+    //<editor-fold desc="updateConfig">
     public void updateConfig(ProxyConfig proxyConfig){
         this.proxyConfig.clear();
         this.proxyConfig.add(proxyConfig);
     }
+    //</editor-fold>
 
-    @Override
-    public void onDisable() {
-        super.onDisable();
-    }
-
+    //<editor-fold desc="getCloudAPI">
     public CloudAPI getCloudAPI() {
         return cloudAPI;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="getPREFIX">
     public String getPREFIX() {
         return PREFIX;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="getBungeeMasterClient">
     public BungeeMasterClient getBungeeMasterClient() {
         return bungeeMasterClient;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="getInstance">
     public static LiptonBungeeBridge getInstance() {
         return instance;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="getHubManager">
     public HubManager getHubManager() {
         return hubManager;
     }
+    //</editor-fold>
+
 }
