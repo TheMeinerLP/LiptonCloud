@@ -49,7 +49,7 @@ public class ServerStartHandler {
                                     "-Dfile.encoding=UTF-8",
                                     "-Xmx512M",
                                     "-jar",
-                                    "SPIGOT.JAR -nogui"
+                                    "SPIGOT.JAR"
                             };
 
                     ProcessBuilder processBuilder = new ProcessBuilder(cmd).directory(serverDir);

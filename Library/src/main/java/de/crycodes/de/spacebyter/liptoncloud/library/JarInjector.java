@@ -34,7 +34,7 @@ public class JarInjector {
     private Method currentMethod;
     private Field currentField;
 
-    public JarInjector(File location) throws IOException, NoSuchFieldException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+    public JarInjector(File location) throws IOException, IllegalAccessException, InvocationTargetException {
 
         Thread.currentThread().setContextClassLoader(ClassLoader.getSystemClassLoader());
 
@@ -69,16 +69,22 @@ public class JarInjector {
 
         }
         for (URL url : urls){
-            currentField = ClassLoader.class.getDeclaredField("scl");
-            currentField.setAccessible(true);
-            currentField.set("scl", new URLClassLoader(urls.toArray(new URL[0])));
+            try {
+                currentField = ClassLoader.class.getDeclaredField("scl");
+                currentField.setAccessible(true);
+                currentField.set("scl", new URLClassLoader(urls.toArray(new URL[0])));
 
-            currentUrlLoader = (URLClassLoader) ClassLoader.getSystemClassLoader();
-            currentMethod = currentUrlLoader.getClass().getDeclaredMethod("addURL", this.classParameters);
-            currentMethod.setAccessible(true);
-            currentMethod.invoke(ClassLoader.getSystemClassLoader(), url);
-            String[] name = url.getFile().split("/");
-            System.out.println("Installed Library '" + name[name.length -1] + "' no error found in injection!");
+                currentUrlLoader = (URLClassLoader) ClassLoader.getSystemClassLoader();
+                currentMethod = currentUrlLoader.getClass().getDeclaredMethod("addURL", this.classParameters);
+                currentMethod.setAccessible(true);
+                currentMethod.invoke(ClassLoader.getSystemClassLoader(), url);
+                String[] name = url.getFile().split("/");
+                System.out.println("Installed Library '" + name[name.length -1] + "' no error found in injection!");
+            } catch (NoSuchFieldException | NoSuchMethodException e) {
+                String[] name = url.getFile().split("/");
+                System.out.println("Error while injecting: " + name[name.length -1] + "!");
+            }
+
         }
 
     }

@@ -74,7 +74,7 @@ public class LiptonWrapper {
         fileManager = new FileManager("./liptonWrapper","api", "resources", "server", "logs","librarys", "server/dynamic","server/static", "templates").create();
         wrapperConfig = new WrapperConfig(false);
 
-        jarInjector = new JarInjector(new File("./liptonMaster/librarys/"));
+        jarInjector = new JarInjector(new File("./liptonWrapper/librarys/"));
 
         if (!wrapperConfig.isSetupDone()){
             WrapperSetup wrapperSetup = new WrapperSetup();
