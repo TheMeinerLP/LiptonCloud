@@ -160,7 +160,6 @@ public class LiptonMaster {
 
         moduleService.loadModules();
         moduleService.startModules();
-        moduleService.setInstance(this.liptonLibrary);
 
         commandManager.run();
     }

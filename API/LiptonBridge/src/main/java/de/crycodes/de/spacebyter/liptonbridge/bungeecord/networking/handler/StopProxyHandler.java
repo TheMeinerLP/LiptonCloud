@@ -1,8 +1,8 @@
 package de.crycodes.de.spacebyter.liptonbridge.bungeecord.networking.handler;
 
 import de.crycodes.de.spacebyter.liptonbridge.bungeecord.LiptonBungeeBridge;
+import de.crycodes.de.spacebyter.liptoncloud.enums.ExitState;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StopProxyPacket;
-import de.crycodes.de.spacebyter.liptoncloud.utils.ExitUtil;
 import de.crycodes.de.spacebyter.network.adapter.PacketHandlerAdapter;
 import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
 import de.crycodes.de.spacebyter.network.packet.Packet;
@@ -21,10 +21,10 @@ public class StopProxyHandler extends PacketHandlerAdapter {
     public void handel(Packet packet) {
         if (packet instanceof StopProxyPacket){
             final StopProxyPacket stopProxyPacket = (StopProxyPacket) packet;
-            if (LiptonBungeeBridge.getInstance().getCloudAPI().getProxyMeta() == null) System.exit(ExitUtil.TERMINATED);
+            if (LiptonBungeeBridge.getInstance().getCloudAPI().getProxyMeta() == null) System.exit(ExitState.TERMINATED.getState());
             if (stopProxyPacket.getProxyMeta().getName().equalsIgnoreCase(LiptonBungeeBridge.getInstance().getCloudAPI().getProxyMeta().getName())
             && stopProxyPacket.getProxyMeta().getId().equals(LiptonBungeeBridge.getInstance().getCloudAPI().getProxyMeta().getId())){
-                System.exit(ExitUtil.TERMINATED);
+                System.exit(ExitState.TERMINATED.getState());
             }
         }
     }

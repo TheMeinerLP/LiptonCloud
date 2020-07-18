@@ -51,7 +51,7 @@ public class LiptonSpigotBridge extends JavaPlugin {
         spigotMasterClient = new SpigotMasterClient("127.0.0.1", 7898).start();
         cloudSignManager = new CloudSignManager();
 
-        getCommand("createsign").setExecutor(new CreateSignCommand());
+        getCommand("createsign").setExecutor(new CreateSignCommand(this));
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 
         new PlayerInteractEvents(this);

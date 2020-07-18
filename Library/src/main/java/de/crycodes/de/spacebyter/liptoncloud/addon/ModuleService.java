@@ -86,13 +86,7 @@ public class ModuleService {
         }
     }
     //</editor-fold>
-    //<editor-fold desc="setInstance">
-    public void setInstance(LiptonLibrary liptonLibrary){
-        for (int i=0; i < modules.length; i++){
-            modules[i].setInstance(liptonLibrary);
-        }
-    }
-    //</editor-fold>
+
 
 
     //<editor-fold desc="getActiveModules">
