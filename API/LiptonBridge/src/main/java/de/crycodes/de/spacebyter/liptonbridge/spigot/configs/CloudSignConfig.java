@@ -47,6 +47,7 @@ public class CloudSignConfig {
         config = new Document("GROUPS").loadToExistingDocument(this.signs);
     }
 
+    //<editor-fold desc="signAlreadyThere">
     public boolean signAlreadyThere(CloudSign signObject){
         for (CloudSign signs : loadSigns()){
             Location location = new Location(Bukkit.getWorld(signs.getWorld()), signs.getX(), signs.getY(), signs.getZ());
@@ -57,7 +58,9 @@ public class CloudSignConfig {
         }
         return false;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="loadSigns">
     /**
      * Method to load all groups
      * */
@@ -76,7 +79,9 @@ public class CloudSignConfig {
         }
         return groups;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="addSign">
     /**
      * Method to add a ServerMeta to server-config
      * */
@@ -87,12 +92,15 @@ public class CloudSignConfig {
         this.config.append("GROUPS", groups);
         this.config.saveAsConfig(this.signs);
     }
+    //</editor-fold>
 
+    //<editor-fold desc="getServerByGroup">
     /**
      * Method for search for an ServerMeta.java
      *
      * @param name | Search by name
      * */
+
     public List<CloudSign> getServerByGroup(String name){
         List<CloudSign> serversigns = new ArrayList<>();
         for (CloudSign serverData : loadSigns()){
@@ -102,4 +110,6 @@ public class CloudSignConfig {
         }
         return serversigns;
     }
+    //</editor-fold>
+
 }

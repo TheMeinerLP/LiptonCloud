@@ -42,39 +42,57 @@ public class CloudSign implements Serializable {
         signState = SignState.UNKNOWN;
     }
 
+    //<editor-fold desc="getServerMeta">
     public ServerMeta getServerMeta() {
         return serverMeta;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="getX">
     public Integer getX() {
         return x;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="getY">
     public Integer getY() {
         return y;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="getZ">
     public Integer getZ() {
         return z;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="getWorld">
     public String getWorld() {
         return world;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="getServerGroupName">
     public String getServerGroupName() {
         return serverGroupName;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="getSignState">
     public SignState getSignState() {
         return signState;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="setServerMeta">
     public void setServerMeta(ServerMeta serverMeta) {
         this.serverMeta = serverMeta;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="setSignState">
     public void setSignState(SignState signState) {
         this.signState = signState;
     }
+    //</editor-fold>
 }

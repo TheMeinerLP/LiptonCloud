@@ -135,10 +135,10 @@ public class CloudSignManager {
                                     Block block = Bukkit.getWorld(sign.getWorld()).getBlockAt(sign.getX(), sign.getY(), sign.getZ());
                                     Sign signBlock = (Sign) block.getState();
 
-                                    signBlock.setLine(0, signLayout.getloadingDefaultLayOut(0).get(0));
-                                    signBlock.setLine(1, signLayout.getloadingDefaultLayOut(0).get(1));
-                                    signBlock.setLine(2, signLayout.getloadingDefaultLayOut(0).get(2));
-                                    signBlock.setLine(3, signLayout.getloadingDefaultLayOut(0).get(3));
+                                    signBlock.setLine(0, signLayout.getSignAnimationTick(0).get(0));
+                                    signBlock.setLine(1, signLayout.getSignAnimationTick(0).get(1));
+                                    signBlock.setLine(2, signLayout.getSignAnimationTick(0).get(2));
+                                    signBlock.setLine(3, signLayout.getSignAnimationTick(0).get(3));
 
                                     signBlock.update();
 
@@ -150,10 +150,10 @@ public class CloudSignManager {
                                     Block block = Bukkit.getWorld(sign.getWorld()).getBlockAt(sign.getX(), sign.getY(), sign.getZ());
                                     Sign signBlock = (Sign) block.getState();
 
-                                    signBlock.setLine(0, signLayout.getloadingDefaultLayOut(1).get(0));
-                                    signBlock.setLine(1, signLayout.getloadingDefaultLayOut(1).get(1));
-                                    signBlock.setLine(2, signLayout.getloadingDefaultLayOut(1).get(2));
-                                    signBlock.setLine(3, signLayout.getloadingDefaultLayOut(1).get(3));
+                                    signBlock.setLine(0, signLayout.getSignAnimationTick(1).get(0));
+                                    signBlock.setLine(1, signLayout.getSignAnimationTick(1).get(1));
+                                    signBlock.setLine(2, signLayout.getSignAnimationTick(1).get(2));
+                                    signBlock.setLine(3, signLayout.getSignAnimationTick(1).get(3));
 
                                     signBlock.update();
 
@@ -165,10 +165,10 @@ public class CloudSignManager {
                                     Block block = Bukkit.getWorld(sign.getWorld()).getBlockAt(sign.getX(), sign.getY(), sign.getZ());
                                     Sign signBlock = (Sign) block.getState();
 
-                                    signBlock.setLine(0, signLayout.getloadingDefaultLayOut(2).get(0));
-                                    signBlock.setLine(1, signLayout.getloadingDefaultLayOut(2).get(1));
-                                    signBlock.setLine(2, signLayout.getloadingDefaultLayOut(2).get(2));
-                                    signBlock.setLine(3, signLayout.getloadingDefaultLayOut(2).get(3));
+                                    signBlock.setLine(0, signLayout.getSignAnimationTick(2).get(0));
+                                    signBlock.setLine(1, signLayout.getSignAnimationTick(2).get(1));
+                                    signBlock.setLine(2, signLayout.getSignAnimationTick(2).get(2));
+                                    signBlock.setLine(3, signLayout.getSignAnimationTick(2).get(3));
 
                                     signBlock.update();
 
@@ -181,10 +181,10 @@ public class CloudSignManager {
                                     Block block = Bukkit.getWorld(sign.getWorld()).getBlockAt(sign.getX(), sign.getY(), sign.getZ());
                                     Sign signBlock = (Sign) block.getState();
 
-                                    signBlock.setLine(0, signLayout.getloadingDefaultLayOut(3).get(0));
-                                    signBlock.setLine(1, signLayout.getloadingDefaultLayOut(3).get(1));
-                                    signBlock.setLine(2, signLayout.getloadingDefaultLayOut(3).get(2));
-                                    signBlock.setLine(3, signLayout.getloadingDefaultLayOut(3).get(3));
+                                    signBlock.setLine(0, signLayout.getSignAnimationTick(3).get(0));
+                                    signBlock.setLine(1, signLayout.getSignAnimationTick(3).get(1));
+                                    signBlock.setLine(2, signLayout.getSignAnimationTick(3).get(2));
+                                    signBlock.setLine(3, signLayout.getSignAnimationTick(3).get(3));
 
                                     signBlock.update();
 
@@ -277,10 +277,10 @@ public class CloudSignManager {
             state = SignState.UNKNOWN.name();
         }
 
-        lines.add(signLayout.getDefaultLayOut().get(0).replace("%online%", users +"").replace("%max%", maxusers +"").replace("%server%", servername).replace("%state%", state));
-        lines.add(signLayout.getDefaultLayOut().get(1).replace("%online%", users +"").replace("%max%", maxusers +"").replace("%server%", servername).replace("%state%", state));
-        lines.add(signLayout.getDefaultLayOut().get(2).replace("%online%", users +"").replace("%max%", maxusers +"").replace("%server%", servername).replace("%state%", state));
-        lines.add(signLayout.getDefaultLayOut().get(3).replace("%online%", users +"").replace("%max%", maxusers +"").replace("%server%", servername).replace("%state%", state));
+        lines.add(signLayout.getServerLayoutDefault().get(0).replace("%online%", users +"").replace("%max%", maxusers +"").replace("%server%", servername).replace("%state%", state));
+        lines.add(signLayout.getServerLayoutDefault().get(1).replace("%online%", users +"").replace("%max%", maxusers +"").replace("%server%", servername).replace("%state%", state));
+        lines.add(signLayout.getServerLayoutDefault().get(2).replace("%online%", users +"").replace("%max%", maxusers +"").replace("%server%", servername).replace("%state%", state));
+        lines.add(signLayout.getServerLayoutDefault().get(3).replace("%online%", users +"").replace("%max%", maxusers +"").replace("%server%", servername).replace("%state%", state));
 
         return lines.toArray(new String[0]);
     }
