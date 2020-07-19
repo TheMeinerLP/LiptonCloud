@@ -2,7 +2,6 @@ package de.crycodes.de.spacebyter.liptonbridge.bungeecord.networking;
 
 import de.crycodes.de.spacebyter.liptonbridge.bungeecord.LiptonBungeeBridge;
 import de.crycodes.de.spacebyter.liptonbridge.bungeecord.networking.handler.*;
-import de.crycodes.de.spacebyter.liptonbridge.spigot.LiptonSpigotBridge;
 import de.crycodes.de.spacebyter.liptoncloud.enums.RegisterType;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ProxyMeta;
 import de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterPacket;
@@ -10,9 +9,7 @@ import de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterResponsePack
 import de.crycodes.de.spacebyter.liptoncloud.packets.global.ShutDownPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.global.UpdateMaintenancePacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.SendProxyConfigPacket;
-import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StartServerPacketProxy;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StopProxyPacket;
-import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StopServerPacketProxy;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.ProxyStoppingPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.ServerGroupUpdatePacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.ExecuteCommandPacket;
@@ -31,7 +28,6 @@ import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.WarningPacket;
 import de.crycodes.de.spacebyter.network.ThunderClient;
 import de.crycodes.de.spacebyter.network.adapter.AdapterHandler;
 import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
-import de.crycodes.de.spacebyter.network.packet.Packet;
 import de.crycodes.de.spacebyter.network.packet.PacketHandler;
 
 /**
@@ -102,7 +98,7 @@ public class BungeeMasterClient {
             proxyMeta = LiptonBungeeBridge.getInstance().getCloudAPI().getProxyMeta();
 
 
-        thunderClient.sendPacket(this.networkChannel, new RegisterPacket(proxyMeta, RegisterType.PROXY));
+        thunderClient.sendPacket(this.networkChannel, new RegisterPacket(proxyMeta, RegisterType.PROXY, "null"));
 
         System.out.println("Started ProxyMaster Client on: (" + host + ":" + port + ")");
 

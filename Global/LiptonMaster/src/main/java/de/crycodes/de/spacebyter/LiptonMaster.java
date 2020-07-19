@@ -3,6 +3,7 @@ package de.crycodes.de.spacebyter;
 import de.crycodes.de.spacebyter.commands.*;
 import de.crycodes.de.spacebyter.config.*;
 import de.crycodes.de.spacebyter.liptoncloud.addon.ModuleService;
+import de.crycodes.de.spacebyter.liptoncloud.auth.AuthManager;
 import de.crycodes.de.spacebyter.liptoncloud.library.JarInjector;
 import de.crycodes.de.spacebyter.liptoncloud.player.LiptonPlayerManager;
 import de.crycodes.de.spacebyter.liptoncloud.time.Counter;
@@ -20,6 +21,7 @@ import de.crycodes.de.spacebyter.liptoncloud.scheduler.Scheduler;
 import de.crycodes.de.spacebyter.manager.*;
 import de.crycodes.de.spacebyter.network.packet.PacketHandler;
 import de.crycodes.de.spacebyter.networking.MasterWrapperServer;
+import org.checkerframework.checker.units.qual.A;
 
 import java.io.File;
 import java.io.IOException;
@@ -116,6 +118,9 @@ public class LiptonMaster {
         scheduler = new Scheduler();
         eventManager = new EventManager();
 
+
+        this.checkKeyManager();
+
         wrapperManager = new WrapperManager(this);
 
         commandManager = new CommandManager(colouredConsoleProvider);
@@ -154,6 +159,7 @@ public class LiptonMaster {
         commandManager.registerCommand(new CloudAdminCommand("cloudadmin", "Simple Command to manage CloudAdmins", new String[]{"user", "admin"}, this));
         commandManager.registerCommand(new MaintenanceCommand("maintenance", "Simple Maintenance Command for the Cloud", new String[]{}, this));
         commandManager.registerCommand(new CopyServerCommand("copy", "Simple Command to Copy Servers to Templates",  new String[]{}, this));
+        commandManager.registerCommand(new InfoCommand("info", "Command to see info's about the CloudSystem",this,new String[]{}));
 
         counter.stop();
         counter.printResult("MasterStartup" ,this.getColouredConsoleProvider());
@@ -164,6 +170,12 @@ public class LiptonMaster {
         commandManager.run();
     }
     //</editor-fold>
+
+    private AuthManager authManager;
+    private void checkKeyManager(){
+        authManager = new AuthManager(new File("./liptonMaster/KEY.json"), new File("./liptonMaster/database/SALTKEY"),colouredConsoleProvider);
+        authManager.createKey();
+    }
 
     //<editor-fold desc="Getter - Setter">
 
@@ -276,5 +288,16 @@ public class LiptonMaster {
         return bungeeCordManager;
     }
 
+    public AuthManager getAuthManager() {
+        return authManager;
+    }
+
+    public JarInjector getJarInjector() {
+        return jarInjector;
+    }
+
+    public LiptonPlayerManager getPlayerManager() {
+        return playerManager;
+    }
     //</editor-fold>
 }

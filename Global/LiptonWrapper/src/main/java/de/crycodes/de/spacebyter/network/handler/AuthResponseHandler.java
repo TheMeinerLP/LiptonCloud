@@ -32,8 +32,10 @@ public class AuthResponseHandler extends PacketHandlerAdapter {
             final RegisterResponsePacket responsePacket = (RegisterResponsePacket) packet;
             if (((RegisterResponsePacket) packet).isAuthenticated())
                 liptonWrapper.getColouredConsoleProvider().info("Connected Successful to Master!");
-            else
+            else {
+                liptonWrapper.getColouredConsoleProvider().error(responsePacket.getMessage());
                 System.exit(ExitState.TERMINATED.getState());
+            }
         }
     }
     //</editor-fold>

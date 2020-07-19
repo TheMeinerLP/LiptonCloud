@@ -16,7 +16,7 @@ public abstract class CloudCommand {
     private final String description;
     private final String[] aliases;
 
-    public CloudCommand(String name, String description, String[] aliases) {
+    public CloudCommand(String name, String description, String... aliases) {
         this.name = name;
         this.description = description;
         this.aliases = aliases;

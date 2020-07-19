@@ -12,7 +12,6 @@
         <module name="Library" />
         <module name="LiptonBridge" />
         <module name="CommandSystem" />
-        <module name="LiptopnBridge" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

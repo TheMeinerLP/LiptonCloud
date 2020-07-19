@@ -1,6 +1,7 @@
 package de.crycodes.de.spacebyter.network;
 
 import de.crycodes.de.spacebyter.LiptonWrapper;
+import de.crycodes.de.spacebyter.liptoncloud.auth.AuthManager;
 import de.crycodes.de.spacebyter.liptoncloud.enums.RegisterType;
 import de.crycodes.de.spacebyter.liptoncloud.meta.WrapperMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.config.WrapperConfig;
@@ -10,6 +11,9 @@ import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
 import de.crycodes.de.spacebyter.network.handler.*;
 import de.crycodes.de.spacebyter.network.packet.Packet;
 import de.crycodes.de.spacebyter.network.packet.PacketHandler;
+import org.checkerframework.checker.units.qual.A;
+
+import java.io.File;
 
 /**
  * Coded By CryCodes
@@ -25,6 +29,7 @@ public class WrapperMasterClient {
     private NetworkChannel networkChannel;
     private AdapterHandler adapterHandler;
     private ThunderClient thunderClient;
+    private AuthManager authManager;
 
     private final String host;
     private final Integer port;
@@ -36,6 +41,7 @@ public class WrapperMasterClient {
         this.port = port;
         this.host = host;
         this.liptonWrapper = liptonWrapper;
+        this.authManager = new AuthManager(new File("./liptonWrapper/KEY.json"), new File("null"),liptonWrapper.getColouredConsoleProvider());
         packetHandler = liptonWrapper.getPacketHandler();
         networkChannel = liptonWrapper.getLiptonLibrary().getCloudChannel();
         adapterHandler = new AdapterHandler();
@@ -57,7 +63,7 @@ public class WrapperMasterClient {
                 new WrapperConfig(
                         liptonWrapper.getWrapperConfig().getWrapperID(),
                         liptonWrapper.getWrapperConfig().getHost(),
-                        liptonWrapper.getWrapperConfig().isAutoUpdate())), RegisterType.WRAPPER));
+                        liptonWrapper.getWrapperConfig().isAutoUpdate())), RegisterType.WRAPPER, this.authManager.getKey()));
 
         liptonWrapper.getColouredConsoleProvider().info("Startet WrapperMaster Client on: (" + host + ":" + port + ")");
 

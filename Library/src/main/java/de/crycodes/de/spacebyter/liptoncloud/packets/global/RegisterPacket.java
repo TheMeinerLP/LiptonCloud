@@ -16,11 +16,17 @@ public class RegisterPacket extends Packet {
 
     private final Meta meta;
     private final RegisterType registerType;
+    private final String key;
 
-    public RegisterPacket(Meta meta, RegisterType registerType) {
+    public RegisterPacket(Meta meta, RegisterType registerType, String key) {
         super("REGISTER");
         this.registerType = registerType;
         this.meta = meta;
+        this.key = key;
+    }
+
+    public String getKey() {
+        return key;
     }
 
     public Meta getMeta() {

@@ -14,12 +14,19 @@ public class RegisterResponsePacket extends Packet {
 
     private final boolean isAuthenticated;
 
-    public RegisterResponsePacket(boolean isAuthenticated) {
+    private final String message;
+
+    public RegisterResponsePacket(boolean isAuthenticated, String message) {
         super("RegisterResponsePacket");
         this.isAuthenticated = isAuthenticated;
+        this.message = message;
     }
 
     public boolean isAuthenticated() {
         return isAuthenticated;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }

@@ -34,15 +34,31 @@ public class RegisterHandler extends PacketHandlerAdapter {
             final RegisterPacket registerPacket = (RegisterPacket) packet;
             switch (registerPacket.getRegisterType()){
                 case WRAPPER:
-                    liptonMaster.getWrapperManager().registerWrapper((WrapperMeta) registerPacket.getMeta(),result -> {
-                        liptonMaster.getMasterWrapperServer().sendPacket(new RegisterResponsePacket(result));
+                    String key = registerPacket.getKey();
+                    if (key.equalsIgnoreCase("null")) {
+                        liptonMaster.getMasterWrapperServer().sendPacket(new RegisterResponsePacket(false, "Wrong Wrapper Key or missing Key!"));
+                        liptonMaster.getColouredConsoleProvider().warning("Connection with wrong or missing key found!");
+                    }
+
+                    liptonMaster.getAuthManager().checkKeys(liptonMaster.getAuthManager().getKey(), key, result -> {
+                        if (!result) {
+                            liptonMaster.getMasterWrapperServer().sendPacket(new RegisterResponsePacket(result, "Wrong Wrapper Key or missing Key!"));
+                            liptonMaster.getColouredConsoleProvider().warning("Connection with wrong or missing key found!");
+                        }
+
+                        if (result){
+                            liptonMaster.getWrapperManager().registerWrapper((WrapperMeta) registerPacket.getMeta(),aBoolean -> {
+                                liptonMaster.getMasterWrapperServer().sendPacket(new RegisterResponsePacket(aBoolean, "no WrapperGroup found!"));
+                            });
+                        }
                     });
+
                     break;
                 case PROXY:
                     liptonMaster.getProxyManager().registerProxy((ProxyMeta) registerPacket.getMeta(), result -> {
                         liptonMaster.getMasterProxyServer().getServer().sendPacket(
                                 liptonMaster.getMasterProxyServer().getNetworkChannel(),
-                                new RegisterResponsePacket(result));
+                                new RegisterResponsePacket(result, "-"));
                     });
                     break;
                 case SERVER:

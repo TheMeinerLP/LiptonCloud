@@ -1,5 +1,6 @@
 package de.crycodes.testmodule;
 
+import de.crycodes.de.spacebyter.addon.MasterModule;
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
 import de.crycodes.de.spacebyter.liptoncloud.addon.CloudModule;
 
@@ -11,10 +12,10 @@ import de.crycodes.de.spacebyter.liptoncloud.addon.CloudModule;
  * Project: LiptonCloud
  */
 
-public class TestModule extends CloudModule<LiptonLibrary> {
+public class TestModule extends MasterModule {
 
     public void onEnable() {
-        System.out.println("test lol!");
+
     }
 
     public void onDisable() { }

@@ -3,7 +3,6 @@ package de.crycodes.de.spacebyter.liptonbridge.spigot.networking;
 import de.crycodes.de.spacebyter.liptonbridge.spigot.LiptonSpigotBridge;
 import de.crycodes.de.spacebyter.liptonbridge.spigot.networking.handler.*;
 import de.crycodes.de.spacebyter.liptoncloud.enums.RegisterType;
-import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterResponsePacket;
@@ -29,11 +28,7 @@ import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.WarningPacket;
 import de.crycodes.de.spacebyter.network.ThunderClient;
 import de.crycodes.de.spacebyter.network.adapter.AdapterHandler;
 import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
-import de.crycodes.de.spacebyter.network.packet.Packet;
 import de.crycodes.de.spacebyter.network.packet.PacketHandler;
-import de.crycodes.de.spacebyter.network.packets.AuthResponsePacket;
-import org.bukkit.Bukkit;
-import org.bukkit.scheduler.BukkitRunnable;
 
 /**
  * Coded By CryCodes
@@ -97,7 +92,7 @@ public class SpigotMasterClient {
 
         ServerMeta serverMeta = LiptonSpigotBridge.getInstance().getCloudAPI().getServerMeta();
 
-        thunderClient.sendPacket(this.networkChannel, new RegisterPacket(serverMeta, RegisterType.SERVER));
+        thunderClient.sendPacket(this.networkChannel, new RegisterPacket(serverMeta, RegisterType.SERVER, "null"));
 
         System.out.println("Started ProxyMaster Client on: (" + host + ":" + port + ")");
 
