@@ -19,12 +19,14 @@ public class HelpCommand extends CloudCommand {
 
     //<editor-fold desc="execute">
     protected boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args) {
-        colouredConsoleProvider.info("Help Command:");
 
-        colouredConsoleProvider.info("install list");
-        colouredConsoleProvider.info("install <id>");
-        colouredConsoleProvider.info("stop");
-        colouredConsoleProvider.info("help");
+        wrapper.getColouredConsoleProvider().info("CloudCommands: ");
+
+        wrapper.getCommandManager().getCommands().forEach(cloudCommand -> {
+            colouredConsoleProvider.info(cloudCommand.getName() + " | " + cloudCommand.getDescription() + " | " + Arrays.toString(cloudCommand.getAliases()));
+        });
+
+
 
         return false;
     }

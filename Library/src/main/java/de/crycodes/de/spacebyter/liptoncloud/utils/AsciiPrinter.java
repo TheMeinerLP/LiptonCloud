@@ -7,7 +7,7 @@ package de.crycodes.de.spacebyter.liptoncloud.utils;
  */
 
 
-import de.crycodes.de.spacebyter.liptoncloud.console.Color;
+import de.crycodes.de.spacebyter.liptoncloud.console.enums.Color;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 
 public class AsciiPrinter {

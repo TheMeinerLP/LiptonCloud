@@ -17,7 +17,7 @@ import java.util.List;
  * Project: LiptonCloud
  */
 
-public class ModuleService {
+public final class ModuleService {
 
     private CloudModule[] modules;
     private final File moduleDir;

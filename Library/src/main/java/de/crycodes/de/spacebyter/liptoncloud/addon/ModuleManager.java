@@ -18,7 +18,7 @@ import java.util.jar.JarFile;
  * Project: LiptonCloud
  */
 
-public class ModuleManager {
+public final class ModuleManager {
 
     //<editor-fold desc="loadClass">
     public Class<?> loadClass(File dir, String config) throws IOException, ClassNotFoundException {

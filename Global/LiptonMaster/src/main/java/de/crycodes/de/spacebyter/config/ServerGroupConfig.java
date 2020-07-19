@@ -1,5 +1,6 @@
 package de.crycodes.de.spacebyter.config;
 
+import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.liptoncloud.config.Document;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
@@ -12,8 +13,14 @@ public class ServerGroupConfig {
 
     private ServerGroupMeta serverMeta;
 
+    private final LiptonMaster liptonMaster;
+
     private Document document;
     private File configFile;
+
+    public ServerGroupConfig(LiptonMaster liptonMaster) {
+        this.liptonMaster = liptonMaster;
+    }
 
 
     //<editor-fold desc="Class Methods">
@@ -42,7 +49,7 @@ public class ServerGroupConfig {
 
     public ServerGroupMeta getServerMetaByName(String name){
         if (getServerMetas().isEmpty()){
-            ColouredConsoleProvider.getGlobal().error("No ServerGroups found!");
+            liptonMaster.getColouredConsoleProvider().error("No ServerGroups found!");
             return null;
         }
         for (ServerGroupMeta serverGroupMeta : getServerMetas()){
@@ -50,7 +57,7 @@ public class ServerGroupConfig {
                 return serverGroupMeta;
             }
         }
-        ColouredConsoleProvider.getGlobal().error("ServerGroup not found!");
+        liptonMaster.getColouredConsoleProvider().error("ServerGroup not found!");
         return null;
     }
 

@@ -3,6 +3,8 @@ package de.crycodes.de.spacebyter;
 import de.crycodes.de.spacebyter.commands.*;
 import de.crycodes.de.spacebyter.config.*;
 import de.crycodes.de.spacebyter.liptoncloud.addon.ModuleService;
+import de.crycodes.de.spacebyter.liptoncloud.addon.command.ModuleCommandManager;
+import de.crycodes.de.spacebyter.liptoncloud.addon.event.EventManager;
 import de.crycodes.de.spacebyter.liptoncloud.auth.AuthManager;
 import de.crycodes.de.spacebyter.liptoncloud.library.JarInjector;
 import de.crycodes.de.spacebyter.liptoncloud.player.LiptonPlayerManager;
@@ -15,13 +17,11 @@ import de.crycodes.de.spacebyter.serverhelper.ProxyFileConfig;
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
 import de.crycodes.de.spacebyter.liptoncloud.command.CommandManager;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
-import de.crycodes.de.spacebyter.liptoncloud.event.EventManager;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 import de.crycodes.de.spacebyter.liptoncloud.scheduler.Scheduler;
 import de.crycodes.de.spacebyter.manager.*;
 import de.crycodes.de.spacebyter.network.packet.PacketHandler;
 import de.crycodes.de.spacebyter.networking.MasterWrapperServer;
-import org.checkerframework.checker.units.qual.A;
 
 import java.io.File;
 import java.io.IOException;
@@ -58,11 +58,11 @@ public class LiptonMaster {
     private CloudMaintenanceConfig maintenanceConfig;
 
     private CommandManager commandManager;
+    private ModuleCommandManager moduleCommandManager;
     private FileManager fileManager;
     private WrapperManager wrapperManager;
     private PortManager portManager;
     private IDManager idManager;
-    private EventManager eventManager;
     private ServerManager serverManager;
     private ProxyManager proxyManager;
     private Counter counter;
@@ -71,6 +71,7 @@ public class LiptonMaster {
 
     private JarInjector jarInjector;
 
+    private EventManager eventManager;
     private MasterWrapperServer masterWrapperServer;
     private MasterProxyServer masterProxyServer;
     private MasterSpigotServer masterSpigotServer;
@@ -79,7 +80,7 @@ public class LiptonMaster {
     //</editor-fold>
 
     //<editor-fold desc="LiptonMaster">
-    public LiptonMaster() throws IOException, InvocationTargetException, NoSuchMethodException, IllegalAccessException, NoSuchFieldException {
+    public LiptonMaster() throws IOException, InvocationTargetException, IllegalAccessException {
         instance = this;
         counter = new Counter();
         counter.start();
@@ -95,16 +96,17 @@ public class LiptonMaster {
         adminConfig = new CloudAdminConfig(this);
         maintenanceConfig = new CloudMaintenanceConfig(this);
 
-        serverGroupConfig = new ServerGroupConfig();
-        wrapperConfig = new WrapperGroupConfig();
+        serverGroupConfig = new ServerGroupConfig(this);
+        wrapperConfig = new WrapperGroupConfig(this);
 
-        colouredConsoleProvider = new ColouredConsoleProvider(new File("./liptonMaster/logs"));
-        colouredConsoleProvider.setUsecolor(this.masterConfig.isColorConsole());
+        colouredConsoleProvider = new ColouredConsoleProvider(new File("./liptonMaster/logs"), this.masterConfig.isColorConsole());
 
         portManager = new PortManager(this);
         idManager = new IDManager();
 
         proxyManager = new ProxyManager(this);
+
+        eventManager = new EventManager();
 
         if (serverGroupConfig.getServerMetaByName("Lobby") == null)
             serverGroupConfig.create(new ServerGroupMeta("Lobby",
@@ -116,18 +118,17 @@ public class LiptonMaster {
                     2));
 
         scheduler = new Scheduler();
-        eventManager = new EventManager();
-
 
         this.checkKeyManager();
 
         wrapperManager = new WrapperManager(this);
 
-        commandManager = new CommandManager(colouredConsoleProvider);
+        commandManager = new CommandManager(colouredConsoleProvider, colouredConsoleProvider.getScanner());
+        moduleCommandManager = new ModuleCommandManager(colouredConsoleProvider, colouredConsoleProvider.getScanner());
 
         moduleService = new ModuleService(new File("./liptonMaster/modules"), colouredConsoleProvider);
 
-        liptonLibrary = new LiptonLibrary(scheduler, eventManager, colouredConsoleProvider , masterConfig.isColorConsole());
+        liptonLibrary = new LiptonLibrary(scheduler, colouredConsoleProvider , masterConfig.isColorConsole());
         liptonLibrary.checkAPIFile(new File("./liptonMaster/api/LiptonBridge-1.0-SNAPSHOT.jar"));
 
         packetHandler = new PacketHandler();
@@ -160,6 +161,7 @@ public class LiptonMaster {
         commandManager.registerCommand(new MaintenanceCommand("maintenance", "Simple Maintenance Command for the Cloud", new String[]{}, this));
         commandManager.registerCommand(new CopyServerCommand("copy", "Simple Command to Copy Servers to Templates",  new String[]{}, this));
         commandManager.registerCommand(new InfoCommand("info", "Command to see info's about the CloudSystem",this,new String[]{}));
+        commandManager.registerCommand(new ClearCommand("clear", "Command to Clear Console", "clearscreen", "cls"));
 
         counter.stop();
         counter.printResult("MasterStartup" ,this.getColouredConsoleProvider());
@@ -168,6 +170,7 @@ public class LiptonMaster {
         moduleService.startModules();
 
         commandManager.run();
+        moduleCommandManager.run();
     }
     //</editor-fold>
 
@@ -179,7 +182,7 @@ public class LiptonMaster {
 
     //<editor-fold desc="Getter - Setter">
 
-
+    @Deprecated
     public static LiptonMaster getInstance() {
         return instance;
     }
@@ -206,10 +209,6 @@ public class LiptonMaster {
 
     public Scheduler getScheduler() {
         return scheduler;
-    }
-
-    public EventManager getEventManager() {
-        return eventManager;
     }
 
     public ServerGroupConfig getServerGroupConfig() {
@@ -272,32 +271,17 @@ public class LiptonMaster {
         return moduleService;
     }
 
-    public ConfigHandler getProxyConfigHandler() {
-        return proxyConfigHandler;
-    }
-
-    public FileManager getFileManager() {
-        return fileManager;
-    }
-
-    public Counter getCounter() {
-        return counter;
-    }
-
-    public BungeeCordManager getBungeeCordManager() {
-        return bungeeCordManager;
-    }
-
     public AuthManager getAuthManager() {
         return authManager;
     }
 
-    public JarInjector getJarInjector() {
-        return jarInjector;
+    public ModuleCommandManager getModuleCommandManager() {
+        return moduleCommandManager;
     }
 
-    public LiptonPlayerManager getPlayerManager() {
-        return playerManager;
+    public EventManager getEventManager() {
+        return eventManager;
     }
+
     //</editor-fold>
 }

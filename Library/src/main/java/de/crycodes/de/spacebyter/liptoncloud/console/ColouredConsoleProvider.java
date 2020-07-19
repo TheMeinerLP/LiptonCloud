@@ -2,6 +2,7 @@ package de.crycodes.de.spacebyter.liptoncloud.console;
 
 
 
+import de.crycodes.de.spacebyter.liptoncloud.console.enums.Color;
 import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.FileAppender;
 import org.apache.log4j.Level;
@@ -12,21 +13,24 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class ColouredConsoleProvider {
+public final class ColouredConsoleProvider extends CloudConsole {
 
-    private static Set<ColouredConsoleProvider> loggers = new HashSet<>();
-    private org.apache.log4j.Logger fileLogger;
-    private org.apache.log4j.Logger apacheLogger;
+    private static final Collection<ColouredConsoleProvider> loggers = new LinkedList<>();
+    private final org.apache.log4j.Logger fileLogger;
+    private final org.apache.log4j.Logger apacheLogger;
 
-    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat( "yyyy-MM-dd" ) {{
+    private final Boolean colorSupport;
+    
+    private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat( "yyyy-MM-dd" ) {{
         this.setTimeZone( TimeZone.getTimeZone( "Europe/Berlin" ) );
     }};
 
-    public ColouredConsoleProvider(File logsDirectory ) {
+    public ColouredConsoleProvider(File logsDirectory, Boolean colorSupport) {
+        this.colorSupport = colorSupport;
         Date date = new Date( System.currentTimeMillis() );
         File file = new File( logsDirectory.getAbsolutePath() + "/unknown.log" );
         for ( int id = 1; id < Integer.MAX_VALUE; id++ ) {
-            file = new File( logsDirectory, this.getSimpleDateFormat().format( date ) + "-" + id + ".log" );
+            file = new File( logsDirectory, this.simpleDateFormat.format( date ) + "-" + id + ".log" );
             if ( file.exists() ) {
                 continue;
             }
@@ -39,36 +43,29 @@ public class ColouredConsoleProvider {
 
         org.apache.log4j.Logger.getRootLogger().setLevel( Level.OFF );
         this.apacheLogger = org.apache.log4j.Logger.getLogger( "CloudSystemLogger" );
-        this.fileLogger = org.apache.log4j.Logger.getLogger( "CloudSystemFileLogger" );
+        this.fileLogger = org.apache.log4j.Logger.getLogger( "CloudSystemfileLogger" );
 
         //PatternLayout layout = new PatternLayout( "[%d{HH:mm:ss}] [%t] %m%n" );
         String threadName = Thread.currentThread().getName().equalsIgnoreCase("main") ? "Cloud-Thread" : Thread.currentThread().getName();
         PatternLayout layout = new PatternLayout( "[" + threadName + " | %d{HH:mm:ss}] %m%n" );
         ConsoleAppender consoleAppender = new ConsoleAppender( layout );
-        this.getApacheLogger().addAppender( consoleAppender );
+        this.apacheLogger.addAppender( consoleAppender );
 
         try {
             FileAppender fileAppender = new FileAppender( layout, file.getAbsolutePath(), false );
             FileAppender fileAppender2 = new FileAppender( layout, logsDirectory.getAbsolutePath() + "/latest.log", false );
-            this.getFileLogger().addAppender( fileAppender );
-            this.getFileLogger().addAppender( fileAppender2 );
+            this.fileLogger.addAppender( fileAppender );
+            this.fileLogger.addAppender( fileAppender2 );
         } catch ( IOException e ) {
             e.printStackTrace();
         }
 
-        this.getApacheLogger().setLevel( Level.INFO );
-        this.getFileLogger().setLevel( Level.INFO );
+        this.apacheLogger.setLevel( Level.INFO );
+        this.fileLogger.setLevel( Level.INFO );
 
 
         // Add to Loggerlist
-        ColouredConsoleProvider.getLoggers().add( this );
-    }
-
-    /**
-     * Get a Logger
-     */
-    public static ColouredConsoleProvider getGlobal() {
-        return ColouredConsoleProvider.getLoggers().iterator().next();
+        ColouredConsoleProvider.loggers.add( this );
     }
 
     /**
@@ -79,10 +76,10 @@ public class ColouredConsoleProvider {
     public void info( String message ) {
         message = "§bINFO§r: " + message + "§r";
 
-        this.getFileLogger().info( this.removeColorCodes( message ) );
+        this.fileLogger.info( this.removeColorCodes( message ) );
         message = this.translateColorCodes( message );
 
-        this.getApacheLogger().info( message );
+        this.apacheLogger.info( message );
     }
 
     /**
@@ -90,13 +87,13 @@ public class ColouredConsoleProvider {
      *
      * @param message the message which should print into the console
      */
-    public void sendMessageWithCustomPrefix(String perfix,String message){
-        message = perfix + message + "§r";
+    public void sendMessageWithCustomPrefix(String prefix,String message){
+        message = prefix + message + "§r";
 
-        this.getFileLogger().info( this.removeColorCodes( message ) );
+        this.fileLogger.info( this.removeColorCodes( message ) );
         message = this.translateColorCodes( message );
 
-        this.getApacheLogger().info( message );
+        this.apacheLogger.info( message );
     }
 
     /**
@@ -107,10 +104,10 @@ public class ColouredConsoleProvider {
     public void error( String message ) {
         message = "§cERROR§r: " + message + "§r";
 
-        this.getFileLogger().info( this.removeColorCodes( message ) );
+        this.fileLogger.info( this.removeColorCodes( message ) );
         message = this.translateColorCodes( message );
 
-        this.getApacheLogger().info( message );
+        this.apacheLogger.info( message );
     }
 
     /**
@@ -121,11 +118,11 @@ public class ColouredConsoleProvider {
     public void error( String message, Exception e ) {
         message = "§cERROR§r: " + message + "§r";
 
-        this.getFileLogger().error( this.removeColorCodes( message ), e );
+        this.fileLogger.error( this.removeColorCodes( message ), e );
         message = this.translateColorCodes( message );
 
         //this.getApacheLogger().info( message );
-        this.getApacheLogger().error( message, e );
+        this.apacheLogger.error( message, e );
     }
 
     /**
@@ -136,10 +133,10 @@ public class ColouredConsoleProvider {
     public void debug( String message ) {
         message = "§5DEBUG§r: " + message + "§r";
 
-        this.getFileLogger().info( this.removeColorCodes( message ) );
+        this.fileLogger.info( this.removeColorCodes( message ) );
         message = this.translateColorCodes( message );
 
-        this.getApacheLogger().info( message );
+        this.apacheLogger.info( message );
     }
 
     /**
@@ -150,82 +147,53 @@ public class ColouredConsoleProvider {
     public void warning( String message ) {
         message = "§eWARNING§r: " + message + "§r";
 
-        this.getFileLogger().info( this.removeColorCodes( message ) );
+        this.fileLogger.info( this.removeColorCodes( message ) );
         message = this.translateColorCodes( message );
 
-        this.getApacheLogger().info( message );
+        this.apacheLogger.info( message );
     }
 
-    public static Boolean usecolor = true;
-
     private String translateColorCodes( String message ) {
-        if (usecolor) {
+        if (colorSupport) {
             Map<String, String> replace = new HashMap<String, String>() {{
-                this.put( "§a", Color.GREEN );
-                this.put( "§b", Color.CYAN );
-                this.put( "§c", Color.RED );
-                this.put( "§d", Color.MAGENTA );
-                this.put( "§e", Color.YELLOW );
-                this.put( "§f", Color.RESET );
+                this.put( "§a", Color.GREEN.getColor() );
+                this.put( "§b", Color.CYAN.getColor() );
+                this.put( "§c", Color.RED.getColor() );
+                this.put( "§d", Color.MAGENTA.getColor() );
+                this.put( "§e", Color.YELLOW.getColor() );
+                this.put( "§f", Color.RESET.getColor() );
 
-                this.put( "§0", Color.RESET );
-                this.put( "§1", Color.BLUE );
-                this.put( "§2", Color.GREEN );
-                this.put( "§3", Color.CYAN );
-                this.put( "§4", Color.RED );
-                this.put( "§5", Color.MAGENTA );
-                this.put( "§6", Color.YELLOW );
-                this.put( "§7", Color.GRAY );
-                this.put( "§8", Color.GRAY );
-                this.put( "§9", Color.BLUE );
+                this.put( "§0", Color.RESET.getColor() );
+                this.put( "§1", Color.BLUE.getColor() );
+                this.put( "§2", Color.GREEN.getColor() );
+                this.put( "§3", Color.CYAN.getColor() );
+                this.put( "§4", Color.RED.getColor() );
+                this.put( "§5", Color.MAGENTA.getColor() );
+                this.put( "§6", Color.YELLOW.getColor() );
+                this.put( "§7", Color.GRAY.getColor() );
+                this.put( "§8", Color.GRAY.getColor() );
+                this.put( "§9", Color.BLUE.getColor() );
 
-                this.put( "§r", Color.RESET );
-                this.put( "§l", Color.BOLD );
-                this.put( "§n", Color.UNDERLINED );
+                this.put( "§r", Color.RESET.getColor() );
+                this.put( "§l", Color.BOLD.getColor() );
+                this.put( "§n", Color.UNDERLINED.getColor() );
             }};
+
             for ( Map.Entry entry : replace.entrySet() ) {
                 message = message.replaceAll( (String) entry.getKey(), (String) entry.getValue() );
             }
 
             return message;
         } else {
-            Map<String, String> replace = new HashMap<String, String>() {{
-                this.put( "§a", "" );
-                this.put( "§b", "" );
-                this.put( "§c", "" );
-                this.put( "§d", "" );
-                this.put( "§e", "" );
-                this.put( "§f", "" );
 
-                this.put( "§0", "" );
-                this.put( "§1", "" );
-                this.put( "§2", "" );
-                this.put( "§3", "" );
-                this.put( "§4", "" );
-                this.put( "§5", "" );
-                this.put( "§6", "" );
-                this.put( "§7", "" );
-                this.put( "§8", "" );
-                this.put( "§9", "" );
-
-                this.put( "§r", "" );
-                this.put( "§l", "" );
-                this.put( "§n", "" );
-            }};
-            for ( Map.Entry entry : replace.entrySet() ) {
-                message = message.replaceAll( (String) entry.getKey(), (String) entry.getValue() );
+            for(String replaces : REPLACE_FIX) {
+                if(message.contains(replaces)) {
+                    message = message.replace(replaces, "");
+                }
             }
 
             return message;
         }
-    }
-
-    public void setUsecolor(Boolean je) {
-        usecolor = je;
-    }
-
-    public Boolean getUsecolor() {
-        return usecolor;
     }
 
     private String removeColorCodes(String message ) {
@@ -241,35 +209,33 @@ public class ColouredConsoleProvider {
         return message;
     }
 
-    public org.apache.log4j.Logger getApacheLogger() {
-        return apacheLogger;
+    private final String[] REPLACE_FIX = {
+            "§c","§6","§e", "§2","§a",
+            "§b", "§3", "§1", "§9",
+            "§d", "§5", "§f", "§7",
+            "§8", "§0", "§l", "§o",
+            "§r", "§m", "§n", "§k",
+            ""
+    };
+
+    @Override
+    public Scanner getScanner() {
+        return super.getScanner();
     }
 
-    public org.apache.log4j.Logger getFileLogger() {
-        return fileLogger;
+    @Override
+    void printEmptyLine() {
+        super.printEmptyLine();
+    }
+    
+    @Override
+    public void clearConsole() {
+        super.clearConsole();
     }
 
-    public static Set<ColouredConsoleProvider> getLoggers() {
-        return loggers;
+    @Override
+    void printProgress(String taskName, Integer tickDelay) {
+        super.printProgress(taskName, tickDelay);
     }
 
-    public SimpleDateFormat getSimpleDateFormat() {
-        return simpleDateFormat;
-    }
-
-    public void setApacheLogger(org.apache.log4j.Logger apacheLogger) {
-        this.apacheLogger = apacheLogger;
-    }
-
-    public void setFileLogger(org.apache.log4j.Logger fileLogger) {
-        this.fileLogger = fileLogger;
-    }
-
-    public static void setLoggers(Set<ColouredConsoleProvider> loggers) {
-        ColouredConsoleProvider.loggers = loggers;
-    }
-
-    public void setSimpleDateFormat(SimpleDateFormat simpleDateFormat) {
-        this.simpleDateFormat = simpleDateFormat;
-    }
 }

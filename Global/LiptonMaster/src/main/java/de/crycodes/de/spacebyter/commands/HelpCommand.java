@@ -29,10 +29,21 @@ public class HelpCommand extends CloudCommand {
     //<editor-fold desc="execute">
     protected boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args) {
 
-        colouredConsoleProvider.info("Help Command:");
+        master.getColouredConsoleProvider().info("CloudCommands: ");
 
         master.getCommandManager().getCommands().forEach(cloudCommand -> {
             colouredConsoleProvider.info(cloudCommand.getName() + " | " + cloudCommand.getDescription() + " | " + Arrays.toString(cloudCommand.getAliases()));
+        });
+
+        master.getColouredConsoleProvider().info("ModuleCommands: ");
+
+        if (master.getModuleCommandManager().getCommands().isEmpty()){
+            colouredConsoleProvider.info("No ModuleCommands found!");
+            return false;
+        }
+
+        master.getModuleCommandManager().getCommands().forEach(moduleCommand -> {
+            colouredConsoleProvider.info(moduleCommand.getName() + " | " + moduleCommand.getDescription() + " | " + Arrays.toString(moduleCommand.getAliases()));
         });
 
         return false;

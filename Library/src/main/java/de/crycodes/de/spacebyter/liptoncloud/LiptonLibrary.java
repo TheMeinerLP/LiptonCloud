@@ -2,7 +2,6 @@ package de.crycodes.de.spacebyter.liptoncloud;
 
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 import de.crycodes.de.spacebyter.liptoncloud.enums.ExitState;
-import de.crycodes.de.spacebyter.liptoncloud.event.EventManager;
 import de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterResponsePacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.global.ShutDownPacket;
@@ -43,13 +42,11 @@ public class LiptonLibrary {
     private static LiptonLibrary instance;
 
     private  Scheduler scheduler;
-    private  EventManager eventManager;
     private  ColouredConsoleProvider colouredConsoleProvider;
     private  Boolean useColor;
 
-    public LiptonLibrary(Scheduler scheduler, EventManager eventManager, ColouredConsoleProvider colouredConsoleProvider, Boolean useColor ) {
+    public LiptonLibrary(Scheduler scheduler, ColouredConsoleProvider colouredConsoleProvider, Boolean useColor ) {
         this.scheduler = scheduler;
-        this.eventManager = eventManager;
         this.colouredConsoleProvider = colouredConsoleProvider;
         this.useColor = useColor;
         instance = this;
@@ -104,20 +101,8 @@ public class LiptonLibrary {
         return instance;
     }
 
-    public Scheduler getScheduler() {
-        return scheduler;
-    }
-
-    public EventManager getEventManager() {
-        return eventManager;
-    }
-
     public ColouredConsoleProvider getColouredConsoleProvider() {
         return colouredConsoleProvider;
-    }
-
-    public Boolean getUseColor() {
-        return useColor;
     }
 
     public NetworkChannel getCloudChannel() {

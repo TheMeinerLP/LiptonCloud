@@ -25,8 +25,8 @@ public class MillisUtils {
     public static int getWeeks(Long millis){
         return (int) (millis / (1000*60*60*24*7));
     }
-    public static int getJears(Long millis){
-        return getDays(millis) * 365;
+    public static int getYears(Long millis){
+        return getDays(millis) % 365;
     }
 
 }
