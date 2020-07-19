@@ -1,6 +1,8 @@
 package de.crycodes.de.spacebyter.manager;
 
 import de.crycodes.de.spacebyter.LiptonMaster;
+import de.crycodes.de.spacebyter.liptoncloud.events.WrapperRegisterEvent;
+import de.crycodes.de.spacebyter.liptoncloud.events.WrapperUnregisterEvent;
 import de.crycodes.de.spacebyter.liptoncloud.meta.WrapperMeta;
 import de.crycodes.de.spacebyter.liptoncloud.utils.CallBack;
 import de.crycodes.de.spacebyter.liptoncloud.utils.annotiations.ShouldNotBeNull;
@@ -28,6 +30,7 @@ public class WrapperManager {
                 wrapperList.add(wrapperMeta);
             liptonMaster.getColouredConsoleProvider().info("Registered new Wrapper: " + wrapperMeta.getWrapperConfig().getWrapperId());
             isAuthenticated.accept(true);
+            liptonMaster.getEventManager().callEvent(new WrapperRegisterEvent(wrapperMeta));
         } else {
             liptonMaster.getColouredConsoleProvider().error("Wrapper Tried to Connect but found no WrapperGroup -> (create <wrapper>)!");
             isAuthenticated.accept(false);
@@ -56,6 +59,7 @@ public class WrapperManager {
     public void unregisterWrapper( @ShouldNotBeNull WrapperMeta wrapperMeta){
         if(wrapperList.contains(wrapperMeta))
             wrapperList.remove(wrapperMeta);
+        liptonMaster.getEventManager().callEvent(new WrapperUnregisterEvent(wrapperMeta));
         liptonMaster.getColouredConsoleProvider().info("UnRegistered Wrapper: " + wrapperMeta.getWrapperConfig().getWrapperId());
     }
     //</editor-fold>

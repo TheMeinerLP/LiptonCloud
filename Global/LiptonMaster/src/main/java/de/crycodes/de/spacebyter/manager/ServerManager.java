@@ -2,6 +2,10 @@ package de.crycodes.de.spacebyter.manager;
 
 import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.config.ServerGroupConfig;
+import de.crycodes.de.spacebyter.liptoncloud.events.ServerAutoStartEvent;
+import de.crycodes.de.spacebyter.liptoncloud.events.ServerRegisterEvent;
+import de.crycodes.de.spacebyter.liptoncloud.events.ServerStartEvent;
+import de.crycodes.de.spacebyter.liptoncloud.events.ServerUnregisterEvent;
 import de.crycodes.de.spacebyter.liptoncloud.exceptions.ServerIDNotFoundException;
 import de.crycodes.de.spacebyter.liptoncloud.exceptions.ServerNotStartedException;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
@@ -106,8 +110,14 @@ public class ServerManager {
 
         liptonMaster.getMasterWrapperServer().sendPacket(new StartServerPacket(wrapperID, serverMeta));
 
-        if (!autoStart) this.liptonMaster.getColouredConsoleProvider().info("StartetServer: " + serverMeta.getServerName() + " | on port: " + serverMeta.getPort() + " | on wrapper: " + serverMeta.getWrapperID() + " | group: " + serverGroupMeta.getGroupName() + " !");
-        if (autoStart)  liptonMaster.getColouredConsoleProvider().sendMessageWithCustomPrefix("§cAUTOSTART:§r"," StartetServer '" + serverGroupMeta.getGroupName() + "' stats: (" + getGlobalStartedAndOnlineServerByGroup(serverGroupMeta) + "/" + serverGroupMeta.getMinServer() + ") Port: §a" + port + "§r | ID: §a" + id + "§r !");
+        if (!autoStart){
+            liptonMaster.getEventManager().callEvent(new ServerStartEvent(serverMeta));
+            this.liptonMaster.getColouredConsoleProvider().info("StartetServer: " + serverMeta.getServerName() + " | on port: " + serverMeta.getPort() + " | on wrapper: " + serverMeta.getWrapperID() + " | group: " + serverGroupMeta.getGroupName() + " !");
+        }
+        if (autoStart) {
+            liptonMaster.getEventManager().callEvent(new ServerAutoStartEvent(serverMeta));
+            liptonMaster.getColouredConsoleProvider().sendMessageWithCustomPrefix("§cAUTOSTART:§r"," StartetServer '" + serverGroupMeta.getGroupName() + "' stats: (" + getGlobalStartedAndOnlineServerByGroup(serverGroupMeta) + "/" + serverGroupMeta.getMinServer() + ") Port: §a" + port + "§r | ID: §a" + id + "§r !");
+        }
     }
     //</editor-fold>
 
@@ -135,6 +145,7 @@ public class ServerManager {
         this.startedServer.remove(name);
 
         this.globalServerList.put(serverMeta.getServerName().toUpperCase(), serverMeta);
+        liptonMaster.getEventManager().callEvent(new ServerRegisterEvent(serverMeta));
         liptonMaster.getColouredConsoleProvider().info("Registered new Spigot Server: (§c" + serverName + "§r)!");
 
     }
@@ -158,6 +169,7 @@ public class ServerManager {
 
 
             this.globalServerList.remove(name);
+            liptonMaster.getEventManager().callEvent(new ServerUnregisterEvent(serverMeta));
 
             liptonMaster.getColouredConsoleProvider().info("Stopping Server: " + serverMeta.getServerName() + " | " + serverMeta.getPort() + " | " + serverMeta.getWrapperID());
         } else {

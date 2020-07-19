@@ -1,6 +1,8 @@
 package de.crycodes.de.spacebyter.manager;
 
 import de.crycodes.de.spacebyter.LiptonMaster;
+import de.crycodes.de.spacebyter.liptoncloud.events.ProxyRegisterEvent;
+import de.crycodes.de.spacebyter.liptoncloud.events.ProxyUnregisterEvent;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ProxyMeta;
 import de.crycodes.de.spacebyter.liptoncloud.utils.CallBack;
 
@@ -36,11 +38,13 @@ public class ProxyManager {
         globalProxyList.add(serverMeta);
         liptonMaster.getColouredConsoleProvider().info("Registered new Proxy: " + serverMeta.getName());
         isAuthenticated.accept(true);
+        liptonMaster.getEventManager().callEvent(new ProxyRegisterEvent(serverMeta));
     }
     public void unregisterProxy(ProxyMeta serverMeta){
         if (!globalProxyList.contains(serverMeta))return;
         globalProxyList.remove(serverMeta);
         liptonMaster.getColouredConsoleProvider().info("Registered Proxy: " + serverMeta.getName());
+        liptonMaster.getEventManager().callEvent(new ProxyUnregisterEvent(serverMeta));
     }
     //</editor-fold>
 
