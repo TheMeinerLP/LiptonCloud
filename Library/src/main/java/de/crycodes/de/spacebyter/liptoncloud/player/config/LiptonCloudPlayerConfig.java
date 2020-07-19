@@ -18,6 +18,8 @@ public class LiptonCloudPlayerConfig {
 
     private boolean useSystem;
     private boolean mysql;
+    private boolean mongodb;
+    private boolean filedatabase;
 
     private String sqlPassword;
     private String sqlUserName;
@@ -43,6 +45,8 @@ public class LiptonCloudPlayerConfig {
 
         document.append("useSystem", false);
         document.append("mysql", false);
+        document.append("mongodb", false);
+        document.append("filedatabase", true);
 
         document.append("sqlPassword", "password");
         document.append("sqlUserName", "root");
@@ -72,6 +76,9 @@ public class LiptonCloudPlayerConfig {
         this.mongoPassword = document.getString("mongoPassword");
         this.mongoPort = document.getInt("mongoPort");
         this.mongoUserName = document.getString("mongoUserName");
+
+        this.mongodb = document.getBoolean("mongodb");
+        this.filedatabase = document.getBoolean("filedatabase");
     }
 
     public boolean isUseSystem() {
@@ -112,5 +119,13 @@ public class LiptonCloudPlayerConfig {
 
     public Integer getMongoPort() {
         return mongoPort;
+    }
+
+    public boolean isMongodb() {
+        return mongodb;
+    }
+
+    public boolean isFiledatabase() {
+        return filedatabase;
     }
 }
