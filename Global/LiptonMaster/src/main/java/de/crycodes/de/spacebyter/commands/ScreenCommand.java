@@ -4,6 +4,9 @@ import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.liptoncloud.command.CloudCommand;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 import de.crycodes.de.spacebyter.liptoncloud.enums.ExitState;
+import de.crycodes.de.spacebyter.liptoncloud.events.ProxyStopEvent;
+import de.crycodes.de.spacebyter.liptoncloud.events.ServerGroupStopEvent;
+import de.crycodes.de.spacebyter.liptoncloud.events.ServerStopEvent;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ProxyMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StopProxyPacket;
@@ -45,6 +48,7 @@ public class ScreenCommand extends CloudCommand {
                 ServerMeta serverMeta = liptonMaster.getServerManager().getServersFromName(name);
 
                 liptonMaster.getMasterSpigotServer().sendPacket(new StopServerPacket(name, serverMeta.getWrapperID(), serverMeta.getServerGroupMeta().isDynamicService()));
+                liptonMaster.getEventManager().callEvent(new ServerStopEvent(serverMeta));
 
                 liptonMaster.getColouredConsoleProvider().info("Send StopPacket to Server: " + name);
 
@@ -60,7 +64,9 @@ public class ScreenCommand extends CloudCommand {
                     return true;
                 }
 
-                liptonMaster.getMasterProxyServer().getServer().sendPacket(liptonMaster.getMasterProxyServer().getNetworkChannel(),new StopProxyPacket(new ProxyMeta(name, 0, false)));
+                ProxyMeta proxyMeta = new ProxyMeta(name, 0, false);
+                liptonMaster.getMasterProxyServer().getServer().sendPacket(liptonMaster.getMasterProxyServer().getNetworkChannel(),new StopProxyPacket(proxyMeta));
+                liptonMaster.getEventManager().callEvent(new ProxyStopEvent(proxyMeta));
 
                 liptonMaster.getColouredConsoleProvider().info("Send StopPacket to  Proxy: " + name);
 
@@ -78,6 +84,7 @@ public class ScreenCommand extends CloudCommand {
                 liptonMaster.getServerGroupConfig().getServerMetas().forEach(serverGroupMeta -> {
                     if (serverGroupMeta.getGroupName().equalsIgnoreCase(name)){
                         liptonMaster.getMasterSpigotServer().sendPacket(new StopServerGroupPacket(serverGroupMeta, ExitState.STOPPED_SUCESS.getState()));
+                        liptonMaster.getEventManager().callEvent(new ServerGroupStopEvent(serverGroupMeta));
                         liptonMaster.getColouredConsoleProvider().info("Send StopServerGroup to All Server's of Group: " + name);
                         return;
                     }

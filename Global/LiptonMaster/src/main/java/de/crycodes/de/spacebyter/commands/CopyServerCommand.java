@@ -3,6 +3,7 @@ package de.crycodes.de.spacebyter.commands;
 import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.liptoncloud.command.CloudCommand;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.events.ServerCopyEvent;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CopyServerPacket;
 import org.checkerframework.checker.units.qual.C;
@@ -41,6 +42,7 @@ public class CopyServerCommand extends CloudCommand {
                     CopyServerPacket serverPacket = new CopyServerPacket(serverMeta.getServerGroupMeta(), serverName, serverMeta.getWrapperID(), serverMeta.getServerGroupMeta().isDynamicService());
 
                     liptonMaster.getMasterWrapperServer().sendPacket(serverPacket);
+                    liptonMaster.getEventManager().callEvent(new ServerCopyEvent(serverMeta));
 
                     liptonMaster.getColouredConsoleProvider().info("Trying to copy server '" + serverName + "' into template '" + group + "' !");
 

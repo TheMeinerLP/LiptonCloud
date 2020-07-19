@@ -6,6 +6,7 @@ import de.crycodes.de.spacebyter.commands.StopCommand;
 import de.crycodes.de.spacebyter.config.FileManager;
 import de.crycodes.de.spacebyter.config.WrapperConfig;
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
+import de.crycodes.de.spacebyter.liptoncloud.addon.event.EventManager;
 import de.crycodes.de.spacebyter.liptoncloud.command.CommandManager;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 import de.crycodes.de.spacebyter.liptoncloud.enums.ExitState;
@@ -58,6 +59,7 @@ public class LiptonWrapper {
     private ScreenManager screenManager;
     private DeleteServerManager deleteServerManager;
     private JarInjector jarInjector;
+    private EventManager eventManager;
     //</editor-fold>
 
     //<editor-fold desc="LiptonWrapper">
@@ -104,7 +106,6 @@ public class LiptonWrapper {
 
         scheduler = new Scheduler();
 
-
         packetHandler = new PacketHandler();
 
         liptonLibrary = new LiptonLibrary(scheduler, colouredConsoleProvider, wrapperConfig.isColorUse());
@@ -122,6 +123,8 @@ public class LiptonWrapper {
         serverStartHandler = new ServerStartHandler(this);
 
         deleteServerManager = new DeleteServerManager(this);
+
+        eventManager = new EventManager();
 
         commandManager = new CommandManager(colouredConsoleProvider, colouredConsoleProvider.getScanner());
         commandManager.registerCommand(new HelpCommand("help", "Shows all CloudCommands", new String[]{"?"}, this));
@@ -204,6 +207,10 @@ public class LiptonWrapper {
 
     public CommandManager getCommandManager() {
         return commandManager;
+    }
+
+    public EventManager getEventManager() {
+        return eventManager;
     }
 
     //</editor-fold>

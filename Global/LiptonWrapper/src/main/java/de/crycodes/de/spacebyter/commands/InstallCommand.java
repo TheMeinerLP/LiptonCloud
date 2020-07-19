@@ -3,6 +3,7 @@ package de.crycodes.de.spacebyter.commands;
 import de.crycodes.de.spacebyter.LiptonWrapper;
 import de.crycodes.de.spacebyter.liptoncloud.command.CloudCommand;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.events.ServerVersionInstallEvent;
 import de.crycodes.de.spacebyter.liptoncloud.versions.SpigotVersions;
 
 public class InstallCommand extends CloudCommand {
@@ -30,6 +31,7 @@ public class InstallCommand extends CloudCommand {
                 Integer id = Integer.valueOf(args[0]);
                 SpigotVersions spigotVersions = SpigotVersions.getVersionById(id);
                 liptonWrapper.getVersionsManager().install(spigotVersions);
+                liptonWrapper.getEventManager().callEvent(new ServerVersionInstallEvent(spigotVersions));
                 return true;
             }
             colouredConsoleProvider.error("Please use only the ID's");

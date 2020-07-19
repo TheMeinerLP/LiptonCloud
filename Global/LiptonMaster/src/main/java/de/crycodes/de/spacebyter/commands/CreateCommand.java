@@ -3,6 +3,8 @@ package de.crycodes.de.spacebyter.commands;
 import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.liptoncloud.command.CloudCommand;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.events.ServerGroupCreateEvent;
+import de.crycodes.de.spacebyter.liptoncloud.events.WrapperCreateEvent;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.WrapperMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.config.WrapperConfig;
@@ -36,15 +38,17 @@ public class CreateCommand extends CloudCommand {
                     GroupSetup groupSetup = new GroupSetup();
                     groupSetup.start(liptonMaster.getCommandManager().getScanner());
 
-                   liptonMaster.getServerGroupConfig().create(new ServerGroupMeta(groupSetup.getServerName(),
-                           "default", groupSetup.getMaxMem(),
-                           groupSetup.getMinMem(),
-                           groupSetup.isDynamic(),
-                           false ,
-                           groupSetup.getMaxServer(),
-                           groupSetup.getMinServer()));
+                    ServerGroupMeta serverGroupMeta = new ServerGroupMeta(groupSetup.getServerName(),
+                            "default", groupSetup.getMaxMem(),
+                            groupSetup.getMinMem(),
+                            groupSetup.isDynamic(),
+                            false ,
+                            groupSetup.getMaxServer(),
+                            groupSetup.getMinServer());
+                   liptonMaster.getServerGroupConfig().create(serverGroupMeta);
 
                     liptonMaster.getCommandManager().restart();
+                    liptonMaster.getEventManager().callEvent(new ServerGroupCreateEvent(serverGroupMeta));
 
                     colouredConsoleProvider.info("Servergroup '" + groupSetup.getServerName() + "' was successfully created!");
                     break;
@@ -57,11 +61,13 @@ public class CreateCommand extends CloudCommand {
                     WrapperGroupSetup wrapperGroupSetup = new WrapperGroupSetup();
                     wrapperGroupSetup.start(liptonMaster.getCommandManager().getScanner());
 
-                    liptonMaster.getWrapperConfig().create(new WrapperMeta(false, new WrapperConfig(wrapperGroupSetup.getGroupName(),
+                    WrapperMeta wrapperMeta = new WrapperMeta(false, new WrapperConfig(wrapperGroupSetup.getGroupName(),
                             wrapperGroupSetup.getHost(),
-                            wrapperGroupSetup.getAutoUpdate())));
+                            wrapperGroupSetup.getAutoUpdate()));
+                    liptonMaster.getWrapperConfig().create(wrapperMeta);
 
                     liptonMaster.getCommandManager().restart();
+                    liptonMaster.getEventManager().callEvent(new WrapperCreateEvent(wrapperMeta));
 
                     colouredConsoleProvider.info("Wrapper '" + wrapperGroupSetup.getGroupName() + "' was successfully created!");
                     break;

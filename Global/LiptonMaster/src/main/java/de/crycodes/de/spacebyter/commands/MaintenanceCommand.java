@@ -4,6 +4,7 @@ import com.google.common.annotations.VisibleForTesting;
 import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.liptoncloud.command.CloudCommand;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.events.ServerMaintenanceChangeEvent;
 
 /**
  * Coded By CryCodes
@@ -33,8 +34,10 @@ public class MaintenanceCommand extends CloudCommand {
 
                 if (liptonMaster.getMasterConfig().switchMaintenance()){
                     colouredConsoleProvider.info("The Network is now in §aMaintenance §7Mode.");
+                    liptonMaster.getEventManager().callEvent(new ServerMaintenanceChangeEvent(true));
                 } else {
                     colouredConsoleProvider.info("The Network is no longer in §cMaintenance §7Mode.");
+                    liptonMaster.getEventManager().callEvent(new ServerMaintenanceChangeEvent(false));
                 }
 
             } else

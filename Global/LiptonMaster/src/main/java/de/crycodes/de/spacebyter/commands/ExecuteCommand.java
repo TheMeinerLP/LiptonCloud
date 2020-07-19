@@ -3,6 +3,7 @@ package de.crycodes.de.spacebyter.commands;
 import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.liptoncloud.command.CloudCommand;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.events.ServerExecuteCommandEvent;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.ExecuteCommandPacket;
 
 import java.util.ArrayList;
@@ -50,6 +51,7 @@ public class ExecuteCommand extends CloudCommand {
         }
 
         liptonMaster.getMasterSpigotServer().sendPacket(new ExecuteCommandPacket(stringBuilder.toString(), server));
+        liptonMaster.getEventManager().callEvent(new ServerExecuteCommandEvent(server, stringBuilder.toString()));
         colouredConsoleProvider.info("Send CommandLine to: " + server);
 
         return false;
