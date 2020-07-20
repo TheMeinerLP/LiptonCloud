@@ -38,7 +38,6 @@ public class CreateSignCommand implements CommandExecutor {
         if(args.length >= 1) {
             String serverGroup = args[0];
             if(LiptonSpigotBridge.getInstance().getCloudAPI().doesServerGroupExist(serverGroup)) {
-                CloudSignConfig cloudSignConfig = new CloudSignConfig();
 
                 Set<Material> materials = new HashSet<>();
                 materials.add(Material.AIR);
@@ -46,8 +45,8 @@ public class CreateSignCommand implements CommandExecutor {
                 if (player.getTargetBlock(materials, 5).getType().equals(Material.WALL_SIGN)) {
 
                     final CloudSign sign = new CloudSign(player.getTargetBlock(materials, 5).getLocation(), serverGroup);
-                    if(!cloudSignConfig.signAlreadyThere(sign)){
-                        cloudSignConfig.addSign(sign);
+
+                    plugin.getSignCreator().createSign(sign);
 
                         Block block = Bukkit.getWorld(sign.getWorld()).getBlockAt(sign.getX(),sign.getY(),sign.getZ());
                         Sign signBlock = (Sign) block.getState();
@@ -62,9 +61,7 @@ public class CreateSignCommand implements CommandExecutor {
 
                         player.sendMessage(plugin.getPREFIX() + "§aYou created a new CloudSign.");
                         return true;
-                    }
-                    player.sendMessage(plugin.getPREFIX() + "§cThis Sign is already a CloudSign.");
-                    return true;
+
                 }
                 player.sendMessage(plugin.getPREFIX() + "§cYou must look at a Sign.");
                 return true;

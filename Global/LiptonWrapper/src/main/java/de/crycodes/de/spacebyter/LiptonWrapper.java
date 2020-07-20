@@ -2,6 +2,7 @@ package de.crycodes.de.spacebyter;
 
 import de.crycodes.de.spacebyter.commands.HelpCommand;
 import de.crycodes.de.spacebyter.commands.InstallCommand;
+import de.crycodes.de.spacebyter.commands.ScreenCommand;
 import de.crycodes.de.spacebyter.commands.StopCommand;
 import de.crycodes.de.spacebyter.config.FileManager;
 import de.crycodes.de.spacebyter.config.WrapperConfig;
@@ -21,6 +22,7 @@ import de.crycodes.de.spacebyter.network.WrapperMasterClient;
 import de.crycodes.de.spacebyter.network.packet.PacketHandler;
 import de.crycodes.de.spacebyter.screen.ScreenManager;
 import de.crycodes.de.spacebyter.manager.ServerFileManager;
+import de.crycodes.de.spacebyter.screen.ScreenPrinter;
 import de.crycodes.de.spacebyter.server.ServerStartHandler;
 import de.crycodes.de.spacebyter.manager.TemplateManager;
 import de.crycodes.de.spacebyter.manager.VersionsManager;
@@ -60,6 +62,7 @@ public class LiptonWrapper {
     private DeleteServerManager deleteServerManager;
     private JarInjector jarInjector;
     private EventManager eventManager;
+    private ScreenPrinter screenPrinter;
     //</editor-fold>
 
     //<editor-fold desc="LiptonWrapper">
@@ -126,17 +129,20 @@ public class LiptonWrapper {
 
         eventManager = new EventManager();
 
-        commandManager = new CommandManager(colouredConsoleProvider, colouredConsoleProvider.getScanner());
+        screenPrinter = new ScreenPrinter(this.getColouredConsoleProvider(), this);
+
+        commandManager = new CommandManager(colouredConsoleProvider);
         commandManager.registerCommand(new HelpCommand("help", "Shows all CloudCommands", new String[]{"?"}, this));
         commandManager.registerCommand(new InstallCommand("install", "Installs a Spigot Version", new String[]{"version", "changeVersion"}, this));
         commandManager.registerCommand(new StopCommand("stop", "Stops The CloudSystem", new String[]{"quit", "exit"}, this));
+        commandManager.registerCommand(new ScreenCommand("screen", "Screen Command to see Console Output off the servers", this, screenPrinter, "servers"));
 
         addShutDownHook();
 
         counter.stop();
         counter.printResult("WrapperStartup", this.colouredConsoleProvider);
 
-        commandManager.run();
+        commandManager.run(colouredConsoleProvider.getScanner());
 
 
     }
@@ -213,5 +219,12 @@ public class LiptonWrapper {
         return eventManager;
     }
 
+    public ScreenPrinter getScreenPrinter() {
+        return screenPrinter;
+    }
+
+    public Scheduler getScheduler() {
+        return scheduler;
+    }
     //</editor-fold>
 }

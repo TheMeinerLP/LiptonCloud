@@ -121,7 +121,7 @@ public class LiptonMaster {
 
         wrapperManager = new WrapperManager(this);
 
-        commandManager = new CommandManager(colouredConsoleProvider, colouredConsoleProvider.getScanner());
+        commandManager = new CommandManager(colouredConsoleProvider);
 
         moduleService = new ModuleService(new File("./liptonMaster/modules"), colouredConsoleProvider);
 
@@ -152,7 +152,7 @@ public class LiptonMaster {
         commandManager.registerCommand(new CreateCommand("create", "Create Wrapper|Proxy|ServerGroups ", new String[]{"build", "make"}, this));
         commandManager.registerCommand(new ReloadCommand("reload", "Reload Cloud", new String[]{"restart", "reloadconfig"}, this));
         commandManager.registerCommand(new StopCommand("stop", "Stop the Cloud", new String[]{"exit"}, this));
-        commandManager.registerCommand(new ScreenCommand("screen", "Screen Command of the Cloud", new String[]{"cloud"}, this));
+        commandManager.registerCommand(new CloudMainCommand("cloud", "Cloud Command of the Cloud", new String[]{}, this));
         commandManager.registerCommand(new ExecuteCommand("execute", "Execute Command on Server", new String[]{"send"}, this));
         commandManager.registerCommand(new CloudAdminCommand("cloudadmin", "Simple Command to manage CloudAdmins", new String[]{"user", "admin"}, this));
         commandManager.registerCommand(new MaintenanceCommand("maintenance", "Simple Maintenance Command for the Cloud", new String[]{}, this));
@@ -166,7 +166,7 @@ public class LiptonMaster {
         moduleService.loadModules();
         moduleService.startModules();
 
-        commandManager.run();
+        commandManager.run(colouredConsoleProvider.getScanner());
     }
     //</editor-fold>
 

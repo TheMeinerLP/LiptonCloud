@@ -23,12 +23,11 @@ public final class CommandManager {
     private Boolean isActive = true;
 
     private final ColouredConsoleProvider colouredConsoleProvider;
-    private final Scanner scanner;
+    private Scanner scanner;
 
 
-    public CommandManager(ColouredConsoleProvider colouredConsoleProvider, Scanner scanner){
+    public CommandManager(ColouredConsoleProvider colouredConsoleProvider){
         this.colouredConsoleProvider = colouredConsoleProvider;
-        this.scanner = scanner;
     }
 
     public void registerCommand(CloudCommand cloudCommand){
@@ -40,7 +39,7 @@ public final class CommandManager {
         this.moduleCommands.add(moduleCommand);
     }
 
-    public void run() {
+    public void run(Scanner scanner) {
         this.setActive(true);
         while (scanner.hasNext()){
             if (isActive)
@@ -49,6 +48,8 @@ public final class CommandManager {
 
     }
     public void stop(){
+        if (this.scanner != null)
+            this.scanner.close();
         this.setActive(false);
     }
 
@@ -121,10 +122,6 @@ public final class CommandManager {
 
     public ColouredConsoleProvider getColouredConsoleProvider() {
         return colouredConsoleProvider;
-    }
-
-    public Boolean getActive() {
-        return isActive;
     }
 
     public Scanner getScanner() {

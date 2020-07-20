@@ -277,7 +277,7 @@ public class Document {
     }
 
 
-    public <T> T getObject(String key, Type type) {
-        return (T) GSON.fromJson(this.dataCatcher.get(key), type);
+    public <T> T getObject(String key, Type t) {
+        return (T) GSON.fromJson(this.dataCatcher.get(key), t);
     }
 }

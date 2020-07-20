@@ -13,13 +13,15 @@ import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.StopProxyPa
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerGroupPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServerPacket;
 
+import java.io.File;
 
-public class ScreenCommand extends CloudCommand {
+
+public class CloudMainCommand extends CloudCommand {
 
     private final LiptonMaster liptonMaster;
 
     //<editor-fold desc="ServiceCommand">
-    public ScreenCommand(String name, String description, String[] aliases, LiptonMaster liptonMaster) {
+    public CloudMainCommand(String name, String description, String[] aliases, LiptonMaster liptonMaster) {
         super(name, description, aliases);
         this.liptonMaster = liptonMaster;
     }
@@ -94,9 +96,43 @@ public class ScreenCommand extends CloudCommand {
                 return true;
             }
 
+            if (args[0].equalsIgnoreCase("delete")){
+
+
+                if (liptonMaster.getServerGroupConfig().getServerMetas().isEmpty()){
+
+                    liptonMaster.getColouredConsoleProvider().error("No Server Group found!");
+                    return true;
+                }
+
+                if (liptonMaster.getServerGroupConfig().getServerMetaByName(name) != null){
+
+
+
+                    if (name.equalsIgnoreCase("Lobby")) {
+                        liptonMaster.getColouredConsoleProvider().error("Could not delete ServerGroup: " + name);
+                        return true;
+                    }
+
+                    if ((new File("./liptonMaster/groups/server/" + name + ".json")).delete()){
+                        liptonMaster.getColouredConsoleProvider().info("Deleted ServerGroup: " +  name);
+                        return true;
+                    }
+
+                    liptonMaster.getColouredConsoleProvider().error("Could not delete ServerGroup: " + name);
+
+                    return true;
+                }
+
+                liptonMaster.getColouredConsoleProvider().error("Server Group: " + name + " was not found!");
+
+                return true;
+            }
+
             sendUsage(colouredConsoleProvider);
 
         } else {
+
 
             sendUsage(colouredConsoleProvider);
 
@@ -108,9 +144,10 @@ public class ScreenCommand extends CloudCommand {
 
     //<editor-fold desc="sendUsage">
     private void sendUsage(ColouredConsoleProvider colouredConsoleProvider){
-        colouredConsoleProvider.info("screen <stopserver> <name>");
-        colouredConsoleProvider.info("screen <stopproxy> <name>");
-        colouredConsoleProvider.info("screen <stopgroup> <group>");
+        colouredConsoleProvider.info("cloud <stopserver> <name>");
+        colouredConsoleProvider.info("cloud <stopproxy> <name>");
+        colouredConsoleProvider.info("cloud <stopgroup> <group>");
+        colouredConsoleProvider.info("cloud <delete> <servergroup>");
 
     }
     //</editor-fold>

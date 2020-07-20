@@ -22,7 +22,7 @@ public class ScreenManager {
 
     //<editor-fold desc="register - getter">
     public Screen getScreenByName(String name){
-        return screenConcurrentHashMap.get(name);
+        return screenConcurrentHashMap.getOrDefault(name, null);
     }
     public void unregisterScreen(Screen screen) {
         this.screenConcurrentHashMap.remove(screen.getName());
@@ -30,5 +30,10 @@ public class ScreenManager {
     public void registerScreen(Screen screen, String name){
         this.screenConcurrentHashMap.put(name,screen);
     }
+
+    public ConcurrentHashMap<String, Screen> getScreenConcurrentHashMap() {
+        return screenConcurrentHashMap;
+    }
+
     //</editor-fold>
 }

@@ -20,7 +20,6 @@ public class SendServerConfigHandler extends PacketHandlerAdapter {
         if (packet instanceof SendServerConfigPacket){
             final SendServerConfigPacket serverConfigPacket = (SendServerConfigPacket) packet;
             LiptonSpigotBridge.getInstance().updateConfig(serverConfigPacket.getServerConfig());
-            LiptonSpigotBridge.getInstance().getCloudSignManager().setGlobalServerList(serverConfigPacket.getServerConfig().getGlobalServers());
         }
 
     }
