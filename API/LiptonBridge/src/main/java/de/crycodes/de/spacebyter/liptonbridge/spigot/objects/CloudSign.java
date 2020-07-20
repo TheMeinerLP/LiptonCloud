@@ -28,25 +28,13 @@ public class CloudSign implements Serializable {
     private final Integer y;
     private final Integer z;
     private final String world;
-    private final String serverGroupName;
-    private ServerMeta serverMeta;
-    private SignState signState;
 
     public CloudSign(Location location, String serverGroupName) {
-        this.x = location.getBlockX();
-        this.y = location.getBlockY();
+        this.x =  location.getBlockX();
+        this.y =  location.getBlockY();
         this.z = location.getBlockZ();
         this.world = location.getWorld().getName();
-        this.serverGroupName = serverGroupName;
-        serverMeta = null;
-        signState = SignState.UNKNOWN;
     }
-
-    //<editor-fold desc="getServerMeta">
-    public ServerMeta getServerMeta() {
-        return serverMeta;
-    }
-    //</editor-fold>
 
     //<editor-fold desc="getX">
     public Integer getX() {
@@ -72,27 +60,4 @@ public class CloudSign implements Serializable {
     }
     //</editor-fold>
 
-    //<editor-fold desc="getServerGroupName">
-    public String getServerGroupName() {
-        return serverGroupName;
-    }
-    //</editor-fold>
-
-    //<editor-fold desc="getSignState">
-    public SignState getSignState() {
-        return signState;
-    }
-    //</editor-fold>
-
-    //<editor-fold desc="setServerMeta">
-    public void setServerMeta(ServerMeta serverMeta) {
-        this.serverMeta = serverMeta;
-    }
-    //</editor-fold>
-
-    //<editor-fold desc="setSignState">
-    public void setSignState(SignState signState) {
-        this.signState = signState;
-    }
-    //</editor-fold>
 }

@@ -1,5 +1,6 @@
 package de.crycodes.de.spacebyter.liptonbridge.spigot.sign;
 
+import com.google.gson.internal.LinkedTreeMap;
 import de.crycodes.de.spacebyter.liptonbridge.spigot.objects.CloudSign;
 import de.crycodes.de.spacebyter.liptoncloud.config.Document;
 
@@ -35,10 +36,10 @@ public class SignConfig {
 
         return document.getDocument(group.toUpperCase());
     }
-    public HashMap<Integer, CloudSign> getSignsAfterGroup(String group){
+    public HashMap<Integer, LinkedTreeMap<String, Object>> getSignsAfterGroup(String group){
         if (getSignDocumentAfterGroup(group.toUpperCase()) == null) {
             System.out.println("GROUP NOT FOUND");
-            return new HashMap<Integer, CloudSign>();
+            return new HashMap<Integer, LinkedTreeMap<String, Object>>();
         }
 
         final Document document = getSignDocumentAfterGroup(group.toUpperCase());
@@ -46,12 +47,12 @@ public class SignConfig {
         assert document != null;
 
         if (document.getObject("signs", HashMap.class) == null )
-            return new HashMap<Integer, CloudSign>();
+            return new HashMap<Integer, LinkedTreeMap<String, Object>>();
 
         return document.getObject("signs", HashMap.class);
     }
 
-    public void insertUpdatedSigns(Map<Integer, CloudSign> map, String group){
+    public void insertUpdatedSigns(Map<Integer, LinkedTreeMap<String, Object>> map, String group){
         final Document currentDoc = getSignDocumentAfterGroup(group.toUpperCase());
 
         if (getSignDocumentAfterGroup(group.toUpperCase()) == null) {

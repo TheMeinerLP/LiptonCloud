@@ -1,21 +1,16 @@
 package de.crycodes.de.spacebyter.liptonbridge.spigot.commands;
 
-import de.crycodes.de.spacebyter.liptonbridge.CloudAPI;
 import de.crycodes.de.spacebyter.liptonbridge.spigot.LiptonSpigotBridge;
-import de.crycodes.de.spacebyter.liptonbridge.spigot.configs.CloudSignConfig;
 import de.crycodes.de.spacebyter.liptonbridge.spigot.objects.CloudSign;
-import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.checkerframework.checker.units.qual.C;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -46,7 +41,7 @@ public class CreateSignCommand implements CommandExecutor {
 
                     final CloudSign sign = new CloudSign(player.getTargetBlock(materials, 5).getLocation(), serverGroup);
 
-                    plugin.getSignCreator().createSign(sign);
+                    plugin.getSignCreator().createSign(sign, serverGroup);
 
                         Block block = Bukkit.getWorld(sign.getWorld()).getBlockAt(sign.getX(),sign.getY(),sign.getZ());
                         Sign signBlock = (Sign) block.getState();

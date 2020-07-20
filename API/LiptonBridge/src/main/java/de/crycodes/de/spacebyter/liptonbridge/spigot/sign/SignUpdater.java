@@ -1,12 +1,15 @@
 package de.crycodes.de.spacebyter.liptonbridge.spigot.sign;
 
+import com.google.gson.internal.LinkedTreeMap;
 import de.crycodes.de.spacebyter.liptonbridge.spigot.LiptonSpigotBridge;
 import de.crycodes.de.spacebyter.liptonbridge.spigot.enums.SignState;
 import de.crycodes.de.spacebyter.liptonbridge.spigot.objects.CloudSign;
 import de.crycodes.de.spacebyter.liptonbridge.spigot.util.ServerPinger;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
@@ -67,32 +70,36 @@ public class SignUpdater implements Runnable{
 
                 int serverId = current.getId();
 
+                HashMap<Integer, LinkedTreeMap<String, Object>> signs = signCreator.getSignConfig().getSignsAfterGroup(groupName);
 
-                HashMap<Integer, CloudSign> signs = signCreator.getSignConfig().getSignsAfterGroup(groupName);
+                System.out.println(signs.get(serverId));
 
-                CloudSign cloudSign = signs.values().iterator().next();
+                LinkedTreeMap<String, Object> cloudSign = signs.get(serverId);
 
-                if(cloudSign == null)
-                    System.out.println("The sign is null");
+                if (cloudSign == null)
+                    return;
 
-                cloudSign.setServerMeta(current);
+                Location bukkitLocation = new Location(Bukkit.getWorld((String)
+                        cloudSign.get("world"))
+                        ,(Double) cloudSign.get("x")
+                        ,(Double) cloudSign.get("y")
+                        ,(Double) cloudSign.get("z") );
+
+                System.out.println();
 
                 try {
                     serverPinger.pingServer(current.getHost(), current.getPort(), 2500);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                System.out.println(current.getServerName());
-                System.out.println(serverPinger.getPlayers());
-                System.out.println(serverPinger.getMaxplayers());
-                System.out.println(serverPinger.getMotd());
-                createSign(cloudSign, current.getServerName(), serverPinger.getPlayers(), serverPinger.getMaxplayers(), serverPinger.getMotd());
+
+                createSign(bukkitLocation, current.getServerName(), serverPinger.getPlayers(), serverPinger.getMaxplayers(), serverPinger.getMotd());
             });
          }
     }
 
-    public void createSign(CloudSign cloudSign, String servername, int min, int max,String motd) {
-        Block blockAt = plugin.getServer().getWorld("world").getBlockAt(cloudSign.getX(), cloudSign.getY(), cloudSign.getZ());
+    public void createSign(Location location, String serverName, int min, int max,String motd) {
+        Block blockAt = plugin.getServer().getWorld("world").getBlockAt(location);
 
         if (!blockAt.getType().equals(Material.WALL_SIGN)) return;
 
@@ -101,12 +108,20 @@ public class SignUpdater implements Runnable{
 
         switch (motd) {
             case "LOBBY": {
-                sign.setLine(0, format(servername));
+                sign.setLine(0, format(serverName));
                 sign.setLine(1, SignState.LOBBY.name());
                 sign.setLine(2, min + "/" + max);
                 sign.setLine(3, "CLick");
                 break;
             }
+
+            default: {
+                sign.setLine(0, format(serverName));
+                sign.setLine(1, SignState.LOBBY.name());
+                sign.setLine(2, min + "/" + max);
+                sign.setLine(3, "Click");
+            }
+
         }
         sign.update();
     }
