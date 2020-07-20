@@ -6,6 +6,7 @@ import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
 import de.crycodes.de.spacebyter.liptoncloud.addon.CloudModule;
 import de.crycodes.testmodule.commands.TestCommand;
 import de.crycodes.testmodule.events.TestEvent;
+import de.crycodes.testmodule.listener.ServerAutoStartListener;
 import de.crycodes.testmodule.listener.TestListener;
 
 /**
@@ -21,11 +22,12 @@ public class TestModule extends MasterModule {
     public void onEnable() {
         registerCommand(new TestCommand("Test", "TEST LOL EY", "LOL"));
         registerListener(new TestListener());
+        registerListener(new ServerAutoStartListener());
 
         try {
             Thread.sleep(2000);
 
-            callEvent(new TestEvent("TEST"));
+            callEvent(new TestEvent("TEST AMK MACHT HIER SO DEN EVENT"));
 
         } catch (InterruptedException e) {
             e.printStackTrace();

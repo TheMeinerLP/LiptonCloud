@@ -37,12 +37,12 @@ public class HelpCommand extends CloudCommand {
 
         master.getColouredConsoleProvider().info("ModuleCommands: ");
 
-        if (master.getModuleCommandManager().getCommands().isEmpty()){
+        if (master.getCommandManager().getModuleCommands().isEmpty()){
             colouredConsoleProvider.info("No ModuleCommands found!");
             return false;
         }
 
-        master.getModuleCommandManager().getCommands().forEach(moduleCommand -> {
+        master.getCommandManager().getModuleCommands().forEach(moduleCommand -> {
             colouredConsoleProvider.info(moduleCommand.getName() + " | " + moduleCommand.getDescription() + " | " + Arrays.toString(moduleCommand.getAliases()));
         });
 

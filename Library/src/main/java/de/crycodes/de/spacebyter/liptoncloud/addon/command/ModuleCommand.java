@@ -22,7 +22,7 @@ public abstract class ModuleCommand {
         this.aliases = aliases;
     }
 
-    protected abstract boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args);
+    public abstract boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args);
 
     public String getName() {
         return name;

@@ -1,5 +1,6 @@
 package de.crycodes.de.spacebyter.liptoncloud.command;
 
+import de.crycodes.de.spacebyter.liptoncloud.addon.command.ModuleCommand;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ import java.util.Scanner;
 public final class CommandManager {
 
     private List<CloudCommand> commands = new ArrayList<>();
+    private List<ModuleCommand> moduleCommands = new ArrayList<>();
     private Boolean isActive = true;
 
     private final ColouredConsoleProvider colouredConsoleProvider;
@@ -30,7 +32,12 @@ public final class CommandManager {
     }
 
     public void registerCommand(CloudCommand cloudCommand){
+        if (this.commands.contains(cloudCommand)) return;
         this.commands.add(cloudCommand);
+    }
+    public void registerModuleCommand(ModuleCommand moduleCommand){
+        if (this.moduleCommands.contains(moduleCommand)) return;
+        this.moduleCommands.add(moduleCommand);
     }
 
     public void run() {
@@ -46,26 +53,57 @@ public final class CommandManager {
     }
 
     public void execute(String line){
-        String commandtext = line.split(" ")[0];
+        String commandText = line.split(" ")[0];
 
-        if ( getCommand(commandtext) == null){
+        String[] split = line.substring(commandText.length()).split(" ");
+        if ( getCommand(commandText) != null){
+
+            CloudCommand command = getCommand(commandText);
+
+            List<String> args = new ArrayList<>();
+            for (String argument : split){
+                if (argument.equalsIgnoreCase("") || argument.equalsIgnoreCase(" ")){
+                    continue;
+                }
+                args.add(argument);
+            }
+            assert command != null;
+            command.execute(colouredConsoleProvider, line, args.toArray(new String[0]) );
+
+        } else if ( getModuleCommand(commandText) != null){
+
+            ModuleCommand moduleCommand = getModuleCommand(commandText);
+
+            List<String> args = new ArrayList<>();
+            for (String argument : split){
+                if (argument.equalsIgnoreCase("") || argument.equalsIgnoreCase(" ")){
+                    continue;
+                }
+                args.add(argument);
+            }
+            assert moduleCommand != null;
+            moduleCommand.execute(colouredConsoleProvider, line, args.toArray(new String[0]) );
+
+        } else {
+
             this.colouredConsoleProvider.error("Command Not Found!");
             return;
-        }
-        CloudCommand command = getCommand(commandtext);
 
-        List<String> args = new ArrayList<>();
-        for (String argument : line.substring( commandtext.length() ).split(" ")){
-            if (argument.equalsIgnoreCase("") || argument.equalsIgnoreCase(" ")){
-                continue;
-            }
-            args.add(argument);
         }
-        command.execute(colouredConsoleProvider, line, args.toArray( new String[args.size()]) );
+
+
     }
 
     public CloudCommand getCommand(String commandName){
         for (CloudCommand cloudCommand : commands){
+            if (cloudCommand.getName().equalsIgnoreCase(commandName) || Arrays.asList(cloudCommand.getAliases()).contains(commandName)){
+                return cloudCommand;
+            }
+        }
+        return null;
+    }
+    public ModuleCommand getModuleCommand(String commandName){
+        for (ModuleCommand cloudCommand : moduleCommands){
             if (cloudCommand.getName().equalsIgnoreCase(commandName) || Arrays.asList(cloudCommand.getAliases()).contains(commandName)){
                 return cloudCommand;
             }
@@ -99,5 +137,9 @@ public final class CommandManager {
 
     public void restart() {
         this.setActive(true);
+    }
+
+    public List<ModuleCommand> getModuleCommands() {
+        return moduleCommands;
     }
 }

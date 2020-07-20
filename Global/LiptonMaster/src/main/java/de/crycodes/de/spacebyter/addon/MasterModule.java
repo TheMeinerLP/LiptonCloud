@@ -46,7 +46,7 @@ public abstract class MasterModule extends CloudModule {
 
     @Override
     public void registerCommand(ModuleCommand command) {
-        LiptonMaster.getInstance().getModuleCommandManager().registerCommand(command);
+        LiptonMaster.getInstance().getCommandManager().registerModuleCommand(command);
     }
 
 }

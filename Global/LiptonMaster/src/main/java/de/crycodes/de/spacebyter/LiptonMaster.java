@@ -3,7 +3,6 @@ package de.crycodes.de.spacebyter;
 import de.crycodes.de.spacebyter.commands.*;
 import de.crycodes.de.spacebyter.config.*;
 import de.crycodes.de.spacebyter.liptoncloud.addon.ModuleService;
-import de.crycodes.de.spacebyter.liptoncloud.addon.command.ModuleCommandManager;
 import de.crycodes.de.spacebyter.liptoncloud.addon.event.EventManager;
 import de.crycodes.de.spacebyter.liptoncloud.auth.AuthManager;
 import de.crycodes.de.spacebyter.liptoncloud.library.JarInjector;
@@ -58,7 +57,6 @@ public class LiptonMaster {
     private CloudMaintenanceConfig maintenanceConfig;
 
     private CommandManager commandManager;
-    private ModuleCommandManager moduleCommandManager;
     private FileManager fileManager;
     private WrapperManager wrapperManager;
     private PortManager portManager;
@@ -124,7 +122,6 @@ public class LiptonMaster {
         wrapperManager = new WrapperManager(this);
 
         commandManager = new CommandManager(colouredConsoleProvider, colouredConsoleProvider.getScanner());
-        moduleCommandManager = new ModuleCommandManager(colouredConsoleProvider, colouredConsoleProvider.getScanner());
 
         moduleService = new ModuleService(new File("./liptonMaster/modules"), colouredConsoleProvider);
 
@@ -170,7 +167,6 @@ public class LiptonMaster {
         moduleService.startModules();
 
         commandManager.run();
-        moduleCommandManager.run();
     }
     //</editor-fold>
 
@@ -275,13 +271,8 @@ public class LiptonMaster {
         return authManager;
     }
 
-    public ModuleCommandManager getModuleCommandManager() {
-        return moduleCommandManager;
-    }
-
     public EventManager getEventManager() {
         return eventManager;
     }
-
     //</editor-fold>
 }

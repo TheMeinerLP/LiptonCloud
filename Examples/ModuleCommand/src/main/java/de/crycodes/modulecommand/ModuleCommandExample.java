@@ -1,24 +1,24 @@
-package de.crycodes.testmodule.commands;
+package de.crycodes.modulecommand;
 
 import de.crycodes.de.spacebyter.liptoncloud.addon.command.ModuleCommand;
 import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 
 /**
  * Coded By CryCodes
- * Class: TestCommand
- * Date : 19.07.2020
- * Time : 21:32
+ * Class: ModuleCommandExample
+ * Date : 20.07.2020
+ * Time : 11:59
  * Project: LiptonCloud
  */
 
-public class TestCommand extends ModuleCommand {
+public class ModuleCommandExample extends ModuleCommand {
 
-    public TestCommand(String name, String description, String... aliases) {
-        super(name, description, aliases);
+    public ModuleCommandExample() {
+        super("test", "This is an TestCommand!", "simple", "aliases");
     }
 
     public boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args) {
-        System.out.println("TEST");
+        //EXECUTE LOGIC
         return false;
     }
 }

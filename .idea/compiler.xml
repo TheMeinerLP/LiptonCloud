@@ -6,11 +6,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="CloudCommand" />
+        <module name="EventSystem" />
         <module name="LiptonMaster" />
         <module name="LiptonWrapper" />
         <module name="Module" />
+        <module name="Event" />
         <module name="Library" />
         <module name="LiptonBridge" />
+        <module name="ModuleCommand" />
         <module name="CommandSystem" />
       </profile>
     </annotationProcessing>
@@ -19,7 +23,6 @@
       <module name="BungeeBase" target="1.5" />
       <module name="CloudFlare" target="8" />
       <module name="Command" target="1.5" />
-      <module name="Event" target="1.5" />
       <module name="LiptopnBridge" target="8" />
       <module name="Listener" target="1.5" />
       <module name="Master" target="8" />

@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>LiptonBridge</module>
+        <module>Event</module>
     </modules>
 
 
