@@ -36,10 +36,10 @@ public class SignConfig {
 
         return document.getDocument(group.toUpperCase());
     }
-    public HashMap<Integer, LinkedTreeMap<String, Object>> getSignsAfterGroup(String group){
+    public HashMap<Integer, HashMap<String, Object>> getSignsAfterGroup(String group){
         if (getSignDocumentAfterGroup(group.toUpperCase()) == null) {
             System.out.println("GROUP NOT FOUND");
-            return new HashMap<Integer, LinkedTreeMap<String, Object>>();
+            return new HashMap<>();
         }
 
         final Document document = getSignDocumentAfterGroup(group.toUpperCase());
@@ -47,12 +47,12 @@ public class SignConfig {
         assert document != null;
 
         if (document.getObject("signs", HashMap.class) == null )
-            return new HashMap<Integer, LinkedTreeMap<String, Object>>();
+            return new HashMap<>();
 
         return document.getObject("signs", HashMap.class);
     }
 
-    public void insertUpdatedSigns(Map<Integer, LinkedTreeMap<String, Object>> map, String group){
+    public void insertUpdatedSigns(Map<Integer, HashMap<String, Object>> map, String group){
         final Document currentDoc = getSignDocumentAfterGroup(group.toUpperCase());
 
         if (getSignDocumentAfterGroup(group.toUpperCase()) == null) {

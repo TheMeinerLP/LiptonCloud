@@ -41,7 +41,7 @@ public class CreateSignCommand implements CommandExecutor {
 
                     final CloudSign sign = new CloudSign(player.getTargetBlock(materials, 5).getLocation(), serverGroup);
 
-                    plugin.getSignCreator().createSign(sign, serverGroup);
+                    plugin.getSignCreator().createSign(sign, serverGroup.toUpperCase());
 
                         Block block = Bukkit.getWorld(sign.getWorld()).getBlockAt(sign.getX(),sign.getY(),sign.getZ());
                         Sign signBlock = (Sign) block.getState();

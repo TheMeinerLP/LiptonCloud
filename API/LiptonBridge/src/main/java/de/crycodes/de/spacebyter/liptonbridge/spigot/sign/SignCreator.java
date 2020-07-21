@@ -24,15 +24,24 @@ public class SignCreator {
 
     public void createSign(CloudSign cloudSign,String group){
 
-        HashMap<Integer, LinkedTreeMap<String, Object>> signs = this.signConfig.getSignsAfterGroup(group);
+        HashMap<Integer, HashMap<String, Object>> signs = this.signConfig.getSignsAfterGroup(group);
 
-        LinkedTreeMap<String, Object> map = new LinkedTreeMap<>();
+        HashMap<String, Object> map = new HashMap<>();
         map.put("world", cloudSign.getWorld());
         map.put("x", cloudSign.getX());
         map.put("y", cloudSign.getY());
         map.put("z", cloudSign.getZ());
 
-        signs.put(signs.size() + 1, map);
+        int id = signs.keySet().size();
+
+        System.out.println(signs.keySet());
+
+        id++;
+
+        signs.put(id, map);
+
+        System.out.println("ADDED: " + group);
+        System.out.println("ID: " + id);
 
         this.signConfig.insertUpdatedSigns(signs,group);
     }

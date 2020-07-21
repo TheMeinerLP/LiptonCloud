@@ -70,11 +70,23 @@ public class SignUpdater implements Runnable{
 
                 int serverId = current.getId();
 
-                HashMap<Integer, LinkedTreeMap<String, Object>> signs = signCreator.getSignConfig().getSignsAfterGroup(groupName);
+                HashMap<Integer, HashMap<String, Object>> signs = signCreator.getSignConfig().getSignsAfterGroup(groupName);
 
-                System.out.println(signs.get(serverId));
+                //DEBUG
+                System.out.println(signs.keySet());
+                System.out.println(serverId);
 
-                LinkedTreeMap<String, Object> cloudSign = signs.get(serverId);
+
+
+                System.out.println(signs);
+
+                if (signs.get(serverId) == null)
+                    System.out.println("MAP BEINHALTET NICHT KEY: " + serverId);
+                //DEBUG
+
+
+
+                HashMap<String, Object> cloudSign = signs.get(serverId);
 
                 if (cloudSign == null)
                     return;
@@ -84,8 +96,6 @@ public class SignUpdater implements Runnable{
                         ,(Double) cloudSign.get("x")
                         ,(Double) cloudSign.get("y")
                         ,(Double) cloudSign.get("z") );
-
-                System.out.println();
 
                 try {
                     serverPinger.pingServer(current.getHost(), current.getPort(), 2500);
@@ -99,6 +109,7 @@ public class SignUpdater implements Runnable{
     }
 
     public void createSign(Location location, String serverName, int min, int max,String motd) {
+
         Block blockAt = plugin.getServer().getWorld("world").getBlockAt(location);
 
         if (!blockAt.getType().equals(Material.WALL_SIGN)) return;
