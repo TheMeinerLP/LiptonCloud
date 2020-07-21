@@ -5,6 +5,7 @@ import de.crycodes.de.spacebyter.liptonbridge.spigot.LiptonSpigotBridge;
 import de.crycodes.de.spacebyter.liptonbridge.spigot.enums.SignState;
 import de.crycodes.de.spacebyter.liptonbridge.spigot.objects.CloudSign;
 import de.crycodes.de.spacebyter.liptonbridge.spigot.util.ServerPinger;
+import de.crycodes.de.spacebyter.liptoncloud.config.Document;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import org.bukkit.Bukkit;
@@ -19,6 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Coded By CryCodes
@@ -70,32 +72,30 @@ public class SignUpdater implements Runnable{
 
                 int serverId = current.getId();
 
-                HashMap<Integer, HashMap<String, Object>> signs = signCreator.getSignConfig().getSignsAfterGroup(groupName);
+                if (this.signCreator.getSignConfig().getSignGroupAfterName(groupName) == null) {
+                    System.out.println("NO SERVERSIGNS FOUND!");
+                    return;
+                }
+
+                HashMap<Integer, CloudSign> signs = this.signCreator.getSignConfig().getSignGroupAfterName(groupName).getCloudSignHashMap();
 
                 //DEBUG
-                System.out.println(signs.keySet());
-                System.out.println(serverId);
-
-
 
                 System.out.println(signs);
 
-                if (signs.get(serverId) == null)
-                    System.out.println("MAP BEINHALTET NICHT KEY: " + serverId);
                 //DEBUG
 
-
-
-                HashMap<String, Object> cloudSign = signs.get(serverId);
+                CloudSign cloudSign = signs.get(serverId);
 
                 if (cloudSign == null)
                     return;
 
-                Location bukkitLocation = new Location(Bukkit.getWorld((String)
-                        cloudSign.get("world"))
-                        ,(Double) cloudSign.get("x")
-                        ,(Double) cloudSign.get("y")
-                        ,(Double) cloudSign.get("z") );
+                Location bukkitLocation = new Location(Bukkit.getWorld(
+                        cloudSign.getWorld())
+                        ,cloudSign.getX()
+                        ,cloudSign.getY()
+                        ,cloudSign.getZ()
+                );
 
                 try {
                     serverPinger.pingServer(current.getHost(), current.getPort(), 2500);

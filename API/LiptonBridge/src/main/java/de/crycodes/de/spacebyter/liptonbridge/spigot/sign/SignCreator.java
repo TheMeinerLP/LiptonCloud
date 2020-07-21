@@ -2,6 +2,8 @@ package de.crycodes.de.spacebyter.liptonbridge.spigot.sign;
 
 import com.google.gson.internal.LinkedTreeMap;
 import de.crycodes.de.spacebyter.liptonbridge.spigot.objects.CloudSign;
+import de.crycodes.de.spacebyter.liptonbridge.spigot.objects.SignGroup;
+import org.checkerframework.checker.units.qual.C;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -22,31 +24,30 @@ public class SignCreator {
         this.signConfig = signConfig;
     }
 
-    public void createSign(CloudSign cloudSign,String group){
-
-        HashMap<Integer, HashMap<String, Object>> signs = this.signConfig.getSignsAfterGroup(group);
-
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("world", cloudSign.getWorld());
-        map.put("x", cloudSign.getX());
-        map.put("y", cloudSign.getY());
-        map.put("z", cloudSign.getZ());
-
-        int id = signs.keySet().size();
-
-        System.out.println(signs.keySet());
-
-        id++;
-
-        signs.put(id, map);
-
-        System.out.println("ADDED: " + group);
-        System.out.println("ID: " + id);
-
-        this.signConfig.insertUpdatedSigns(signs,group);
+    public SignGroup getSignGroup(String group){
+        if (signConfig.getSignGroupAfterName(group) == null)
+            return new SignGroup(group.toUpperCase());
+        return signConfig.getSignGroupAfterName(group);
     }
 
     public SignConfig getSignConfig() {
         return signConfig;
+    }
+
+    public void createSign(CloudSign sign, String group) {
+        SignGroup signGroup;
+
+        if (signConfig.getSignGroupAfterName(group) == null) {
+            signGroup = new SignGroup(group.toUpperCase());
+        } else {
+            signGroup = this.signConfig.getSignGroupAfterName(group);
+        }
+        if (signGroup.getCloudSignHashMap().containsValue(sign)) return;
+
+        HashMap<Integer, CloudSign> cloudSignHashMap = signGroup.getCloudSignHashMap();
+
+        cloudSignHashMap.put(cloudSignHashMap.keySet().size() + 1, sign);
+
+        this.signConfig.addOrReplace(signGroup);
     }
 }

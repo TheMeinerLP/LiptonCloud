@@ -23,7 +23,6 @@ public class ProxyFileConfig {
 
     private String server_start_message;
     private String server_stop_message;
-    private String server_online_message;
 
     private Boolean useProxyConfig;
     private Boolean useNotify;
@@ -44,9 +43,8 @@ public class ProxyFileConfig {
             document.append("maintenanceKickMessage", "§bLipton Cloud\n§7We are in maintenance mode");
             document.append("maintenanceVersionString", "§7[§bWartungsmodus§7]");
 
-            document.append("server_start_message", "[STARTING]> {SERVER} - {WRAPPER} - {GROUP}");
-            document.append("server_stop_message", "[STOPPING]> {SERVER} - {WRAPPER} - {GROUP}");
-            document.append("server_online_message", "[ONLINE]> {SERVER} - {WRAPPER} - {GROUP}");
+            document.append("server_start_message", "The Server '{SERVER}' is starting on Wrapper '{WRAPPER}' with Group '{GROUP}'");
+            document.append("server_stop_message", "The Server '{SERVER}' is stopping on Wrapper '{WRAPPER}'");
             document.append("useNotify", true);
 
             document.append("useProxyConfig", true);
@@ -74,7 +72,6 @@ public class ProxyFileConfig {
 
         this.useNotify = document.getBoolean("useNotify");
         this.server_start_message = document.getString("server_start_message");
-        this.server_online_message = document.getString("server_online_message");
         this.server_stop_message = document.getString("server_stop_message");
     }
     //</editor-fold>
@@ -118,10 +115,6 @@ public class ProxyFileConfig {
 
     public String getServer_stop_message() {
         return server_stop_message;
-    }
-
-    public String getServer_online_message() {
-        return server_online_message;
     }
 
     public Boolean getUseNotify() {

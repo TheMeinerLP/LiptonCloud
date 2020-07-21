@@ -1,16 +1,19 @@
 package de.crycodes.de.spacebyter.liptonbridge.spigot.sign;
 
-import com.google.gson.internal.LinkedTreeMap;
-import de.crycodes.de.spacebyter.liptonbridge.spigot.objects.CloudSign;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import de.crycodes.de.spacebyter.liptonbridge.spigot.objects.SignGroup;
 import de.crycodes.de.spacebyter.liptoncloud.config.Document;
+import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 
-import javax.print.Doc;
 import java.io.File;
 import java.util.*;
 
+
 /**
  * Coded By CryCodes
- * Class: SignConfig
+ * Class: Signdocument
  * Date : 20.07.2020
  * Time : 15:21
  * Project: LiptonCloud
@@ -20,6 +23,8 @@ public class SignConfig {
 
     private File signFile = new File("./../../../../resources/signs.json");
     private Document document;
+    
+    private final String listKey = "signs";
 
     public SignConfig() {
         if(!(signFile.exists())) {
@@ -29,45 +34,20 @@ public class SignConfig {
         document = Document.loadDocument(signFile);
     }
 
-    private Document getSignDocumentAfterGroup(String group){
+    public void addOrReplace(SignGroup serverGroupMeta){
         this.document = Document.loadDocument(signFile);
-        if (!document.contains(group.toUpperCase()))
-            return null;
 
-        return document.getDocument(group.toUpperCase());
-    }
-    public HashMap<Integer, HashMap<String, Object>> getSignsAfterGroup(String group){
-        if (getSignDocumentAfterGroup(group.toUpperCase()) == null) {
-            System.out.println("GROUP NOT FOUND");
-            return new HashMap<>();
-        }
+        document.append(serverGroupMeta.getName().toUpperCase(), serverGroupMeta);
 
-        final Document document = getSignDocumentAfterGroup(group.toUpperCase());
-
-        assert document != null;
-
-        if (document.getObject("signs", HashMap.class) == null )
-            return new HashMap<>();
-
-        return document.getObject("signs", HashMap.class);
-    }
-
-    public void insertUpdatedSigns(Map<Integer, HashMap<String, Object>> map, String group){
-        final Document currentDoc = getSignDocumentAfterGroup(group.toUpperCase());
-
-        if (getSignDocumentAfterGroup(group.toUpperCase()) == null) {
-            this.document = Document.loadDocument(signFile);
-            final Document signDoc = new Document();
-            signDoc.append("signs", map);
-            document.append(group, signDoc);
-            document.saveAsConfig(this.signFile);
-            return;
-        }
-
-        currentDoc.append("signs", map);
-
-        this.document = Document.loadDocument(signFile);
-        document.append(group, currentDoc);
         document.saveAsConfig(signFile);
     }
+
+
+    public SignGroup getSignGroupAfterName(String name){
+        if (this.document.contains(name.toUpperCase()))
+            return document.getObject(name.toUpperCase(), SignGroup.class);
+
+        return new SignGroup(name.toUpperCase());
+    }
+
 }

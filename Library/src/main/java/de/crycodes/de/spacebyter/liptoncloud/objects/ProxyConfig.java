@@ -36,11 +36,10 @@ public class ProxyConfig implements Serializable {
 
     private final String server_start_message;
     private final String server_stop_message;
-    private final String server_online_message;
 
     private final Boolean useNotify;
 
-    public ProxyConfig(List<ServerMeta> globalServers, List<WrapperMeta> globalWrappers, List<ProxyMeta> globalProxys, boolean isMaintenance, List<String> maintenancePlayer, List<ServerGroupMeta> globalServerGroups, List<String> cloudAdminPlayers, String tablist_top, String tablist_bottom, String default_motd, String maintenance_motd, String maintenanceVersionString, int maxPlayer, boolean useProxyConfig, String maintenanceKickMessage, String server_start_message, String server_stop_message, String server_online_message, Boolean useNotify) {
+    public ProxyConfig(List<ServerMeta> globalServers, List<WrapperMeta> globalWrappers, List<ProxyMeta> globalProxys, boolean isMaintenance, List<String> maintenancePlayer, List<ServerGroupMeta> globalServerGroups, List<String> cloudAdminPlayers, String tablist_top, String tablist_bottom, String default_motd, String maintenance_motd, String maintenanceVersionString, int maxPlayer, boolean useProxyConfig, String maintenanceKickMessage, String server_start_message, String server_stop_message, Boolean useNotify) {
         this.globalServers = globalServers;
         this.globalWrappers = globalWrappers;
         this.globalProxys = globalProxys;
@@ -58,7 +57,6 @@ public class ProxyConfig implements Serializable {
         this.maintenanceKickMessage = maintenanceKickMessage;
         this.server_start_message = server_start_message;
         this.server_stop_message = server_stop_message;
-        this.server_online_message = server_online_message;
         this.useNotify = useNotify;
     }
 
@@ -128,10 +126,6 @@ public class ProxyConfig implements Serializable {
 
     public String getServer_stop_message() {
         return server_stop_message;
-    }
-
-    public String getServer_online_message() {
-        return server_online_message;
     }
 
     public Boolean getUseNotify() {

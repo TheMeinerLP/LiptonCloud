@@ -60,7 +60,6 @@ public class ConfigHandler {
                         liptonMaster.getProxyFileConfig().getMaintenanceKickMessage(),
                         liptonMaster.getProxyFileConfig().getServer_start_message(),
                         liptonMaster.getProxyFileConfig().getServer_stop_message(),
-                        liptonMaster.getProxyFileConfig().getServer_online_message(),
                         liptonMaster.getProxyFileConfig().getUseNotify());
 
                 ServerConfig serverConfig = new ServerConfig(
