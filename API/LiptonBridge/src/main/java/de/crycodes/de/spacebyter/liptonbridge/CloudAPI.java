@@ -94,7 +94,7 @@ public class CloudAPI {
                         ,"§7[§bWartungsmodus§7]",
                         50,
                         true,
-                        "§bLipton Cloud\n§7We are in maintenance mode", "server_start_message", "server_stop_message", "server_online_message", false);
+                        "§bLipton Cloud\n§7We are in maintenance mode", "server_start_message", "server_stop_message", false);
             } else {
                 return LiptonBungeeBridge.getInstance().getProxyConfig();
             }

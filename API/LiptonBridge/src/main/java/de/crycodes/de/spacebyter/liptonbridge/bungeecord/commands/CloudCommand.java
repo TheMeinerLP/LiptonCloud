@@ -81,6 +81,27 @@ public class CloudCommand extends Command implements TabExecutor {
                     break;
                 }
 
+                if (args[0].equalsIgnoreCase("stop")){
+                    //TODO: SEND PACKET
+
+                    break;
+                }
+                if (args[0].equalsIgnoreCase("reload")){
+                    //TODO: SEND PACKET
+
+                    break;
+                }
+                if (args[0].equalsIgnoreCase("info")){
+                    //TODO: SEND INFO
+
+                    break;
+                }
+                if (args[0].equalsIgnoreCase("modules")){
+                    //TODO: SEND PACKET
+
+                    break;
+                }
+
                 if(args[0].equalsIgnoreCase("list")) {
                     player.sendMessage(format(LiptonBungeeBridge.getInstance().getPREFIX() + "Online: "));
                     plugin.getCloudAPI().getProxyConfig().getGlobalWrappers().forEach(wrappers -> {
@@ -112,12 +133,21 @@ public class CloudCommand extends Command implements TabExecutor {
     private void sendUsage(@ShouldNotBeNull ProxiedPlayer player) {
         player.sendMessage(format(plugin.getPREFIX() + "§bCloud Commands§7:"));
         player.sendMessage(format(" "));
+
+        player.sendMessage(format(plugin.getPREFIX() + "/cloud <restart> <group>"));
+
         player.sendMessage(format(plugin.getPREFIX() + "§7/cloud listProxys"));
         player.sendMessage(format(plugin.getPREFIX() + "§7/cloud listServers"));
         player.sendMessage(format(plugin.getPREFIX() + "§7/cloud listWrappers"));
         player.sendMessage(format(plugin.getPREFIX() + "§7/cloud listGroups"));
         player.sendMessage(format(plugin.getPREFIX() + "§7/cloud list"));
         player.sendMessage(format(plugin.getPREFIX() + "§7/cloud version"));
+        player.sendMessage(format(plugin.getPREFIX() + "/cloud <stop>"));
+        player.sendMessage(format(plugin.getPREFIX() + "/cloud <reload>"));
+        player.sendMessage(format(plugin.getPREFIX() + "/cloud <info>"));
+        player.sendMessage(format(plugin.getPREFIX() + "/cloud <modules>"));
+
+
     }
     //</editor-fold>
 

@@ -22,6 +22,11 @@ public class AsciiPrinter {
             logger.info(Color.RED + "        \\/  |__|                    \\/        \\/                       \\/ ");
             logger.info("Coded by CryCodes, SpaceByter, ErazeYT & CoderPVP");
             logger.info("");
+            logger.info("   Java-Version: " + PropertiesUtils.JAVA_VERSION);
+            logger.info("   Os-System: " + PropertiesUtils.OS_NAME);
+            logger.info("   Os-Architecture: " + PropertiesUtils.OS_ARCH);
+            logger.info("   UserName: " + PropertiesUtils.USER_NAME);
+            logger.info("");
             return;
         }
         logger.info(".____    .__        __                _________ .__                   .___");
@@ -31,6 +36,11 @@ public class AsciiPrinter {
         logger.info("|_______ \\__|   __/|__|  \\____/|___|  /\\______  /____/\\____/|____/\\____ | ");
         logger.info("        \\/  |__|                    \\/        \\/                       \\/ ");
         logger.info("Coded by CryCodes, SpaceByter, ErazeYT & CoderPVP");
+        logger.info("");
+        logger.info("   Java-Version: " + PropertiesUtils.JAVA_VERSION);
+        logger.info("   Os-System: " + PropertiesUtils.OS_NAME);
+        logger.info("   Os-Architecture: " + PropertiesUtils.OS_ARCH);
+        logger.info("   UserName: " + PropertiesUtils.USER_NAME);
         logger.info("");
 
     }

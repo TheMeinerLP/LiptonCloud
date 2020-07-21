@@ -43,8 +43,8 @@ public class ProxyFileConfig {
             document.append("maintenanceKickMessage", "§bLipton Cloud\n§7We are in maintenance mode");
             document.append("maintenanceVersionString", "§7[§bWartungsmodus§7]");
 
-            document.append("server_start_message", "The Server '{SERVER}' is starting on Wrapper '{WRAPPER}' with Group '{GROUP}'");
-            document.append("server_stop_message", "The Server '{SERVER}' is stopping on Wrapper '{WRAPPER}'");
+            document.append("server_start_message", "The Server '{SERVER}' is §astarting§7 on Wrapper '{WRAPPER}' with Group '{GROUP}'");
+            document.append("server_stop_message", "The Server '{SERVER}' is §cstopping§7 on Wrapper '{WRAPPER}'");
             document.append("useNotify", true);
 
             document.append("useProxyConfig", true);

@@ -15,6 +15,7 @@ import de.crycodes.de.spacebyter.liptoncloud.library.JarInjector;
 import de.crycodes.de.spacebyter.liptoncloud.scheduler.Scheduler;
 import de.crycodes.de.spacebyter.liptoncloud.setup.impl.WrapperSetup;
 import de.crycodes.de.spacebyter.liptoncloud.time.Counter;
+import de.crycodes.de.spacebyter.liptoncloud.utils.AsciiPrinter;
 import de.crycodes.de.spacebyter.liptoncloud.utils.DeletUtils;
 import de.crycodes.de.spacebyter.liptoncloud.versions.SpigotVersions;
 import de.crycodes.de.spacebyter.manager.DeleteServerManager;
@@ -66,7 +67,7 @@ public class LiptonWrapper {
     //</editor-fold>
 
     //<editor-fold desc="LiptonWrapper">
-    public LiptonWrapper() throws IOException, InvocationTargetException, NoSuchMethodException, IllegalAccessException, NoSuchFieldException {
+    public LiptonWrapper() throws IOException, InvocationTargetException, NoSuchMethodException, IllegalAccessException, NoSuchFieldException, InterruptedException {
         isrunning = true;
 
         counter = new Counter();
@@ -80,13 +81,19 @@ public class LiptonWrapper {
         jarInjector = new JarInjector(new File("./liptonWrapper/librarys/"));
 
         if (!wrapperConfig.isSetupDone()){
+            colouredConsoleProvider = new ColouredConsoleProvider(new File("./liptonWrapper/logs"), false);
+            new AsciiPrinter().Print(this.colouredConsoleProvider, false);
+
             WrapperSetup wrapperSetup = new WrapperSetup();
             wrapperSetup.start(new Scanner(System.in));
             wrapperConfig.createFromSetup(wrapperSetup.getGroupName(),wrapperSetup.getColor(),wrapperSetup.getMasterhost());
-            new LiptonWrapper();
+            colouredConsoleProvider.info("Wrapper will restart in 3 Seconds!");
+            Thread.sleep(3000);
+            System.exit(ExitState.STOPPED_SUCESS.getState());
         }
 
-        colouredConsoleProvider = new ColouredConsoleProvider(new File("./liptonWrapper/logs"), wrapperConfig.isColorUse());
+        colouredConsoleProvider = new ColouredConsoleProvider(new File("./liptonWrapper/logs"), this.wrapperConfig.isColorUse());
+
 
         versionsManager = new VersionsManager(wrapperConfig, this);
 
@@ -105,6 +112,8 @@ public class LiptonWrapper {
             System.exit(ExitState.TERMINATED.getState());
         }
 
+
+
         screenManager = new ScreenManager();
 
         scheduler = new Scheduler();
@@ -116,7 +125,7 @@ public class LiptonWrapper {
 
         liptonLibrary.registerPacket(packetHandler);
 
-        liptonLibrary.printAscii();
+        new AsciiPrinter().Print(this.colouredConsoleProvider, wrapperConfig.isColorUse());
 
         wrapperMasterClient = new WrapperMasterClient(this.wrapperConfig.getHost(), this.wrapperConfig.getPort(), this).start();
 

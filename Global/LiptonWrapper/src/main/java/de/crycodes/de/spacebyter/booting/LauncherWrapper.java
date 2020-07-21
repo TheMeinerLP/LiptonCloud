@@ -16,8 +16,12 @@ import java.lang.reflect.InvocationTargetException;
 public class LauncherWrapper {
 
     //<editor-fold desc="Main Method">
-    public static void main(String[] args) throws IOException, NoSuchMethodException, NoSuchFieldException, IllegalAccessException, InvocationTargetException {
-        new LiptonWrapper();
+    public static void main(String[] args) {
+        try {
+            new LiptonWrapper();
+        } catch (IOException | InvocationTargetException | NoSuchMethodException | IllegalAccessException | NoSuchFieldException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
     //</editor-fold>
 }
