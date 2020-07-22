@@ -81,7 +81,7 @@ public class LiptonMaster {
     //</editor-fold>
 
     //<editor-fold desc="LiptonMaster">
-    public LiptonMaster() throws IOException, InvocationTargetException, IllegalAccessException {
+    public LiptonMaster() {
         instance = this;
         counter = new Counter();
         counter.start();

@@ -1,7 +1,6 @@
 package de.crycodes.de.spacebyter.commands;
 
 import de.crycodes.de.spacebyter.LiptonMaster;
-import de.crycodes.de.spacebyter.LiptonMasterService;
 import de.crycodes.de.spacebyter.liptoncloud.command.CloudCommand;
 import de.crycodes.de.spacebyter.liptoncloud.console.CloudConsole;
 

@@ -71,7 +71,7 @@ public class LiptonWrapper {
     //</editor-fold>
 
     //<editor-fold desc="LiptonWrapper">
-    public LiptonWrapper() throws IOException, InvocationTargetException, NoSuchMethodException, IllegalAccessException, NoSuchFieldException, InterruptedException {
+    public LiptonWrapper() {
         isrunning = true;
 
         counter = new Counter();
@@ -97,7 +97,9 @@ public class LiptonWrapper {
             wrapperSetup.start(colouredConsoleProvider);
             wrapperConfig.createFromSetup(wrapperSetup.getGroupName(),wrapperSetup.getColor(),wrapperSetup.getMasterhost());
             colouredConsoleProvider.getLogger().info("Wrapper will restart in 3 Seconds!");
-            Thread.sleep(3000);
+
+            try { Thread.sleep(3000); } catch (InterruptedException e) { e.printStackTrace(); }
+
             System.exit(ExitState.STOPPED_SUCESS.getState());
         }
 

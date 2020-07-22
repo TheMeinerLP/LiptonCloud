@@ -34,19 +34,23 @@ public class LoggerProvider {
 
     private Thread sideThread;
 
-    public LoggerProvider(final File location) throws IOException {
+    public LoggerProvider(final File location) {
 
-        this.consoleReader = new ConsoleReader(System.in, System.out);
-        this.consoleReader.setExpandEvents(false);
+        try {
+            this.consoleReader = new ConsoleReader(System.in, System.out);
+            this.consoleReader.setExpandEvents(false);
 
-        AnsiConsole.systemInstall();
+            AnsiConsole.systemInstall();
 
-        Handler fileHandler = new FileHandler(location.getCanonicalPath() + "/latest", Integer.MAX_VALUE, 8, true);
-        fileHandler.setFormatter(new SimpleFormatter(simpleDateFormat));
-        fileHandler.setLevel(Level.ALL);
-        fileHandler.setEncoding(StandardCharsets.UTF_8.name());
-        loggerHandler.addHandler(fileHandler);
+            Handler fileHandler = new FileHandler(location.getCanonicalPath() + "/latest", Integer.MAX_VALUE, 8, true);
+            fileHandler.setFormatter(new SimpleFormatter(simpleDateFormat));
+            fileHandler.setLevel(Level.ALL);
+            fileHandler.setEncoding(StandardCharsets.UTF_8.name());
+            loggerHandler.addHandler(fileHandler);
 
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
 
         sideThread =  new Thread(){
 

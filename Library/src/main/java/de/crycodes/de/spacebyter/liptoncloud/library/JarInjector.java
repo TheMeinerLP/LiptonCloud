@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class JarInjector {
     private Method currentMethod;
     private Field currentField;
 
-    public JarInjector(File location) throws IOException, IllegalAccessException, InvocationTargetException {
+    public JarInjector(File location) {
 
         Thread.currentThread().setContextClassLoader(ClassLoader.getSystemClassLoader());
 
@@ -55,7 +56,11 @@ public class JarInjector {
         libraryDownloader = new LibraryDownloader();
 
         for (Library library : libraries){
-            libraryDownloader.downloadLibrary(library, location);
+            try {
+                libraryDownloader.downloadLibrary(library, location);
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
 
             System.out.println("found Library to install: '" + library.getName() + "' trying to inject into System!");
 
@@ -63,7 +68,11 @@ public class JarInjector {
 
             if (currentLibrary.exists()){
                 if (currentLibrary.getName().endsWith("jar")){
-                    urls.add(currentLibrary.toURI().toURL());
+                    try {
+                        urls.add(currentLibrary.toURI().toURL());
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
@@ -83,6 +92,8 @@ public class JarInjector {
             } catch (NoSuchFieldException | NoSuchMethodException e) {
                 String[] name = url.getFile().split("/");
                 System.out.println("Error while injecting: " + name[name.length -1] + "!");
+            } catch (IllegalAccessException | InvocationTargetException e) {
+                e.printStackTrace();
             }
 
         }

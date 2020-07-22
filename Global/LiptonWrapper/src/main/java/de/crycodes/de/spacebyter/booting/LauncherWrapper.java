@@ -17,11 +17,7 @@ public class LauncherWrapper {
 
     //<editor-fold desc="Main Method">
     public static void main(String[] args) {
-        try {
-            new LiptonWrapper();
-        } catch (IOException | InvocationTargetException | NoSuchMethodException | IllegalAccessException | NoSuchFieldException | InterruptedException e) {
-            e.printStackTrace();
-        }
+        new LiptonWrapper();
     }
     //</editor-fold>
 }
