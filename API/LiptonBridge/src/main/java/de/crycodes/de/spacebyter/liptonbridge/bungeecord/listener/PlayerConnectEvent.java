@@ -43,11 +43,8 @@ public class PlayerConnectEvent implements Listener {
 
         if(!(plugin.getProxyConfig().isUseProxyConfig())) return;
 
-        String tablistTop = plugin.getProxyConfig().getTablist_top().replace("{SERVER}", event.getPlayer().getServer().getInfo().getName()).replace("{PLAYERS}", plugin.getProxy().getPlayers().size() + "");
-        String tablistBottom = plugin.getProxyConfig().getTablist_bottom().replace("{SERVER}", event.getPlayer().getServer().getInfo().getName()).replace("{PLAYERS}", plugin.getProxy().getPlayers().size() + "");
-
-        ChatColor.translateAlternateColorCodes('&', tablistTop);
-        ChatColor.translateAlternateColorCodes('&', tablistBottom);
+        String tablistTop = plugin.getProxyConfig().getTablist_top().replace("{SERVER}", event.getPlayer().getServer().getInfo().getName()).replace("{PLAYERS}", plugin.getProxy().getPlayers().size() + "").replace("&", "§");
+        String tablistBottom = plugin.getProxyConfig().getTablist_bottom().replace("{SERVER}", event.getPlayer().getServer().getInfo().getName()).replace("{PLAYERS}", plugin.getProxy().getPlayers().size() + "").replace("&", "§");
 
         event.getPlayer().setTabHeader(new TextComponent(tablistTop), new TextComponent(tablistBottom));
     }
