@@ -35,6 +35,8 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Coded By CryCodes
@@ -51,29 +53,37 @@ public class LiptonWrapper {
 
     private CloudConsole colouredConsoleProvider;
     private LoggerProvider loggerProvider;
-
     private CommandManager commandManager;
+
     private FileManager fileManager;
     private WrapperConfig wrapperConfig;
+
     private LiptonLibrary liptonLibrary;
     private PacketHandler packetHandler;
-    private WrapperMasterClient wrapperMasterClient;
     private Scheduler scheduler;
+    private JarInjector jarInjector;
+    private EventManager eventManager;
+
+    private WrapperMasterClient wrapperMasterClient;
+
     private VersionsManager versionsManager;
+
     private Counter counter;
+
     private TemplateManager templateManager;
-    private ServerStartHandler serverStartHandler;
     private ServerFileManager serverFileManager;
     private ScreenManager screenManager;
     private DeleteServerManager deleteServerManager;
-    private JarInjector jarInjector;
-    private EventManager eventManager;
     private ScreenPrinter screenPrinter;
+
+    private ExecutorService pool = Executors.newCachedThreadPool();
     //</editor-fold>
 
     //<editor-fold desc="LiptonWrapper">
     public LiptonWrapper() {
         isrunning = true;
+
+
 
         counter = new Counter();
         counter.start();
@@ -94,14 +104,24 @@ public class LiptonWrapper {
         if (!wrapperConfig.isSetupDone()){
             new AsciiPrinter().Print(this.colouredConsoleProvider);
 
-            try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                System.exit(ExitState.TERMINATED.getState());
+            }
 
             WrapperSetup wrapperSetup = new WrapperSetup();
             wrapperSetup.start(colouredConsoleProvider);
             wrapperConfig.createFromSetup(wrapperSetup.getGroupName(),wrapperSetup.getMasterhost());
             colouredConsoleProvider.getLogger().info("Wrapper will restart in 3 Seconds!");
 
-            try { Thread.sleep(3000); } catch (InterruptedException e) { e.printStackTrace(); }
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                System.exit(ExitState.TERMINATED.getState());
+            }
 
             System.exit(ExitState.STOPPED_SUCESS.getState());
         }
@@ -145,7 +165,6 @@ public class LiptonWrapper {
 
         templateManager = new TemplateManager(this);
         serverFileManager = new ServerFileManager(this);
-        serverStartHandler = new ServerStartHandler(this);
 
         deleteServerManager = new DeleteServerManager(this);
 
@@ -211,10 +230,6 @@ public class LiptonWrapper {
         return templateManager;
     }
 
-    public ServerStartHandler getServerStartHandler() {
-        return serverStartHandler;
-    }
-
     public ServerFileManager getServerFileManager() {
         return serverFileManager;
     }
@@ -258,5 +273,10 @@ public class LiptonWrapper {
     public LoggerProvider getLoggerProvider() {
         return loggerProvider;
     }
+
+    public ExecutorService getPool() {
+        return pool;
+    }
+
     //</editor-fold>
 }

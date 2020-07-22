@@ -34,6 +34,7 @@ public class AsciiPrinter {
         logger.getLogger().info("   UserName: " + PropertiesUtils.USER_NAME);
         logger.getLogger().info("");
 
+
     }
 
 }

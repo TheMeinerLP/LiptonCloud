@@ -27,6 +27,8 @@ import de.crycodes.de.spacebyter.networking.MasterWrapperServer;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Coded By CryCodes
@@ -78,6 +80,8 @@ public class LiptonMaster {
     private MasterSpigotServer masterSpigotServer;
 
     private BungeeCordManager bungeeCordManager;
+
+    private ExecutorService pool = Executors.newCachedThreadPool();
     //</editor-fold>
 
     //<editor-fold desc="LiptonMaster">
@@ -141,7 +145,7 @@ public class LiptonMaster {
 
         liptonLibrary.printAscii(cloudConsole);
 
-        proxyConfigHandler = new ConfigHandler(this,scheduler).startUpdateThread();
+        proxyConfigHandler = new ConfigHandler(this);
 
 
 
@@ -152,7 +156,6 @@ public class LiptonMaster {
         playerManager = new LiptonPlayerManager(new File("./liptonMaster/database/config.json"));
 
         serverManager = new ServerManager(this, serverGroupConfig);
-        serverManager.start();
 
         bungeeCordManager = new BungeeCordManager(this);
 
@@ -305,5 +308,8 @@ public class LiptonMaster {
         return bungeeCordManager;
     }
 
+    public ExecutorService getPool() {
+        return pool;
+    }
     //</editor-fold>
 }

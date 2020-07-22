@@ -29,7 +29,7 @@ public class PlayerConnectEvent implements Listener {
 
         if(plugin.getProxyConfig().getMaintenance()) {
             ServerPing.Protocol version = ping.getVersion();
-            version.setName(plugin.getProxyConfig().getMaintenanceVersionString());
+            version.setName(plugin.getProxyConfig().getMaintenanceVersionString().replace("&", "§"));
             version.setProtocol(2);
             event.setResponse(ping);
             event.getResponse().setDescriptionComponent(new TextComponent(ChatColor.translateAlternateColorCodes('&', plugin.getProxyConfig().getMaintenance_motd())));
@@ -46,7 +46,10 @@ public class PlayerConnectEvent implements Listener {
         String tablistTop = plugin.getProxyConfig().getTablist_top().replace("{SERVER}", event.getPlayer().getServer().getInfo().getName()).replace("{PLAYERS}", plugin.getProxy().getPlayers().size() + "").replace("&", "§");
         String tablistBottom = plugin.getProxyConfig().getTablist_bottom().replace("{SERVER}", event.getPlayer().getServer().getInfo().getName()).replace("{PLAYERS}", plugin.getProxy().getPlayers().size() + "").replace("&", "§");
 
-        event.getPlayer().setTabHeader(new TextComponent(tablistTop), new TextComponent(tablistBottom));
+        String tabListTopColoredTranslation = ChatColor.translateAlternateColorCodes('&', tablistTop);
+        String tabListColoredTranslation = ChatColor.translateAlternateColorCodes('&', tablistBottom);
+
+        event.getPlayer().setTabHeader(new TextComponent(tabListTopColoredTranslation), new TextComponent(tabListColoredTranslation));
     }
 
     @EventHandler
@@ -79,7 +82,7 @@ public class PlayerConnectEvent implements Listener {
                 ChatColor.translateAlternateColorCodes('&', tablistTopallAll);
                 ChatColor.translateAlternateColorCodes('&', tablistBottomAll);
 
-                players.setTabHeader(new TextComponent(tablistTopallAll), new TextComponent(tablistBottomAll));
+                players.setTabHeader(new TextComponent(tablistTopallAll.replace("&", "§")), new TextComponent(tablistBottomAll.replace("&", "§")));
 
             });
         } catch (Exception ignored){ }

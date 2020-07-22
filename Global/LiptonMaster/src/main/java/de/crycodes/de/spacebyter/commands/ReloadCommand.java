@@ -30,7 +30,6 @@ public class ReloadCommand extends CloudCommand {
         liptonMaster.getServerGroupConfig().getServerMetas();
         liptonMaster.getCommandManager().getModuleCommands().clear();
         liptonMaster.getMasterConfig().reload();
-        liptonMaster.getServerManager().start();
         liptonMaster.getProxyFileConfig().load();
         liptonMaster.getModuleService().loadModules(colouredConsoleProvider);
         liptonMaster.getModuleService().startModules();

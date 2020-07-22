@@ -27,7 +27,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Project: LiptonCloud
  */
 
-public class ServerManager {
+public class ServerManager implements Runnable {
 
     private final LiptonMaster liptonMaster;
     private final ServerGroupConfig serverGroupConfig;
@@ -44,12 +44,14 @@ public class ServerManager {
 
         this.serverGroupConfig = serverGroupConfig;
         this.liptonMaster = liptonMaster;
+
+        liptonMaster.getPool().submit(this);
     }
     //</editor-fold>
 
     //<editor-fold desc="Start - Stop Logic">
-    @ShouldRunAsync
-    public void start(){
+    @Override
+    public void run() {
         tick = liptonMaster.getScheduler().scheduleAsyncWhile(new Runnable() {
             @Override
             public void run() {
@@ -83,6 +85,7 @@ public class ServerManager {
             }
         }, 2500, 2500);
     }
+
     public void stop(){
         liptonMaster.getScheduler().cancelTask(this.tick);
     }
@@ -90,11 +93,11 @@ public class ServerManager {
 
     //<editor-fold desc="StartServer Method">
     public void startServer(@ShouldNotBeNull ServerGroupMeta serverGroupMeta, String wrapperID, boolean autoStart){
-        try {
+        /*try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
         if (getStartedServerByGroup(serverGroupMeta) >= serverGroupMeta.getMaxMemory()) {
             liptonMaster.getCloudConsole().getLogger().error("To many Server's are running of group " + serverGroupMeta.getGroupName());
             return;
@@ -152,6 +155,7 @@ public class ServerManager {
     //</editor-fold>
 
     //<editor-fold desc="UnRegister Method">
+
     public void unregisterServer(String serverName){
         final String name = serverName.toUpperCase();
         if (this.globalServerList.containsKey(name)){
@@ -267,5 +271,7 @@ public class ServerManager {
     public ConcurrentHashMap<String, ServerMeta> getStartedServer() {
         return startedServer;
     }
+
+
     //</editor-fold>
 }

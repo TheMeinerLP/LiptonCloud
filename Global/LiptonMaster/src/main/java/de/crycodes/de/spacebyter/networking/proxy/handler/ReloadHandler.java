@@ -30,7 +30,6 @@ public class ReloadHandler extends PacketHandlerAdapter {
             final ReloadPacket reloadPacket = (ReloadPacket) packet;
             liptonMaster.getServerGroupConfig().getServerMetas();
             liptonMaster.getMasterConfig().reload();
-            liptonMaster.getServerManager().start();
             liptonMaster.getCloudConsole().getLogger().info("Cloud was Reloaded!");
         }
     }

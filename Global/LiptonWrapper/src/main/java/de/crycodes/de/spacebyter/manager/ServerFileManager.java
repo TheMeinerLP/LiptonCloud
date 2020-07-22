@@ -4,6 +4,8 @@ import de.crycodes.de.spacebyter.LiptonWrapper;
 import de.crycodes.de.spacebyter.liptoncloud.config.Document;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import de.crycodes.de.spacebyter.liptoncloud.utils.TextTockens;
+import de.crycodes.de.spacebyter.network.handler.StartServerHandler;
+import de.crycodes.de.spacebyter.server.ServerStartHandler;
 import org.apache.commons.io.FileUtils;
 
 import java.io.*;
@@ -70,7 +72,7 @@ public class ServerFileManager {
 
         document.saveAsConfig(new File(serverDir + "/META.json"));
 
-        liptonWrapper.getServerStartHandler().startServer(serverMeta);
+        new ServerStartHandler(serverMeta,liptonWrapper);
 
     }
     //</editor-fold>

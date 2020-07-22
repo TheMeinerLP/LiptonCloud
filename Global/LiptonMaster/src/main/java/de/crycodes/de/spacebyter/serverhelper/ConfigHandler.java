@@ -19,21 +19,23 @@ import java.util.Arrays;
  * Project: LiptonCloud
  */
 
-public class ConfigHandler {
+public class ConfigHandler implements Runnable {
 
     private final LiptonMaster liptonMaster;
     private final Scheduler scheduler;
 
     //<editor-fold desc="ConfigHandler">
-    public ConfigHandler(LiptonMaster liptonMaster, Scheduler scheduler) {
+    public ConfigHandler(LiptonMaster liptonMaster) {
         this.liptonMaster = liptonMaster;
-        this.scheduler = scheduler;
+        this.scheduler = liptonMaster.getScheduler();
+        liptonMaster.getPool().submit(this);
     }
     //</editor-fold>
 
     //<editor-fold desc="DescstartUpdateThreadription">
-    @ShouldRunAsync
-    public ConfigHandler startUpdateThread(){
+
+    @Override
+    public void run() {
         scheduler.scheduleAsyncWhile(new Runnable() {
             @Override
             public void run() {
@@ -88,8 +90,8 @@ public class ConfigHandler {
             }
         }, 2500, 2500);
 
-        return this;
     }
+
     //</editor-fold>
 
 
