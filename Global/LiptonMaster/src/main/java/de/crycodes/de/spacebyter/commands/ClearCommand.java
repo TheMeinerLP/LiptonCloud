@@ -20,13 +20,9 @@ public class ClearCommand extends CloudCommand {
     }
 
     @Override
-    protected boolean execute(CloudConsole colouredConsoleProvider, String command, String[] args) {
+    public boolean execute(CloudConsole colouredConsoleProvider, String command, String[] args) {
 
-        try {
-            colouredConsoleProvider.getLogger().getConsoleReader().clearScreen();
-        } catch (IOException exception) {
-            exception.printStackTrace();
-        }
+        colouredConsoleProvider.clearScreen();
 
         return false;
     }

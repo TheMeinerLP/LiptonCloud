@@ -4,3 +4,8 @@
 /Global/Master/target/
 /Global/Wrapper/target/
 /Library/target/
+/.idea
+/LiptonCloud.iml
+/Global/LiptonMaster/dependency-reduced-pom.xml
+/Global/LiptonWrapper/dependency-reduced-pom.xml
+/API/LiptonBridge/dependency-reduced-pom.xml

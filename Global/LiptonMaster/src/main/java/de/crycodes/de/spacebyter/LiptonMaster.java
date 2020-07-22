@@ -109,18 +109,7 @@ public class LiptonMaster {
 
         eventManager = new EventManager();
 
-        if (serverGroupConfig.getServerMetaByName("Lobby") == null)
-            serverGroupConfig.create(new ServerGroupMeta("Lobby",
-                    "default", 512,
-                    128,
-                    true,
-                    false ,
-                    10,
-                    2));
-
         scheduler = new Scheduler();
-
-        this.checkKeyManager();
 
         wrapperManager = new WrapperManager(this);
 
@@ -130,8 +119,22 @@ public class LiptonMaster {
 
         cloudConsole = new CloudConsole(loggerProvider, commandManager, PropertiesUtils.USER_NAME);
 
-        liptonLibrary = new LiptonLibrary(scheduler , masterConfig.isColorConsole());
-        liptonLibrary.checkAPIFile(new File("./liptonMaster/api/LiptonBridge-1.0-SNAPSHOT.jar"));
+        if (serverGroupConfig.getServerMetaByName("Lobby") == null)
+            serverGroupConfig.create(new ServerGroupMeta("Lobby",
+                    "default", 512,
+                    128,
+                    true,
+                    false ,
+                    10,
+                    2));
+
+        liptonLibrary = new LiptonLibrary();
+
+
+
+        liptonLibrary.checkAPIFile(cloudConsole, new File("./liptonMaster/api/LiptonBridge-1.0-SNAPSHOT.jar"));
+
+        this.checkKeyManager();
 
         packetHandler = new PacketHandler();
         liptonLibrary.registerPacket(packetHandler, cloudConsole);
@@ -176,7 +179,7 @@ public class LiptonMaster {
     private AuthManager authManager;
     private void checkKeyManager(){
         authManager = new AuthManager(new File("./liptonMaster/KEY.json"), new File("./liptonMaster/database/SALTKEY"),cloudConsole);
-        authManager.createKey();
+        authManager.createKey(cloudConsole);
     }
 
     //<editor-fold desc="Getter - Setter">

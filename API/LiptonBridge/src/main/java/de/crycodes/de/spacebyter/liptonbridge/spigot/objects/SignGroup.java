@@ -1,7 +1,5 @@
 package de.crycodes.de.spacebyter.liptonbridge.spigot.objects;
 
-import scala.Int;
-
 import java.util.HashMap;
 
 /**

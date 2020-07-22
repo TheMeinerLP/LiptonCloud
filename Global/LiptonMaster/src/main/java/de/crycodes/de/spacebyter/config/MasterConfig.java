@@ -18,7 +18,6 @@ public class MasterConfig {
     private String host;
     private int port;
     private boolean debugMode;
-    private boolean colorConsole;
     private boolean autoUpdate;
     private boolean GC_GPU_Overheat;
     private String serverNameSplitter;
@@ -41,7 +40,6 @@ public class MasterConfig {
         document.append("host", "127.0.0.1");
         document.append("port", 9685);
         document.append("debugMode", false);
-        document.append("colorConsole", false);
         document.append("autoUpdate", false);
         document.append("GC_CPU_Overheat", true);
         document.append("serverNameSplitter", "-");
@@ -57,7 +55,6 @@ public class MasterConfig {
         this.host = document.getString("host");
         this.port = document.getInt("port");
         this.debugMode = document.getBoolean("debugMode");
-        this.colorConsole = document.getBoolean("colorConsole");
         this.autoUpdate = document.getBoolean("autoUpdate");
         this.GC_GPU_Overheat = document.getBoolean("GC_CPU_Overheat");
         this.serverNameSplitter = document.getString("serverNameSplitter");
@@ -92,10 +89,6 @@ public class MasterConfig {
 
     public boolean isDebugMode() {
         return debugMode;
-    }
-
-    public boolean isColorConsole() {
-        return colorConsole;
     }
 
     public boolean isAutoUpdate() {

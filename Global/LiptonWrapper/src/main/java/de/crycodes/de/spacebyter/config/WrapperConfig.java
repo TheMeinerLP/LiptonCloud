@@ -13,7 +13,6 @@ public class WrapperConfig {
     private int startPort;
     private boolean autoUpdate;
     private boolean GC_GPU_Overheat;
-    private boolean colorUse;
     private String spigotVersion;
 
     private boolean setupDone = false;
@@ -37,7 +36,6 @@ public class WrapperConfig {
             document.append("startPort", 30000);
             document.append("autoUpdate", false);
             document.append("GC_CPU_Overheat", true);
-            document.append("colorUse", true);
             document.append("spigotVersion", "-");
             document.append("setupDone", "true");
             document.saveAsConfig(configFile);
@@ -46,7 +44,7 @@ public class WrapperConfig {
     }
     //</editor-fold>
     //<editor-fold desc="createFromSetup">
-    public void createFromSetup(String wrapperID,Boolean color, String hostMaster){
+    public void createFromSetup(String wrapperID, String hostMaster){
         document = new Document("Cloud Config");
         document.append("host", hostMaster);
         document.append("wrapperID", wrapperID);
@@ -54,7 +52,6 @@ public class WrapperConfig {
         document.append("startPort", 30000);
         document.append("autoUpdate", false);
         document.append("GC_CPU_Overheat", true);
-        document.append("colorUse", color);
         document.append("spigotVersion", "-");
         document.append("setupDone", "true");
         document.saveAsConfig(configFile);
@@ -68,7 +65,6 @@ public class WrapperConfig {
         this.port = document.getInt("port");
         this.autoUpdate = document.getBoolean("autoUpdate");
         this.GC_GPU_Overheat = document.getBoolean("GC_CPU_Overheat");
-        this.colorUse = document.getBoolean("colorUse");
         this.spigotVersion = document.getString("spigotVersion");
         this.setupDone = document.getBoolean("setupDone");
     }
@@ -93,10 +89,6 @@ public class WrapperConfig {
 
     public boolean isGC_GPU_Overheat() {
         return GC_GPU_Overheat;
-    }
-
-    public boolean isColorUse() {
-        return colorUse;
     }
 
     public Integer getPort() {

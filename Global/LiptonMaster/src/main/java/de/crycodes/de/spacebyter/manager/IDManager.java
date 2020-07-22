@@ -1,7 +1,5 @@
 package de.crycodes.de.spacebyter.manager;
 
-import scala.Int;
-
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 

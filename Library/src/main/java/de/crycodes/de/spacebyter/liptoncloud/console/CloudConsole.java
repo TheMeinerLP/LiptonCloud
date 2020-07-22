@@ -1,7 +1,6 @@
 package de.crycodes.de.spacebyter.liptoncloud.console;
 
 import de.crycodes.de.spacebyter.liptoncloud.command.CommandManager;
-import de.crycodes.de.spacebyter.liptoncloud.console.enums.Color;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -65,6 +64,14 @@ public class CloudConsole extends Thread {
             } catch (IOException throwable) {
                 throwable.printStackTrace();
             }
+        }
+    }
+
+    public void clearScreen(){
+        try {
+            this.logger.getConsoleReader().clearScreen();
+        } catch (IOException exception) {
+            exception.printStackTrace();
         }
     }
 

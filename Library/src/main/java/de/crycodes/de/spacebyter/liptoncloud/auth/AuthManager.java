@@ -39,9 +39,12 @@ public class AuthManager {
         callBack.accept(masterKey.equalsIgnoreCase(wrapperKey));
     }
 
-    public void createKey(){
+    public void createKey(CloudConsole cloudConsole){
         if (!keyFile.exists()){
             counter.start();
+
+            cloudConsole.getLogger().info("Creating new Wrapper Key Please Don`t stop the Master!");
+
             Document document = new Document("KEYFILE");
 
             keyGenerator.create(key -> {

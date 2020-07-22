@@ -29,6 +29,7 @@ import de.crycodes.de.spacebyter.screen.ScreenPrinter;
 import de.crycodes.de.spacebyter.server.ServerStartHandler;
 import de.crycodes.de.spacebyter.manager.TemplateManager;
 import de.crycodes.de.spacebyter.manager.VersionsManager;
+import sun.awt.windows.ThemeReader;
 
 import java.io.File;
 import java.io.IOException;
@@ -91,11 +92,13 @@ public class LiptonWrapper {
         colouredConsoleProvider = new CloudConsole(loggerProvider, commandManager, PropertiesUtils.USER_NAME);
 
         if (!wrapperConfig.isSetupDone()){
-            new AsciiPrinter().Print(this.colouredConsoleProvider, false);
+            new AsciiPrinter().Print(this.colouredConsoleProvider);
+
+            try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); }
 
             WrapperSetup wrapperSetup = new WrapperSetup();
             wrapperSetup.start(colouredConsoleProvider);
-            wrapperConfig.createFromSetup(wrapperSetup.getGroupName(),wrapperSetup.getColor(),wrapperSetup.getMasterhost());
+            wrapperConfig.createFromSetup(wrapperSetup.getGroupName(),wrapperSetup.getMasterhost());
             colouredConsoleProvider.getLogger().info("Wrapper will restart in 3 Seconds!");
 
             try { Thread.sleep(3000); } catch (InterruptedException e) { e.printStackTrace(); }
@@ -130,12 +133,12 @@ public class LiptonWrapper {
 
         packetHandler = new PacketHandler();
 
-        liptonLibrary = new LiptonLibrary(scheduler, wrapperConfig.isColorUse());
-        liptonLibrary.checkAPIFile(new File("./liptonWrapper/api/LiptonBridge-1.0-SNAPSHOT.jar"));
+        liptonLibrary = new LiptonLibrary();
+        liptonLibrary.checkAPIFile(colouredConsoleProvider,new File("./liptonWrapper/api/LiptonBridge-1.0-SNAPSHOT.jar"));
 
         liptonLibrary.registerPacket(packetHandler, colouredConsoleProvider);
 
-        new AsciiPrinter().Print(this.colouredConsoleProvider, wrapperConfig.isColorUse());
+        new AsciiPrinter().Print(this.colouredConsoleProvider);
 
         wrapperMasterClient = new WrapperMasterClient(this.wrapperConfig.getHost(), this.wrapperConfig.getPort(), this).start();
 

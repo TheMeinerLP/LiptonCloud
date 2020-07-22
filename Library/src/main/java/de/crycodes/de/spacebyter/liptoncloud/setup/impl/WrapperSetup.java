@@ -19,16 +19,8 @@ public class WrapperSetup extends Setup {
     @SetupPart(id = 2, question = "What is the master's host ?")
     private String masterhost;
 
-    @SetupPart(id = 3, question = "Should the Wrapper use Coloured Console ?")
-    private Boolean color;
-
-
     public String getGroupName() {
         return groupName;
-    }
-
-    public Boolean getColor() {
-        return color;
     }
 
     public String getMasterhost() {

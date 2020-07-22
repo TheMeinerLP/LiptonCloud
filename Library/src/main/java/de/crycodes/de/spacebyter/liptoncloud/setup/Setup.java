@@ -1,6 +1,7 @@
 package de.crycodes.de.spacebyter.liptoncloud.setup;
 
 import de.crycodes.de.spacebyter.liptoncloud.console.CloudConsole;
+import de.crycodes.de.spacebyter.liptoncloud.enums.ExitState;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -12,9 +13,12 @@ public abstract class Setup {
     private Map<Field, SetupPart> setupParts = new HashMap<>();
     private int current = 43084380;
 
+    private CloudConsole cloudConsole;
+
     private Map.Entry<Field, SetupPart> currentPart;
 
     public void start(CloudConsole scanner) {
+        this.cloudConsole = scanner;
         current = 1;
 
         for (Field field : this.getClass().getDeclaredFields()) {
@@ -24,7 +28,7 @@ public abstract class Setup {
         }
 
         this.currentPart = this.getEntry(1);
-        System.out.println(this.currentPart.getValue().question() + " ("+this.currentPart.getKey().getType().getSimpleName()+")");
+        cloudConsole.getLogger().info(this.currentPart.getValue().question() + " ("+this.currentPart.getKey().getType().getSimpleName()+")");
 
         while (current < (setupParts.size() + 1)) {
             String line = scanner.getLogger().readLine();
@@ -41,7 +45,7 @@ public abstract class Setup {
 
         if (currentPart != null) {
             if (isAnswerForbidden(this.currentPart.getValue(), lastAnswer)) {
-                System.out.print("The answer '" + lastAnswer + "' is not usable for setup! Please enter a valid value!");
+                cloudConsole.getLogger().error("The answer '" + lastAnswer + "' is not usable for setup! Please enter a valid value!");
                 return;
             }
 
@@ -50,12 +54,12 @@ public abstract class Setup {
             try {
                 Object value = parse(this.currentPart.getKey(), lastAnswer);
                 if (value == null) {
-                    System.out.println("Cannot parse entry. Please Retry");
+                    cloudConsole.getLogger().error("Cannot parse entry. Please Retry");
                     return;
                 }
                 this.currentPart.getKey().set(this, value);
             } catch (Exception ex) {
-                System.out.println("Please enter a valid Entry");
+                cloudConsole.getLogger().error("Please enter a valid Entry");
                 return;
             }
 

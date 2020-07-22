@@ -42,28 +42,17 @@
             <artifactId>json</artifactId>
             <version>20180813</version>
         </dependency>
+
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>28.1-jre</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-network-common -->
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-network-common_2.12</artifactId>
-            <version>3.0.0</version>
-        </dependency>
         <dependency>
             <groupId>com.sparkjava</groupId>
             <artifactId>spark-core</artifactId>
             <version>2.9.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>me.tongfei</groupId>
-            <artifactId>progressbar</artifactId>
-            <version>0.5.5</version>
         </dependency>
 
         <dependency>
@@ -76,8 +65,8 @@
             <groupId>jline</groupId>
             <artifactId>jline</artifactId>
             <version>2.14.6</version>
-            <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

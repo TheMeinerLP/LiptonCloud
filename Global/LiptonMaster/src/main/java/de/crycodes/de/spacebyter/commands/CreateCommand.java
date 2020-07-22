@@ -11,6 +11,9 @@ import de.crycodes.de.spacebyter.liptoncloud.meta.config.WrapperConfig;
 import de.crycodes.de.spacebyter.liptoncloud.setup.impl.GroupSetup;
 import de.crycodes.de.spacebyter.liptoncloud.setup.impl.WrapperGroupSetup;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CreateCommand extends CloudCommand {
 
     private final LiptonMaster liptonMaster;
@@ -82,10 +85,11 @@ public class CreateCommand extends CloudCommand {
     }
     //</editor-fold>
 
+
     //<editor-fold desc="sendUsage">
     private void sendUsage(CloudConsole colouredConsoleProvider) {
-        colouredConsoleProvider.getLogger().info("create SERVERGROUP");
-        colouredConsoleProvider.getLogger().info("create WRAPPER");
+        colouredConsoleProvider.getLogger().info("create <servergroup>");
+        colouredConsoleProvider.getLogger().info("create <wrapper>");
     }
     //</editor-fold>
 }

@@ -1,5 +1,6 @@
 package de.crycodes.de.spacebyter.liptoncloud;
 
+import de.crycodes.de.spacebyter.liptoncloud.command.CloudCommand;
 import de.crycodes.de.spacebyter.liptoncloud.console.CloudConsole;
 import de.crycodes.de.spacebyter.liptoncloud.enums.ExitState;
 import de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterPacket;
@@ -41,25 +42,24 @@ public class LiptonLibrary {
 
     private static LiptonLibrary instance;
 
-    private  Scheduler scheduler;
-    private  Boolean useColor;
 
-    public LiptonLibrary(Scheduler scheduler, Boolean useColor ) {
-        this.scheduler = scheduler;
-        this.useColor = useColor;
+    public LiptonLibrary() {
         instance = this;
-
     }
-    public void checkAPIFile(File file){
+    public void checkAPIFile(CloudConsole cloudConsole, File file){
         if (file.exists()) return;
-        System.out.println("NO LiptonBridge found! please add API to api folder!");
+        cloudConsole.getLogger().error("NO LiptonBridge found! please add API to api folder!");
+
+        cloudConsole.getLogger().info("System will restart in 3 Seconds!");
+
+        try { Thread.sleep(3000); } catch (InterruptedException e) { e.printStackTrace(); }
+
         System.exit(ExitState.STOPPED_SUCESS.getState());
     }
 
-    public LiptonLibrary() { }
 
     public void printAscii(CloudConsole cloudConsole){
-        new AsciiPrinter().Print(cloudConsole, this.useColor);
+        new AsciiPrinter().Print(cloudConsole);
     }
 
     public void registerPacket(PacketHandler packetHandler, CloudConsole cloudConsole){
@@ -85,7 +85,7 @@ public class LiptonLibrary {
         packetHandler.registerPacket((byte) 20, ServerUpdatePacket.class);
         packetHandler.registerPacket((byte) 21, RegisterResponsePacket.class);
         packetHandler.getRegisterdpackets().forEach((aByte, aClass) -> {
-                cloudConsole.getLogger().info("Registered Packet By Clazz: " + aClass.getCanonicalName());
+           //     cloudConsole.getLogger().info("Registered Packet By Clazz: " + aClass.getCanonicalName());
         });
     }
 
