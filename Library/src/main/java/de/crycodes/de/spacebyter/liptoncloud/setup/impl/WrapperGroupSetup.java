@@ -20,7 +20,7 @@ public class WrapperGroupSetup extends Setup {
     private String host;
 
     @SetupPart(id = 3, question = "Should the Wrapper use Auto-Update ?", forbiddenAnswers = {})
-    private Boolean autoUpdate;
+    private boolean autoUpdate;
 
     public String getGroupName() {
         return groupName;
@@ -30,7 +30,7 @@ public class WrapperGroupSetup extends Setup {
         return host;
     }
 
-    public Boolean getAutoUpdate() {
+    public boolean getAutoUpdate() {
         return autoUpdate;
     }
 }

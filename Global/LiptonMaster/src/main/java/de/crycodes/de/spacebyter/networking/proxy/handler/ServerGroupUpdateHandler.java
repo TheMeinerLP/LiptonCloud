@@ -29,7 +29,7 @@ public class ServerGroupUpdateHandler extends PacketHandlerAdapter {
         if (packet instanceof ServerGroupUpdatePacket){
             final ServerGroupUpdatePacket serverGroupUpdatePacket = (ServerGroupUpdatePacket) packet;
             liptonMaster.getServerGroupConfig().replace(serverGroupUpdatePacket.getUpdatedServerGroupMeta());
-            liptonMaster.getColouredConsoleProvider().info("Updated ServerGroup: " + ((ServerGroupUpdatePacket) packet).getUpdatedServerGroupMeta().getGroupName());
+            liptonMaster.getCloudConsole().getLogger().info("Updated ServerGroup: " + ((ServerGroupUpdatePacket) packet).getUpdatedServerGroupMeta().getGroupName());
         }
     }
     //</editor-fold>

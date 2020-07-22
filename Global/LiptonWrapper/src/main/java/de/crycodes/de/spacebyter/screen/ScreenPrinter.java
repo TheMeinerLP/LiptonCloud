@@ -1,7 +1,7 @@
 package de.crycodes.de.spacebyter.screen;
 
 import de.crycodes.de.spacebyter.LiptonWrapper;
-import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.console.CloudConsole;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,7 +17,7 @@ import java.util.Scanner;
 
 public class ScreenPrinter {
 
-    private final ColouredConsoleProvider colouredConsoleProvider;
+    private final CloudConsole colouredConsoleProvider;
     private final LiptonWrapper liptonWrapper;
 
     private Screen screen;
@@ -25,7 +25,7 @@ public class ScreenPrinter {
     private Scanner reader;
     private boolean isInScreen;
 
-    public ScreenPrinter(ColouredConsoleProvider colouredConsoleProvider, LiptonWrapper liptonWrapper) {
+    public ScreenPrinter(CloudConsole colouredConsoleProvider, LiptonWrapper liptonWrapper) {
         this.colouredConsoleProvider = colouredConsoleProvider;
         this.liptonWrapper = liptonWrapper;
     }
@@ -36,16 +36,12 @@ public class ScreenPrinter {
 
     public void printLines(){
 
-        liptonWrapper.getCommandManager().stop();
-
         liptonWrapper.getScheduler().scheduleAsyncDelay(() -> {
 
-            this.colouredConsoleProvider.info("TEST MESSAGE SCREEN CLOSE");
+            this.colouredConsoleProvider.getLogger().info("TEST MESSAGE SCREEN CLOSE");
             isInScreen = false;
 
             this.reader.close();
-
-            liptonWrapper.getCommandManager().run(colouredConsoleProvider.getScanner());
 
 
         }, 4000);
@@ -63,8 +59,8 @@ public class ScreenPrinter {
 
             if (line == null) return;
 
-            colouredConsoleProvider.sendMessageWithCustomPrefix(
-                    "§cSCREEN: §r","[" +  screen.getName() + "]" + line
+            colouredConsoleProvider.getLogger().info(
+                    "[" +  screen.getName() + "]" + line
             );
 
         }

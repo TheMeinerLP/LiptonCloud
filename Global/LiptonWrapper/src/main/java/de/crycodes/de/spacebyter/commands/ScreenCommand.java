@@ -2,7 +2,7 @@ package de.crycodes.de.spacebyter.commands;
 
 import de.crycodes.de.spacebyter.LiptonWrapper;
 import de.crycodes.de.spacebyter.liptoncloud.command.CloudCommand;
-import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.console.CloudConsole;
 import de.crycodes.de.spacebyter.screen.Screen;
 import de.crycodes.de.spacebyter.screen.ScreenPrinter;
 
@@ -28,7 +28,7 @@ public class ScreenCommand extends CloudCommand {
     }
 
     @Override
-    protected boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args) {
+    protected boolean execute(CloudConsole colouredConsoleProvider, String command, String[] args) {
 
         if (args.length == 1){
 
@@ -38,20 +38,20 @@ public class ScreenCommand extends CloudCommand {
 
                 if (this.screenPrinter.isInScreen()){
 
-                    colouredConsoleProvider.info("You Quieted the Screen '" + this.screenPrinter.quitCurrentScreen() + "'!");
+                    colouredConsoleProvider.getLogger().info("You Quieted the Screen '" + this.screenPrinter.quitCurrentScreen() + "'!");
 
                     return true;
 
                 }
 
-                colouredConsoleProvider.info("You are not in a Screen Session!");
+                colouredConsoleProvider.getLogger().info("You are not in a Screen Session!");
 
                 return true;
             }
             if (subject.equalsIgnoreCase("list")){
 
                 liptonWrapper.getScreenManager().getScreenConcurrentHashMap().forEach((s, screen) -> {
-                    colouredConsoleProvider.sendMessageWithCustomPrefix("§cSCREEN: §r" ,s );
+                    colouredConsoleProvider.getLogger().info( s );
                 });
 
                 return true;
@@ -78,7 +78,7 @@ public class ScreenCommand extends CloudCommand {
                     return true;
                 }
 
-                colouredConsoleProvider.error("Server was not Found!");
+                colouredConsoleProvider.getLogger().error("Server was not Found!");
                 return true;
             }
 
@@ -92,9 +92,9 @@ public class ScreenCommand extends CloudCommand {
         return true;
     }
 
-    private void sendUsage(ColouredConsoleProvider colouredConsoleProvider){
-        colouredConsoleProvider.info("screen <open> <server>");
-        colouredConsoleProvider.info("screen <close>");
-        colouredConsoleProvider.info("screen <list>");
+    private void sendUsage(CloudConsole colouredConsoleProvider){
+        colouredConsoleProvider.getLogger().info("screen <open> <server>");
+        colouredConsoleProvider.getLogger().info("screen <close>");
+        colouredConsoleProvider.getLogger().info("screen <list>");
     }
 }

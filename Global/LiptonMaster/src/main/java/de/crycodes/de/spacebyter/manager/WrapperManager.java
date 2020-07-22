@@ -28,11 +28,11 @@ public class WrapperManager {
         if (liptonMaster.getWrapperConfig().getWrapperByID(wrapperMeta.getWrapperConfig().getWrapperId()) != null) {
             if (!(wrapperList.contains(wrapperMeta)))
                 wrapperList.add(wrapperMeta);
-            liptonMaster.getColouredConsoleProvider().info("Registered new Wrapper: " + wrapperMeta.getWrapperConfig().getWrapperId());
+            liptonMaster.getCloudConsole().getLogger().info("Registered new Wrapper: " + wrapperMeta.getWrapperConfig().getWrapperId());
             isAuthenticated.accept(true);
             liptonMaster.getEventManager().callEvent(new WrapperRegisterEvent(wrapperMeta));
         } else {
-            liptonMaster.getColouredConsoleProvider().error("Wrapper Tried to Connect but found no WrapperGroup -> (create <wrapper>)!");
+            liptonMaster.getCloudConsole().getLogger().error("Wrapper Tried to Connect but found no WrapperGroup -> (create <wrapper>)!");
             isAuthenticated.accept(false);
         }
     }
@@ -51,7 +51,7 @@ public class WrapperManager {
             return this.wrapperList.get(0);
         else {
             if (liptonMaster.getMasterConfig().isDebugMode())
-                liptonMaster.getColouredConsoleProvider().error("No Wrapper Available -> (create <wrapper>)!");
+                liptonMaster.getCloudConsole().getLogger().error("No Wrapper Available -> (create <wrapper>)!");
         }
         return null;
     }
@@ -60,7 +60,7 @@ public class WrapperManager {
         if(wrapperList.contains(wrapperMeta))
             wrapperList.remove(wrapperMeta);
         liptonMaster.getEventManager().callEvent(new WrapperUnregisterEvent(wrapperMeta));
-        liptonMaster.getColouredConsoleProvider().info("UnRegistered Wrapper: " + wrapperMeta.getWrapperConfig().getWrapperId());
+        liptonMaster.getCloudConsole().getLogger().info("UnRegistered Wrapper: " + wrapperMeta.getWrapperConfig().getWrapperId());
     }
     //</editor-fold>
 

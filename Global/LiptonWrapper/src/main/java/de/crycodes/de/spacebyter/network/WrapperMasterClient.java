@@ -65,7 +65,7 @@ public class WrapperMasterClient {
                         liptonWrapper.getWrapperConfig().getHost(),
                         liptonWrapper.getWrapperConfig().isAutoUpdate())), RegisterType.WRAPPER, this.authManager.getKey()));
 
-        liptonWrapper.getColouredConsoleProvider().info("Startet WrapperMaster Client on: (" + host + ":" + port + ")");
+        liptonWrapper.getColouredConsoleProvider().getLogger().info("Startet WrapperMaster Client on: (" + host + ":" + port + ")");
 
         return this;
     }

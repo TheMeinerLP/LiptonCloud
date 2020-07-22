@@ -3,7 +3,7 @@ package de.crycodes.de.spacebyter.commands;
 import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.config.CloudAdminConfig;
 import de.crycodes.de.spacebyter.liptoncloud.command.CloudCommand;
-import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.console.CloudConsole;
 
 /**
  * Coded By CryCodes
@@ -26,7 +26,7 @@ public class CloudAdminCommand extends CloudCommand {
 
     //<editor-fold desc="execute">
     @Override
-    protected boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args) {
+    protected boolean execute(CloudConsole colouredConsoleProvider, String command, String[] args) {
         if (args.length == 1)
             sendUsage(colouredConsoleProvider);
         else if (args.length == 2){
@@ -36,7 +36,7 @@ public class CloudAdminCommand extends CloudCommand {
             CloudAdminConfig cloudAdminConfig = liptonMaster.getAdminConfig();
 
             if (identifier.equalsIgnoreCase("check")){
-                colouredConsoleProvider.info("The user '" + user + "' is admin ? (§c" + cloudAdminConfig.isUserAdmin(user) + "§r)");
+                colouredConsoleProvider.getLogger().info("The user '" + user + "' is admin ? (§c" + cloudAdminConfig.isUserAdmin(user) + "§r)");
             } else if (identifier.equalsIgnoreCase("set")){
                 cloudAdminConfig.addPlayer(user);
             } else if (identifier.equalsIgnoreCase("remove")){
@@ -51,11 +51,11 @@ public class CloudAdminCommand extends CloudCommand {
     //</editor-fold>
 
     //<editor-fold desc="sendUsage">
-    private void sendUsage(ColouredConsoleProvider colouredConsoleProvider){
-        colouredConsoleProvider.info("cloudadmin <check> <user>");
-        colouredConsoleProvider.info("cloudadmin <set> <user>");
-        colouredConsoleProvider.info("cloudadmin <remove> <user>");
-        colouredConsoleProvider.info("cloudadmin <help>");
+    private void sendUsage(CloudConsole colouredConsoleProvider){
+        colouredConsoleProvider.getLogger().info("cloudadmin <check> <user>");
+        colouredConsoleProvider.getLogger().info("cloudadmin <set> <user>");
+        colouredConsoleProvider.getLogger().info("cloudadmin <remove> <user>");
+        colouredConsoleProvider.getLogger().info("cloudadmin <help>");
     }
     //</editor-fold>
 

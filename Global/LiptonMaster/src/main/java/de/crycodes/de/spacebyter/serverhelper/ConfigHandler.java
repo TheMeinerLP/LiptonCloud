@@ -75,14 +75,14 @@ public class ConfigHandler {
                         new SendServerConfigPacket(serverConfig, "ALL"));
 
                 if (liptonMaster.getMasterConfig().isDebugMode())
-                    liptonMaster.getColouredConsoleProvider().debug("Send ServerConfig!");
+                    liptonMaster.getCloudConsole().getLogger().debug("Send ServerConfig!");
 
                 liptonMaster.getMasterProxyServer().getServer().sendPacket(
                         liptonMaster.getMasterProxyServer().getNetworkChannel(),
                         new SendProxyConfigPacket(proxyConfig, "ALL"));
 
                 if (liptonMaster.getMasterConfig().isDebugMode())
-                    liptonMaster.getColouredConsoleProvider().debug("Send ProxyConfig!");
+                    liptonMaster.getCloudConsole().getLogger().debug("Send ProxyConfig!");
 
 
             }

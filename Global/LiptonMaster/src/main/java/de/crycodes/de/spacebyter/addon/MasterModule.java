@@ -6,7 +6,7 @@ import de.crycodes.de.spacebyter.liptoncloud.addon.command.ModuleCommand;
 import de.crycodes.de.spacebyter.liptoncloud.addon.event.EventManager;
 import de.crycodes.de.spacebyter.liptoncloud.addon.event.abstracts.Event;
 import de.crycodes.de.spacebyter.liptoncloud.addon.event.interfaces.Listener;
-import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.console.CloudConsole;
 import de.crycodes.de.spacebyter.liptoncloud.scheduler.Scheduler;
 
 /**
@@ -30,8 +30,8 @@ public abstract class MasterModule extends CloudModule {
     }
 
     @Override
-    public ColouredConsoleProvider getLogger() {
-        return LiptonMaster.getInstance().getColouredConsoleProvider();
+    public CloudConsole getLogger() {
+        return LiptonMaster.getInstance().getCloudConsole();
     }
 
     @Override

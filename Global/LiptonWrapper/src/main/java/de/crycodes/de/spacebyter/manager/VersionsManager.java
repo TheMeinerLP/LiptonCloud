@@ -25,23 +25,23 @@ public class VersionsManager {
             return;
         }
         versions = SpigotVersions.valueOf(wrapperConfig.getSpigotVersion());
-        this.liptonWrapper.getColouredConsoleProvider().info("This Cloud is Using the Version " + versions.getJarName().replace(".jar", ""));
+        this.liptonWrapper.getColouredConsoleProvider().getLogger().info("This Cloud is Using the Version " + versions.getJarName().replace(".jar", ""));
     }
     //</editor-fold>
 
     //<editor-fold desc="install">
     public void install(SpigotVersions versions) {
         if(wrapperConfig.getSpigotVersion().equalsIgnoreCase(versions.name())) {
-            liptonWrapper.getColouredConsoleProvider().error("This version is already installed!");
+            liptonWrapper.getColouredConsoleProvider().getLogger().error("This version is already installed!");
             return;
         }
 
-        liptonWrapper.getColouredConsoleProvider().info("Trying to install Server Version: " + versions.name());
+        liptonWrapper.getColouredConsoleProvider().getLogger().info("Trying to install Server Version: " + versions.name());
         liptonWrapper.getWrapperConfig().getDocument().append("spigotVersion", versions.name());
         liptonWrapper.getWrapperConfig().getDocument().saveAsConfig(liptonWrapper.getWrapperConfig().getConfigFile());
 
         File jarfile = new File("liptonWrapper/resources/" + versions.getJarName());
-        liptonWrapper.getColouredConsoleProvider().info("Downloading Version: " + versions + " please don't stop the Wrapper");
+        liptonWrapper.getColouredConsoleProvider().getLogger().info("Downloading Version: " + versions + " please don't stop the Wrapper");
 
         //TIME
         liptonWrapper.getCounter().start();
@@ -54,7 +54,7 @@ public class VersionsManager {
         liptonWrapper.getCounter().printResult("VersionInstall", liptonWrapper.getColouredConsoleProvider());
         //TIME
 
-        liptonWrapper.getColouredConsoleProvider().info("This Cloud is Using Versions: " + versions.name());
+        liptonWrapper.getColouredConsoleProvider().getLogger().info("This Cloud is Using Versions: " + versions.name());
         if (liptonWrapper.getWrapperMasterClient() != null)
             liptonWrapper.getWrapperMasterClient().sendPacket(new InfoPacket("The Wrapper: " + liptonWrapper.getWrapperConfig().getWrapperID() + " installed the Version: " + versions.name(), liptonWrapper.getWrapperConfig().getWrapperID()));
     }

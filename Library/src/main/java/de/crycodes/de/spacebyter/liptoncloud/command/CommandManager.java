@@ -1,7 +1,7 @@
 package de.crycodes.de.spacebyter.liptoncloud.command;
 
 import de.crycodes.de.spacebyter.liptoncloud.addon.command.ModuleCommand;
-import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.console.CloudConsole;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,13 +22,7 @@ public final class CommandManager {
     private List<ModuleCommand> moduleCommands = new ArrayList<>();
     private Boolean isActive = true;
 
-    private final ColouredConsoleProvider colouredConsoleProvider;
-    private Scanner scanner;
-
-
-    public CommandManager(ColouredConsoleProvider colouredConsoleProvider){
-        this.colouredConsoleProvider = colouredConsoleProvider;
-    }
+    public CommandManager(){ }
 
     public void registerCommand(CloudCommand cloudCommand){
         if (this.commands.contains(cloudCommand)) return;
@@ -39,21 +33,11 @@ public final class CommandManager {
         this.moduleCommands.add(moduleCommand);
     }
 
-    public void run(Scanner scanner) {
-        this.setActive(true);
-        while (scanner.hasNext()){
-            if (isActive)
-                execute(scanner.nextLine());
-        }
-
-    }
     public void stop(){
-        if (this.scanner != null)
-            this.scanner.close();
         this.setActive(false);
     }
 
-    public void execute(String line){
+    public boolean execute(String line, CloudConsole cloudConsole){
         String commandText = line.split(" ")[0];
 
         String[] split = line.substring(commandText.length()).split(" ");
@@ -69,8 +53,8 @@ public final class CommandManager {
                 args.add(argument);
             }
             assert command != null;
-            command.execute(colouredConsoleProvider, line, args.toArray(new String[0]) );
-
+            command.execute(cloudConsole, line, args.toArray(new String[0]) );
+            return true;
         } else if ( getModuleCommand(commandText) != null){
 
             ModuleCommand moduleCommand = getModuleCommand(commandText);
@@ -83,12 +67,12 @@ public final class CommandManager {
                 args.add(argument);
             }
             assert moduleCommand != null;
-            moduleCommand.execute(colouredConsoleProvider, line, args.toArray(new String[0]) );
-
+            moduleCommand.execute(cloudConsole, line, args.toArray(new String[0]) );
+            return true;
         } else {
 
-            this.colouredConsoleProvider.error("Command Not Found!");
-            return;
+            cloudConsole.getLogger().error("Command Not Found!");
+            return false;
 
         }
 
@@ -118,14 +102,6 @@ public final class CommandManager {
 
     public void setCommands(List<CloudCommand> commands) {
         this.commands = commands;
-    }
-
-    public ColouredConsoleProvider getColouredConsoleProvider() {
-        return colouredConsoleProvider;
-    }
-
-    public Scanner getScanner() {
-        return scanner;
     }
 
     public void setActive(Boolean active) {

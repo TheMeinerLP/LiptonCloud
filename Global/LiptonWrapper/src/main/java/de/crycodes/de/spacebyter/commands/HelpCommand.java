@@ -2,7 +2,7 @@ package de.crycodes.de.spacebyter.commands;
 
 import de.crycodes.de.spacebyter.LiptonWrapper;
 import de.crycodes.de.spacebyter.liptoncloud.command.CloudCommand;
-import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.console.CloudConsole;
 
 import java.util.Arrays;
 
@@ -18,12 +18,12 @@ public class HelpCommand extends CloudCommand {
     //</editor-fold>
 
     //<editor-fold desc="execute">
-    protected boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args) {
+    protected boolean execute(CloudConsole colouredConsoleProvider, String command, String[] args) {
 
-        wrapper.getColouredConsoleProvider().info("CloudCommands: ");
+        colouredConsoleProvider.getLogger().info("CloudCommands: ");
 
         wrapper.getCommandManager().getCommands().forEach(cloudCommand -> {
-            colouredConsoleProvider.info(cloudCommand.getName() + " | " + cloudCommand.getDescription() + " | " + Arrays.toString(cloudCommand.getAliases()));
+            colouredConsoleProvider.getLogger().info(cloudCommand.getName() + " | " + cloudCommand.getDescription() + " | " + Arrays.toString(cloudCommand.getAliases()));
         });
 
 

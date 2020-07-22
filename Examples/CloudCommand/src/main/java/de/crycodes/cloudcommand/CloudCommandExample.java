@@ -1,7 +1,7 @@
 package de.crycodes.cloudcommand;
 
 import de.crycodes.de.spacebyter.liptoncloud.command.CloudCommand;
-import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.console.CloudConsole;
 
 /**
  * Coded By CryCodes
@@ -17,7 +17,7 @@ public class CloudCommandExample extends CloudCommand {
         super("test", "This is an TestCommand!", "simple", "aliases");
     }
 
-    protected boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args) {
+    protected boolean execute(CloudConsole colouredConsoleProvider, String command, String[] args) {
         //EXECUTE LOGIC
         return false;
     }

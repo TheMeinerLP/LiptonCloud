@@ -96,7 +96,7 @@ public class ServerManager {
             e.printStackTrace();
         }
         if (getStartedServerByGroup(serverGroupMeta) >= serverGroupMeta.getMaxMemory()) {
-            liptonMaster.getColouredConsoleProvider().error("To many Server's are running of group " + serverGroupMeta.getGroupName());
+            liptonMaster.getCloudConsole().getLogger().error("To many Server's are running of group " + serverGroupMeta.getGroupName());
             return;
         }
         int port = liptonMaster.getPortManager().getFreePort();
@@ -112,11 +112,11 @@ public class ServerManager {
 
         if (!autoStart){
             liptonMaster.getEventManager().callEvent(new ServerStartEvent(serverMeta));
-            this.liptonMaster.getColouredConsoleProvider().info("StartetServer: " + serverMeta.getServerName() + " | on port: " + serverMeta.getPort() + " | on wrapper: " + serverMeta.getWrapperID() + " | group: " + serverGroupMeta.getGroupName() + " !");
+            this.liptonMaster.getCloudConsole().getLogger().info("StartetServer: " + serverMeta.getServerName() + " | on port: " + serverMeta.getPort() + " | on wrapper: " + serverMeta.getWrapperID() + " | group: " + serverGroupMeta.getGroupName() + " !");
         }
         if (autoStart) {
             liptonMaster.getEventManager().callEvent(new ServerAutoStartEvent(serverMeta));
-            liptonMaster.getColouredConsoleProvider().sendMessageWithCustomPrefix("§cAUTOSTART:§r"," StartetServer '" + serverGroupMeta.getGroupName() + "' stats: (" + getGlobalStartedAndOnlineServerByGroup(serverGroupMeta) + "/" + serverGroupMeta.getMinServer() + ") Port: §a" + port + "§r | ID: §a" + id + "§r !");
+            liptonMaster.getCloudConsole().getLogger().info("§cAUTOSTART:§r StartedServer '" + serverGroupMeta.getGroupName() + "' stats: (" + getGlobalStartedAndOnlineServerByGroup(serverGroupMeta) + "/" + serverGroupMeta.getMinServer() + ") Port: §a" + port + "§r | ID: §a" + id + "§r !");
         }
     }
     //</editor-fold>
@@ -126,13 +126,13 @@ public class ServerManager {
         final String name = serverName.toUpperCase();
 
         if (name.equalsIgnoreCase("NONE")){
-            liptonMaster.getColouredConsoleProvider().error("Dummy-Server tried to register");
+            liptonMaster.getCloudConsole().getLogger().error("Dummy-Server tried to register");
             return;
         }
 
 
         if (!this.startedServer.containsKey(name)){
-            liptonMaster.getColouredConsoleProvider().error("Server with name: '" + serverName + "' was not found in StartServer-List!");
+            liptonMaster.getCloudConsole().getLogger().error("Server with name: '" + serverName + "' was not found in StartServer-List!");
             try {
                 throw new ServerNotStartedException("Server: " + name + " was not found");
             } catch (ServerNotStartedException e) {
@@ -146,7 +146,7 @@ public class ServerManager {
 
         this.globalServerList.put(serverMeta.getServerName().toUpperCase(), serverMeta);
         liptonMaster.getEventManager().callEvent(new ServerRegisterEvent(serverMeta));
-        liptonMaster.getColouredConsoleProvider().info("Registered new Spigot Server: (§c" + serverName + "§r)!");
+        liptonMaster.getCloudConsole().getLogger().info("Registered new Spigot Server: (§c" + serverName + "§r)!");
 
     }
     //</editor-fold>
@@ -171,9 +171,9 @@ public class ServerManager {
             this.globalServerList.remove(name);
             liptonMaster.getEventManager().callEvent(new ServerUnregisterEvent(serverMeta));
 
-            liptonMaster.getColouredConsoleProvider().info("Stopping Server: " + serverMeta.getServerName() + " | " + serverMeta.getPort() + " | " + serverMeta.getWrapperID());
+            liptonMaster.getCloudConsole().getLogger().info("Stopping Server: " + serverMeta.getServerName() + " | " + serverMeta.getPort() + " | " + serverMeta.getWrapperID());
         } else {
-            liptonMaster.getColouredConsoleProvider().error("Could not unregister Server: '" + serverName + "' (§cServer was not in GlobalServer-List§r)!");
+            liptonMaster.getCloudConsole().getLogger().error("Could not unregister Server: '" + serverName + "' (§cServer was not in GlobalServer-List§r)!");
         }
     }
     //</editor-fold>

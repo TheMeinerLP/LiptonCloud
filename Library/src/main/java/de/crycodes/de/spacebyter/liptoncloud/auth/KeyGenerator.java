@@ -45,7 +45,6 @@ public class KeyGenerator {
         if(saltKey.exists()){
             boolean found = false;
             try {
-                BufferedReader rd = new BufferedReader(new FileReader(saltKey));
 
                 FileReader fileReader = new FileReader(saltKey);
                 BufferedReader bufferedReader = new BufferedReader(fileReader);

@@ -1,6 +1,6 @@
 package de.crycodes.de.spacebyter.liptoncloud;
 
-import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.console.CloudConsole;
 import de.crycodes.de.spacebyter.liptoncloud.enums.ExitState;
 import de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterResponsePacket;
@@ -42,12 +42,10 @@ public class LiptonLibrary {
     private static LiptonLibrary instance;
 
     private  Scheduler scheduler;
-    private  ColouredConsoleProvider colouredConsoleProvider;
     private  Boolean useColor;
 
-    public LiptonLibrary(Scheduler scheduler, ColouredConsoleProvider colouredConsoleProvider, Boolean useColor ) {
+    public LiptonLibrary(Scheduler scheduler, Boolean useColor ) {
         this.scheduler = scheduler;
-        this.colouredConsoleProvider = colouredConsoleProvider;
         this.useColor = useColor;
         instance = this;
 
@@ -60,11 +58,11 @@ public class LiptonLibrary {
 
     public LiptonLibrary() { }
 
-    public void printAscii(){
-        new AsciiPrinter().Print(this.colouredConsoleProvider, this.useColor);
+    public void printAscii(CloudConsole cloudConsole){
+        new AsciiPrinter().Print(cloudConsole, this.useColor);
     }
 
-    public void registerPacket(PacketHandler packetHandler){
+    public void registerPacket(PacketHandler packetHandler, CloudConsole cloudConsole){
         packetHandler.registerPacket((byte) 0, RegisterPacket.class);
         packetHandler.registerPacket((byte) 1, ShutDownPacket.class);
         packetHandler.registerPacket((byte) 2, SendProxyConfigPacket.class);
@@ -87,7 +85,7 @@ public class LiptonLibrary {
         packetHandler.registerPacket((byte) 20, ServerUpdatePacket.class);
         packetHandler.registerPacket((byte) 21, RegisterResponsePacket.class);
         packetHandler.getRegisterdpackets().forEach((aByte, aClass) -> {
-            this.colouredConsoleProvider.info("Registered Packet By Clazz: " + aClass.getCanonicalName());
+                cloudConsole.getLogger().info("Registered Packet By Clazz: " + aClass.getCanonicalName());
         });
     }
 
@@ -101,9 +99,6 @@ public class LiptonLibrary {
         return instance;
     }
 
-    public ColouredConsoleProvider getColouredConsoleProvider() {
-        return colouredConsoleProvider;
-    }
 
     public NetworkChannel getCloudChannel() {
         return CloudChannel;

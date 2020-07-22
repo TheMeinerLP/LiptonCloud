@@ -1,7 +1,5 @@
 package de.crycodes.de.spacebyter.network.logger;
 
-import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
-
 /**
  * Coded By CryCodes
  * Class: MessageLogger
@@ -24,7 +22,6 @@ public class MessageLogger implements MessageLoggerInterface {
 
     @Override
     public void error(String message) {
-        System.out.println("[ERROR - TNFW]> " + message);
     }
 
     @Override

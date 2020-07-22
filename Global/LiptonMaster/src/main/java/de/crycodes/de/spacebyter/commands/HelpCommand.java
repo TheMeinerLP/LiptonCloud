@@ -3,7 +3,7 @@ package de.crycodes.de.spacebyter.commands;
 import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.LiptonMasterService;
 import de.crycodes.de.spacebyter.liptoncloud.command.CloudCommand;
-import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.console.CloudConsole;
 
 import java.util.Arrays;
 
@@ -27,23 +27,23 @@ public class HelpCommand extends CloudCommand {
     //</editor-fold>
 
     //<editor-fold desc="execute">
-    protected boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args) {
+    protected boolean execute(CloudConsole colouredConsoleProvider, String command, String[] args) {
 
-        master.getColouredConsoleProvider().info("CloudCommands: ");
+        master.getCloudConsole().getLogger().info("CloudCommands: ");
 
         master.getCommandManager().getCommands().forEach(cloudCommand -> {
-            colouredConsoleProvider.info(cloudCommand.getName() + " | " + cloudCommand.getDescription() + " | " + Arrays.toString(cloudCommand.getAliases()));
+            colouredConsoleProvider.getLogger().info(cloudCommand.getName() + " | " + cloudCommand.getDescription() + " | " + Arrays.toString(cloudCommand.getAliases()));
         });
 
-        master.getColouredConsoleProvider().info("ModuleCommands: ");
+        master.getCloudConsole().getLogger().info("ModuleCommands: ");
 
         if (master.getCommandManager().getModuleCommands().isEmpty()){
-            colouredConsoleProvider.info("No ModuleCommands found!");
+            colouredConsoleProvider.getLogger().info("No ModuleCommands found!");
             return false;
         }
 
         master.getCommandManager().getModuleCommands().forEach(moduleCommand -> {
-            colouredConsoleProvider.info(moduleCommand.getName() + " | " + moduleCommand.getDescription() + " | " + Arrays.toString(moduleCommand.getAliases()));
+            colouredConsoleProvider.getLogger().info(moduleCommand.getName() + " | " + moduleCommand.getDescription() + " | " + Arrays.toString(moduleCommand.getAliases()));
         });
 
         return false;

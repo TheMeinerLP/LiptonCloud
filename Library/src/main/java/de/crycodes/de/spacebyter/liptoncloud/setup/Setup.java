@@ -1,5 +1,7 @@
 package de.crycodes.de.spacebyter.liptoncloud.setup;
 
+import de.crycodes.de.spacebyter.liptoncloud.console.CloudConsole;
+
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +14,7 @@ public abstract class Setup {
 
     private Map.Entry<Field, SetupPart> currentPart;
 
-    public void start(Scanner scanner) {
+    public void start(CloudConsole scanner) {
         current = 1;
 
         for (Field field : this.getClass().getDeclaredFields()) {
@@ -21,13 +23,11 @@ public abstract class Setup {
             }
         }
 
-        scanner = new Scanner(System.in);
-
         this.currentPart = this.getEntry(1);
         System.out.println(this.currentPart.getValue().question() + " ("+this.currentPart.getKey().getType().getSimpleName()+")");
 
         while (current < (setupParts.size() + 1)) {
-            String line = scanner.nextLine();
+            String line = scanner.getLogger().readLine();
             next(line);
         }
 

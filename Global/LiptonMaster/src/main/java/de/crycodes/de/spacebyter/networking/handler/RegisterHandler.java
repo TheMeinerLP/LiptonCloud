@@ -37,13 +37,13 @@ public class RegisterHandler extends PacketHandlerAdapter {
                     String key = registerPacket.getKey();
                     if (key.equalsIgnoreCase("null")) {
                         liptonMaster.getMasterWrapperServer().sendPacket(new RegisterResponsePacket(false, "Wrong Wrapper Key or missing Key!"));
-                        liptonMaster.getColouredConsoleProvider().warning("Connection with wrong or missing key found!");
+                        liptonMaster.getCloudConsole().getLogger().warning("Connection with wrong or missing key found!");
                     }
 
                     liptonMaster.getAuthManager().checkKeys(liptonMaster.getAuthManager().getKey(), key, result -> {
                         if (!result) {
                             liptonMaster.getMasterWrapperServer().sendPacket(new RegisterResponsePacket(result, "Wrong Wrapper Key or missing Key!"));
-                            liptonMaster.getColouredConsoleProvider().warning("Connection with wrong or missing key found!");
+                            liptonMaster.getCloudConsole().getLogger().warning("Connection with wrong or missing key found!");
                         }
 
                         if (result){

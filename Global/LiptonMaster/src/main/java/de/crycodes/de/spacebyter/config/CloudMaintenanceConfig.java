@@ -55,9 +55,9 @@ public class CloudMaintenanceConfig {
             document =  new Document().loadToExistingDocument(configFile);
             document.append("MaintenancePlayers", whitelist);
             document.saveAsConfig(configFile);
-            liptonMaster.getColouredConsoleProvider().info("The user '" + name + "' is now in Maintenance List!");
+            liptonMaster.getCloudConsole().getLogger().info("The user '" + name + "' is now in Maintenance List!");
         } else {
-            liptonMaster.getColouredConsoleProvider().info("The user '" + name + "' is already in Maintenance List!");
+            liptonMaster.getCloudConsole().getLogger().info("The user '" + name + "' is already in Maintenance List!");
             return;
         }
     }
@@ -68,9 +68,9 @@ public class CloudMaintenanceConfig {
             document =  new Document().loadToExistingDocument(configFile);
             document.append("MaintenancePlayers", whitelist);
             document.saveAsConfig(configFile);
-            liptonMaster.getColouredConsoleProvider().info("The user '" + name + "' is no longer in Maintenance List!");
+            liptonMaster.getCloudConsole().getLogger().info("The user '" + name + "' is no longer in Maintenance List!");
         } else {
-            liptonMaster.getColouredConsoleProvider().info("The user '" + name + "' was not found!");
+            liptonMaster.getCloudConsole().getLogger().info("The user '" + name + "' was not found!");
             return;
         }
     }

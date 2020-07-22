@@ -24,7 +24,7 @@ public class TemplateManager {
         this.liptonWrapper = liptonWrapper;
         version = liptonWrapper.getVersionsManager().getCurrentServerVersion();
         if(version == null) {
-            liptonWrapper.getColouredConsoleProvider().error("No Server Version found. Can't create Template");
+            liptonWrapper.getColouredConsoleProvider().getLogger().error("No Server Version found. Can't create Template");
           //  liptonWrapper.getWrapperMasterClient().sendPacket(new ErrorPacket("Could not create Template" ,liptonWrapper.getWrapperConfig().getWrapperID(), new Exception("No Server Version found")));
             return;
         }
@@ -66,7 +66,7 @@ public class TemplateManager {
         propertiesWriter.flush();
         propertiesWriter.close();
 
-        liptonWrapper.getColouredConsoleProvider().info("New Template was created for Server-Group: " + serverGroupMeta.getGroupName());
+        liptonWrapper.getColouredConsoleProvider().getLogger().info("New Template was created for Server-Group: " + serverGroupMeta.getGroupName());
     }
     //</editor-fold>
 

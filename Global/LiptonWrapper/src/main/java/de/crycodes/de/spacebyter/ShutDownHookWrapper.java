@@ -27,7 +27,7 @@ public class ShutDownHookWrapper extends Thread {
     @Override
     public void run() {
         if (liptonWrapper.isIsrunning()){
-            liptonWrapper.getColouredConsoleProvider().info("Stopping Cloud [ShutDownHookWrapper]");
+            liptonWrapper.getColouredConsoleProvider().getLogger().info("Stopping Cloud [ShutDownHookWrapper]");
            liptonWrapper.getWrapperMasterClient().sendPacket(new UnRegisterPacket(RegisterType.WRAPPER, new WrapperMeta(false, new WrapperConfig(liptonWrapper.getWrapperConfig().getWrapperID(), liptonWrapper.getWrapperConfig().getHost(), true))));
             if (!this.isInterrupted())
                 this.interrupt();

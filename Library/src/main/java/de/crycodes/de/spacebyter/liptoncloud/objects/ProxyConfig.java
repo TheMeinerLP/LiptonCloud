@@ -21,7 +21,7 @@ public class ProxyConfig implements Serializable {
     private final List<ServerMeta> globalServers;
     private final List<WrapperMeta> globalWrappers;
     private final List<ProxyMeta> globalProxys;
-    private final Boolean isMaintenance;
+    private final boolean isMaintenance;
     private final List<String> maintenancePlayer;
     private final List<ServerGroupMeta> globalServerGroups;
     private final List<String> cloudAdminPlayers;
@@ -37,7 +37,7 @@ public class ProxyConfig implements Serializable {
     private final String server_start_message;
     private final String server_stop_message;
 
-    private final Boolean useNotify;
+    private final boolean useNotify;
 
     public ProxyConfig(List<ServerMeta> globalServers, List<WrapperMeta> globalWrappers, List<ProxyMeta> globalProxys, boolean isMaintenance, List<String> maintenancePlayer, List<ServerGroupMeta> globalServerGroups, List<String> cloudAdminPlayers, String tablist_top, String tablist_bottom, String default_motd, String maintenance_motd, String maintenanceVersionString, int maxPlayer, boolean useProxyConfig, String maintenanceKickMessage, String server_start_message, String server_stop_message, Boolean useNotify) {
         this.globalServers = globalServers;
@@ -72,7 +72,7 @@ public class ProxyConfig implements Serializable {
         return globalProxys;
     }
 
-    public Boolean getMaintenance() {
+    public boolean getMaintenance() {
         return isMaintenance;
     }
 
@@ -128,7 +128,7 @@ public class ProxyConfig implements Serializable {
         return server_stop_message;
     }
 
-    public Boolean getUseNotify() {
+    public boolean getUseNotify() {
         return useNotify;
     }
 }

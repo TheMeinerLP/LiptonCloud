@@ -1,7 +1,7 @@
 package de.crycodes.de.spacebyter.liptoncloud.auth;
 
 import de.crycodes.de.spacebyter.liptoncloud.config.Document;
-import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.console.CloudConsole;
 import de.crycodes.de.spacebyter.liptoncloud.time.Counter;
 import de.crycodes.de.spacebyter.liptoncloud.utils.CallBack;
 
@@ -18,12 +18,12 @@ import java.io.File;
 public class AuthManager {
 
     private final File keyFile;
-    private final ColouredConsoleProvider colouredConsoleProvider;
+    private final CloudConsole colouredConsoleProvider;
 
     private KeyGenerator keyGenerator;
     private Counter counter;
 
-    public AuthManager(File keyFile, File slatKeyFile, ColouredConsoleProvider colouredConsoleProvider) {
+    public AuthManager(File keyFile, File slatKeyFile, CloudConsole colouredConsoleProvider) {
         this.keyFile = keyFile;
         this.colouredConsoleProvider = colouredConsoleProvider;
         keyGenerator = new KeyGenerator(slatKeyFile);

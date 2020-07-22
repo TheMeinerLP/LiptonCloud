@@ -1,28 +1,56 @@
 package de.crycodes.de.spacebyter.liptoncloud.console.enums;
 
-import scala.Char;
+import org.fusesource.jansi.Ansi;
 
-public enum Color {
-    
-    RED((char) 27 + "[31m"),
-    GREEN((char) 27 + "[32m"),
-    YELLOW((char) 27 + "[33m"),
-    BLUE((char) 27 + "[34m"),
-    MAGENTA((char) 27 + "[35m"),
-    CYAN((char) 27 + "[36m"),
-    GRAY((char) 27 + "[37m"),
-    
-    BOLD((char) 27 + "[1m"),
-    RESET((char) 27 + "[0m"),
-    UNDERLINED((char) 27 + "[4m");
+/**
+ * Coded By CryCodes
+ * Class: Color
+ * Date : 22.07.2020
+ * Time : 01:13
+ * Project: LiptonCloud
+ */
 
-    String color;
+public enum  Color {
 
-    Color(String color) {
-        this.color = color;
+    RESET( 'r', Ansi.ansi().a(Ansi.Attribute.RESET).fg(Ansi.Color.DEFAULT).boldOff().toString()),
+    WHITE('f', Ansi.ansi().a(Ansi.Attribute.RESET).fg(Ansi.Color.WHITE).bold().toString()),
+    BLACK( '0', Ansi.ansi().a(Ansi.Attribute.RESET).fg(Ansi.Color.BLACK).bold().toString()),
+    RED( 'c', Ansi.ansi().a(Ansi.Attribute.RESET).fg(Ansi.Color.RED).bold().toString()),
+    YELLOW( 'e', Ansi.ansi().a(Ansi.Attribute.RESET).fg(Ansi.Color.YELLOW).bold().toString()),
+    BLUE('9', Ansi.ansi().a(Ansi.Attribute.RESET).fg(Ansi.Color.BLUE).bold().toString()),
+    GREEN( 'a', Ansi.ansi().a(Ansi.Attribute.RESET).fg(Ansi.Color.GREEN).bold().toString()),
+    PURPLE( '5', Ansi.ansi().a(Ansi.Attribute.RESET).fg(Ansi.Color.MAGENTA).boldOff().toString()),
+    ORANGE( '6', Ansi.ansi().a(Ansi.Attribute.RESET).fg(Ansi.Color.YELLOW).boldOff().toString()),
+    GRAY( '7', Ansi.ansi().a(Ansi.Attribute.RESET).fg(Ansi.Color.WHITE).boldOff().toString()),
+    DARK_RED('4', Ansi.ansi().a(Ansi.Attribute.RESET).fg(Ansi.Color.RED).boldOff().toString()),
+    DARK_GRAY( '8', Ansi.ansi().a(Ansi.Attribute.RESET).fg(Ansi.Color.BLACK).boldOff().toString()),
+    DARK_BLUE( '1', Ansi.ansi().a(Ansi.Attribute.RESET).fg(Ansi.Color.BLUE).boldOff().toString()),
+    DARK_GREEN( '2', Ansi.ansi().a(Ansi.Attribute.RESET).fg(Ansi.Color.GREEN).boldOff().toString()),
+    LIGHT_BLUE( 'b', Ansi.ansi().a(Ansi.Attribute.RESET).fg(Ansi.Color.CYAN).bold().toString()),
+    CYAN( '3', Ansi.ansi().a(Ansi.Attribute.RESET).fg(Ansi.Color.CYAN).boldOff().toString());
+
+    private String ansiCode;
+
+    private final char index;
+
+    Color(char index, String ansiCode) {
+        this.index = index;
+        this.ansiCode = ansiCode;
     }
 
-    public String getColor() {
-        return color;
+    public char getIndex() {
+        return index;
     }
+
+    public String getAnsiCode() {
+        return ansiCode;
+    }
+
+    public static String stripColor(String input) {
+        return input.replaceAll("\u001B\\[[;\\d]*m", "");
+    }
+
+
+
+
 }

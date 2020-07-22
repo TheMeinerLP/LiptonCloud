@@ -1,7 +1,6 @@
 package de.crycodes.de.spacebyter.liptoncloud.addon;
 
-import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
-import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.console.CloudConsole;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,21 +21,19 @@ public final class ModuleService {
     private CloudModule[] modules;
     private final File moduleDir;
     private ModuleManager moduleManager;
-    private final ColouredConsoleProvider colouredConsoleProvider;
 
     private List<LoadedModule> activeModules;
 
     //<editor-fold desc="ModuleService">
-    public ModuleService(File moduleDir, ColouredConsoleProvider colouredConsoleProvider) {
+    public ModuleService(File moduleDir) {
         activeModules = new ArrayList<>();
         this.moduleDir = moduleDir;
-        this.colouredConsoleProvider = colouredConsoleProvider;
         modules = null;
     }
     //</editor-fold>
 
     //<editor-fold desc="loadModules">
-    public boolean loadModules(){
+    public boolean loadModules(CloudConsole cloudConsole){
         modules = null;
         try {
 
@@ -44,7 +41,7 @@ public final class ModuleService {
             this.moduleManager = new ModuleManager();
             this.modules = moduleManager.initAsPlugin(moduleManager.loadDirectory(moduleDir, "config.cfg"));
             if (modules.length == 0) {
-                colouredConsoleProvider.info("No Modules found to load!");
+                cloudConsole.getLogger().info("No Modules found to load!");
                 return true;
             }
 
@@ -60,7 +57,7 @@ public final class ModuleService {
                 final LoadedModule loadedModule = new LoadedModule(moduleName,version, author, website,dependencies);
                 this.activeModules.add(loadedModule);
 
-                colouredConsoleProvider.info("Loaded Module: " + moduleName + " version: " + version + " author: " + author + " website: " + website + " dependencies: " + dependencies);
+                cloudConsole.getLogger().info("Loaded Module: " + moduleName + " version: " + version + " author: " + author + " website: " + website + " dependencies: " + dependencies);
             }
 
             return true;

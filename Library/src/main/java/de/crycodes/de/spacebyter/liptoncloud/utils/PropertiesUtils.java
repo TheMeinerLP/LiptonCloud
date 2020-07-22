@@ -10,7 +10,7 @@ package de.crycodes.de.spacebyter.liptoncloud.utils;
 
 public class PropertiesUtils {
 
-    static String
+    public static String
     OS_NAME = System.getProperty("os.name"),
     OS_ARCH = System.getProperty("os.arch"),
     OS_VERSION = System.getProperty("os.version"),

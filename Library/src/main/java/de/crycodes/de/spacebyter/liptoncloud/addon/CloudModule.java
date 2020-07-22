@@ -4,7 +4,7 @@ import de.crycodes.de.spacebyter.liptoncloud.addon.command.ModuleCommand;
 import de.crycodes.de.spacebyter.liptoncloud.addon.event.EventManager;
 import de.crycodes.de.spacebyter.liptoncloud.addon.event.abstracts.Event;
 import de.crycodes.de.spacebyter.liptoncloud.addon.event.interfaces.Listener;
-import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.console.CloudConsole;
 import de.crycodes.de.spacebyter.liptoncloud.scheduler.Scheduler;
 
 /**
@@ -17,7 +17,7 @@ import de.crycodes.de.spacebyter.liptoncloud.scheduler.Scheduler;
 
 public abstract class CloudModule {
 
-    public abstract ColouredConsoleProvider getLogger();
+    public abstract CloudConsole getLogger();
     public abstract EventManager getEventManager();
     public abstract Scheduler getScheduler();
 

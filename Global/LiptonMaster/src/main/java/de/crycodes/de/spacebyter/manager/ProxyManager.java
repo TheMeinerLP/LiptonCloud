@@ -36,14 +36,14 @@ public class ProxyManager {
             return;
         }
         globalProxyList.add(serverMeta);
-        liptonMaster.getColouredConsoleProvider().info("Registered new Proxy: " + serverMeta.getName());
+        liptonMaster.getCloudConsole().getLogger().info("Registered new Proxy: " + serverMeta.getName());
         isAuthenticated.accept(true);
         liptonMaster.getEventManager().callEvent(new ProxyRegisterEvent(serverMeta));
     }
     public void unregisterProxy(ProxyMeta serverMeta){
         if (!globalProxyList.contains(serverMeta))return;
         globalProxyList.remove(serverMeta);
-        liptonMaster.getColouredConsoleProvider().info("Registered Proxy: " + serverMeta.getName());
+        liptonMaster.getCloudConsole().getLogger().info("Registered Proxy: " + serverMeta.getName());
         liptonMaster.getEventManager().callEvent(new ProxyUnregisterEvent(serverMeta));
     }
     //</editor-fold>

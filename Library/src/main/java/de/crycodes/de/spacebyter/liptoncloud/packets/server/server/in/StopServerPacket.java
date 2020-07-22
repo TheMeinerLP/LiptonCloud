@@ -14,16 +14,16 @@ public class StopServerPacket extends Packet {
 
     private final String serverName;
     private final String wrapperID;
-    private final Boolean dynamic;
+    private final boolean dynamic;
 
-    public StopServerPacket(String serverName, String wrapperID, Boolean dynamic) {
+    public StopServerPacket(String serverName, String wrapperID, boolean dynamic) {
         super("StopServerPacket");
         this.serverName = serverName;
         this.wrapperID = wrapperID;
         this.dynamic = dynamic;
     }
 
-    public Boolean getDynamic() {
+    public boolean getDynamic() {
         return dynamic;
     }
 

@@ -5,9 +5,12 @@ import de.crycodes.de.spacebyter.config.*;
 import de.crycodes.de.spacebyter.liptoncloud.addon.ModuleService;
 import de.crycodes.de.spacebyter.liptoncloud.addon.event.EventManager;
 import de.crycodes.de.spacebyter.liptoncloud.auth.AuthManager;
+import de.crycodes.de.spacebyter.liptoncloud.console.CloudConsole;
+import de.crycodes.de.spacebyter.liptoncloud.console.LoggerProvider;
 import de.crycodes.de.spacebyter.liptoncloud.library.JarInjector;
 import de.crycodes.de.spacebyter.liptoncloud.player.LiptonPlayerManager;
 import de.crycodes.de.spacebyter.liptoncloud.time.Counter;
+import de.crycodes.de.spacebyter.liptoncloud.utils.PropertiesUtils;
 import de.crycodes.de.spacebyter.networking.proxy.MasterProxyServer;
 import de.crycodes.de.spacebyter.networking.server.MasterSpigotServer;
 import de.crycodes.de.spacebyter.proxy.BungeeCordManager;
@@ -15,7 +18,6 @@ import de.crycodes.de.spacebyter.serverhelper.ConfigHandler;
 import de.crycodes.de.spacebyter.serverhelper.ProxyFileConfig;
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
 import de.crycodes.de.spacebyter.liptoncloud.command.CommandManager;
-import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 import de.crycodes.de.spacebyter.liptoncloud.scheduler.Scheduler;
 import de.crycodes.de.spacebyter.manager.*;
@@ -40,7 +42,8 @@ public class LiptonMaster {
 
     private static LiptonMaster instance;
 
-    private ColouredConsoleProvider colouredConsoleProvider;
+    private LoggerProvider loggerProvider;
+    private CloudConsole cloudConsole;
 
     private LiptonLibrary liptonLibrary;
     private Scheduler scheduler;
@@ -97,7 +100,7 @@ public class LiptonMaster {
         serverGroupConfig = new ServerGroupConfig(this);
         wrapperConfig = new WrapperGroupConfig(this);
 
-        colouredConsoleProvider = new ColouredConsoleProvider(new File("./liptonMaster/logs"), this.masterConfig.isColorConsole());
+        loggerProvider = new LoggerProvider(new File("./liptonMaster/logs"));
 
         portManager = new PortManager(this);
         idManager = new IDManager();
@@ -121,17 +124,19 @@ public class LiptonMaster {
 
         wrapperManager = new WrapperManager(this);
 
-        commandManager = new CommandManager(colouredConsoleProvider);
+        commandManager = new CommandManager();
 
-        moduleService = new ModuleService(new File("./liptonMaster/modules"), colouredConsoleProvider);
+        moduleService = new ModuleService(new File("./liptonMaster/modules"));
 
-        liptonLibrary = new LiptonLibrary(scheduler, colouredConsoleProvider , masterConfig.isColorConsole());
+        cloudConsole = new CloudConsole(loggerProvider, commandManager, PropertiesUtils.USER_NAME);
+
+        liptonLibrary = new LiptonLibrary(scheduler , masterConfig.isColorConsole());
         liptonLibrary.checkAPIFile(new File("./liptonMaster/api/LiptonBridge-1.0-SNAPSHOT.jar"));
 
         packetHandler = new PacketHandler();
-        liptonLibrary.registerPacket(packetHandler);
+        liptonLibrary.registerPacket(packetHandler, cloudConsole);
 
-        liptonLibrary.printAscii();
+        liptonLibrary.printAscii(cloudConsole);
 
         proxyConfigHandler = new ConfigHandler(this,scheduler).startUpdateThread();
 
@@ -161,18 +166,16 @@ public class LiptonMaster {
         commandManager.registerCommand(new ClearCommand("clear", "Command to Clear Console", "clearscreen", "cls"));
 
         counter.stop();
-        counter.printResult("MasterStartup" ,this.getColouredConsoleProvider());
+        counter.printResult("MasterStartup" ,cloudConsole);
 
-        moduleService.loadModules();
+        moduleService.loadModules(cloudConsole);
         moduleService.startModules();
-
-        commandManager.run(colouredConsoleProvider.getScanner());
     }
     //</editor-fold>
 
     private AuthManager authManager;
     private void checkKeyManager(){
-        authManager = new AuthManager(new File("./liptonMaster/KEY.json"), new File("./liptonMaster/database/SALTKEY"),colouredConsoleProvider);
+        authManager = new AuthManager(new File("./liptonMaster/KEY.json"), new File("./liptonMaster/database/SALTKEY"),cloudConsole);
         authManager.createKey();
     }
 
@@ -181,14 +184,6 @@ public class LiptonMaster {
     @Deprecated
     public static LiptonMaster getInstance() {
         return instance;
-    }
-
-    public ColouredConsoleProvider getColouredConsoleProvider() {
-        return colouredConsoleProvider;
-    }
-
-    public void setColouredConsoleProvider(ColouredConsoleProvider colouredConsoleProvider) {
-        this.colouredConsoleProvider = colouredConsoleProvider;
     }
 
     public CommandManager getCommandManager() {
@@ -274,5 +269,38 @@ public class LiptonMaster {
     public EventManager getEventManager() {
         return eventManager;
     }
+
+    public LoggerProvider getLoggerProvider() {
+        return loggerProvider;
+    }
+
+    public CloudConsole getCloudConsole() {
+        return cloudConsole;
+    }
+
+    public ConfigHandler getProxyConfigHandler() {
+        return proxyConfigHandler;
+    }
+
+    public FileManager getFileManager() {
+        return fileManager;
+    }
+
+    public Counter getCounter() {
+        return counter;
+    }
+
+    public LiptonPlayerManager getPlayerManager() {
+        return playerManager;
+    }
+
+    public JarInjector getJarInjector() {
+        return jarInjector;
+    }
+
+    public BungeeCordManager getBungeeCordManager() {
+        return bungeeCordManager;
+    }
+
     //</editor-fold>
 }

@@ -49,7 +49,7 @@ public class MasterWrapperServer {
         server = new ThunderServer(adapterHandler, networkChannel, port);
 
 
-        liptonMaster.getColouredConsoleProvider().info("Starting Master-Wrapper Server on Port: (§c" + port + "§r) !");
+        liptonMaster.getCloudConsole().getLogger().info("Starting Master-Wrapper Server on Port: (§c" + port + "§r) !");
         return this;
     }
     //</editor-fold>

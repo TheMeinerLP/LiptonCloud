@@ -49,7 +49,7 @@ public class MasterProxyServer {
     public MasterProxyServer start(){
         server = new ThunderServer(adapterHandler, networkChannel, port);
 
-        liptonMaster.getColouredConsoleProvider().info("Starting Proxy-Wrapper Server on Port: (§c" + port + "§r) !");
+        liptonMaster.getCloudConsole().getLogger().info("Starting Proxy-Wrapper Server on Port: (§c" + port + "§r) !");
         return this;
     }
     //</editor-fold>

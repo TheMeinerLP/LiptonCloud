@@ -46,7 +46,7 @@ public class CopyServerHandler extends PacketHandlerAdapter {
                     e.printStackTrace();
                 }
 
-                liptonWrapper.getColouredConsoleProvider().info("Copied Server: '" + serverName + "' in Template of ServerGroup: '" + copyServerPacket.getServerGroupMeta().getGroupName() + "' !");
+                liptonWrapper.getColouredConsoleProvider().getLogger().info("Copied Server: '" + serverName + "' in Template of ServerGroup: '" + copyServerPacket.getServerGroupMeta().getGroupName() + "' !");
 
             } else {
                 return;

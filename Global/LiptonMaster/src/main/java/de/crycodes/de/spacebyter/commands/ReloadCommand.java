@@ -2,7 +2,7 @@ package de.crycodes.de.spacebyter.commands;
 
 import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.liptoncloud.command.CloudCommand;
-import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.console.CloudConsole;
 
 /**
  * Coded By CryCodes
@@ -25,16 +25,16 @@ public class ReloadCommand extends CloudCommand {
 
     //<editor-fold desc="execute">
     @Override
-    protected boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args) {
+    protected boolean execute(CloudConsole colouredConsoleProvider, String command, String[] args) {
         liptonMaster.getModuleService().stopModules();
         liptonMaster.getServerGroupConfig().getServerMetas();
         liptonMaster.getCommandManager().getModuleCommands().clear();
         liptonMaster.getMasterConfig().reload();
         liptonMaster.getServerManager().start();
         liptonMaster.getProxyFileConfig().load();
-        liptonMaster.getModuleService().loadModules();
+        liptonMaster.getModuleService().loadModules(colouredConsoleProvider);
         liptonMaster.getModuleService().startModules();
-        liptonMaster.getColouredConsoleProvider().info("Cloud was Reloaded!");
+        colouredConsoleProvider.getLogger().info("Cloud was Reloaded!");
         return false;
     }
     //</editor-fold>

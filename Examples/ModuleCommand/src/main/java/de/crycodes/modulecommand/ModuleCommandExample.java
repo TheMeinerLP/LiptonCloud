@@ -1,7 +1,7 @@
 package de.crycodes.modulecommand;
 
 import de.crycodes.de.spacebyter.liptoncloud.addon.command.ModuleCommand;
-import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.console.CloudConsole;
 
 /**
  * Coded By CryCodes
@@ -17,7 +17,7 @@ public class ModuleCommandExample extends ModuleCommand {
         super("test", "This is an TestCommand!", "simple", "aliases");
     }
 
-    public boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args) {
+    public boolean execute(CloudConsole colouredConsoleProvider, String command, String[] args) {
         //EXECUTE LOGIC
         return false;
     }

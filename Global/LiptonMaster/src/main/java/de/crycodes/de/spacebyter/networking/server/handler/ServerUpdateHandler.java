@@ -1,10 +1,7 @@
 package de.crycodes.de.spacebyter.networking.server.handler;
 
-import de.crycodes.de.spacebyter.LiptonMaster;
-import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerUpdatePacket;
 import de.crycodes.de.spacebyter.network.adapter.PacketHandlerAdapter;
-import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
 import de.crycodes.de.spacebyter.network.packet.Packet;
 
 /**

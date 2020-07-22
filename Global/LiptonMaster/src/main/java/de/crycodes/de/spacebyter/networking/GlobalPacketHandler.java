@@ -26,7 +26,7 @@ public class GlobalPacketHandler extends PacketHandlerAdapter {
     @Override
     public void handel(Packet packet) {
         if (liptonMaster.getMasterConfig().isDebugMode())
-            liptonMaster.getColouredConsoleProvider().info("NEW PACKET - " + packet.getClass().getSimpleName());
+            liptonMaster.getCloudConsole().getLogger().info("NEW PACKET - " + packet.getClass().getSimpleName());
     }
     //</editor-fold>
 }

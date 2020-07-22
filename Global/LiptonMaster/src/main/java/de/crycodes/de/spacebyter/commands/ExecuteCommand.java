@@ -2,7 +2,7 @@ package de.crycodes.de.spacebyter.commands;
 
 import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.liptoncloud.command.CloudCommand;
-import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.console.CloudConsole;
 import de.crycodes.de.spacebyter.liptoncloud.events.ServerExecuteCommandEvent;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.ExecuteCommandPacket;
 
@@ -30,14 +30,14 @@ public class ExecuteCommand extends CloudCommand {
 
     //<editor-fold desc="execute">
     @Override
-    protected boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args) {
+    protected boolean execute(CloudConsole colouredConsoleProvider, String command, String[] args) {
         if (args.length == 0 || args.length == 1){
-            colouredConsoleProvider.info("execute <server> <command>");
+            colouredConsoleProvider.getLogger().error("execute <server> <command>");
             return true;
         }
         if (liptonMaster.getServerManager().getGlobalServerList().isEmpty()){
 
-            liptonMaster.getColouredConsoleProvider().error("No Server's found!");
+            liptonMaster.getCloudConsole().getLogger().error("No Server's found!");
             return true;
         }
 
@@ -52,7 +52,7 @@ public class ExecuteCommand extends CloudCommand {
 
         liptonMaster.getMasterSpigotServer().sendPacket(new ExecuteCommandPacket(stringBuilder.toString(), server));
         liptonMaster.getEventManager().callEvent(new ServerExecuteCommandEvent(server, stringBuilder.toString()));
-        colouredConsoleProvider.info("Send CommandLine to: " + server);
+        colouredConsoleProvider.getLogger().info("Send CommandLine to: " + server);
 
         return false;
     }

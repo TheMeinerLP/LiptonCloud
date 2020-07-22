@@ -1,7 +1,9 @@
 package de.crycodes.de.spacebyter.commands;
 
 import de.crycodes.de.spacebyter.liptoncloud.command.CloudCommand;
-import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.console.CloudConsole;
+
+import java.io.IOException;
 
 /**
  * Coded By CryCodes
@@ -18,9 +20,13 @@ public class ClearCommand extends CloudCommand {
     }
 
     @Override
-    protected boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args) {
+    protected boolean execute(CloudConsole colouredConsoleProvider, String command, String[] args) {
 
-        colouredConsoleProvider.clearConsole();
+        try {
+            colouredConsoleProvider.getLogger().getConsoleReader().clearScreen();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
 
         return false;
     }

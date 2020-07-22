@@ -70,7 +70,7 @@ public class CreateSignCommand implements CommandExecutor {
     }
 
     //<editor-fold desc="replace">
-    void replace(CloudSign sign, Boolean loading) {
+    void replace(CloudSign sign, boolean loading) {
         Block signBlock = Bukkit.getWorld(sign.getWorld()).getBlockAt(sign.getX(),sign.getY(),sign.getZ());
         Sign bukkitSign = (Sign) signBlock.getState();
         Block block = getBlockFaced(bukkitSign.getBlock());

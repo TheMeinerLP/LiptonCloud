@@ -2,7 +2,7 @@ package de.crycodes.de.spacebyter.commands;
 
 import de.crycodes.de.spacebyter.LiptonWrapper;
 import de.crycodes.de.spacebyter.liptoncloud.command.CloudCommand;
-import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.console.CloudConsole;
 import de.crycodes.de.spacebyter.liptoncloud.enums.RegisterType;
 import de.crycodes.de.spacebyter.liptoncloud.meta.WrapperMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.config.WrapperConfig;
@@ -21,9 +21,9 @@ public class StopCommand extends CloudCommand {
 
     //<editor-fold desc="execute">
     @Override
-    protected boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args) {
+    protected boolean execute(CloudConsole colouredConsoleProvider, String command, String[] args) {
         liptonWrapper.setIsrunning(false);
-        colouredConsoleProvider.info("Stopping Cloud");
+        colouredConsoleProvider.getLogger().info("Stopping Cloud");
         liptonWrapper.getWrapperMasterClient().sendPacket(new UnRegisterPacket(RegisterType.WRAPPER, new WrapperMeta(false, new WrapperConfig(liptonWrapper.getWrapperConfig().getWrapperID(), liptonWrapper.getWrapperConfig().getHost(), true))));
         System.exit(0);
 

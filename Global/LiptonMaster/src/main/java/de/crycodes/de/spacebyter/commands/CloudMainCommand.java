@@ -2,7 +2,7 @@ package de.crycodes.de.spacebyter.commands;
 
 import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.liptoncloud.command.CloudCommand;
-import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.console.CloudConsole;
 import de.crycodes.de.spacebyter.liptoncloud.enums.ExitState;
 import de.crycodes.de.spacebyter.liptoncloud.events.ProxyStopEvent;
 import de.crycodes.de.spacebyter.liptoncloud.events.ServerGroupStopEvent;
@@ -30,7 +30,7 @@ public class CloudMainCommand extends CloudCommand {
 
     //<editor-fold desc="execute">
     @Override
-    protected boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args) {
+    protected boolean execute(CloudConsole colouredConsoleProvider, String command, String[] args) {
 
         if (args.length == 2){
 
@@ -40,7 +40,7 @@ public class CloudMainCommand extends CloudCommand {
 
                 if (liptonMaster.getServerManager().getGlobalServerList().isEmpty()){
 
-                    liptonMaster.getColouredConsoleProvider().error("No Server's found!");
+                    liptonMaster.getCloudConsole().getLogger().error("No Server's found!");
                     return true;
                 }
 
@@ -52,7 +52,7 @@ public class CloudMainCommand extends CloudCommand {
                 liptonMaster.getMasterSpigotServer().sendPacket(new StopServerPacket(name, serverMeta.getWrapperID(), serverMeta.getServerGroupMeta().isDynamicService()));
                 liptonMaster.getEventManager().callEvent(new ServerStopEvent(serverMeta));
 
-                liptonMaster.getColouredConsoleProvider().info("Send StopPacket to Server: " + name);
+                liptonMaster.getCloudConsole().getLogger().info("Send StopPacket to Server: " + name);
 
                 return true;
 
@@ -62,7 +62,7 @@ public class CloudMainCommand extends CloudCommand {
 
                 if (liptonMaster.getProxyManager().getGlobalProxyList().isEmpty()){
 
-                    liptonMaster.getColouredConsoleProvider().error("No Proxy's found!");
+                    liptonMaster.getCloudConsole().getLogger().error("No Proxy's found!");
                     return true;
                 }
 
@@ -70,7 +70,7 @@ public class CloudMainCommand extends CloudCommand {
                 liptonMaster.getMasterProxyServer().getServer().sendPacket(liptonMaster.getMasterProxyServer().getNetworkChannel(),new StopProxyPacket(proxyMeta));
                 liptonMaster.getEventManager().callEvent(new ProxyStopEvent(proxyMeta));
 
-                liptonMaster.getColouredConsoleProvider().info("Send StopPacket to  Proxy: " + name);
+                liptonMaster.getCloudConsole().getLogger().info("Send StopPacket to  Proxy: " + name);
 
                 return true;
             }
@@ -79,7 +79,7 @@ public class CloudMainCommand extends CloudCommand {
 
                 if (liptonMaster.getServerGroupConfig().getServerMetas().isEmpty()){
 
-                    liptonMaster.getColouredConsoleProvider().error("No Server Group found!");
+                    liptonMaster.getCloudConsole().getLogger().error("No Server Group found!");
                     return true;
                 }
 
@@ -87,10 +87,10 @@ public class CloudMainCommand extends CloudCommand {
                     if (serverGroupMeta.getGroupName().equalsIgnoreCase(name)){
                         liptonMaster.getMasterSpigotServer().sendPacket(new StopServerGroupPacket(serverGroupMeta, ExitState.STOPPED_SUCESS.getState()));
                         liptonMaster.getEventManager().callEvent(new ServerGroupStopEvent(serverGroupMeta));
-                        liptonMaster.getColouredConsoleProvider().info("Send StopServerGroup to All Server's of Group: " + name);
+                        liptonMaster.getCloudConsole().getLogger().info("Send StopServerGroup to All Server's of Group: " + name);
                         return;
                     }
-                    liptonMaster.getColouredConsoleProvider().error("Server Group: " + name + " was not found!");
+                    liptonMaster.getCloudConsole().getLogger().error("Server Group: " + name + " was not found!");
                 });
 
                 return true;
@@ -101,7 +101,7 @@ public class CloudMainCommand extends CloudCommand {
 
                 if (liptonMaster.getServerGroupConfig().getServerMetas().isEmpty()){
 
-                    liptonMaster.getColouredConsoleProvider().error("No Server Group found!");
+                    liptonMaster.getCloudConsole().getLogger().error("No Server Group found!");
                     return true;
                 }
 
@@ -110,21 +110,21 @@ public class CloudMainCommand extends CloudCommand {
 
 
                     if (name.equalsIgnoreCase("Lobby")) {
-                        liptonMaster.getColouredConsoleProvider().error("Could not delete ServerGroup: " + name);
+                        liptonMaster.getCloudConsole().getLogger().error("Could not delete ServerGroup: " + name);
                         return true;
                     }
 
                     if ((new File("./liptonMaster/groups/server/" + name + ".json")).delete()){
-                        liptonMaster.getColouredConsoleProvider().info("Deleted ServerGroup: " +  name);
+                        liptonMaster.getCloudConsole().getLogger().info("Deleted ServerGroup: " +  name);
                         return true;
                     }
 
-                    liptonMaster.getColouredConsoleProvider().error("Could not delete ServerGroup: " + name);
+                    liptonMaster.getCloudConsole().getLogger().error("Could not delete ServerGroup: " + name);
 
                     return true;
                 }
 
-                liptonMaster.getColouredConsoleProvider().error("Server Group: " + name + " was not found!");
+                liptonMaster.getCloudConsole().getLogger().error("Server Group: " + name + " was not found!");
 
                 return true;
             }
@@ -143,13 +143,14 @@ public class CloudMainCommand extends CloudCommand {
     //</editor-fold>
 
     //<editor-fold desc="sendUsage">
-    private void sendUsage(ColouredConsoleProvider colouredConsoleProvider){
-        colouredConsoleProvider.info("cloud <stopserver> <name>");
-        colouredConsoleProvider.info("cloud <stopproxy> <name>");
-        colouredConsoleProvider.info("cloud <stopgroup> <group>");
-        colouredConsoleProvider.info("cloud <delete> <servergroup>");
+    private void sendUsage(CloudConsole colouredConsoleProvider){
+        colouredConsoleProvider.getLogger().info("cloud <stopserver> <name>");
+        colouredConsoleProvider.getLogger().info("cloud <stopproxy> <name>");
+        colouredConsoleProvider.getLogger().info("cloud <stopgroup> <group>");
+        colouredConsoleProvider.getLogger().info("cloud <delete> <servergroup>");
 
     }
+
     //</editor-fold>
 
 }

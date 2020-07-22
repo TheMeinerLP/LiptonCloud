@@ -7,41 +7,41 @@ package de.crycodes.de.spacebyter.liptoncloud.utils;
  */
 
 
+import de.crycodes.de.spacebyter.liptoncloud.console.CloudConsole;
 import de.crycodes.de.spacebyter.liptoncloud.console.enums.Color;
-import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 
 public class AsciiPrinter {
 
-    public void Print(ColouredConsoleProvider logger, boolean useColor){
+    public void Print(CloudConsole logger, boolean useColor){
         if (useColor){
-            logger.info(Color.RED + ".____    .__        __                _________ .__                   .___");
-            logger.info(Color.RED + "|    |   |__|______/  |_  ____   ____ \\_   ___ \\|  |   ____  __ __  __| _/");
-            logger.info(Color.RED + "|    |   |  \\____ \\   __\\/  _ \\ /    \\/    \\  \\/|  |  /  _ \\|  |  \\/ __ | ");
-            logger.info(Color.RED + "|    |___|  |  |_> >  | (  <_> )   |  \\     \\___|  |_(  <_> )  |  / /_/ | ");
-            logger.info(Color.RED + "|_______ \\__|   __/|__|  \\____/|___|  /\\______  /____/\\____/|____/\\____ | ");
-            logger.info(Color.RED + "        \\/  |__|                    \\/        \\/                       \\/ ");
-            logger.info("Coded by CryCodes, SpaceByter, ErazeYT & CoderPVP");
-            logger.info("");
-            logger.info("   Java-Version: " + PropertiesUtils.JAVA_VERSION);
-            logger.info("   Os-System: " + PropertiesUtils.OS_NAME);
-            logger.info("   Os-Architecture: " + PropertiesUtils.OS_ARCH);
-            logger.info("   UserName: " + PropertiesUtils.USER_NAME);
-            logger.info("");
+            logger.getLogger().info(Color.RED + ".____    .__        __                _________ .__                   .___");
+            logger.getLogger().info(Color.RED + "|    |   |__|______/  |_  ____   ____ \\_   ___ \\|  |   ____  __ __  __| _/");
+            logger.getLogger().info(Color.RED + "|    |   |  \\____ \\   __\\/  _ \\ /    \\/    \\  \\/|  |  /  _ \\|  |  \\/ __ | ");
+            logger.getLogger().info(Color.RED + "|    |___|  |  |_> >  | (  <_> )   |  \\     \\___|  |_(  <_> )  |  / /_/ | ");
+            logger.getLogger().info(Color.RED + "|_______ \\__|   __/|__|  \\____/|___|  /\\______  /____/\\____/|____/\\____ | ");
+            logger.getLogger().info(Color.RED + "        \\/  |__|                    \\/        \\/                       \\/ ");
+            logger.getLogger().info("Coded by CryCodes, SpaceByter, ErazeYT & CoderPVP");
+            logger.getLogger().info("");
+            logger.getLogger().info("   Java-Version: " + PropertiesUtils.JAVA_VERSION);
+            logger.getLogger().info("   Os-System: " + PropertiesUtils.OS_NAME);
+            logger.getLogger().info("   Os-Architecture: " + PropertiesUtils.OS_ARCH);
+            logger.getLogger().info("   UserName: " + PropertiesUtils.USER_NAME);
+            logger.getLogger().info("");
             return;
         }
-        logger.info(".____    .__        __                _________ .__                   .___");
-        logger.info("|    |   |__|______/  |_  ____   ____ \\_   ___ \\|  |   ____  __ __  __| _/");
-        logger.info("|    |   |  \\____ \\   __\\/  _ \\ /    \\/    \\  \\/|  |  /  _ \\|  |  \\/ __ | ");
-        logger.info("|    |___|  |  |_> >  | (  <_> )   |  \\     \\___|  |_(  <_> )  |  / /_/ | ");
-        logger.info("|_______ \\__|   __/|__|  \\____/|___|  /\\______  /____/\\____/|____/\\____ | ");
-        logger.info("        \\/  |__|                    \\/        \\/                       \\/ ");
-        logger.info("Coded by CryCodes, SpaceByter, ErazeYT & CoderPVP");
-        logger.info("");
-        logger.info("   Java-Version: " + PropertiesUtils.JAVA_VERSION);
-        logger.info("   Os-System: " + PropertiesUtils.OS_NAME);
-        logger.info("   Os-Architecture: " + PropertiesUtils.OS_ARCH);
-        logger.info("   UserName: " + PropertiesUtils.USER_NAME);
-        logger.info("");
+        logger.getLogger().info(".____    .__        __                _________ .__                   .___");
+        logger.getLogger().info("|    |   |__|______/  |_  ____   ____ \\_   ___ \\|  |   ____  __ __  __| _/");
+        logger.getLogger().info("|    |   |  \\____ \\   __\\/  _ \\ /    \\/    \\  \\/|  |  /  _ \\|  |  \\/ __ | ");
+        logger.getLogger().info("|    |___|  |  |_> >  | (  <_> )   |  \\     \\___|  |_(  <_> )  |  / /_/ | ");
+        logger.getLogger().info("|_______ \\__|   __/|__|  \\____/|___|  /\\______  /____/\\____/|____/\\____ | ");
+        logger.getLogger().info("        \\/  |__|                    \\/        \\/                       \\/ ");
+        logger.getLogger().info("Coded by CryCodes, SpaceByter, ErazeYT & CoderPVP");
+        logger.getLogger().info("");
+        logger.getLogger().info("   Java-Version: " + PropertiesUtils.JAVA_VERSION);
+        logger.getLogger().info("   Os-System: " + PropertiesUtils.OS_NAME);
+        logger.getLogger().info("   Os-Architecture: " + PropertiesUtils.OS_ARCH);
+        logger.getLogger().info("   UserName: " + PropertiesUtils.USER_NAME);
+        logger.getLogger().info("");
 
     }
 

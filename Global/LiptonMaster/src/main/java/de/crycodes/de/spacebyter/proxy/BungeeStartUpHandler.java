@@ -36,7 +36,7 @@ public class BungeeStartUpHandler extends Thread {
         try {
             final ProcessBuilder processBuilder = new ProcessBuilder(cmd).directory(bungeeCordFile);
             final Process process = processBuilder.start();
-            liptonMaster.getColouredConsoleProvider().info("Started BungeeCord Server on: §c25565 §r!");
+            liptonMaster.getCloudConsole().getLogger().info("Started BungeeCord Server on: §c25565 §r!");
             if (!process.isAlive())
                 process.destroyForcibly();
 

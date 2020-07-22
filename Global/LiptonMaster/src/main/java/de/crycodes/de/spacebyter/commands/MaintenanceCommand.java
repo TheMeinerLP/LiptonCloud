@@ -2,7 +2,7 @@ package de.crycodes.de.spacebyter.commands;
 
 import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.liptoncloud.command.CloudCommand;
-import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.console.CloudConsole;
 
 /**
  * Coded By CryCodes
@@ -25,15 +25,15 @@ public class MaintenanceCommand extends CloudCommand {
 
     //<editor-fold desc="execute">
     @Override
-    protected boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args) {
+    protected boolean execute(CloudConsole colouredConsoleProvider, String command, String[] args) {
 
         if (args.length == 1){
             if (args[0].equalsIgnoreCase("toggle")){
 
                 if (liptonMaster.getMasterConfig().switchMaintenance()){
-                    colouredConsoleProvider.info("The Network is now in §aMaintenance §7Mode.");
+                    colouredConsoleProvider.getLogger().info("The Network is now in §aMaintenance §7Mode.");
                 } else {
-                    colouredConsoleProvider.info("The Network is no longer in §cMaintenance §7Mode.");
+                    colouredConsoleProvider.getLogger().info("The Network is no longer in §cMaintenance §7Mode.");
                 }
 
             } else
@@ -66,10 +66,10 @@ public class MaintenanceCommand extends CloudCommand {
     //</editor-fold>
 
     //<editor-fold desc="sendUsage">
-    private void sendUsage(ColouredConsoleProvider colouredConsoleProvider){
-        colouredConsoleProvider.info("maintenance <add> <user>");
-        colouredConsoleProvider.info("maintenance <remove> <user>");
-        colouredConsoleProvider.info("maintenance <toggle>");
+    private void sendUsage(CloudConsole colouredConsoleProvider){
+        colouredConsoleProvider.getLogger().info("maintenance <add> <user>");
+        colouredConsoleProvider.getLogger().info("maintenance <remove> <user>");
+        colouredConsoleProvider.getLogger().info("maintenance <toggle>");
     }
     //</editor-fold>
 }

@@ -55,9 +55,9 @@ public class CloudAdminConfig {
             document =  new Document().loadToExistingDocument(configFile);
             document.append("ADMINS", whitelist);
             document.saveAsConfig(configFile);
-            liptonMaster.getColouredConsoleProvider().info("The user '" + name + "' is now CloudAdmin!");
+            liptonMaster.getCloudConsole().getLogger().info("The user '" + name + "' is now CloudAdmin!");
         } else {
-            liptonMaster.getColouredConsoleProvider().info("The user '" + name + "' is already an CloudAdmin!");
+            liptonMaster.getCloudConsole().getLogger().info("The user '" + name + "' is already an CloudAdmin!");
             return;
         }
     }
@@ -68,9 +68,9 @@ public class CloudAdminConfig {
             document =  new Document().loadToExistingDocument(configFile);
             document.append("ADMINS", whitelist);
             document.saveAsConfig(configFile);
-            liptonMaster.getColouredConsoleProvider().info("The user '" + name + "' is no longer CloudAdmin!");
+            liptonMaster.getCloudConsole().getLogger().info("The user '" + name + "' is no longer CloudAdmin!");
         } else {
-            liptonMaster.getColouredConsoleProvider().info("The user '" + name + "' was not found!");
+            liptonMaster.getCloudConsole().getLogger().info("The user '" + name + "' was not found!");
             return;
         }
     }

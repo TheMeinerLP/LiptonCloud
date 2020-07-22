@@ -2,7 +2,7 @@ package de.crycodes.de.spacebyter.commands;
 
 import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.liptoncloud.command.CloudCommand;
-import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.console.CloudConsole;
 import de.crycodes.de.spacebyter.liptoncloud.events.ServerCopyEvent;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CopyServerPacket;
@@ -29,7 +29,7 @@ public class CopyServerCommand extends CloudCommand {
 
     //<editor-fold desc="execute">
     @Override
-    protected boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args) {
+    protected boolean execute(CloudConsole colouredConsoleProvider, String command, String[] args) {
         if (args.length == 2){
             final String group = args[0];
             final String serverName = args[1];
@@ -44,16 +44,16 @@ public class CopyServerCommand extends CloudCommand {
                     liptonMaster.getMasterWrapperServer().sendPacket(serverPacket);
                     liptonMaster.getEventManager().callEvent(new ServerCopyEvent(serverMeta));
 
-                    liptonMaster.getColouredConsoleProvider().info("Trying to copy server '" + serverName + "' into template '" + group + "' !");
+                    liptonMaster.getCloudConsole().getLogger().info("Trying to copy server '" + serverName + "' into template '" + group + "' !");
 
                 } else {
-                    colouredConsoleProvider.info("Server not found!");
+                    colouredConsoleProvider.getLogger().info("Server not found!");
                 }
             }
 
 
         } else {
-            colouredConsoleProvider.info("copy <group> <server>");
+            colouredConsoleProvider.getLogger().info("copy <group> <server>");
         }
         return false;
     }

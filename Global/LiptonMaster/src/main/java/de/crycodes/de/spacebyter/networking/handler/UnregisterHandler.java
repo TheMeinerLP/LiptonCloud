@@ -34,18 +34,18 @@ public class UnregisterHandler extends PacketHandlerAdapter {
             switch (unRegisterPacket.getRegisterType()){
                 case WRAPPER:
                     liptonMaster.getWrapperManager().unregisterWrapper((WrapperMeta) unRegisterPacket.getMeta());
-                    liptonMaster.getColouredConsoleProvider().info("Unregistered " + unRegisterPacket.getRegisterType().name() + " | " + ((WrapperMeta) unRegisterPacket.getMeta()).getWrapperConfig().getWrapperId());
+                    liptonMaster.getCloudConsole().getLogger().info("Unregistered " + unRegisterPacket.getRegisterType().name() + " | " + ((WrapperMeta) unRegisterPacket.getMeta()).getWrapperConfig().getWrapperId());
                     break;
                 case PROXY:
                     liptonMaster.getProxyManager().unregisterProxy((ProxyMeta) unRegisterPacket.getMeta());
-                    liptonMaster.getColouredConsoleProvider().info("Unregistered " + unRegisterPacket.getRegisterType().name() + " | " + ((ProxyMeta) unRegisterPacket.getMeta()).getName());
+                    liptonMaster.getCloudConsole().getLogger().info("Unregistered " + unRegisterPacket.getRegisterType().name() + " | " + ((ProxyMeta) unRegisterPacket.getMeta()).getName());
                     break;
                 case SERVER:
                     final ServerMeta serverMeta = (ServerMeta) unRegisterPacket.getMeta();
 
                     liptonMaster.getServerManager().unregisterServer(serverMeta.getServerName());
 
-                    liptonMaster.getColouredConsoleProvider().info("Unregistered " + unRegisterPacket.getRegisterType().name() + " | " + ((ServerMeta) unRegisterPacket.getMeta()).getServerName());
+                    liptonMaster.getCloudConsole().getLogger().info("Unregistered " + unRegisterPacket.getRegisterType().name() + " | " + ((ServerMeta) unRegisterPacket.getMeta()).getServerName());
                     break;
 
                 default:

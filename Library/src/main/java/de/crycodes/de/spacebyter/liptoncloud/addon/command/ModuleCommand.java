@@ -1,6 +1,6 @@
 package de.crycodes.de.spacebyter.liptoncloud.addon.command;
 
-import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
+import de.crycodes.de.spacebyter.liptoncloud.console.CloudConsole;
 
 /**
  * Coded By CryCodes
@@ -22,7 +22,7 @@ public abstract class ModuleCommand {
         this.aliases = aliases;
     }
 
-    public abstract boolean execute(ColouredConsoleProvider colouredConsoleProvider, String command, String[] args);
+    public abstract boolean execute(CloudConsole colouredConsoleProvider, String command, String[] args);
 
     public String getName() {
         return name;

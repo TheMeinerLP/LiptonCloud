@@ -2,7 +2,6 @@ package de.crycodes.de.spacebyter.config;
 
 import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.liptoncloud.config.Document;
-import de.crycodes.de.spacebyter.liptoncloud.console.ColouredConsoleProvider;
 import de.crycodes.de.spacebyter.liptoncloud.meta.WrapperMeta;
 
 import java.io.File;
@@ -48,7 +47,7 @@ public class WrapperGroupConfig {
 
     public WrapperMeta getWrapperByID(String name){
         if (getWrapperMetas().isEmpty()){
-            liptonMaster.getColouredConsoleProvider().error("No ServerGroups found!");
+            liptonMaster.getCloudConsole().getLogger().error("No ServerGroups found!");
             return null;
         }
         for (WrapperMeta serverGroupMeta : getWrapperMetas()){
@@ -56,7 +55,7 @@ public class WrapperGroupConfig {
                 return serverGroupMeta;
             }
         }
-        liptonMaster.getColouredConsoleProvider().error("ServerGroup not found!");
+        liptonMaster.getCloudConsole().getLogger().error("ServerGroup not found!");
         return null;
     }
 

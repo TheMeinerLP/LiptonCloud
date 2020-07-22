@@ -16,9 +16,9 @@ public class CopyServerPacket extends Packet {
     private final ServerGroupMeta serverGroupMeta;
     private final String serverName;
     private final String wrapperID;
-    private final Boolean dynamic;
+    private final boolean dynamic;
 
-    public CopyServerPacket(ServerGroupMeta serverGroupMeta, String serverName, String wrapperID, Boolean dynamic) {
+    public CopyServerPacket(ServerGroupMeta serverGroupMeta, String serverName, String wrapperID, boolean dynamic) {
         super("CopyServerPacket");
         this.serverGroupMeta = serverGroupMeta;
         this.serverName = serverName;
@@ -26,7 +26,7 @@ public class CopyServerPacket extends Packet {
         this.dynamic = dynamic;
     }
 
-    public Boolean getDynamic() {
+    public boolean getDynamic() {
         return dynamic;
     }
 

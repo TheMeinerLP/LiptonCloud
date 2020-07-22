@@ -51,7 +51,7 @@ public class MasterSpigotServer {
     public MasterSpigotServer start(){
         server = new ThunderServer(adapterHandler, networkChannel, port);
 
-        liptonMaster.getColouredConsoleProvider().info("Starting Master-Spigot Server on Port: (§c" + port + "§r) !");
+        liptonMaster.getCloudConsole().getLogger().info("Starting Master-Spigot Server on Port: (§c" + port + "§r) !");
         return this;
     }
     //</editor-fold>

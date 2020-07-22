@@ -32,21 +32,21 @@ public class MessageHandler extends PacketHandlerAdapter {
         if (packet instanceof ErrorPacket){
             final ErrorPacket errorPacket = (ErrorPacket) packet;
             if (errorPacket.getException() == null)
-                liptonMaster.getColouredConsoleProvider().error(errorPacket.getMessage());
+                liptonMaster.getCloudConsole().getLogger().error(errorPacket.getMessage());
             else
-                liptonMaster.getColouredConsoleProvider().error(errorPacket.getMessage(), errorPacket.getException());
+                liptonMaster.getCloudConsole().getLogger().error(errorPacket.getMessage());
         }
         if (packet instanceof InfoPacket){
             final InfoPacket infoPacket = (InfoPacket) packet;
-            liptonMaster.getColouredConsoleProvider().info(infoPacket.getMessage());
+            liptonMaster.getCloudConsole().getLogger().info(infoPacket.getMessage());
         }
         if (packet instanceof WarningPacket){
             final WarningPacket warningPacket = (WarningPacket) packet;
-            liptonMaster.getColouredConsoleProvider().warning(warningPacket.getMessage());
+            liptonMaster.getCloudConsole().getLogger().warning(warningPacket.getMessage());
         }
         if (packet instanceof DebugPacket){
             final DebugPacket debugPacket = (DebugPacket) packet;
-            liptonMaster.getColouredConsoleProvider().debug(debugPacket.getMessage());
+            liptonMaster.getCloudConsole().getLogger().debug(debugPacket.getMessage());
         }
     }
     //</editor-fold>

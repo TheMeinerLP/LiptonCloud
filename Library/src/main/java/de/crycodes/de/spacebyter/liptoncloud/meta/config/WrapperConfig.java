@@ -7,9 +7,9 @@ public class WrapperConfig implements Serializable {
 
     private final String wrapperId;
     private final String host;
-    private final Boolean autoUpdate;
+    private final boolean autoUpdate;
 
-    public WrapperConfig(String wrapperId, String host, Boolean autoUpdate) {
+    public WrapperConfig(String wrapperId, String host, boolean autoUpdate) {
         this.wrapperId = wrapperId;
         this.host = host;
         this.autoUpdate = autoUpdate;
@@ -47,7 +47,7 @@ public class WrapperConfig implements Serializable {
         return host;
     }
 
-    public Boolean getAutoUpdate() {
+    public boolean getAutoUpdate() {
         return autoUpdate;
     }
 }
