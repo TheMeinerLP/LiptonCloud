@@ -1,4 +1,4 @@
-package de.crycodes.de.spacebyter.liptonbridge.spigot.objects;
+package de.crycodes.module.signmodule.objects;
 
 import java.util.HashMap;
 

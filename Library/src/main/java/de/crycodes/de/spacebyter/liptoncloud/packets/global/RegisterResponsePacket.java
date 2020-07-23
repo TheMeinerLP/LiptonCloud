@@ -1,6 +1,7 @@
 package de.crycodes.de.spacebyter.liptoncloud.packets.global;
 
 import de.crycodes.de.spacebyter.network.packet.Packet;
+import de.crycodes.de.spacebyter.network.packet.ReceiverType;
 
 /**
  * Coded By CryCodes
@@ -16,8 +17,8 @@ public class RegisterResponsePacket extends Packet {
 
     private final String message;
 
-    public RegisterResponsePacket(boolean isAuthenticated, String message) {
-        super("RegisterResponsePacket");
+    public RegisterResponsePacket(boolean isAuthenticated, String message, ReceiverType receiverType) {
+        super("RegisterResponsePacket", receiverType);
         this.isAuthenticated = isAuthenticated;
         this.message = message;
     }

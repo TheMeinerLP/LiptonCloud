@@ -8,6 +8,7 @@ import de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterPacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.global.RegisterResponsePacket;
 import de.crycodes.de.spacebyter.network.adapter.PacketHandlerAdapter;
 import de.crycodes.de.spacebyter.network.packet.Packet;
+import de.crycodes.de.spacebyter.network.packet.ReceiverType;
 
 /**
  * Coded By CryCodes
@@ -36,19 +37,19 @@ public class RegisterHandler extends PacketHandlerAdapter {
                 case WRAPPER:
                     String key = registerPacket.getKey();
                     if (key.equalsIgnoreCase("null")) {
-                        liptonMaster.getMasterWrapperServer().sendPacket(new RegisterResponsePacket(false, "Wrong Wrapper Key or missing Key!"));
+                        liptonMaster.getMasterWrapperServer().sendPacket(new RegisterResponsePacket(false, "Wrong Wrapper Key or missing Key!", ReceiverType.WRAPPER));
                         liptonMaster.getCloudConsole().getLogger().warning("Connection with wrong or missing key found!");
                     }
 
                     liptonMaster.getAuthManager().checkKeys(liptonMaster.getAuthManager().getKey(), key, result -> {
                         if (!result) {
-                            liptonMaster.getMasterWrapperServer().sendPacket(new RegisterResponsePacket(result, "Wrong Wrapper Key or missing Key!"));
+                            liptonMaster.getMasterWrapperServer().sendPacket(new RegisterResponsePacket(result, "Wrong Wrapper Key or missing Key!", ReceiverType.WRAPPER));
                             liptonMaster.getCloudConsole().getLogger().warning("Connection with wrong or missing key found!");
                         }
 
                         if (result){
                             liptonMaster.getWrapperManager().registerWrapper((WrapperMeta) registerPacket.getMeta(),aBoolean -> {
-                                liptonMaster.getMasterWrapperServer().sendPacket(new RegisterResponsePacket(aBoolean, "no WrapperGroup found!"));
+                                liptonMaster.getMasterWrapperServer().sendPacket(new RegisterResponsePacket(aBoolean, "no WrapperGroup found!", ReceiverType.WRAPPER));
                             });
                         }
                     });
@@ -58,7 +59,7 @@ public class RegisterHandler extends PacketHandlerAdapter {
                     liptonMaster.getProxyManager().registerProxy((ProxyMeta) registerPacket.getMeta(), result -> {
                         liptonMaster.getMasterProxyServer().getServer().sendPacket(
                                 liptonMaster.getMasterProxyServer().getNetworkChannel(),
-                                new RegisterResponsePacket(result, "-"));
+                                new RegisterResponsePacket(result, "-", ReceiverType.BUNGEECORD));
                     });
                     break;
                 case SERVER:

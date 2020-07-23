@@ -40,20 +40,6 @@ public class CloudAPI {
     }
     //</editor-fold>
 
-    //<editor-fold desc="StopServer Method">
-    public void stopServer(String name, String wrapperID, boolean isDynamic){
-        final StopServerPacket stopServerPacket = new StopServerPacket(name, wrapperID, isDynamic);
-        sendPacket(stopServerPacket);
-    }
-    //</editor-fold>
-
-    //<editor-fold desc="StopServerGroup Method">
-    public void stopGroup(ServerGroupMeta serverGroupMeta){
-        final StopServerGroupPacket stopServerGroupPacket = new StopServerGroupPacket(serverGroupMeta, ExitState.STOPPED_SUCESS.getState());
-        sendPacket(stopServerGroupPacket);
-    }
-    //</editor-fold>
-
     //<editor-fold desc="doesServerGroupExist">
     public boolean doesServerGroupExist(String name){
         for (ServerGroupMeta serverGroupMeta : getAvailableServerGroups()){
@@ -148,12 +134,6 @@ public class CloudAPI {
     //<editor-fold desc="getAvailableServers">
     public List<ServerMeta> getAvailableServers(){
         return isSpigot ? this.getServerConfig().getGlobalServers() : this.getProxyConfig().getGlobalServers();
-    }
-    //</editor-fold>
-
-    //<editor-fold desc="reloadCloud">
-    public void reloadCloud() {
-        this.sendPacket(new ReloadPacket());
     }
     //</editor-fold>
 

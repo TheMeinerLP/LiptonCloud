@@ -2,6 +2,7 @@ package de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out;
 
 import de.crycodes.de.spacebyter.liptoncloud.meta.ProxyMeta;
 import de.crycodes.de.spacebyter.network.packet.Packet;
+import de.crycodes.de.spacebyter.network.packet.ReceiverType;
 
 /**
  * Coded By CryCodes
@@ -16,8 +17,8 @@ public class ProxyStoppingPacket extends Packet {
     private final ProxyMeta proxyMeta;
 
 
-    public ProxyStoppingPacket(ProxyMeta proxyMeta) {
-        super("ProxyStoppingPacket");
+    public ProxyStoppingPacket(ProxyMeta proxyMeta, ReceiverType receiverType) {
+        super("ProxyStoppingPacket", receiverType);
         this.proxyMeta = proxyMeta;
     }
 

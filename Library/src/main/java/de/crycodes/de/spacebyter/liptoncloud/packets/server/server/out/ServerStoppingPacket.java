@@ -2,6 +2,7 @@ package de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out;
 
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import de.crycodes.de.spacebyter.network.packet.Packet;
+import de.crycodes.de.spacebyter.network.packet.ReceiverType;
 
 /**
  * Coded By CryCodes
@@ -15,8 +16,8 @@ public class ServerStoppingPacket extends Packet {
 
     private final ServerMeta serverMeta;
 
-    public ServerStoppingPacket(ServerMeta serverMeta) {
-        super("ServerStoppingPacket");
+    public ServerStoppingPacket(ServerMeta serverMeta, ReceiverType receiverType) {
+        super("ServerStoppingPacket", receiverType);
         this.serverMeta = serverMeta;
     }
 

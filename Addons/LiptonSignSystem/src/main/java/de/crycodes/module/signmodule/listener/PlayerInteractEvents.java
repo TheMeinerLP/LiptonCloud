@@ -1,6 +1,6 @@
-package de.crycodes.de.spacebyter.liptonbridge.spigot.listeners;
+package de.crycodes.module.signmodule.listener;
 
-import de.crycodes.de.spacebyter.liptonbridge.spigot.LiptonSpigotBridge;
+import de.crycodes.module.signmodule.SignModule;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
@@ -21,9 +21,9 @@ import java.io.IOException;
 
 public class PlayerInteractEvents implements Listener {
 
-    private final LiptonSpigotBridge plugin;
+    private final SignModule plugin;
 
-    public PlayerInteractEvents(LiptonSpigotBridge plugin) {
+    public PlayerInteractEvents(SignModule plugin) {
         this.plugin = plugin;
         this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
@@ -91,7 +91,7 @@ public class PlayerInteractEvents implements Listener {
             outputStream = new DataOutputStream(stream);
             outputStream.writeUTF("connect");
             outputStream.writeUTF(servername);
-            player.sendPluginMessage(LiptonSpigotBridge.getInstance(), "BungeeCord", stream.toByteArray());
+            player.sendPluginMessage(plugin, "BungeeCord", stream.toByteArray());
         } catch (IOException exception) {
             exception.printStackTrace();
         } finally {

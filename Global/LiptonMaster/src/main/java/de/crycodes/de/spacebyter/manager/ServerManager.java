@@ -14,6 +14,7 @@ import de.crycodes.de.spacebyter.liptoncloud.meta.WrapperMeta;
 import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.StartServerPacket;
 import de.crycodes.de.spacebyter.liptoncloud.utils.annotiations.ShouldNotBeNull;
 import de.crycodes.de.spacebyter.liptoncloud.utils.annotiations.ShouldRunAsync;
+import de.crycodes.de.spacebyter.network.packet.ReceiverType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -109,9 +110,9 @@ public class ServerManager implements Runnable {
 
         liptonMaster.getMasterProxyServer().getServer().sendPacket(
                 liptonMaster.getMasterProxyServer().getNetworkChannel(),
-                new StartServerPacket(wrapperID ,serverMeta));
+                new StartServerPacket(wrapperID ,serverMeta, ReceiverType.BUNGEECORD));
 
-        liptonMaster.getMasterWrapperServer().sendPacket(new StartServerPacket(wrapperID, serverMeta));
+        liptonMaster.getMasterWrapperServer().sendPacket(new StartServerPacket(wrapperID, serverMeta, ReceiverType.WRAPPER));
 
         if (!autoStart){
             liptonMaster.getEventManager().callEvent(new ServerStartEvent(serverMeta));

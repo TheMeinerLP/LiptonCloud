@@ -1,0 +1,6 @@
+main: de.crycodes.module.signmodule.SignModule
+name: SignSystem
+version: 1.0
+authors: [CryCodes, DynamicPacket]
+commands:
+  createsign:

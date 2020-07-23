@@ -12,9 +12,11 @@ import java.util.Objects;
 public class Packet implements Serializable {
 
     private final String id;
+    private final ReceiverType receiverType;
 
-    public Packet(String id){
+    public Packet(String id, ReceiverType receiverType){
         this.id = id;
+        this.receiverType = receiverType;
     }
 
     @Override

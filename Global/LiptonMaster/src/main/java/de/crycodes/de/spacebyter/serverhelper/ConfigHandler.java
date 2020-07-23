@@ -7,6 +7,7 @@ import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in.SendProxyCo
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.SendServerConfigPacket;
 import de.crycodes.de.spacebyter.liptoncloud.scheduler.Scheduler;
 import de.crycodes.de.spacebyter.liptoncloud.utils.annotiations.ShouldRunAsync;
+import de.crycodes.de.spacebyter.network.packet.ReceiverType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -74,14 +75,14 @@ public class ConfigHandler implements Runnable {
 
                 liptonMaster.getMasterSpigotServer().getServer().sendPacket(
                         liptonMaster.getMasterSpigotServer().getNetworkChannel(),
-                        new SendServerConfigPacket(serverConfig, "ALL"));
+                        new SendServerConfigPacket(serverConfig, "ALL", ReceiverType.SPIGOT));
 
                 if (liptonMaster.getMasterConfig().isDebugMode())
                     liptonMaster.getCloudConsole().getLogger().debug("Send ServerConfig!");
 
                 liptonMaster.getMasterProxyServer().getServer().sendPacket(
                         liptonMaster.getMasterProxyServer().getNetworkChannel(),
-                        new SendProxyConfigPacket(proxyConfig, "ALL"));
+                        new SendProxyConfigPacket(proxyConfig, "ALL", ReceiverType.BUNGEECORD));
 
                 if (liptonMaster.getMasterConfig().isDebugMode())
                     liptonMaster.getCloudConsole().getLogger().debug("Send ProxyConfig!");

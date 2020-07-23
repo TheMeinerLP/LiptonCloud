@@ -1,6 +1,7 @@
 package de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in;
 
 import de.crycodes.de.spacebyter.network.packet.Packet;
+import de.crycodes.de.spacebyter.network.packet.ReceiverType;
 
 /**
  * Coded By CryCodes
@@ -16,8 +17,8 @@ public class StopServerPacket extends Packet {
     private final String wrapperID;
     private final boolean dynamic;
 
-    public StopServerPacket(String serverName, String wrapperID, boolean dynamic) {
-        super("StopServerPacket");
+    public StopServerPacket(String serverName, String wrapperID, boolean dynamic, ReceiverType receiverType) {
+        super("StopServerPacket", receiverType);
         this.serverName = serverName;
         this.wrapperID = wrapperID;
         this.dynamic = dynamic;

@@ -1,7 +1,8 @@
-package de.crycodes.de.spacebyter.liptonbridge.spigot.commands;
+package de.crycodes.module.signmodule.commands;
 
 import de.crycodes.de.spacebyter.liptonbridge.spigot.LiptonSpigotBridge;
-import de.crycodes.de.spacebyter.liptonbridge.spigot.objects.CloudSign;
+import de.crycodes.module.signmodule.SignModule;
+import de.crycodes.module.signmodule.objects.CloudSign;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -17,9 +18,9 @@ import java.util.Set;
 
 public class CreateSignCommand implements CommandExecutor {
 
-    private final LiptonSpigotBridge plugin;
+    private final SignModule plugin;
 
-    public CreateSignCommand(LiptonSpigotBridge plugin) {
+    public CreateSignCommand(SignModule plugin) {
         this.plugin = plugin;
     }
 
@@ -54,17 +55,17 @@ public class CreateSignCommand implements CommandExecutor {
                         signBlock.update(true);
                         replace(sign, true);
 
-                        player.sendMessage(plugin.getPREFIX() + "§aYou created a new CloudSign.");
+                        player.sendMessage(LiptonSpigotBridge.getInstance().getPREFIX() + "§aYou created a new CloudSign.");
                         return true;
 
                 }
-                player.sendMessage(plugin.getPREFIX() + "§cYou must look at a Sign.");
+                player.sendMessage(LiptonSpigotBridge.getInstance().getPREFIX() + "§cYou must look at a Sign.");
                 return true;
             }
-            player.sendMessage(plugin.getPREFIX() + "§cThe ServerGroup " + serverGroup + " wasn't found.");
+            player.sendMessage(LiptonSpigotBridge.getInstance().getPREFIX() + "§cThe ServerGroup " + serverGroup + " wasn't found.");
             return true;
         }
-        player.sendMessage(plugin.getPREFIX() + "§7/createSign <Group>");
+        player.sendMessage(LiptonSpigotBridge.getInstance().getPREFIX() + "§7/createSign <Group>");
 
         return false;
     }

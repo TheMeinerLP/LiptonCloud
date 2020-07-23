@@ -5,6 +5,7 @@ import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in.StopServer
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerStoppingPacket;
 import de.crycodes.de.spacebyter.network.adapter.PacketHandlerAdapter;
 import de.crycodes.de.spacebyter.network.packet.Packet;
+import de.crycodes.de.spacebyter.network.packet.ReceiverType;
 
 /**
  * Coded By CryCodes
@@ -35,7 +36,7 @@ public class ServerStoppingHandler extends PacketHandlerAdapter {
                 public void run() {
                     liptonMaster.getServerManager().unregisterServer(serverStoppingPacket.getServerMeta().getServerName());
                     liptonMaster.getMasterProxyServer().getServer().sendPacket(liptonMaster.getMasterProxyServer().getNetworkChannel(), serverStoppingPacket);
-                    liptonMaster.getMasterWrapperServer().sendPacket(new StopServerPacket(serverStoppingPacket.getServerMeta().getServerName(), serverStoppingPacket.getServerMeta().getWrapperID(), serverStoppingPacket.getServerMeta().getServerGroupMeta().isDynamicService()));
+                    liptonMaster.getMasterWrapperServer().sendPacket(new StopServerPacket(serverStoppingPacket.getServerMeta().getServerName(), serverStoppingPacket.getServerMeta().getWrapperID(), serverStoppingPacket.getServerMeta().getServerGroupMeta().isDynamicService(), ReceiverType.WRAPPER));
                 }
             }, 4000);
 

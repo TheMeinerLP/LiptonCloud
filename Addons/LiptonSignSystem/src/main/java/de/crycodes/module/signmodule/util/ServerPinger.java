@@ -1,4 +1,4 @@
-package de.crycodes.de.spacebyter.liptonbridge.spigot.util;
+package de.crycodes.module.signmodule.util;
 
 import java.io.*;
 import java.net.InetSocketAddress;

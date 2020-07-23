@@ -6,6 +6,7 @@ import de.crycodes.de.spacebyter.liptoncloud.console.CloudConsole;
 import de.crycodes.de.spacebyter.liptoncloud.events.ServerCopyEvent;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in.CopyServerPacket;
+import de.crycodes.de.spacebyter.network.packet.ReceiverType;
 import org.checkerframework.checker.units.qual.C;
 
 /**
@@ -39,7 +40,7 @@ public class CopyServerCommand extends CloudCommand {
 
                     ServerMeta serverMeta = liptonMaster.getServerManager().getServersFromName(serverName);
 
-                    CopyServerPacket serverPacket = new CopyServerPacket(serverMeta.getServerGroupMeta(), serverName, serverMeta.getWrapperID(), serverMeta.getServerGroupMeta().isDynamicService());
+                    CopyServerPacket serverPacket = new CopyServerPacket(serverMeta.getServerGroupMeta(), serverName, serverMeta.getWrapperID(), serverMeta.getServerGroupMeta().isDynamicService(), ReceiverType.WRAPPER);
 
                     liptonMaster.getMasterWrapperServer().sendPacket(serverPacket);
                     liptonMaster.getEventManager().callEvent(new ServerCopyEvent(serverMeta));

@@ -11,6 +11,7 @@
         <module name="LiptonMaster" />
         <module name="LiptonWrapper" />
         <module name="Module" />
+        <module name="LiptonSignSystem" />
         <module name="Library" />
         <module name="LiptonBridge" />
         <module name="ModuleCommand" />
@@ -27,7 +28,7 @@
       <module name="Listener" target="1.5" />
       <module name="Master" target="8" />
       <module name="MultiProxy" target="7" />
-      <module name="SignSystem" target="7" />
+      <module name="SignSystem" target="1.5" />
       <module name="WebInterFace" target="8" />
       <module name="Wrapper" target="8" />
     </bytecodeTargetLevel>

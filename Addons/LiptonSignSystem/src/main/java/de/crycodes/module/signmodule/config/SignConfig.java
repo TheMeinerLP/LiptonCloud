@@ -1,14 +1,9 @@
-package de.crycodes.de.spacebyter.liptonbridge.spigot.sign;
+package de.crycodes.module.signmodule.config;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import de.crycodes.de.spacebyter.liptonbridge.spigot.objects.SignGroup;
 import de.crycodes.de.spacebyter.liptoncloud.config.Document;
-import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
+import de.crycodes.module.signmodule.objects.SignGroup;
 
 import java.io.File;
-import java.util.*;
 
 
 /**

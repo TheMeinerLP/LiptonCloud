@@ -2,6 +2,7 @@ package de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in;
 
 import de.crycodes.de.spacebyter.liptoncloud.objects.ProxyConfig;
 import de.crycodes.de.spacebyter.network.packet.Packet;
+import de.crycodes.de.spacebyter.network.packet.ReceiverType;
 
 /**
  * Coded By CryCodes
@@ -16,8 +17,8 @@ public class SendProxyConfigPacket extends Packet {
     private final ProxyConfig proxyConfig;
     private final String proxyName;
 
-    public SendProxyConfigPacket(ProxyConfig proxyConfig, String proxyName) {
-        super("SendProxyConfigPacket");
+    public SendProxyConfigPacket(ProxyConfig proxyConfig, String proxyName, ReceiverType receiverType) {
+        super("SendProxyConfigPacket", receiverType);
         this.proxyConfig = proxyConfig;
         this.proxyName = proxyName;
     }

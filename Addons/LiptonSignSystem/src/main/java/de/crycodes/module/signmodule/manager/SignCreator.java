@@ -1,12 +1,11 @@
-package de.crycodes.de.spacebyter.liptonbridge.spigot.sign;
+package de.crycodes.module.signmodule.manager;
 
-import com.google.gson.internal.LinkedTreeMap;
-import de.crycodes.de.spacebyter.liptonbridge.spigot.objects.CloudSign;
-import de.crycodes.de.spacebyter.liptonbridge.spigot.objects.SignGroup;
-import org.checkerframework.checker.units.qual.C;
+
+import de.crycodes.module.signmodule.config.SignConfig;
+import de.crycodes.module.signmodule.objects.CloudSign;
+import de.crycodes.module.signmodule.objects.SignGroup;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 
 /**
  * Coded By CryCodes

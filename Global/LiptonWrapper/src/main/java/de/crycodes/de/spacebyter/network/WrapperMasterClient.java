@@ -11,6 +11,7 @@ import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
 import de.crycodes.de.spacebyter.network.handler.*;
 import de.crycodes.de.spacebyter.network.packet.Packet;
 import de.crycodes.de.spacebyter.network.packet.PacketHandler;
+import de.crycodes.de.spacebyter.network.packet.ReceiverType;
 import org.checkerframework.checker.units.qual.A;
 
 import java.io.File;
@@ -63,7 +64,7 @@ public class WrapperMasterClient {
                 new WrapperConfig(
                         liptonWrapper.getWrapperConfig().getWrapperID(),
                         liptonWrapper.getWrapperConfig().getHost(),
-                        liptonWrapper.getWrapperConfig().isAutoUpdate())), RegisterType.WRAPPER, this.authManager.getKey()));
+                        liptonWrapper.getWrapperConfig().isAutoUpdate())), RegisterType.WRAPPER, this.authManager.getKey(), ReceiverType.MASTER));
 
         liptonWrapper.getColouredConsoleProvider().getLogger().info("Startet WrapperMaster Client on: (" + host + ":" + port + ")");
 

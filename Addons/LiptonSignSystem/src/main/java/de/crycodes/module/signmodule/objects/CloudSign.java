@@ -1,10 +1,6 @@
-package de.crycodes.de.spacebyter.liptonbridge.spigot.objects;
+package de.crycodes.module.signmodule.objects;
 
-import de.crycodes.de.spacebyter.liptonbridge.spigot.enums.SignState;
-import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.block.Sign;
 
 import java.io.Serializable;
 

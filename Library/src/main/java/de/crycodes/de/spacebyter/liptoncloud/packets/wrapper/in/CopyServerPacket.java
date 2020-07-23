@@ -2,6 +2,7 @@ package de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in;
 
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 import de.crycodes.de.spacebyter.network.packet.Packet;
+import de.crycodes.de.spacebyter.network.packet.ReceiverType;
 
 /**
  * Coded By CryCodes
@@ -18,8 +19,8 @@ public class CopyServerPacket extends Packet {
     private final String wrapperID;
     private final boolean dynamic;
 
-    public CopyServerPacket(ServerGroupMeta serverGroupMeta, String serverName, String wrapperID, boolean dynamic) {
-        super("CopyServerPacket");
+    public CopyServerPacket(ServerGroupMeta serverGroupMeta, String serverName, String wrapperID, boolean dynamic, ReceiverType receiverType) {
+        super("CopyServerPacket", receiverType);
         this.serverGroupMeta = serverGroupMeta;
         this.serverName = serverName;
         this.wrapperID = wrapperID;

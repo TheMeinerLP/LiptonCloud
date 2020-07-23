@@ -2,6 +2,7 @@ package de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in;
 
 import de.crycodes.de.spacebyter.liptoncloud.objects.ServerConfig;
 import de.crycodes.de.spacebyter.network.packet.Packet;
+import de.crycodes.de.spacebyter.network.packet.ReceiverType;
 
 /**
  * Coded By CryCodes
@@ -16,8 +17,8 @@ public class SendServerConfigPacket extends Packet {
     private final ServerConfig serverConfig;
     private final String serverName;
 
-    public SendServerConfigPacket(ServerConfig serverConfig, String serverName) {
-        super("SendServerConfigPacket");
+    public SendServerConfigPacket(ServerConfig serverConfig, String serverName, ReceiverType receiverType) {
+        super("SendServerConfigPacket", receiverType);
         this.serverConfig = serverConfig;
         this.serverName = serverName;
     }

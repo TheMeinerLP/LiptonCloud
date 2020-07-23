@@ -4,6 +4,7 @@ import de.crycodes.de.spacebyter.liptoncloud.enums.RegisterType;
 import de.crycodes.de.spacebyter.liptoncloud.meta.WrapperMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.config.WrapperConfig;
 import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.UnRegisterPacket;
+import de.crycodes.de.spacebyter.network.packet.ReceiverType;
 
 /**
  * Coded By CryCodes
@@ -28,7 +29,7 @@ public class ShutDownHookWrapper extends Thread {
     public void run() {
         if (liptonWrapper.isIsrunning()){
             liptonWrapper.getColouredConsoleProvider().getLogger().info("Stopping Cloud [ShutDownHookWrapper]");
-           liptonWrapper.getWrapperMasterClient().sendPacket(new UnRegisterPacket(RegisterType.WRAPPER, new WrapperMeta(false, new WrapperConfig(liptonWrapper.getWrapperConfig().getWrapperID(), liptonWrapper.getWrapperConfig().getHost(), true))));
+           liptonWrapper.getWrapperMasterClient().sendPacket(new UnRegisterPacket(RegisterType.WRAPPER, new WrapperMeta(false, new WrapperConfig(liptonWrapper.getWrapperConfig().getWrapperID(), liptonWrapper.getWrapperConfig().getHost(), true)), ReceiverType.MASTER));
             if (!this.isInterrupted())
                 this.interrupt();
         }

@@ -29,6 +29,7 @@ import de.crycodes.de.spacebyter.network.ThunderClient;
 import de.crycodes.de.spacebyter.network.adapter.AdapterHandler;
 import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
 import de.crycodes.de.spacebyter.network.packet.PacketHandler;
+import de.crycodes.de.spacebyter.network.packet.ReceiverType;
 
 /**
  * Coded By CryCodes
@@ -98,7 +99,7 @@ public class BungeeMasterClient {
             proxyMeta = LiptonBungeeBridge.getInstance().getCloudAPI().getProxyMeta();
 
 
-        thunderClient.sendPacket(this.networkChannel, new RegisterPacket(proxyMeta, RegisterType.PROXY, "null"));
+        thunderClient.sendPacket(this.networkChannel, new RegisterPacket(proxyMeta, RegisterType.PROXY, "null", ReceiverType.MASTER));
 
         System.out.println("Started ProxyMaster Client on: (" + host + ":" + port + ")");
 

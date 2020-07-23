@@ -1,6 +1,7 @@
 package de.crycodes.de.spacebyter.liptoncloud.packets.global;
 
 import de.crycodes.de.spacebyter.network.packet.Packet;
+import de.crycodes.de.spacebyter.network.packet.ReceiverType;
 
 /**
  * Coded By CryCodes
@@ -14,8 +15,8 @@ public class ShutDownPacket extends Packet {
 
     private final int status;
 
-    public ShutDownPacket(int status) {
-        super("SHUTDOWN");
+    public ShutDownPacket(int status, ReceiverType receiverType) {
+        super("SHUTDOWN", receiverType);
         this.status = status;
     }
 

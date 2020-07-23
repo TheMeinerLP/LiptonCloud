@@ -1,6 +1,7 @@
 package de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out;
 
 import de.crycodes.de.spacebyter.network.packet.Packet;
+import de.crycodes.de.spacebyter.network.packet.ReceiverType;
 
 /**
  * Coded By CryCodes
@@ -15,8 +16,8 @@ public class DebugPacket extends Packet {
     private final String Message;
     private final String wrapperID;
 
-    public DebugPacket(String message, String wrapperID) {
-        super("DebugPacket");
+    public DebugPacket(String message, String wrapperID, ReceiverType receiverType) {
+        super("DebugPacket", receiverType);
         Message = message;
         this.wrapperID = wrapperID;
     }

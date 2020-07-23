@@ -1,7 +1,6 @@
-package de.crycodes.de.spacebyter.liptonbridge.spigot.objects;
+package de.crycodes.module.signmodule.objects;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class SignLayout {

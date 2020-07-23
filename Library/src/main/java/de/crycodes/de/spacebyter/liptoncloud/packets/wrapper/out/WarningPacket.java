@@ -1,6 +1,7 @@
 package de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out;
 
 import de.crycodes.de.spacebyter.network.packet.Packet;
+import de.crycodes.de.spacebyter.network.packet.ReceiverType;
 
 /**
  * Coded By CryCodes
@@ -15,8 +16,8 @@ public class WarningPacket extends Packet {
     private final String message;
     private final String wrapperID;
 
-    public WarningPacket(String message, String wrapperID) {
-        super("WarningPacket");
+    public WarningPacket(String message, String wrapperID, ReceiverType receiverType) {
+        super("WarningPacket", receiverType);
         this.message = message;
         this.wrapperID = wrapperID;
     }

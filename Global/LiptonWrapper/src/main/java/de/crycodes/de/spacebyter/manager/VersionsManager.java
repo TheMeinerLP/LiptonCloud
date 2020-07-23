@@ -4,6 +4,7 @@ import de.crycodes.de.spacebyter.LiptonWrapper;
 import de.crycodes.de.spacebyter.config.WrapperConfig;
 import de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out.InfoPacket;
 import de.crycodes.de.spacebyter.liptoncloud.versions.SpigotVersions;
+import de.crycodes.de.spacebyter.network.packet.ReceiverType;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -56,7 +57,7 @@ public class VersionsManager {
 
         liptonWrapper.getColouredConsoleProvider().getLogger().info("This Cloud is Using Versions: " + versions.name());
         if (liptonWrapper.getWrapperMasterClient() != null)
-            liptonWrapper.getWrapperMasterClient().sendPacket(new InfoPacket("The Wrapper: " + liptonWrapper.getWrapperConfig().getWrapperID() + " installed the Version: " + versions.name(), liptonWrapper.getWrapperConfig().getWrapperID()));
+            liptonWrapper.getWrapperMasterClient().sendPacket(new InfoPacket("The Wrapper: " + liptonWrapper.getWrapperConfig().getWrapperID() + " installed the Version: " + versions.name(), liptonWrapper.getWrapperConfig().getWrapperID(), ReceiverType.MASTER));
     }
     //</editor-fold>
 

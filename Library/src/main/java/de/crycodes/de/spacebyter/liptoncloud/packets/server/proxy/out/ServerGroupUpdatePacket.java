@@ -2,6 +2,7 @@ package de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out;
 
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 import de.crycodes.de.spacebyter.network.packet.Packet;
+import de.crycodes.de.spacebyter.network.packet.ReceiverType;
 
 /**
  * Coded By CryCodes
@@ -15,8 +16,8 @@ public class ServerGroupUpdatePacket extends Packet {
 
     private final ServerGroupMeta updatedServerGroupMeta;
 
-    public ServerGroupUpdatePacket(ServerGroupMeta updatedServerGroupMeta) {
-        super("ServerGroupUpdatePacket");
+    public ServerGroupUpdatePacket(ServerGroupMeta updatedServerGroupMeta, ReceiverType receiverType) {
+        super("ServerGroupUpdatePacket", receiverType);
         this.updatedServerGroupMeta = updatedServerGroupMeta;
     }
 

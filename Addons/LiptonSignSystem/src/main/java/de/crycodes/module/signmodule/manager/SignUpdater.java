@@ -1,13 +1,12 @@
-package de.crycodes.de.spacebyter.liptonbridge.spigot.sign;
+package de.crycodes.module.signmodule.manager;
 
-import com.google.gson.internal.LinkedTreeMap;
 import de.crycodes.de.spacebyter.liptonbridge.spigot.LiptonSpigotBridge;
-import de.crycodes.de.spacebyter.liptonbridge.spigot.enums.SignState;
-import de.crycodes.de.spacebyter.liptonbridge.spigot.objects.CloudSign;
-import de.crycodes.de.spacebyter.liptonbridge.spigot.util.ServerPinger;
-import de.crycodes.de.spacebyter.liptoncloud.config.Document;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
+import de.crycodes.module.signmodule.SignModule;
+import de.crycodes.module.signmodule.enums.SignState;
+import de.crycodes.module.signmodule.objects.CloudSign;
+import de.crycodes.module.signmodule.util.ServerPinger;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -20,7 +19,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Coded By CryCodes
@@ -32,15 +30,17 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class SignUpdater implements Runnable{
 
-    private final LiptonSpigotBridge plugin;
+    private final SignModule plugin;
     private final SignCreator signCreator;
     private final List<String> groupNames;
+    private final LiptonSpigotBridge liptonSpigotBridge;
 
     private ServerPinger serverPinger = null;
     private BukkitTask bukkitTask;
 
 
-    public SignUpdater(LiptonSpigotBridge plugin) {
+    public SignUpdater(SignModule plugin, LiptonSpigotBridge liptonSpigotBridge) {
+        this.liptonSpigotBridge = liptonSpigotBridge;
         this.plugin = plugin;
         this.signCreator = plugin.getSignCreator();
         this.groupNames = new ArrayList<>();
@@ -54,14 +54,14 @@ public class SignUpdater implements Runnable{
         groupNames.clear();
         List<ServerMeta> serverMetas = new ArrayList<>();
 
-        if (plugin.getServerConfig() == null) return;
+        if (liptonSpigotBridge.getServerConfig() == null) return;
 
-        for (ServerGroupMeta globalServerGroup : plugin.getServerConfig().getGlobalServerGroups()) {
+        for (ServerGroupMeta globalServerGroup : liptonSpigotBridge.getServerConfig().getGlobalServerGroups()) {
             String groupName = globalServerGroup.getGroupName();
 
             serverMetas.clear();
 
-            plugin.getServerConfig().getGlobalServers().forEach(serverMeta -> {
+            liptonSpigotBridge.getServerConfig().getGlobalServers().forEach(serverMeta -> {
                 if (serverMeta.getServerGroupMeta().getGroupName().equalsIgnoreCase(groupName))
                     serverMetas.add(serverMeta);
             });

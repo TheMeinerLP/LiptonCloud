@@ -2,6 +2,7 @@ package de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.in;
 
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import de.crycodes.de.spacebyter.network.packet.Packet;
+import de.crycodes.de.spacebyter.network.packet.ReceiverType;
 
 /**
  * Coded By CryCodes
@@ -15,8 +16,8 @@ public class StartServerPacketProxy extends Packet {
 
     private final ServerMeta serverMeta;
 
-    public StartServerPacketProxy(ServerMeta serverMeta) {
-        super("StartServerPacketProxy");
+    public StartServerPacketProxy(ServerMeta serverMeta, ReceiverType receiverType) {
+        super("StartServerPacketProxy", receiverType);
         this.serverMeta = serverMeta;
     }
 

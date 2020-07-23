@@ -1,6 +1,7 @@
 package de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in;
 
 import de.crycodes.de.spacebyter.network.packet.Packet;
+import de.crycodes.de.spacebyter.network.packet.ReceiverType;
 
 /**
  * Coded By CryCodes
@@ -15,8 +16,8 @@ public class ExecuteCommandPacket extends Packet {
     private final String commadLine;
     private final String ServerName;
 
-    public ExecuteCommandPacket(String commadLine, String serverName) {
-        super("ExecuteCommandPacket");
+    public ExecuteCommandPacket(String commadLine, String serverName, ReceiverType receiverType) {
+        super("ExecuteCommandPacket", receiverType);
         this.commadLine = commadLine;
         ServerName = serverName;
     }

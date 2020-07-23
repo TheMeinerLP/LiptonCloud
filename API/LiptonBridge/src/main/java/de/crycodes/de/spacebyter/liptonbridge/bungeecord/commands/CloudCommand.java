@@ -6,6 +6,7 @@ import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.proxy.out.ServerGroupUpdatePacket;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerUpdatePacket;
 import de.crycodes.de.spacebyter.liptoncloud.utils.annotiations.ShouldNotBeNull;
+import de.crycodes.de.spacebyter.network.packet.ReceiverType;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -153,14 +154,14 @@ public class CloudCommand extends Command implements TabExecutor {
 
     //<editor-fold desc="makeServerChanges">
     public void makeServerChanges(ServerMeta serverMeta){
-        final ServerUpdatePacket packet = new ServerUpdatePacket(serverMeta);
+        final ServerUpdatePacket packet = new ServerUpdatePacket(serverMeta, ReceiverType.MASTER);
         plugin.getCloudAPI().sendPacket(packet);
     }
     //</editor-fold>
 
     //<editor-fold desc="makeServeGroupChanges">
     public void makeServeGroupChanges(ServerGroupMeta serverGroupMeta){
-        final ServerGroupUpdatePacket packet = new ServerGroupUpdatePacket(serverGroupMeta);
+        final ServerGroupUpdatePacket packet = new ServerGroupUpdatePacket(serverGroupMeta, ReceiverType.MASTER);
         plugin.getCloudAPI().sendPacket(packet);
     }
     //</editor-fold>

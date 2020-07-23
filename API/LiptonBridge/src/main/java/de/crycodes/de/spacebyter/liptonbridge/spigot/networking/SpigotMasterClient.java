@@ -29,6 +29,7 @@ import de.crycodes.de.spacebyter.network.ThunderClient;
 import de.crycodes.de.spacebyter.network.adapter.AdapterHandler;
 import de.crycodes.de.spacebyter.network.channel.NetworkChannel;
 import de.crycodes.de.spacebyter.network.packet.PacketHandler;
+import de.crycodes.de.spacebyter.network.packet.ReceiverType;
 
 /**
  * Coded By CryCodes
@@ -92,7 +93,7 @@ public class SpigotMasterClient {
 
         ServerMeta serverMeta = LiptonSpigotBridge.getInstance().getCloudAPI().getServerMeta();
 
-        thunderClient.sendPacket(this.networkChannel, new RegisterPacket(serverMeta, RegisterType.SERVER, "null"));
+        thunderClient.sendPacket(this.networkChannel, new RegisterPacket(serverMeta, RegisterType.SERVER, "null", ReceiverType.MASTER));
 
         System.out.println("Started ProxyMaster Client on: (" + host + ":" + port + ")");
 

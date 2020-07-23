@@ -2,6 +2,7 @@ package de.crycodes.de.spacebyter.liptoncloud.packets.server.server.in;
 
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerGroupMeta;
 import de.crycodes.de.spacebyter.network.packet.Packet;
+import de.crycodes.de.spacebyter.network.packet.ReceiverType;
 
 /**
  * Coded By CryCodes
@@ -16,8 +17,8 @@ public class StopServerGroupPacket extends Packet {
     private final ServerGroupMeta serverGroupMeta;
     private final Integer stopID;
 
-    public StopServerGroupPacket(ServerGroupMeta serverGroupMeta, Integer stopID) {
-        super("StopServerGroupPacket");
+    public StopServerGroupPacket(ServerGroupMeta serverGroupMeta, Integer stopID, ReceiverType receiverType) {
+        super("StopServerGroupPacket", receiverType);
         this.serverGroupMeta = serverGroupMeta;
         this.stopID = stopID;
     }

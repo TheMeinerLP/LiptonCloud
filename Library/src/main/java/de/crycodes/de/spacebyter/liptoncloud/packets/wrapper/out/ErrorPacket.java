@@ -1,6 +1,7 @@
 package de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.out;
 
 import de.crycodes.de.spacebyter.network.packet.Packet;
+import de.crycodes.de.spacebyter.network.packet.ReceiverType;
 
 /**
  * Coded By CryCodes
@@ -16,8 +17,8 @@ public class ErrorPacket extends Packet {
     private final String wrapperID;
     private final Exception exception;
 
-    public ErrorPacket(String message, String wrapperID, Exception exception) {
-        super("ErrorPacket");
+    public ErrorPacket(String message, String wrapperID, Exception exception, ReceiverType receiverType) {
+        super("ErrorPacket", receiverType);
         this.message = message;
         this.wrapperID = wrapperID;
         this.exception = exception;

@@ -1,4 +1,4 @@
-package de.crycodes.de.spacebyter.liptonbridge.spigot.enums;
+package de.crycodes.module.signmodule.enums;
 
 import java.io.Serializable;
 

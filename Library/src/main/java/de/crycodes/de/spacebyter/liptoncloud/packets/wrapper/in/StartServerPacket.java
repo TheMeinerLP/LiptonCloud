@@ -2,6 +2,7 @@ package de.crycodes.de.spacebyter.liptoncloud.packets.wrapper.in;
 
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import de.crycodes.de.spacebyter.network.packet.Packet;
+import de.crycodes.de.spacebyter.network.packet.ReceiverType;
 
 /**
  * Coded By CryCodes
@@ -16,8 +17,8 @@ public class StartServerPacket extends Packet {
     private final String wrapperID;
     private final ServerMeta serverMeta;
 
-    public StartServerPacket(String wrapperID, ServerMeta serverMeta) {
-        super("StartServerPacket");
+    public StartServerPacket(String wrapperID, ServerMeta serverMeta, ReceiverType receiverType) {
+        super("StartServerPacket", receiverType);
         this.wrapperID = wrapperID;
         this.serverMeta = serverMeta;
     }

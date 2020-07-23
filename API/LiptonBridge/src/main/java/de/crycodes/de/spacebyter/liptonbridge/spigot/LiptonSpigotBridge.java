@@ -1,27 +1,18 @@
 package de.crycodes.de.spacebyter.liptonbridge.spigot;
 
 import de.crycodes.de.spacebyter.liptonbridge.CloudAPI;
-import de.crycodes.de.spacebyter.liptonbridge.spigot.commands.CreateSignCommand;
-import de.crycodes.de.spacebyter.liptonbridge.spigot.sign.SignConfig;
-import de.crycodes.de.spacebyter.liptonbridge.spigot.enums.SignState;
-import de.crycodes.de.spacebyter.liptonbridge.spigot.listeners.PlayerInteractEvents;
 import de.crycodes.de.spacebyter.liptonbridge.spigot.networking.SpigotMasterClient;
-import de.crycodes.de.spacebyter.liptonbridge.spigot.objects.CloudSign;
-import de.crycodes.de.spacebyter.liptonbridge.spigot.sign.SignCreator;
-import de.crycodes.de.spacebyter.liptonbridge.spigot.sign.SignUpdater;
-import de.crycodes.de.spacebyter.liptonbridge.spigot.util.ServerPinger;
 import de.crycodes.de.spacebyter.liptoncloud.LiptonLibrary;
 import de.crycodes.de.spacebyter.liptoncloud.meta.ServerMeta;
 import de.crycodes.de.spacebyter.liptoncloud.objects.ServerConfig;
 import de.crycodes.de.spacebyter.liptoncloud.packets.server.server.out.ServerStoppingPacket;
+import de.crycodes.de.spacebyter.network.packet.ReceiverType;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -38,7 +29,6 @@ public class LiptonSpigotBridge extends JavaPlugin {
 
     private CloudAPI cloudAPI;
     private SpigotMasterClient spigotMasterClient;
-    private LiptonLibrary liptonLibrary;
 
     private static LiptonSpigotBridge instance;
 
@@ -46,30 +36,13 @@ public class LiptonSpigotBridge extends JavaPlugin {
     private List<ServerConfig> serverConfig = new ArrayList<>();
     //INSTANCE Cache
 
-    private SignConfig signConfig;
-    private SignCreator signCreator;
-    private ServerPinger serverPinger;
-
     @Override
     public void onEnable() {
         instance = this;
 
         cloudAPI = new CloudAPI(true);
-        cloudAPI.getServerMeta();
 
         spigotMasterClient = new SpigotMasterClient("127.0.0.1", 7898).start();
-
-        /*Sign COnfig test*/
-        signConfig = new SignConfig();
-        signCreator = new SignCreator(signConfig);
-        serverPinger = new ServerPinger();
-
-        new SignUpdater(this);
-
-        getCommand("createsign").setExecutor(new CreateSignCommand(this));
-        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
-
-        new PlayerInteractEvents(this);
 
         super.onEnable();
     }
@@ -78,7 +51,7 @@ public class LiptonSpigotBridge extends JavaPlugin {
     public void onDisable() {
 
         ServerMeta serverMeta = LiptonSpigotBridge.getInstance().getCloudAPI().getServerMeta();
-        spigotMasterClient.getThunderClient().sendPacket(spigotMasterClient.getNetworkChannel(), new ServerStoppingPacket(serverMeta));
+        spigotMasterClient.getThunderClient().sendPacket(spigotMasterClient.getNetworkChannel(), new ServerStoppingPacket(serverMeta, ReceiverType.MASTER));
 
         if(getServer().getMessenger().isOutgoingChannelRegistered(this, "BungeeCord"))
             getServer().getMessenger().unregisterOutgoingPluginChannel(this, "BungeeCord");
@@ -138,11 +111,4 @@ public class LiptonSpigotBridge extends JavaPlugin {
     }
     //</editor-fold>
 
-    public SignCreator getSignCreator() {
-        return signCreator;
-    }
-
-    public ServerPinger getServerPinger() {
-        return serverPinger;
-    }
 }

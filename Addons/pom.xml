@@ -13,6 +13,8 @@
     <packaging>pom</packaging>
 
     <modules>
+
+        <module>LiptonSignSystem</module>
     </modules>
 
 
