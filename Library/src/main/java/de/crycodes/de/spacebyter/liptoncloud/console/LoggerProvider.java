@@ -2,15 +2,12 @@ package de.crycodes.de.spacebyter.liptoncloud.console;
 
 import de.crycodes.de.spacebyter.liptoncloud.console.enums.Color;
 import jline.console.ConsoleReader;
-import org.fusesource.jansi.Ansi;
-import org.fusesource.jansi.AnsiConsole;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.text.SimpleDateFormat;
-import java.util.TimeZone;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.logging.*;
+import java.util.logging.SimpleFormatter;
 
 /**
  * Coded By CryCodes
@@ -23,100 +20,55 @@ import java.util.logging.*;
 public class LoggerProvider {
 
     private ConsoleReader consoleReader;
+    private final CloudLogger logger;
 
-    private final DefaultLogger loggerHandler = new DefaultLogger();
-
-    private final LinkedBlockingQueue<Runnable> out = new LinkedBlockingQueue<>();
-
-    private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat( "yyyy-MM-dd" ) {{
-        this.setTimeZone( TimeZone.getTimeZone( "Europe/Berlin" ) );
-    }};
-
-    private Thread sideThread;
-
-    public LoggerProvider(final File location) {
-
+    public LoggerProvider() {
+        this.logger = new CloudLogger();
         try {
-            this.consoleReader = new ConsoleReader(System.in, System.out);
-            this.consoleReader.setExpandEvents(false);
-
-            AnsiConsole.systemInstall();
-
-            Handler fileHandler = new FileHandler(location.getCanonicalPath() + "/latest", Integer.MAX_VALUE, 8, true);
-            fileHandler.setFormatter(new SimpleFormatter(simpleDateFormat));
+            System.setProperty("java.util.logging.SimpleFormatter.format", "%1$tb %1$td, %1$tY %1$tl:%1$tM:%1$tS %1$Tp %2$s%n%4$s: %5$s%6$s%n");
+            Handler fileHandler = new FileHandler("logs/latest.%g.log", 0, 10, true);
+            fileHandler.setFormatter(new SimpleFormatter());
             fileHandler.setLevel(Level.ALL);
             fileHandler.setEncoding(StandardCharsets.UTF_8.name());
-            loggerHandler.addHandler(fileHandler);
+            this.logger.addHandler(fileHandler);
+            ConsoleHandler consoleHandler = new ConsoleHandler();
+            consoleHandler.setEncoding(StandardCharsets.UTF_8.name());
+            consoleHandler.setFormatter(new SimpleFormatter());
+            consoleHandler.setLevel(Level.SEVERE);
+            this.logger.addHandler(consoleHandler);
 
         } catch (IOException exception) {
-            exception.printStackTrace();
+            this.logger.log(Level.SEVERE,"Something is wrong when set encoding or add filehandler",exception);
         }
-
-        sideThread =  new Thread(){
-
-            @Override
-            public void run() {
-                while (!isInterrupted()) {
-                    try {
-                        out.take().run();
-                    } catch (final InterruptedException ex) {
-                        ex.printStackTrace();
-                    }
-                }
-            }
-        };
-
-        sideThread.setPriority(Thread.MIN_PRIORITY);
-        sideThread.setDaemon(true);
-        sideThread.start();
-
-
+        try {
+            this.consoleReader = new ConsoleReader(System.in, System.out);
+        } catch (IOException e) {
+            this.logger.log(Level.SEVERE,"Something is wrong when the console starts",e);
+        }
+        this.consoleReader.setExpandEvents(false);
     }
 
     public void info(String message) {
-        printLine("INFO", message);
+        printLine(Level.INFO, message);
     }
     public void error(String message) {
-        printLine("ERROR", message);
+        printLine(Level.SEVERE, message);
     }
     public void warning(String message) {
-        printLine("WARNING", message);
+        printLine(Level.WARNING, message);
     }
     public void debug(String message) {
-        printLine("DEBUG", message);
+        printLine(Level.FINE, message);
     }
 
-    private void printLine(String perfix, String message){
-
-        out.add(new Runnable() {
-
-            @Override
-            public void run() {
-                loggerHandler.log(Level.INFO, Color.stripColor(message));
-
-                try {
-                    consoleReader.println(Ansi.ansi().eraseLine(
-                            Ansi.Erase.ALL).toString() + ConsoleReader.RESET_LINE + colorString("[§a" + simpleDateFormat.format(System.currentTimeMillis()) + "§r] " +
-                            "[" + perfix + "] "
-                            + message)
-                            + Ansi.ansi().reset().toString());
-
-                    consoleReader.drawLine();
-                    consoleReader.flush();
-
-                } catch (IOException exception) {
-                    exception.printStackTrace();
-                }
-            }
-
-        });
-
+    private void printLine(Level level, String message){
+        this.logger.log(level,message);
     }
 
     public String readLine() {
         try {
             return this.consoleReader.readLine();
-        } catch (final IOException ex) {
+        } catch (IOException ex) {
             ex.printStackTrace();
             return "null";
         }
@@ -134,5 +86,9 @@ public class LoggerProvider {
         }
 
         return text;
+    }
+
+    public CloudLogger getLogger() {
+        return logger;
     }
 }

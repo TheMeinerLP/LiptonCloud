@@ -2,6 +2,7 @@ package de.crycodes.de.spacebyter.booting;
 
 import de.crycodes.de.spacebyter.LiptonMaster;
 import de.crycodes.de.spacebyter.liptoncloud.utils.annotiations.ShouldRunAsync;
+import org.fusesource.jansi.AnsiConsole;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -19,6 +20,7 @@ public class LauncherMaster {
     //<editor-fold desc="Main Method">
     @ShouldRunAsync
     public static void main(String[] args) {
+        AnsiConsole.systemInstall();
         new LiptonMaster();
     }
     //</editor-fold>

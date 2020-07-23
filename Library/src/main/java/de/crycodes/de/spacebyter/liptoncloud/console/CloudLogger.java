@@ -11,12 +11,11 @@ import java.util.logging.Logger;
  * Project: LiptonCloud
  */
 
-public class DefaultLogger extends Logger {
+public class CloudLogger extends Logger {
 
-    public DefaultLogger() {
-        super("Logger", null);
-        setLevel(Level.ALL);
-        setUseParentHandlers(false);
+    public CloudLogger() {
+        super("CloudLogger", null);
+        setLevel(Level.SEVERE);
     }
 
 }

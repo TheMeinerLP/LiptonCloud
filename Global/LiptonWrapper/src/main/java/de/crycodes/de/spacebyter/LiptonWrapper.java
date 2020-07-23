@@ -95,7 +95,7 @@ public class LiptonWrapper {
 
         jarInjector = new JarInjector(new File("./liptonWrapper/librarys/"));
 
-        loggerProvider = new LoggerProvider(new File("./liptonWrapper/logs"));
+        loggerProvider = new LoggerProvider();
 
         commandManager = new CommandManager();
 

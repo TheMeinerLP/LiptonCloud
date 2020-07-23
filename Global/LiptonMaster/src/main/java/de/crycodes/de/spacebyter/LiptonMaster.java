@@ -104,7 +104,7 @@ public class LiptonMaster {
         serverGroupConfig = new ServerGroupConfig(this);
         wrapperConfig = new WrapperGroupConfig(this);
 
-        loggerProvider = new LoggerProvider(new File("./liptonMaster/logs"));
+        loggerProvider = new LoggerProvider();
 
         portManager = new PortManager(this);
         idManager = new IDManager();
