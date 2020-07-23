@@ -115,7 +115,6 @@ public class Document {
         return this;
     }
 
-
     @Deprecated
     public Document append(String key, Object value) {
         if (value == null) return this;

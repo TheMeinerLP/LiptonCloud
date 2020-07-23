@@ -1,6 +1,7 @@
 package de.crycodes.de.spacebyter.liptoncloud.console;
 
 import de.crycodes.de.spacebyter.liptoncloud.command.CommandManager;
+import de.crycodes.de.spacebyter.liptoncloud.console.enums.Color;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -49,9 +50,9 @@ public class CloudConsole extends Thread {
                         .readLine(logger.colorString(
                                 "[§a" + simpleDateFormat.format(System.currentTimeMillis()) + "§r]" +
                                         " Lipton"
-                                        + "@" +
-                                        buffer +
-                                        " ~/")))
+                                        + "§9@§7" +
+                                        buffer.replace('-', ' ') +
+                                        "§c=>§7 ")))
                         != null &&
 
                         !line.trim().isEmpty() && running) {

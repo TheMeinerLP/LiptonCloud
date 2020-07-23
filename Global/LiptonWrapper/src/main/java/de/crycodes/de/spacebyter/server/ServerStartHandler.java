@@ -37,7 +37,7 @@ public class ServerStartHandler implements Runnable {
             return;
         }
         try {
-            final String[] cmd = new String[]
+            final String[] defaultCmd = new String[]
                     {
                             "java",
                             "-XX:+UseG1GC",
@@ -52,7 +52,9 @@ public class ServerStartHandler implements Runnable {
                             "SPIGOT.JAR"
                     };
 
-            ProcessBuilder processBuilder = new ProcessBuilder(cmd).directory(serverDir);
+            String[] command = liptonWrapper.getWrapperConfig().isUsingProcessParameters() ? liptonWrapper.getWrapperConfig().getJavaArguments().toArray(new String[0]) : defaultCmd;
+
+            ProcessBuilder processBuilder = new ProcessBuilder(command).directory(serverDir);
             Process process = processBuilder.start();
 
             liptonWrapper.getScreenManager().registerScreen(new Screen(Thread.currentThread(), process, serverDir, serverMeta.getServerName()), serverMeta.getServerName());

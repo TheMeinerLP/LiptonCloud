@@ -1,5 +1,6 @@
 package de.crycodes.de.spacebyter.network;
 
+import de.crycodes.de.spacebyter.liptoncloud.enums.ExitState;
 import de.crycodes.de.spacebyter.network.channel.Channel;
 import de.crycodes.de.spacebyter.network.logger.MessageLogger;
 
@@ -70,7 +71,6 @@ public class BackhandedClient {
 
     public void stop() {
         stopped = true;
-        onLog("[Client] Stopping...");
     }
 
     protected void repairConnection() {
@@ -95,8 +95,6 @@ public class BackhandedClient {
                 loginSocket.connect(this.address, this.timeout);
             }
 
-            onLog("[Client] Connected to " + loginSocket.getRemoteSocketAddress());
-
             try {
                 ObjectOutputStream out =
                         new ObjectOutputStream(new BufferedOutputStream(loginSocket.getOutputStream()));
@@ -105,17 +103,16 @@ public class BackhandedClient {
                 out.writeObject(loginPackage);
                 out.flush();
 
-                onReconnect();
             } catch (IOException ex) {
-                onLogError("[Client] Login failed.");
+                System.exit(ExitState.TERMINATED.getState());
             }
 
         } catch (ConnectException e) {
-            onLogError("[Client] Connection failed: " + e.getMessage());
-            onConnectionProblem();
+
+            System.exit(ExitState.TERMINATED.getState());
         } catch (IOException e) {
             e.printStackTrace();
-            onConnectionProblem();
+            System.exit(ExitState.TERMINATED.getState());
         }
     }
 
@@ -131,7 +128,6 @@ public class BackhandedClient {
 
                 while (!stopped) {
                     try {
-                        // repait connection if something went wrong with the connection
                         if (loginSocket != null && !loginSocket.isConnected()) {
                             while (!loginSocket.isConnected()) {
                                 repairConnection();
@@ -143,8 +139,6 @@ public class BackhandedClient {
                                 repairConnection();
                             }
                         }
-
-                        onConnectionGood();
 
                         ObjectInputStream ois =
                                 new ObjectInputStream(new BufferedInputStream(loginSocket.getInputStream()));
@@ -158,7 +152,6 @@ public class BackhandedClient {
                             final Channel msg = (Channel) raw;
                             for (final String current : idMethods.keySet()) {
                                 if (current.equalsIgnoreCase(msg.id())) {
-                                    onLog("NEW Channel: " + msg.id());
                                     new Thread(new Runnable() {
                                         @Override
                                         public void run() {
@@ -172,14 +165,11 @@ public class BackhandedClient {
                         }
 
                     } catch (SocketException e) {
-                        onConnectionProblem();
-                        onLogError("[Client] Connection lost");
-                        repairConnection();
+                        System.exit(ExitState.TERMINATED.getState());
                     } catch (ClassNotFoundException | IOException | InterruptedException ex) {
                         ex.printStackTrace();
-                        onConnectionProblem();
-                        onLogError("[Client] Error: The connection to the server is currently interrupted!");
-                        repairConnection();
+
+                        System.exit(ExitState.TERMINATED.getState());
                     }
 
                     errorCount = 0;
@@ -204,8 +194,7 @@ public class BackhandedClient {
                 try {
 
                     tempSocket.connect(address, timeout);
-                } catch (Exception ignored) {
-                }
+                } catch (Exception ignored) { }
 
             }
 
@@ -238,20 +227,4 @@ public class BackhandedClient {
         idMethods.put(identifier, executable);
     }
 
-    public void onConnectionProblem() {
-    }
-
-    public void onConnectionGood() {
-    }
-
-    public void onReconnect() {
-    }
-
-    public void onLog(String message) {
-        MessageLogger.getGlobalLogger().info(message);
-    }
-
-    public void onLogError(String message) {
-        MessageLogger.getGlobalLogger().error(message);
-    }
 }

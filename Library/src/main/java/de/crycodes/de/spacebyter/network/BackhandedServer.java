@@ -1,5 +1,6 @@
 package de.crycodes.de.spacebyter.network;
 
+import de.crycodes.de.spacebyter.liptoncloud.enums.ExitState;
 import de.crycodes.de.spacebyter.network.channel.Channel;
 import de.crycodes.de.spacebyter.network.logger.MessageLogger;
 
@@ -70,25 +71,6 @@ public abstract class BackhandedServer {
         }
     }
 
-    @Deprecated
-    public BackhandedServer(int port, boolean useSSL) {
-        this.clients = new ArrayList<RemoteClient>();
-        this.port = port;
-        this.muted = false;
-
-        this.secureMode = useSSL;
-        if (secureMode) {
-            System.setProperty("javax.net.ssl.keyStore", "ssc.store");
-            System.setProperty("javax.net.ssl.keyStorePassword", "SimpleServerClient");
-        }
-        if (autoRegisterEveryClient) {
-            registerLoginMethod();
-        }
-        preStart();
-
-        start();
-
-    }
 
 
     protected void startPingThread() {
@@ -129,7 +111,6 @@ public abstract class BackhandedServer {
                                 for (final String current : idMethods.keySet()) {
                                     if (msg.id().equalsIgnoreCase(current)) {
                                         if (msg.id().equalsIgnoreCase("_INTERNAL_LOGIN_")){
-                                           onLog("Client connected from " + server.getInetAddress().getHostName() + ".");
                                         } else {
                                         }
 
@@ -141,7 +122,7 @@ public abstract class BackhandedServer {
                                                     try {
                                                         tempSocket.close();
                                                     } catch (IOException e) {
-                                                        e.printStackTrace();
+                                                        System.exit(ExitState.TERMINATED.getState());
                                                     }
                                                 }
                                             }
@@ -153,8 +134,10 @@ public abstract class BackhandedServer {
                             }
 
                         } catch (SocketException e) {
-                            onLog("Server stopped.");
+                            System.exit(ExitState.TERMINATED.getState());
                         } catch (IllegalBlockingModeException | IOException | ClassNotFoundException e) {
+                            e.printStackTrace();
+                            System.exit(ExitState.TERMINATED.getState());
                         }
 
                     }
@@ -174,11 +157,6 @@ public abstract class BackhandedServer {
         }
     }
 
-    public synchronized void sendMessage(RemoteClient remoteClient, String datapackageId,
-                                         Object... datapackageContent) {
-        sendMessage(remoteClient, new Channel(datapackageId, datapackageContent));
-    }
-
     public synchronized void sendMessage(RemoteClient remoteClient, Channel message) {
         try {
             if (!remoteClient.getSocket().isConnected()) {
@@ -189,13 +167,9 @@ public abstract class BackhandedServer {
             out.writeObject(message);
             out.flush();
         } catch (IOException e) {
-            onLogError("[Server] [Send Message] Error: " + e.getMessage());
+            e.printStackTrace();
+            System.exit(ExitState.TERMINATED.getState());
 
-            if (toBeDeleted != null) {
-                toBeDeleted.add(remoteClient);
-            } else {
-                clients.remove(remoteClient);
-            }
         }
     }
 
@@ -220,9 +194,7 @@ public abstract class BackhandedServer {
 
     public void registerMethod(String identifier, PacketRunner executable) {
         if (identifier.equalsIgnoreCase(INTERNAL_LOGIN_ID) && autoRegisterEveryClient) {
-            throw new IllegalArgumentException("Identifier may not be '" + INTERNAL_LOGIN_ID + "'. "
-                    + "Since v1.0.1 the server automatically registers new clients. "
-                    + "To react on new client registed, use the onClientRegisters() listener by overwriting it.");
+            System.exit(ExitState.TERMINATED.getState());
         }
         idMethods.put(identifier, executable);
     }
@@ -262,7 +234,8 @@ public abstract class BackhandedServer {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+        //    e.printStackTrace();
+            System.exit(ExitState.TERMINATED.getState());
         }
         startListening();
     }
@@ -279,35 +252,7 @@ public abstract class BackhandedServer {
         }
     }
 
-    public synchronized int getClientCount() {
-        return clients != null ? clients.size() : 0;
-    }
-
-    public boolean isClientIdConnected(String clientId) {
-        if (clients != null && clients.size() > 0) {
-            // Iterate all clients connected
-            for (RemoteClient c : clients) {
-                // Check client exists and its socket is connected
-                if (c.getId().equals(clientId) && c.getSocket() != null && c.getSocket().isConnected()) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
     public abstract void preStart();
-
-
-
-    public void onServerStopped() {
-    }
-
-    public void onLog(String message) {
-    }
-
-    public void onLogError(String message) {
-    }
 
     protected class RemoteClient {
         private String id;

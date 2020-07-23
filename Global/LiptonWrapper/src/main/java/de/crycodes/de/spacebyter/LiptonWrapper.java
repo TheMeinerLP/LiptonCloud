@@ -145,8 +145,6 @@ public class LiptonWrapper {
             System.exit(ExitState.TERMINATED.getState());
         }
 
-
-
         screenManager = new ScreenManager();
 
         scheduler = new Scheduler();
